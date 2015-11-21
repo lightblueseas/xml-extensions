@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GeocodeResponse>
+ <status>OK</status>
+ <result>
+  <type>street_address</type>
+  <formatted_address>Alter Teichweg 188, 22049 Hamburg, Germany</formatted_address>
+  <address_component>
+   <long_name>188</long_name>
+   <short_name>188</short_name>
+   <type>street_number</type>
+  </address_component>
+  <address_component>
+   <long_name>Alter Teichweg</long_name>
+   <short_name>Alter Teichweg</short_name>
+   <type>route</type>
+  </address_component>
+  <address_component>
+   <long_name>Hamburg</long_name>
+   <short_name>Hamburg</short_name>
+   <type>sublocality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Hamburg</long_name>
+   <short_name>Hamburg</short_name>
+   <type>locality</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Hamburg</long_name>
+   <short_name>Hamburg</short_name>
+   <type>administrative_area_level_2</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Hamburg</long_name>
+   <short_name>HH</short_name>
+   <type>administrative_area_level_1</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>Germany</long_name>
+   <short_name>DE</short_name>
+   <type>country</type>
+   <type>political</type>
+  </address_component>
+  <address_component>
+   <long_name>22049</long_name>
+   <short_name>22049</short_name>
+   <type>postal_code</type>
+  </address_component>
+  <geometry>
+   <location>
+    <lat>53.5870900</lat>
+    <lng>10.0667900</lng>
+   </location>
+   <location_type>ROOFTOP</location_type>
+   <viewport>
+    <southwest>
+     <lat>53.5857410</lat>
+     <lng>10.0654410</lng>
+    </southwest>
+    <northeast>
+     <lat>53.5884390</lat>
+     <lng>10.0681390</lng>
+    </northeast>
+   </viewport>
+  </geometry>
+ </result>
+</GeocodeResponse>
