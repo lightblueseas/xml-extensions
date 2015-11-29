@@ -41,12 +41,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
-import de.alpharogroup.file.compare.CompareFileUtils;
+import de.alpharogroup.file.compare.CompareFileExtensions;
 import de.alpharogroup.file.compare.interfaces.IFileContentResultBean;
-import de.alpharogroup.file.csv.CsvFileUtils;
-import de.alpharogroup.file.delete.DeleteFileUtils;
+import de.alpharogroup.file.csv.CsvFileExtensions;
+import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.file.write.WriteFileUtils;
+import de.alpharogroup.file.write.WriteFileExtensions;
 
 public class TemplateHandlerTest
 {
@@ -71,7 +71,7 @@ public class TemplateHandlerTest
 		final File template = new File(testResDir, templateName + ".xml");
 		final File expected = new File(testResDir, expectedFileName);
 		final File input = new File(testResDir, templateName + ".cvs");
-		final List<Map<String, String>> testData = CsvFileUtils.getCvsAsListMap(input);
+		final List<Map<String, String>> testData = CsvFileExtensions.getCvsAsListMap(input);
 		final Map<String, String> oneline = testData.get(0);
 		final StringWriter writer = new StringWriter();
 		final TemplateHandler handler = new TemplateHandler(oneline, writer);
@@ -96,11 +96,11 @@ public class TemplateHandlerTest
 		{
 			output.createNewFile();
 		}
-		WriteFileUtils.writeStringToFile(output, writer.toString(), "UTF-8");
+		WriteFileExtensions.writeStringToFile(output, writer.toString(), "UTF-8");
 
-		final IFileContentResultBean bean = CompareFileUtils.compareFiles(output, expected);
+		final IFileContentResultBean bean = CompareFileExtensions.compareFiles(output, expected);
 		AssertJUnit.assertTrue(bean.getContentEquality());
-		DeleteFileUtils.delete(output);
+		DeleteFileExtensions.delete(output);
 
 	}
 

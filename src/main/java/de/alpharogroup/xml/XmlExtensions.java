@@ -38,9 +38,9 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
 /**
- * The Class XmlUtils.
+ * The class {@link XmlExtensions}.
  */
-public final class XmlUtils
+public final class XmlExtensions
 {
 
 	/**
@@ -354,7 +354,7 @@ public final class XmlUtils
 	/**
 	 * Private constructor.
 	 */
-	private XmlUtils()
+	private XmlExtensions()
 	{
 	}
 }

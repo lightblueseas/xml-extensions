@@ -37,9 +37,9 @@ import org.xml.sax.SAXException;
 import de.alpharogroup.file.search.PathFinder;
 
 /**
- * The Class ValidatorUtilsTest.
+ * The class {@link ValidatorExtensionsTest}.
  */
-public class ValidatorUtilsTest
+public class ValidatorExtensionsTest
 {
 
 	/**
@@ -60,7 +60,7 @@ public class ValidatorUtilsTest
 		final ValidatorHandler errorHandler = new ValidatorHandler();
 		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
 		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
-		ValidatorUtils.validateSchema(xsd, xml, errorHandler);
+		ValidatorExtensions.validateSchema(xsd, xml, errorHandler);
 		AssertJUnit.assertTrue("Validation failed.", errorHandler.isValid());
 	}
 
@@ -83,7 +83,7 @@ public class ValidatorUtilsTest
 		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
 		final String schemaUrl = xsd.getAbsolutePath();
 		final String xmlDocumentUrl = xml.getAbsolutePath();
-		final boolean result = ValidatorUtils.validateSchema(schemaUrl, xmlDocumentUrl);
+		final boolean result = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
 		AssertJUnit.assertTrue("Validation failed.", result);
 	}
 

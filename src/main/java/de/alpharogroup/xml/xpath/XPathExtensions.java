@@ -41,9 +41,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * The Class XPathUtils.
+ * The class {@link XPathExtensions}.
  */
-public class XPathUtils
+public class XPathExtensions
 {
 
 	/**

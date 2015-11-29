@@ -31,7 +31,7 @@ import org.apache.velocity.app.Velocity;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.velocity.VelocityUtils;
+import de.alpharogroup.velocity.VelocityExtensions;
 
 public class SimpleTagTest
 {
@@ -118,7 +118,7 @@ public class SimpleTagTest
 		final VelocityContext context = new VelocityContext();
 		/* put the tag into the context */
 		context.put(tag.getName(), tag);
-		actual = VelocityUtils.merge(context, velocityTemplate);
+		actual = VelocityExtensions.merge(context, velocityTemplate);
 		expected = "<div\n wicket:id=\"contentLabel\"\n class=\"myClass\"\n >xy\n<span\n wicket:id=\"name\"\n class=\"other\"\n >Hello \n<b\n>world\n</b>\n</span>\n</div>\n";
 		/* check if equal */
 		AssertJUnit.assertEquals(expected, actual);

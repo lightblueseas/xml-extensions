@@ -35,13 +35,13 @@ import org.apache.xmlbeans.impl.inst2xsd.Inst2Xsd;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
 import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 
-import de.alpharogroup.file.delete.DeleteFileUtils;
+import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 
 /**
- * The Class XmlToXsdUtils generates XML schema from XML files. It makes use of XMLBeans tools.
+ * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of XMLBeans tools.
  */
-public class XmlToXsdUtils
+public class XmlToXsdExtensions
 {
 
 	/**
@@ -66,7 +66,7 @@ public class XmlToXsdUtils
 		final File[] xmlFiles = { xmlFile };
 		final Inst2XsdOptions inst2XsdOptions = new Inst2XsdOptions();
 		xmlToXsd(xmlFiles, inst2XsdOptions, srcTestResourcesDir, null);
-		DeleteFileUtils.delete(new File(srcTestResourcesDir, "schema0.xsd"));
+		DeleteFileExtensions.delete(new File(srcTestResourcesDir, "schema0.xsd"));
 	}
 
 	/**

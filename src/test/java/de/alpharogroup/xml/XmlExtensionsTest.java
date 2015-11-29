@@ -43,19 +43,19 @@ import de.alpharogroup.test.objects.auth.AccessRight;
 import de.alpharogroup.test.objects.auth.Role;
 import de.alpharogroup.test.objects.auth.Roles;
 
-public class XmlUtilsTest
+public class XmlExtensionsTest
 {
 
 	@Test
 	public void testCreateTag()
 	{
-		String result = XmlUtils.newTag("land", "france", null);
+		String result = XmlExtensions.newTag("land", "france", null);
 		String expected = "<land>france</land>";
 		AssertJUnit.assertTrue("", result.equals(expected));
 		final Map<String, String> attributes = new LinkedHashMap<>();
 		attributes.put("population", "65350000");
 		attributes.put("capital", "paris");
-		result = XmlUtils.newTag("land", "france", attributes);
+		result = XmlExtensions.newTag("land", "france", attributes);
 		expected = "<land population=\"65350000\" capital=\"paris\">france</land>";
 		AssertJUnit.assertTrue("", result.equals(expected));
 	}
@@ -69,14 +69,14 @@ public class XmlUtilsTest
 		Employee employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		String xmlResult = XmlUtils.toXmlWithXStream(employee);
-		String actual = XmlUtils.toJson(xmlResult);
+		String xmlResult = XmlExtensions.toXmlWithXStream(employee);
+		String actual = XmlExtensions.toJson(xmlResult);
 		String expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
 		AssertJUnit.assertTrue("", actual.equals(expected));
 		final Map<String, Class<?>> aliases = new HashMap<>();
 		aliases.put("employee", Employee.class);
 
-		actual = XmlUtils.toJson(xmlResult, aliases);
+		actual = XmlExtensions.toJson(xmlResult, aliases);
 		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
 
 		AssertJUnit.assertTrue("", actual.equals(expected));
@@ -87,8 +87,8 @@ public class XmlUtilsTest
 			.person(
 				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
 					.about("Ha ha ha...").nickname("beast").build()).id("23").build();
-		xmlResult = XmlUtils.toXmlWithXStream(employee);
-		actual = XmlUtils.toJson(xmlResult);
+		xmlResult = XmlExtensions.toXmlWithXStream(employee);
+		actual = XmlExtensions.toJson(xmlResult);
 		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
 		System.out.println(expected);
 	}
@@ -106,9 +106,9 @@ public class XmlUtilsTest
 		employees.add(employee);
 		final EmployeeList employeeList = new EmployeeList();
 		employeeList.setList(employees);
-		final String xmlResult = XmlUtils.toXmlWithXStream(employeeList);
+		final String xmlResult = XmlExtensions.toXmlWithXStream(employeeList);
 
-		final EmployeeList actual = XmlUtils.toObjectWithXStream(xmlResult);
+		final EmployeeList actual = XmlExtensions.toObjectWithXStream(xmlResult);
 		AssertJUnit.assertNotNull(actual);
 
 	}
@@ -140,7 +140,7 @@ public class XmlUtilsTest
 		final Employee employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		final String xmlResult = XmlUtils.toXmlWithXStream(employee);
+		final String xmlResult = XmlExtensions.toXmlWithXStream(employee);
 		final String expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
 			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "    <about></about>\n"
 			+ "    <married>false</married>\n" + "  </person>\n" + "  <id>23</id>\n"
@@ -167,7 +167,7 @@ public class XmlUtilsTest
 		Map<String, Class<?>> aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
-		String xmlResult = XmlUtils.toXmlWithXStream(employee, aliases);
+		String xmlResult = XmlExtensions.toXmlWithXStream(employee, aliases);
 		final String expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
 			+ "    <gender>FEMALE</gender>\n" + "    <about></about>\n"
 			+ "    <married>false</married>\n" + "  </person>\n" + "  <id>23</id>\n"
@@ -192,7 +192,7 @@ public class XmlUtilsTest
 		lqSimpleName = AccessRight.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, AccessRight.class);
 
-		xmlResult = XmlUtils.toXmlWithXStream(roles, aliases);
+		xmlResult = XmlExtensions.toXmlWithXStream(roles, aliases);
 		System.out.println(xmlResult);
 
 	}

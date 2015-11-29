@@ -42,14 +42,14 @@ import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.file.read.ReadFileUtils;
+import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.io.StreamUtils;
+import de.alpharogroup.io.StreamExtensions;
 
-public class XsltTransformerUtilsTest
+public class XsltTransformerExtensionsTest
 {
 	/** The Constant logger. */
-	protected static final Logger logger = Logger.getLogger(XsltTransformerUtilsTest.class);
+	protected static final Logger logger = Logger.getLogger(XsltTransformerExtensionsTest.class);
 	private String expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><birthdates>\r\n"
 		+ "    <birthdate>\r\n" + "        <id>1</id>\r\n" + "        <date>19:07</date>\r\n"
 		+ "    </birthdate>\r\n" + "    <birthdate>\r\n" + "        <id>2</id>\r\n"
@@ -70,8 +70,8 @@ public class XsltTransformerUtilsTest
 			"de.alpharogroup.xsl.transform", "functions.xsl");
 		final File outputFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
 			"de.alpharogroup.xsl.transform", "output.xml");
-		XsltTransformerUtils.transform(xmlFile, xsltFile, new FileOutputStream(outputFile));
-		String actual = ReadFileUtils.readFromFile(outputFile);
+		XsltTransformerExtensions.transform(xmlFile, xsltFile, new FileOutputStream(outputFile));
+		String actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		expected = StringUtils.remove(expected, '\r');
@@ -106,16 +106,16 @@ public class XsltTransformerUtilsTest
 		final File xmlFile = PathFinder.getRelativePath(resDestDir, dirsAndFilename);
 		final File xsltFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
 			"de.alpharogroup.xsl.transform", "functions.xsl");
-		final InputStream is = StreamUtils.getInputStream(xsltFile);
+		final InputStream is = StreamExtensions.getInputStream(xsltFile);
 		final Source xsltSource = new StreamSource(is);
 
-		final InputStream xmlIs = StreamUtils.getInputStream(xmlFile);
+		final InputStream xmlIs = StreamExtensions.getInputStream(xmlFile);
 		final File outputFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
 			"de.alpharogroup.xsl.transform", "data_02_output.xml");
-		final OutputStream output = StreamUtils.getOutputStream(outputFile, true);
+		final OutputStream output = StreamExtensions.getOutputStream(outputFile, true);
 		final Source xmlSource = new StreamSource(xmlIs);
-		XsltTransformerUtils.transform(xmlSource, xsltSource, output);
-		String actual = ReadFileUtils.readFromFile(outputFile);
+		XsltTransformerExtensions.transform(xmlSource, xsltSource, output);
+		String actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		expected = StringUtils.remove(expected, '\r');

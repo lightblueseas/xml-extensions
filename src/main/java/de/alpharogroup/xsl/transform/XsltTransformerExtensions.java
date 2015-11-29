@@ -37,9 +37,9 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 /**
- * The Class XsltTransformerUtils.
+ * The class {@link XsltTransformerExtensions}.
  */
-public final class XsltTransformerUtils
+public final class XsltTransformerExtensions
 {
 
 	/** The Constant TRANSFORMER_FACTORY. */
@@ -175,7 +175,7 @@ public final class XsltTransformerUtils
 	/**
 	 * Private constructor.
 	 */
-	private XsltTransformerUtils()
+	private XsltTransformerExtensions()
 	{
 	}
 }

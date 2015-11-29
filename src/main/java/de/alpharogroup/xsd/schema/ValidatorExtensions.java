@@ -41,13 +41,13 @@ import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
 /**
- * The Class ValidatorUtils can validate xml files.
+ * The class {@link ValidatorExtensions} can validate xml files.
  */
-public class ValidatorUtils
+public class ValidatorExtensions
 {
 
 	/** The Constant logger. */
-	protected static final Logger logger = Logger.getLogger(ValidatorUtils.class);
+	protected static final Logger logger = Logger.getLogger(ValidatorExtensions.class);
 
 	/** The Constant DOCUMENT_BUILDER_FACTORY_VALUE. */
 	private static final String DOCUMENT_BUILDER_FACTORY_VALUE = "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl";
