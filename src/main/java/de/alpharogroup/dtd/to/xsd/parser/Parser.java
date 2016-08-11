@@ -60,7 +60,7 @@ import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 
 
 /**
- * The Class Dtd2XsdParser.
+ * The class Dtd2XsdParser.
  *
  * @author Asterios Raptis
  */

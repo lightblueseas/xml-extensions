@@ -33,7 +33,7 @@ import java.util.Map;
 import de.alpharogroup.lang.ObjectExtensions;
 
 /**
- * The Class Tag represents an tag for xml or html.
+ * The class Tag represents an tag for xml or html.
  */
 public class SimpleTag implements Serializable
 {

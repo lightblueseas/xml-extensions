@@ -30,7 +30,7 @@ import java.io.Writer;
 import org.xml.sax.SAXException;
 
 /**
- * The Class OutputStreamWriterHandler.
+ * The class OutputStreamWriterHandler.
  */
 public class OutputStreamWriterHandler extends WriterHandler
 {

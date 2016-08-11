@@ -39,7 +39,7 @@ import de.alpharogroup.dtd.to.xsd.writer.Writer;
 import de.alpharogroup.io.StreamExtensions;
 
 /**
- * The Class Converter.
+ * The class Converter.
  *
  * @author Asterios Raptis
  */

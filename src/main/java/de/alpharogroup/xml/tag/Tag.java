@@ -33,7 +33,7 @@ import java.util.Map;
 import de.alpharogroup.lang.ObjectExtensions;
 
 /**
- * The Class Tag represents an tag for xml or html where you can set the position of the child tags.
+ * The class Tag represents an tag for xml or html where you can set the position of the child tags.
  */
 public class Tag implements Serializable
 {
