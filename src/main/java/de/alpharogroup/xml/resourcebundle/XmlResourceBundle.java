@@ -32,7 +32,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * The Class XmlResourceBundle offer an alternative to the {@link java.util.ResourceBundle} classes
+ * The class XmlResourceBundle offer an alternative to the {@link java.util.ResourceBundle} classes
  * since they do not support non-ANSI character sets. The intended use for this code is to enable
  * multi-language support.
  * 

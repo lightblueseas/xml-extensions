@@ -32,7 +32,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * The Class WriterHandler.
+ * The class WriterHandler.
  */
 public abstract class WriterHandler extends DefaultHandler
 {

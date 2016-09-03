@@ -36,7 +36,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- * The Class XmlResourceBundleControl.
+ * The class XmlResourceBundleControl.
  */
 public class XmlResourceBundleControl extends ResourceBundle.Control
 {

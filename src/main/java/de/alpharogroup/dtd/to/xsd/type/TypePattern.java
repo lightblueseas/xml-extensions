@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 
 
 /**
- * The Class TypePattern.
+ * The class TypePattern.
  *
  * @author Asterios Raptis
  */

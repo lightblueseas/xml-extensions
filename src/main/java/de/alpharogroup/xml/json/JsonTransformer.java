@@ -38,7 +38,7 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * The Class JsonTransformer helps to transform json string to objects and back.
+ * The class JsonTransformer helps to transform json string to objects and back.
  */
 public final class JsonTransformer
 {
