@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.alpharogroup.lang.ObjectExtensions;
+import de.alpharogroup.lang.object.CloneObjectExtensions;
 
 /**
  * The class Tag represents an tag for xml or html where you can set the position of the child tags.
@@ -94,17 +94,17 @@ public class Tag implements Serializable
 	@Override
 	public Object clone()
 	{
-		return ObjectExtensions.clone(this);
+		return CloneObjectExtensions.cloneQuietly(this);
 	}
 
 	/**
 	 * Gets the attributes.
-	 * 
+	 *
 	 * @return the attributes
 	 */
 	public Map<String, String> getAttributes()
 	{
-		return attributes;
+		return this.attributes;
 	}
 
 	/**
@@ -114,37 +114,37 @@ public class Tag implements Serializable
 	 */
 	public List<ChildTagPosition> getChildren()
 	{
-		return childTagPositions;
+		return this.childTagPositions;
 	}
 
 	/**
 	 * Gets the content.
-	 * 
+	 *
 	 * @return the content
 	 */
 	public String getContent()
 	{
-		return content;
+		return this.content;
 	}
 
 	/**
 	 * Gets the name.
-	 * 
+	 *
 	 * @return the name
 	 */
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 
 	/**
 	 * Checks if is end tag.
-	 * 
+	 *
 	 * @return true, if checks if is end tag
 	 */
 	public boolean isEndTag()
 	{
-		return endTag;
+		return this.endTag;
 	}
 
 	/**
@@ -192,7 +192,7 @@ public class Tag implements Serializable
 
 	/**
 	 * Sets the content.
-	 * 
+	 *
 	 * @param content
 	 *            the content
 	 */
@@ -203,7 +203,7 @@ public class Tag implements Serializable
 
 	/**
 	 * Sets the end tag.
-	 * 
+	 *
 	 * @param endTag
 	 *            the end tag
 	 */
@@ -214,7 +214,7 @@ public class Tag implements Serializable
 
 	/**
 	 * Sets the name.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 */

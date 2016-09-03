@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.alpharogroup.lang.ObjectExtensions;
+import de.alpharogroup.lang.object.CloneObjectExtensions;
 
 /**
  * The class Tag represents an tag for xml or html.
@@ -98,7 +98,7 @@ public class SimpleTag implements Serializable
 	@Override
 	public Object clone()
 	{
-		return ObjectExtensions.clone(this);
+		return CloneObjectExtensions.cloneQuietly(this);
 	}
 
 	/**
@@ -120,24 +120,27 @@ public class SimpleTag implements Serializable
 			return false;
 		}
 		final SimpleTag castedObj = (SimpleTag)o;
-		return (this.attributes == null ? castedObj.attributes == null : this.attributes
-			.equals(castedObj.attributes))
-			&& (this.children == null ? castedObj.children == null : this.children
-				.equals(castedObj.children))
-			&& (this.content == null ? castedObj.content == null : this.content
-				.equals(castedObj.content))
+		return (this.attributes == null
+			? castedObj.attributes == null
+			: this.attributes.equals(castedObj.attributes))
+			&& (this.children == null
+				? castedObj.children == null
+				: this.children.equals(castedObj.children))
+			&& (this.content == null
+				? castedObj.content == null
+				: this.content.equals(castedObj.content))
 			&& this.endTag == castedObj.endTag
 			&& (this.name == null ? castedObj.name == null : this.name.equals(castedObj.name));
 	}
 
 	/**
 	 * Gets the attributes.
-	 * 
+	 *
 	 * @return the attributes
 	 */
 	public Map<String, String> getAttributes()
 	{
-		return attributes;
+		return this.attributes;
 	}
 
 	/**
@@ -147,27 +150,27 @@ public class SimpleTag implements Serializable
 	 */
 	public List<SimpleTag> getChildren()
 	{
-		return children;
+		return this.children;
 	}
 
 	/**
 	 * Gets the content.
-	 * 
+	 *
 	 * @return the content
 	 */
 	public String getContent()
 	{
-		return content;
+		return this.content;
 	}
 
 	/**
 	 * Gets the name.
-	 * 
+	 *
 	 * @return the name
 	 */
 	public String getName()
 	{
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -178,22 +181,22 @@ public class SimpleTag implements Serializable
 	{
 		int hashCode = 1;
 		hashCode = 31 * hashCode + (int)(+serialVersionUID ^ serialVersionUID >>> 32);
-		hashCode = 31 * hashCode + (attributes == null ? 0 : attributes.hashCode());
-		hashCode = 31 * hashCode + (children == null ? 0 : children.hashCode());
-		hashCode = 31 * hashCode + (content == null ? 0 : content.hashCode());
-		hashCode = 31 * hashCode + (endTag ? 1231 : 1237);
-		hashCode = 31 * hashCode + (name == null ? 0 : name.hashCode());
+		hashCode = 31 * hashCode + (this.attributes == null ? 0 : this.attributes.hashCode());
+		hashCode = 31 * hashCode + (this.children == null ? 0 : this.children.hashCode());
+		hashCode = 31 * hashCode + (this.content == null ? 0 : this.content.hashCode());
+		hashCode = 31 * hashCode + (this.endTag ? 1231 : 1237);
+		hashCode = 31 * hashCode + (this.name == null ? 0 : this.name.hashCode());
 		return hashCode;
 	}
 
 	/**
 	 * Checks if is end tag.
-	 * 
+	 *
 	 * @return true, if checks if is end tag
 	 */
 	public boolean isEndTag()
 	{
-		return endTag;
+		return this.endTag;
 	}
 
 	/**
@@ -230,7 +233,7 @@ public class SimpleTag implements Serializable
 
 	/**
 	 * Sets the content.
-	 * 
+	 *
 	 * @param content
 	 *            the content
 	 */
@@ -241,7 +244,7 @@ public class SimpleTag implements Serializable
 
 	/**
 	 * Sets the end tag.
-	 * 
+	 *
 	 * @param endTag
 	 *            the end tag
 	 */
@@ -252,7 +255,7 @@ public class SimpleTag implements Serializable
 
 	/**
 	 * Sets the name.
-	 * 
+	 *
 	 * @param name
 	 *            the name
 	 */
