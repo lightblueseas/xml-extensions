@@ -25,7 +25,7 @@
 package de.alpharogroup.xml.sax.handler;
 
 /**
- * The Class BreakParsingException is thrown if the parse have to stop.
+ * The class BreakParsingException is thrown if the parse have to stop.
  *
  * @version 1.0
  * @author Asterios Raptis

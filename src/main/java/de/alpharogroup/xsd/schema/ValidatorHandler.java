@@ -29,7 +29,7 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * The Class ValidatorHandler.
+ * The class ValidatorHandler.
  */
 public class ValidatorHandler extends DefaultHandler
 {

@@ -43,7 +43,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 import org.apache.xerces.xni.parser.XMLParserConfiguration;
 
 /**
- * The Class Configuration.
+ * The class Configuration.
  *
  * @author Asterios Raptis
  */

@@ -31,7 +31,7 @@ import java.util.Map;
 import org.xml.sax.SAXException;
 
 /**
- * The Class TemplateHandler.
+ * The class TemplateHandler.
  */
 public class TemplateHandler extends WriterHandler
 {

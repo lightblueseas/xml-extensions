@@ -37,7 +37,7 @@ import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 
 
 /**
- * The Class Writer.
+ * The class Writer.
  *
  * @author Asterios Raptis
  */
