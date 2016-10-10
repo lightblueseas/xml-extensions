@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>4.12.0</version>
+	<version>4.13.0</version>
 
 	<name>${project.artifactId}</name>
 
@@ -38,7 +38,7 @@
 
 
 	<properties>
-		<file-worker.version>4.11.0</file-worker.version>
+		<file-worker.version>4.12.0</file-worker.version>
 		<test-objects.version>4.11.0</test-objects.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
