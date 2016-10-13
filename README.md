@@ -22,7 +22,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 Than you can add the dependency to your dependencies:
 
 		<!-- xml-extensions version -->
-		<xml-extensions.version>4.13.0</xml-extensions.version>
+		<xml-extensions.version>4.14.0</xml-extensions.version>
 
 		<dependencies>
 			...
