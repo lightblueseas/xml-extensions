@@ -86,7 +86,7 @@ public class XmlExtensionsTest
 			.builder()
 			.person(
 				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-					.about("Ha ha ha...").nickname("beast").build()).id("23").build();
+				.about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		xmlResult = XmlExtensions.toXmlWithXStream(employee);
 		actual = XmlExtensions.toJson(xmlResult);
 		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
@@ -155,7 +155,7 @@ public class XmlExtensionsTest
 
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testToXmlWithXStreamXStreamObjectMapOfStringClassOfQ()
 	{
 		final Person person = new Person();
@@ -167,21 +167,29 @@ public class XmlExtensionsTest
 		Map<String, Class<?>> aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
-		String xmlResult = XmlExtensions.toXmlWithXStream(employee, aliases);
-		final String expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
-			+ "    <gender>FEMALE</gender>\n" + "    <about></about>\n"
-			+ "    <married>false</married>\n" + "  </person>\n" + "  <id>23</id>\n"
-			+ "</employee>";
-		AssertJUnit.assertTrue("", xmlResult.equals(expected));
-
-		final Roles roles = new Roles();
+		String actual = XmlExtensions.toXmlWithXStream(employee, aliases);
+		String expected =
+			"<employee>\n"
+				+ "  <person>\n"
+				+ "    <name>Anna</name>\n"
+				+ "    <nickname></nickname>\n"
+				+ "    <gender>FEMALE</gender>\n"
+				+ "    <about></about>\n"
+				+ "    <married>false</married>\n"
+				+ "  </person>\n"
+				+ "  <id>23</id>\n"
+				+ "</employee>";
+		AssertJUnit.assertEquals(expected, actual);
 		final Set<Role> rs = new HashSet<>();
-		roles.setRoles(rs);
-		final Role role = new Role();
+		final Roles roles = Roles.builder()
+			.roles(rs)
+			.build();
+
+		final Role role = Role.builder().build();
 		rs.add(role);
 		final Set<AccessRight> rights = new HashSet<>();
 		role.setRights(rights);
-		final AccessRight right = new AccessRight();
+		final AccessRight right = AccessRight.builder().build();
 		right.setDescription("bla");
 		rights.add(right);
 		aliases = new HashMap<>();
@@ -192,9 +200,12 @@ public class XmlExtensionsTest
 		lqSimpleName = AccessRight.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, AccessRight.class);
 
-		xmlResult = XmlExtensions.toXmlWithXStream(roles, aliases);
-		System.out.println(xmlResult);
-
+		actual = XmlExtensions.toXmlWithXStream(roles, aliases);
+		System.out.println(actual);
+		expected ="<roles>\n"
+			+ "  <roles class=\"empty-set\"/>\n"
+			+ "</roles>";
+		AssertJUnit.assertEquals(expected, actual);
 	}
 
 }
