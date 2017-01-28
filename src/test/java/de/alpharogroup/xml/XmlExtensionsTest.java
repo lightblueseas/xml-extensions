@@ -104,8 +104,7 @@ public class XmlExtensionsTest
 		employee.setId("23");
 		final List<Employee> employees = new ArrayList<>();
 		employees.add(employee);
-		final EmployeeList employeeList = new EmployeeList();
-		employeeList.setList(employees);
+		final EmployeeList employeeList = EmployeeList.builder().employees(employees).build();
 		final String xmlResult = XmlExtensions.toXmlWithXStream(employeeList);
 
 		final EmployeeList actual = XmlExtensions.toObjectWithXStream(xmlResult);
