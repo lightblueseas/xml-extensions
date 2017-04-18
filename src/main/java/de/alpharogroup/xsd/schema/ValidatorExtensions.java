@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -173,8 +173,8 @@ public class ValidatorExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void validateSchema(final File xsd, final File xml,
-		final ErrorHandler errorHandler) throws SAXException, ParserConfigurationException,
-		IOException
+		final ErrorHandler errorHandler)
+		throws SAXException, ParserConfigurationException, IOException
 	{
 
 		final Schema schemaXSD = getSchema(xsd, errorHandler);

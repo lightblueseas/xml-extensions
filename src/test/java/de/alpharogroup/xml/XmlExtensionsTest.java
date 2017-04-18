@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -60,7 +60,7 @@ public class XmlExtensionsTest
 		AssertJUnit.assertTrue("", result.equals(expected));
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testToJson()
 	{
 		final Person person = new Person();
@@ -82,11 +82,8 @@ public class XmlExtensionsTest
 		AssertJUnit.assertTrue("", actual.equals(expected));
 
 
-		employee = Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-				.about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		xmlResult = XmlExtensions.toXmlWithXStream(employee);
 		actual = XmlExtensions.toJson(xmlResult);
 		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
@@ -104,8 +101,7 @@ public class XmlExtensionsTest
 		employee.setId("23");
 		final List<Employee> employees = new ArrayList<>();
 		employees.add(employee);
-		final EmployeeList employeeList = new EmployeeList();
-		employeeList.setList(employees);
+		final EmployeeList employeeList = EmployeeList.builder().employees(employees).build();
 		final String xmlResult = XmlExtensions.toXmlWithXStream(employeeList);
 
 		final EmployeeList actual = XmlExtensions.toObjectWithXStream(xmlResult);
@@ -155,7 +151,7 @@ public class XmlExtensionsTest
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testToXmlWithXStreamXStreamObjectMapOfStringClassOfQ()
 	{
 		final Person person = new Person();
@@ -168,22 +164,13 @@ public class XmlExtensionsTest
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
 		String actual = XmlExtensions.toXmlWithXStream(employee, aliases);
-		String expected =
-			"<employee>\n"
-				+ "  <person>\n"
-				+ "    <name>Anna</name>\n"
-				+ "    <nickname></nickname>\n"
-				+ "    <gender>FEMALE</gender>\n"
-				+ "    <about></about>\n"
-				+ "    <married>false</married>\n"
-				+ "  </person>\n"
-				+ "  <id>23</id>\n"
-				+ "</employee>";
+		String expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <nickname></nickname>\n" + "    <gender>FEMALE</gender>\n"
+			+ "    <about></about>\n" + "    <married>false</married>\n" + "  </person>\n"
+			+ "  <id>23</id>\n" + "</employee>";
 		AssertJUnit.assertEquals(expected, actual);
 		final Set<Role> rs = new HashSet<>();
-		final Roles roles = Roles.builder()
-			.roles(rs)
-			.build();
+		final Roles roles = Roles.builder().roles(rs).build();
 
 		final Role role = Role.builder().build();
 		rs.add(role);
@@ -202,9 +189,7 @@ public class XmlExtensionsTest
 
 		actual = XmlExtensions.toXmlWithXStream(roles, aliases);
 		System.out.println(actual);
-		expected ="<roles>\n"
-			+ "  <roles class=\"empty-set\"/>\n"
-			+ "</roles>";
+		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
 		AssertJUnit.assertEquals(expected, actual);
 	}
 

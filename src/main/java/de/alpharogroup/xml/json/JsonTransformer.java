@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -90,8 +90,8 @@ public final class JsonTransformer
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> String toJson(final List<T> list) throws JsonGenerationException,
-		JsonMappingException, IOException
+	public static <T> String toJson(final List<T> list)
+		throws JsonGenerationException, JsonMappingException, IOException
 	{
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		final ObjectMapper mapper = new ObjectMapper();
@@ -160,9 +160,8 @@ public final class JsonTransformer
 		}
 		catch (final JsonProcessingException e)
 		{
-			LOG.error(
-				"An error occured when converting object to String.\nGiven object:"
-					+ object.toString() + "\n", e);
+			LOG.error("An error occured when converting object to String.\nGiven object:"
+				+ object.toString() + "\n", e);
 		}
 		return null;
 	}
@@ -269,8 +268,8 @@ public final class JsonTransformer
 		throws JsonParseException, JsonMappingException, IOException
 	{
 		final ObjectMapper mapper = getObjectMapper(true);
-		final List<T> objectList = mapper.readValue(jsonString, mapper.getTypeFactory()
-			.constructCollectionType(List.class, clazz));
+		final List<T> objectList = mapper.readValue(jsonString,
+			mapper.getTypeFactory().constructCollectionType(List.class, clazz));
 		return objectList;
 	}
 
