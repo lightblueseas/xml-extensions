@@ -60,7 +60,7 @@ public class XmlExtensionsTest
 		AssertJUnit.assertTrue("", result.equals(expected));
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testToJson()
 	{
 		final Person person = new Person();
@@ -151,7 +151,7 @@ public class XmlExtensionsTest
 
 	}
 
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testToXmlWithXStreamXStreamObjectMapOfStringClassOfQ()
 	{
 		final Person person = new Person();
