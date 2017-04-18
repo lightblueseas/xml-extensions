@@ -173,8 +173,8 @@ public class ValidatorExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void validateSchema(final File xsd, final File xml,
-		final ErrorHandler errorHandler) throws SAXException, ParserConfigurationException,
-		IOException
+		final ErrorHandler errorHandler)
+		throws SAXException, ParserConfigurationException, IOException
 	{
 
 		final Schema schemaXSD = getSchema(xsd, errorHandler);

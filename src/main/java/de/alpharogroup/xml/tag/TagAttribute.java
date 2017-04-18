@@ -41,28 +41,30 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class TagAttribute
 {
-	
+
 	/** The name of the attribute. */
 	private String name;
-	
+
 	/** The delimiter of the values from the attribute. */
 	private String delimiter;
 
 	/** The values of the attribute. */
-	@Singular 
+	@Singular
 	private List<String> values;
-	
+
 	{
 		onInitializerBlock();
 	}
-	
-	public String joinValues() {
+
+	public String joinValues()
+	{
 		return String.join(delimiter, values);
 	}
-	
-	protected void onInitializerBlock(Object... objects) {
+
+	protected void onInitializerBlock(Object... objects)
+	{
 	}
 }

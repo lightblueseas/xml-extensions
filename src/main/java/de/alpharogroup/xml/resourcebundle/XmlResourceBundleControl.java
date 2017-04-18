@@ -57,8 +57,8 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ResourceBundle newBundle(final String baseName, final Locale locale,
-		final String format, final ClassLoader loader, final boolean reload)
+	public ResourceBundle newBundle(final String baseName, final Locale locale, final String format,
+		final ClassLoader loader, final boolean reload)
 		throws IllegalAccessException, InstantiationException, IOException
 	{
 

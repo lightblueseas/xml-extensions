@@ -44,13 +44,11 @@ public class XmlToXsdExtensionsTest
 			new XmlOptions().setSavePrettyPrint());
 		final String expected = "<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\r\n"
 			+ "  <xs:element name=\"person\" type=\"personType\"/>\r\n"
-			+ "  <xs:complexType name=\"personType\">\r\n"
-			+ "    <xs:sequence>\r\n"
-			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\r\n"
-			+ "    </xs:sequence>\r\n"
+			+ "  <xs:complexType name=\"personType\">\r\n" + "    <xs:sequence>\r\n"
+			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\r\n" + "    </xs:sequence>\r\n"
 			+ "  </xs:complexType>\r\n" + "</xs:schema>";
-		AssertJUnit
-			.assertTrue("Expected should be equal with the result.", expected.equals(result));
+		AssertJUnit.assertTrue("Expected should be equal with the result.",
+			expected.equals(result));
 	}
 
 }

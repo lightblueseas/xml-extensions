@@ -56,11 +56,9 @@ public class JsonTransformerTest
 	@Test
 	public void testToJson() throws JsonProcessingException
 	{
-		final Employee employee = Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-					.about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
 		final String actual = JsonTransformer.toJson(employee);
 		final String expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		AssertJUnit.assertTrue("", actual.equals(expected));
@@ -77,21 +75,22 @@ public class JsonTransformerTest
 	public void testToJsonList() throws IOException
 	{
 		final List<Employee> employees = new ArrayList<>();
-		employees.add(Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-					.about("Ha ha ha...").nickname("beast").build()).id("23").build());
-		employees.add(Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.MALE).name("Andreas").married(false)
-					.about("fine person").nickname("cute").build()).id("24").build());
-		employees.add(Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Tatjana").married(false)
-					.about("Im hot").nickname("beautiful").build()).id("25").build());
+		employees
+			.add(
+				Employee
+					.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+						.married(true).about("Ha ha ha...").nickname("beast").build())
+					.id("23").build());
+		employees
+			.add(Employee
+				.builder().person(Person.builder().gender(Gender.MALE).name("Andreas")
+					.married(false).about("fine person").nickname("cute").build())
+				.id("24").build());
+		employees
+			.add(Employee
+				.builder().person(Person.builder().gender(Gender.FEMALE).name("Tatjana")
+					.married(false).about("Im hot").nickname("beautiful").build())
+				.id("25").build());
 		final String actual = JsonTransformer.toJson(employees);
 
 		final String expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
@@ -111,11 +110,9 @@ public class JsonTransformerTest
 	@Test
 	public void testToObject() throws JsonParseException, JsonMappingException, IOException
 	{
-		final Employee expected = Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-					.about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		final Employee expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		final Employee actual = JsonTransformer.toObject(jsonString, Employee.class);
 		AssertJUnit.assertEquals(expected, actual);
@@ -156,14 +153,12 @@ public class JsonTransformerTest
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testToObjectWithModules() throws JsonParseException, JsonMappingException,
-		IOException
+	public void testToObjectWithModules()
+		throws JsonParseException, JsonMappingException, IOException
 	{
-		final Employee expected = Employee
-			.builder()
-			.person(
-				Person.builder().gender(Gender.FEMALE).name("Anna").married(true)
-					.about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		final Employee expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
 		final String jsonString = "{\"id\":\"23\",\"person\":{\"married\":true,\"nickname\":\"beast\",\"name\":\"Anna\",\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\"}}";
 		final Employee actual = JsonTransformer.toObject(jsonString, Employee.class,
 			new JsonOrgModule());
