@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,7 +39,8 @@ import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 
 /**
- * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of XMLBeans tools.
+ * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of
+ * XMLBeans tools.
  */
 public class XmlToXsdExtensions
 {
@@ -140,8 +141,8 @@ public class XmlToXsdExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static void xmlToXsd(final File xmlFile, final File xsdOutFile,
-		final Inst2XsdOptions inst2XsdOptions, final XmlOptions xmlOptions) throws XmlException,
-		IOException
+		final Inst2XsdOptions inst2XsdOptions, final XmlOptions xmlOptions)
+		throws XmlException, IOException
 	{
 		final XmlObject[] xmlInstances = new XmlObject[1];
 		xmlInstances[0] = XmlObject.Factory.parse(xmlFile);
@@ -234,13 +235,13 @@ public class XmlToXsdExtensions
 		}
 		catch (final XmlException e)
 		{
-			throw new IllegalArgumentException("Invalid xml file: '" + xmlFiles[i].getName()
-				+ "'. \n" + e.getMessage(), e);
+			throw new IllegalArgumentException(
+				"Invalid xml file: '" + xmlFiles[i].getName() + "'. \n" + e.getMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			throw new IllegalArgumentException("Could not read file: '" + xmlFiles[i].getName()
-				+ "'. " + e.getMessage(), e);
+			throw new IllegalArgumentException(
+				"Could not read file: '" + xmlFiles[i].getName() + "'. " + e.getMessage(), e);
 		}
 
 		final SchemaDocument[] schemaDocs = Inst2Xsd.inst2xsd(xmlInstances, inst2XsdOptions);

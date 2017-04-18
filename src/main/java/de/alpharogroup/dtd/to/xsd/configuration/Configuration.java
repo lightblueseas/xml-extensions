@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -300,7 +300,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	public void setEntityResolver(final XMLEntityResolver resolver)
 	{
 		this.xmlEntityResolver = resolver;
-		setProperty(HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER, this.xmlEntityResolver);
+		setProperty(HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER,
+			this.xmlEntityResolver);
 	}
 
 	/**

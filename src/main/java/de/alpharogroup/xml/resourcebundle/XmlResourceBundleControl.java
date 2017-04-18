@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -57,8 +57,8 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ResourceBundle newBundle(final String baseName, final Locale locale,
-		final String format, final ClassLoader loader, final boolean reload)
+	public ResourceBundle newBundle(final String baseName, final Locale locale, final String format,
+		final ClassLoader loader, final boolean reload)
 		throws IllegalAccessException, InstantiationException, IOException
 	{
 
