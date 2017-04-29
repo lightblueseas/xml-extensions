@@ -91,7 +91,7 @@ public class TemplateHandlerTest
 		{
 			e.printStackTrace();
 		}
-		final File output = new File("test" + ".html");
+		final File output = new File(testResDir, "test-generated" + ".html");
 		if (!output.exists())
 		{
 			output.createNewFile();
