@@ -41,7 +41,7 @@ The source code for xml-extensions are on GitHub. Please feel free to fork and s
 
 Create your own fork of [lightblueseas/xml-extensions/fork](https://github.com/lightblueseas/xml-extensions/fork)
 
-To share your changes, [submit a pull request](https://github.com/lightblueseas/xml-extensions/pull/new/master).
+To share your changes, [submit a pull request](https://github.com/lightblueseas/xml-extensions/pull/new/develop).
 
 Don't forget to add new units tests on your changes.
 
