@@ -46,8 +46,10 @@
 
 
 	<properties>
-		<file-worker.version>4.15.0</file-worker.version>
+		<file-worker.version>4.16.1</file-worker.version>
 		<test-objects.version>4.16.0</test-objects.version>
+		<!-- VELOCITY-EXTENSIONS version -->
+		<velocity-extensions.version>1.0.0</velocity-extensions.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
 		<xercesImpl.version>2.11.0</xercesImpl.version>
@@ -115,6 +117,12 @@
 				<version>${test-objects.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>velocity-extensions</artifactId>
+				<version>${velocity-extensions.version}</version>
+			</dependency>
+
 		</dependencies>
 
 	</dependencyManagement>
@@ -166,6 +174,12 @@
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>test-objects</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>velocity-extensions</artifactId>
 			<scope>test</scope>
 		</dependency>
 
