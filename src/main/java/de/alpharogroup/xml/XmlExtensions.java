@@ -28,14 +28,20 @@ import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+
+import de.alpharogroup.file.read.ReadFileExtensions;
+import de.alpharogroup.lang.ClassExtensions;
 
 /**
  * The class {@link XmlExtensions}.
@@ -45,9 +51,9 @@ public final class XmlExtensions
 
 	/**
 	 * Gets the input source from the given xml string.
-	 * 
+	 *
 	 * @param xmlString
-	 *            the xml string
+	 *            the xml as string object
 	 * @return the input source
 	 */
 	public static InputSource getInputSource(final String xmlString)
@@ -56,31 +62,82 @@ public final class XmlExtensions
 	}
 
 	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFile
+	 *            the xml file
+	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> T loadObject(final File xmlFile) throws IOException
+	{
+		final InputStream is = FileUtils.openInputStream(xmlFile);
+		return loadObject(is);
+	}
+
+	/**
+	 * Load from the given input stream that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param is
+	 *            the input stream
+	 * @return the object from the given input stream.
+	 */
+	private static <T> T loadObject(final InputStream is)
+	{
+		final String xmlString = ReadFileExtensions.inputStream2String(is);
+		final T object = XmlExtensions.toObjectWithXStream(xmlString);
+		return object;
+	}
+
+	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFileName
+	 *            the xml file name
+	 * @return the object from the given xml file.
+	 */
+	public static <T> T loadObject(final String xmlFileName)
+	{
+		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
+		return loadObject(is);
+	}
+
+	/**
 	 * Creates a tag from the given string values. Can be used for creating html or xml tags.
-	 * 
+	 *
 	 * @param tagname
-	 *            the tagname
+	 *            the tag name
 	 * @param value
-	 *            the value from the tag.
-	 * @param attributtes
-	 *            a map with the attributtes
+	 *            the value from the tag
+	 * @param attributes
+	 *            a map with the attributes
 	 * @return the string
 	 */
 	public static String newTag(final String tagname, final String value,
-		final Map<String, String> attributtes)
+		final Map<String, String> attributes)
 	{
 		final StringBuilder xmlTag = new StringBuilder();
 		xmlTag.append("<").append(tagname);
-		if (attributtes != null && !attributtes.isEmpty())
+		if (attributes != null && !attributes.isEmpty())
 		{
 			xmlTag.append(" ");
 			int count = 1;
-			for (final Map.Entry<String, String> attributte : attributtes.entrySet())
+			for (final Map.Entry<String, String> attributte : attributes.entrySet())
 			{
 				xmlTag.append(attributte.getKey());
 				xmlTag.append("=");
 				xmlTag.append("\"").append(attributte.getValue()).append("\"");
-				if (count != attributtes.size())
+				if (count != attributes.size())
 				{
 					xmlTag.append(" ");
 				}
@@ -95,28 +152,28 @@ public final class XmlExtensions
 
 	/**
 	 * Creates from the given xml string a json string.
-	 * 
-	 * @param xml
-	 *            the xml string.
+	 *
+	 * @param xmlString
+	 *            the xml as string object
 	 * @return the json string.
 	 */
-	public static String toJson(final String xml)
+	public static String toJson(final String xmlString)
 	{
-		return toJson(xml, null);
+		return toJson(xmlString, null);
 	}
 
 	/**
 	 * Creates from the given xml string a json string.
-	 * 
-	 * @param xml
-	 *            the xml string.
+	 *
+	 * @param xmlString
+	 *            the xml as string object
 	 * @param aliases
 	 *            the aliases
 	 * @return the json string.
 	 */
-	public static String toJson(final String xml, final Map<String, Class<?>> aliases)
+	public static String toJson(final String xmlString, final Map<String, Class<?>> aliases)
 	{
-		final Object object = toObjectWithXStream(xml);
+		final Object object = toObjectWithXStream(xmlString);
 		final XStream xstream = new XStream(new JettisonMappedXmlDriver());
 		if (aliases != null)
 		{
@@ -131,7 +188,7 @@ public final class XmlExtensions
 
 	/**
 	 * Creates from the given xml string an java object.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type
 	 * @param xmlString
@@ -164,67 +221,68 @@ public final class XmlExtensions
 
 	/**
 	 * Creates from the given xml string an java object.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
-	 * @param xml
-	 *            the xml
+	 * @param xmlString
+	 *            the xml as string object
 	 * @return the xml string
 	 */
-	public static <T> T toObjectWithXStream(final String xml)
+	public static <T> T toObjectWithXStream(final String xmlString)
 	{
-		return toObjectWithXStream(null, xml);
+		return toObjectWithXStream(null, xmlString);
 	}
 
 	/**
 	 * Creates from the given xml string an Object. The given map hold the aliases. For more
 	 * information with aliasing see documation of xstream.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
-	 * @param xml
-	 *            the xml string
+	 * @param xmlString
+	 *            the xml as string object
 	 * @param aliases
 	 *            the aliases
 	 * @return the created object from the given xml string.
 	 */
-	public static <T> T toObjectWithXStream(final String xml, final Map<String, Class<?>> aliases)
+	public static <T> T toObjectWithXStream(final String xmlString,
+		final Map<String, Class<?>> aliases)
 	{
-		return toObjectWithXStream(null, xml, aliases);
+		return toObjectWithXStream(null, xmlString, aliases);
 	}
 
 	/**
 	 * Creates from the given xml string an java object.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param xstream
 	 *            the xstream object.
-	 * @param xml
-	 *            the xml
+	 * @param xmlString
+	 *            the xml as string object
 	 * @return the object
 	 */
-	public static <T> T toObjectWithXStream(final XStream xstream, final String xml)
+	public static <T> T toObjectWithXStream(final XStream xstream, final String xmlString)
 	{
-		return toObjectWithXStream(xstream, xml, null);
+		return toObjectWithXStream(xstream, xmlString, null);
 	}
 
 	/**
 	 * Creates from the given xml string an java object. The given map hold the aliases. For more
 	 * information with aliasing see documation of xstream.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param xstream
 	 *            the xstream object.
-	 * @param xml
+	 * @param xmlString
 	 *            the xml
 	 * @param aliases
 	 *            the aliases
 	 * @return the object
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T toObjectWithXStream(XStream xstream, final String xml,
+	public static <T> T toObjectWithXStream(XStream xstream, final String xmlString,
 		final Map<String, Class<?>> aliases)
 	{
 		if (xstream == null)
@@ -238,12 +296,12 @@ public final class XmlExtensions
 				xstream.alias(alias.getKey(), alias.getValue());
 			}
 		}
-		return (T)xstream.fromXML(xml);
+		return (T)xstream.fromXML(xmlString);
 	}
 
 	/**
 	 * Creates from the given Object an xml string.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param obj
@@ -273,7 +331,7 @@ public final class XmlExtensions
 
 	/**
 	 * Creates from the given Object an xml string.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param objectToXML
@@ -288,7 +346,7 @@ public final class XmlExtensions
 	/**
 	 * Creates from the given Object an xml string. The given map hold the aliases. For more
 	 * information with aliasing see documation of xstream.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the object that will be transformed to xml
 	 * @param objectToXML
@@ -305,7 +363,7 @@ public final class XmlExtensions
 
 	/**
 	 * Creates from the given Object an xml string.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the object that will be transformed to xml
 	 * @param xstream
@@ -322,7 +380,7 @@ public final class XmlExtensions
 	/**
 	 * Creates from the given Object an xml string. The given map hold the aliases. For more
 	 * information with aliasing see documation of xstream.
-	 * 
+	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param xstream
