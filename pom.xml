@@ -46,7 +46,7 @@
 
 
 	<properties>
-		<file-worker.version>4.16.1</file-worker.version>
+		<file-worker.version>4.17.0</file-worker.version>
 		<test-objects.version>4.17.0</test-objects.version>
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.1.0</velocity-extensions.version>
