@@ -6,9 +6,15 @@ Useful extensions methods and utilities for handle xml or transform dtd to xsd a
 
 The source code comes under the liberal MIT License, making xml-extensions great for all types of applications.
 
-# Build status and latest maven version
+# Build status
+
 [![Build Status](https://travis-ci.org/lightblueseas/xml-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/xml-extensions)
 
+## Coverage Status
+
+[![Coverage Status](https://coveralls.io/repos/github/lightblueseas/xml-extensions/badge.svg?branch=master)](https://coveralls.io/github/lightblueseas/xml-extensions?branch=master)
+
+## Maven Central
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
 
