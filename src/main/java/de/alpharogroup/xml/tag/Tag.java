@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.alpharogroup.lang.object.CloneObjectExtensions;
+import de.alpharogroup.clone.object.CloneObjectExtensions;
 
 /**
  * The class Tag represents an tag for xml or html where you can set the position of the child tags.
