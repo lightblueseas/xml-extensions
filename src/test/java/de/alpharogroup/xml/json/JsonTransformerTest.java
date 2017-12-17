@@ -24,11 +24,15 @@
  */
 package de.alpharogroup.xml.json;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -48,26 +52,102 @@ public class JsonTransformerTest
 {
 
 	/**
+	 * Test method for {@link JsonTransformer#toXml(String, Class)}.
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToXmlStringClass() throws JsonParseException, JsonMappingException, IOException
+	{
+		String expected;
+		String actual;
+
+		expected = "<de.alpharogroup.test.objects.Employee>\n  <person>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n    <gender>FEMALE</gender>\n    <about>Ha ha ha...</about>\n    <married>true</married>\n  </person>\n  <id>23</id>\n</de.alpharogroup.test.objects.Employee>";
+		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toXml(jsonString, Employee.class);
+		System.out.println(actual);
+		assertEquals(actual, expected);
+
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#toXml(String)}.
+	 */
+	@Test
+	public void testToXmlString()
+	{
+		String expected;
+		String actual;
+
+		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toXml(jsonString);
+		assertEquals(actual, expected);
+
+	}
+
+	/**
 	 * Test method for {@link JsonTransformer#toJson(Object)}.
 	 *
 	 * @throws JsonProcessingException
-	 *             the json processing exception
+	 *             if an error occurs when converting object to String
 	 */
 	@Test
 	public void testToJson() throws JsonProcessingException
 	{
+		String expected;
+		String actual;
 		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
-		final String actual = JsonTransformer.toJson(employee);
-		final String expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		AssertJUnit.assertTrue("", actual.equals(expected));
+
+		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toJson(employee);
+		assertTrue("", actual.equals(expected));
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#toJson(Object)} with {@link Map}.
+	 *
+	 * @throws JsonProcessingException
+	 *             if an error occurs when converting object to String
+	 */
+	@Test
+	public void testToJsonFromMap() throws JsonProcessingException
+	{
+		String expected;
+		String actual;
+		final Map<String, String> stringMap = new HashMap<>();
+		stringMap.put("a", "ss");
+		stringMap.put("b", "qq");
+
+		expected = "{\"a\":\"ss\",\"b\":\"qq\"}";
+		actual = JsonTransformer.toJson(stringMap);
+		assertEquals(actual, expected);
+
+
+		final Employee employee1 = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
+
+		final Map<Integer, Employee> integerEmployeeMap = new HashMap<>();
+		integerEmployeeMap.put(1, employee1);
+
+
+		expected = "{\"1\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}}";
+		actual = JsonTransformer.toJson(integerEmployeeMap);
+		assertEquals(actual, expected);
 
 	}
 
 	/**
 	 * Test method for {@link JsonTransformer#toJson(java.util.List)}.
-	 * 
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
@@ -94,7 +174,7 @@ public class JsonTransformerTest
 		final String actual = JsonTransformer.toJson(employees);
 
 		final String expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
-		AssertJUnit.assertTrue("", actual.equals(expected));
+		assertTrue("", actual.equals(expected));
 	}
 
 	/**
@@ -115,7 +195,7 @@ public class JsonTransformerTest
 			.build();
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		final Employee actual = JsonTransformer.toObject(jsonString, Employee.class);
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 
 
@@ -162,7 +242,7 @@ public class JsonTransformerTest
 		final String jsonString = "{\"id\":\"23\",\"person\":{\"married\":true,\"nickname\":\"beast\",\"name\":\"Anna\",\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\"}}";
 		final Employee actual = JsonTransformer.toObject(jsonString, Employee.class,
 			new JsonOrgModule());
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 
 }
