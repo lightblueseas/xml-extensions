@@ -6,9 +6,15 @@ Useful extensions methods and utilities for handle xml or transform dtd to xsd a
 
 The source code comes under the liberal MIT License, making xml-extensions great for all types of applications.
 
-# Build status and latest maven version
+# Build status
+
 [![Build Status](https://travis-ci.org/lightblueseas/xml-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/xml-extensions)
 
+## Coverage Status
+
+[![Coverage Status](https://coveralls.io/repos/github/lightblueseas/xml-extensions/badge.svg?branch=master)](https://coveralls.io/github/lightblueseas/xml-extensions?branch=master)
+
+## Maven Central
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
 
@@ -21,11 +27,12 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
-		<!-- xml-extensions version -->
-		<xml-extensions.version>4.14.0</xml-extensions.version>
+		<!-- XML-EXTENSIONS version -->
+		<xml-extensions.version>4.18.0</xml-extensions.version>
 
 		<dependencies>
 			...
+            <!-- XML-EXTENSIONS DEPENDENCY -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>xml-extensions</artifactId>
@@ -41,7 +48,7 @@ The source code for xml-extensions are on GitHub. Please feel free to fork and s
 
 Create your own fork of [lightblueseas/xml-extensions/fork](https://github.com/lightblueseas/xml-extensions/fork)
 
-To share your changes, [submit a pull request](https://github.com/lightblueseas/xml-extensions/pull/new/master).
+To share your changes, [submit a pull request](https://github.com/lightblueseas/xml-extensions/pull/new/develop).
 
 Don't forget to add new units tests on your changes.
 
@@ -50,6 +57,9 @@ Don't forget to add new units tests on your changes.
 Do not hesitate to contact the xml-extensions developers with your questions, concerns, comments, bug reports, or feature requests.
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/lightblueseas/xml-extensions/issues).
 
+## Note
+
+No animals were harmed in the making of this library.
 
 # Donate
 

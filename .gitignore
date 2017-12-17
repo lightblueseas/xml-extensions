@@ -16,6 +16,7 @@
 /.project
 /.classpath
 /.settings
+/.tern-project
 
 #########################
 # maven generated files #
@@ -55,3 +56,4 @@
 /build
 /.gradle
 /gradle
+/pom.xml.bak

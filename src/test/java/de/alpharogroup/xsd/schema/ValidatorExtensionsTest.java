@@ -1,7 +1,7 @@
 /**
  * The MIT License
  *
- * Copyright (C) 2007 Asterios Raptis
+ * Copyright (C) 2015 Asterios Raptis
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -54,8 +54,8 @@ public class ValidatorExtensionsTest
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testValidateSchemaFileFileErrorHandler() throws SAXException,
-		ParserConfigurationException, IOException
+	public void testValidateSchemaFileFileErrorHandler()
+		throws SAXException, ParserConfigurationException, IOException
 	{
 		final ValidatorHandler errorHandler = new ValidatorHandler();
 		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
@@ -76,8 +76,8 @@ public class ValidatorExtensionsTest
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testValidateSchemaStringString() throws SAXException, ParserConfigurationException,
-		IOException
+	public void testValidateSchemaStringString()
+		throws SAXException, ParserConfigurationException, IOException
 	{
 		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
 		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
