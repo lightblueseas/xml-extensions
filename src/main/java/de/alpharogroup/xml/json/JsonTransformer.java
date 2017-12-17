@@ -281,6 +281,22 @@ public final class JsonTransformer
 	/**
 	 * Transform the given json as {@link String} object to an xml as {@link String} object.
 	 *
+	 * @param jsonString
+	 *            the json as {@link String} object
+	 * @return the transformed xml as {@link String} object
+	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key.
+	 */
+	public static String toXml(final String jsonString) throws JSONException
+	{
+		final JSONObject json = new JSONObject(jsonString);
+		final String xmlString = XML.toString(json);
+		return xmlString;
+	}
+
+	/**
+	 * Transform the given json as {@link String} object to an xml as {@link String} object.
+	 *
 	 * @param <T>
 	 *            the generic type
 	 * @param jsonString
@@ -300,22 +316,6 @@ public final class JsonTransformer
 	{
 		final T object = toObject(jsonString, clazz);
 		final String xmlString = XmlExtensions.toXmlWithXStream(object);
-		return xmlString;
-	}
-
-	/**
-	 * Transform the given json as {@link String} object to an xml as {@link String} object.
-	 *
-	 * @param jsonString
-	 *            the json as {@link String} object
-	 * @return the transformed xml as {@link String} object
-	 * @throws JSONException
-	 *             if there is a syntax error in the source string or a duplicated key.
-	 */
-	public static String toXml(final String jsonString) throws JSONException
-	{
-		final JSONObject json = new JSONObject(jsonString);
-		final String xmlString = XML.toString(json);
 		return xmlString;
 	}
 

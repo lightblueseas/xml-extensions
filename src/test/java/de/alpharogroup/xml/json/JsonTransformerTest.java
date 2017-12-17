@@ -52,46 +52,6 @@ public class JsonTransformerTest
 {
 
 	/**
-	 * Test method for {@link JsonTransformer#toXml(String, Class)}.
-	 *
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void testToXmlStringClass() throws JsonParseException, JsonMappingException, IOException
-	{
-		String expected;
-		String actual;
-
-		expected = "<de.alpharogroup.test.objects.Employee>\n  <person>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n    <gender>FEMALE</gender>\n    <about>Ha ha ha...</about>\n    <married>true</married>\n  </person>\n  <id>23</id>\n</de.alpharogroup.test.objects.Employee>";
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonTransformer.toXml(jsonString, Employee.class);
-		System.out.println(actual);
-		assertEquals(actual, expected);
-
-	}
-
-	/**
-	 * Test method for {@link JsonTransformer#toXml(String)}.
-	 */
-	@Test
-	public void testToXmlString()
-	{
-		String expected;
-		String actual;
-
-		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonTransformer.toXml(jsonString);
-		assertEquals(actual, expected);
-
-	}
-
-	/**
 	 * Test method for {@link JsonTransformer#toJson(Object)}.
 	 *
 	 * @throws JsonProcessingException
@@ -198,7 +158,6 @@ public class JsonTransformerTest
 		assertEquals(expected, actual);
 	}
 
-
 	/**
 	 * Test method for {@link JsonTransformer#toObject(String, Class)}.
 	 *
@@ -243,6 +202,47 @@ public class JsonTransformerTest
 		final Employee actual = JsonTransformer.toObject(jsonString, Employee.class,
 			new JsonOrgModule());
 		assertEquals(expected, actual);
+	}
+
+
+	/**
+	 * Test method for {@link JsonTransformer#toXml(String)}.
+	 */
+	@Test
+	public void testToXmlString()
+	{
+		String expected;
+		String actual;
+
+		expected = "<person><gender>FEMALE</gender><name>Anna</name><nickname>beast</nickname><about>Ha ha ha...</about><married>true</married></person><id>23</id>";
+		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toXml(jsonString);
+		assertEquals(actual, expected);
+
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#toXml(String, Class)}.
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToXmlStringClass() throws JsonParseException, JsonMappingException, IOException
+	{
+		String expected;
+		String actual;
+
+		expected = "<de.alpharogroup.test.objects.Employee>\n  <person>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n    <gender>FEMALE</gender>\n    <about>Ha ha ha...</about>\n    <married>true</married>\n  </person>\n  <id>23</id>\n</de.alpharogroup.test.objects.Employee>";
+		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toXml(jsonString, Employee.class);
+		System.out.println(actual);
+		assertEquals(actual, expected);
+
 	}
 
 }
