@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONException;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -207,9 +208,10 @@ public class JsonTransformerTest
 
 	/**
 	 * Test method for {@link JsonTransformer#toXml(String)}.
+	 * @throws JSONException
 	 */
 	@Test
-	public void testToXmlString()
+	public void testToXmlString() throws JSONException
 	{
 		String expected;
 		String actual;
