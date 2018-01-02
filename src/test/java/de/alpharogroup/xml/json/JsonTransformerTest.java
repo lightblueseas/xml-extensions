@@ -42,7 +42,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
 import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Gender;
+import de.alpharogroup.test.objects.enums.Gender;
 import de.alpharogroup.test.objects.Person;
 
 
