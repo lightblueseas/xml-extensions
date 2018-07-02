@@ -29,6 +29,7 @@
 		<!-- JOBJECT-EXTENSIONS versions -->
 		<jobject-extensions.version>1.11</jobject-extensions.version>
 		<jobject-clone.version>${jobject-extensions.version}</jobject-clone.version>
+		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
 		<xercesImpl.version>2.11.0</xercesImpl.version>
@@ -134,6 +135,12 @@
 				<artifactId>jobject-clone</artifactId>
 				<version>${jobject-clone.version}</version>
 			</dependency>
+			<!-- JOBJECT-EVALUATE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobject-evaluate</artifactId>
+				<version>${jobject-evaluate.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.json</groupId>
@@ -173,6 +180,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>file-worker</artifactId>
 		</dependency>
@@ -181,10 +193,11 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>jobject-clone</artifactId>
 		</dependency>
-
+		<!-- JOBJECT-EVALUATE DEPENDENCY -->
 		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobject-evaluate</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
