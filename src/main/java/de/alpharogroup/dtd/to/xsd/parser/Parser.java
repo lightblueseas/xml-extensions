@@ -58,9 +58,8 @@ import org.w3c.dom.ls.LSSerializer;
 
 import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 
-
 /**
- * The class Dtd2XsdParser.
+ * The class {@link Parser} is for parsing dtd document to a xsd document.
  *
  * @author Asterios Raptis
  */

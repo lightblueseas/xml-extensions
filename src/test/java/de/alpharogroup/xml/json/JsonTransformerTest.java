@@ -42,18 +42,17 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
 import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.enums.Gender;
 import de.alpharogroup.test.objects.Person;
-
+import de.alpharogroup.test.objects.enums.Gender;
 
 /**
- * Test class for {@link JsonTransformer}.
+ * The unit test class for the class {@link JsonTransformer}
  */
 public class JsonTransformerTest
 {
 
 	/**
-	 * Test method for {@link JsonTransformer#toJson(Object)}.
+	 * Test method for {@link JsonTransformer#toJson(Object)}
 	 *
 	 * @throws JsonProcessingException
 	 *             if an error occurs when converting object to String
@@ -73,7 +72,7 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toJson(Object)} with {@link Map}.
+	 * Test method for {@link JsonTransformer#toJson(Object)} with {@link Map}
 	 *
 	 * @throws JsonProcessingException
 	 *             if an error occurs when converting object to String
@@ -107,7 +106,7 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toJson(java.util.List)}.
+	 * Test method for {@link JsonTransformer#toJson(java.util.List)}
 	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -139,7 +138,7 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toObject(String, Class)}.
+	 * Test method for {@link JsonTransformer#toObject(String, Class)}
 	 *
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object
@@ -160,7 +159,7 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toObject(String, Class)}.
+	 * Test method for {@link JsonTransformer#toObject(String, Class)}
 	 *
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object
@@ -181,7 +180,7 @@ public class JsonTransformerTest
 
 	/**
 	 * Test method for
-	 * {@link JsonTransformer#toObject(String, Class, com.fasterxml.jackson.databind.Module...)}.
+	 * {@link JsonTransformer#toObject(String, Class, com.fasterxml.jackson.databind.Module...)}
 	 * This method shows also how to map a json string created from the org.json library. This is
 	 * provided by a Module, the {@link JsonOrgModule}.
 	 *
@@ -207,7 +206,8 @@ public class JsonTransformerTest
 
 
 	/**
-	 * Test method for {@link JsonTransformer#toXml(String)}.
+	 * Test method for {@link JsonTransformer#toXml(String)}
+	 * 
 	 * @throws JSONException
 	 */
 	@Test
@@ -224,7 +224,7 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toXml(String, Class)}.
+	 * Test method for {@link JsonTransformer#toXml(String, Class)}
 	 *
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object

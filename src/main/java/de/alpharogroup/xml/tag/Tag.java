@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.alpharogroup.clone.object.CloneObjectExtensions;
+import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
 
 /**
  * The class Tag represents an tag for xml or html where you can set the position of the child tags.
@@ -94,7 +94,7 @@ public class Tag implements Serializable
 	@Override
 	public Object clone()
 	{
-		return CloneObjectExtensions.cloneQuietly(this);
+		return CloneObjectQuietlyExtensions.cloneQuietly(this);
 	}
 
 	/**

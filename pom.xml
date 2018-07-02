@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>3.5.0</version>
+		<version>3.11</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>4.19.0-SNAPSHOT</version>
+	<version>4.19-SNAPSHOT</version>
 
 	<name>${project.artifactId}</name>
 
@@ -22,12 +22,12 @@
 	<url>https://github.com/lightblueseas/xml-extensions</url>
 
 	<properties>
-		<file-worker.version>4.19.0</file-worker.version>
-		<test-objects.version>4.21.0</test-objects.version>
+		<file-worker.version>4.22</file-worker.version>
+		<test-objects.version>4.28</test-objects.version>
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.2.0</velocity-extensions.version>
 		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>1.8.0</jobject-extensions.version>
+		<jobject-extensions.version>1.11</jobject-extensions.version>
 		<jobject-clone.version>${jobject-extensions.version}</jobject-clone.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
@@ -37,6 +37,8 @@
 		<json.version>20171018</json.version>
 		<xstream.version>1.4.9</xstream.version>
 		<jackson-core.version>2.9.3</jackson-core.version>
+		<!-- MEANBEAN-FACTORIES version -->
+		<meanbean-factories.version>1.1</meanbean-factories.version>
 	</properties>
 
 	<licenses>
@@ -206,6 +208,18 @@
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>velocity-extensions</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- MEANBEAN DEPENDENCY -->
+		<dependency>
+			<groupId>org.meanbean</groupId>
+			<artifactId>meanbean</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- MEANBEAN-FACTORIES DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>meanbean-factories</artifactId>
 			<scope>test</scope>
 		</dependency>
 

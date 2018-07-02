@@ -22,34 +22,26 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.dtd.to.xsd;
+package de.alpharogroup.dtd.to.xsd.configuration;
 
-import java.io.File;
+import static org.testng.Assert.assertNotNull;
 
 import org.testng.annotations.Test;
 
-import de.alpharogroup.file.search.PathFinder;
-
 /**
- * The unit test class for the class {@link Converter}.
+ * The unit test class for the class {@link Configuration}
  */
-public class ConverterTest
+public class ConfigurationTest
 {
 
-	File dataset = new File(PathFinder.getSrcTestResourcesDir(), "result.xsd");
-	File datasetDtd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.dtd");
-
-	File propertiesXsd = new File(PathFinder.getSrcTestResourcesDir(), "properties.xsd");
-	File propertiesDtd = new File(PathFinder.getSrcTestResourcesDir(), "properties.dtd");
-
 	/**
-	 * Test method for {@link Converter#convert(File, File)}
+	 * Test method for {@link Configuration} constructors
 	 */
 	@Test
-	public void testConvertFileFile()
+	public final void testConstructors()
 	{
-		Converter.convert(datasetDtd, dataset);
-		Converter.convert(propertiesDtd, propertiesXsd);
+		Configuration configuration = new Configuration();
+		assertNotNull(configuration);
 	}
 
 }

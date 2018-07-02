@@ -30,7 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.alpharogroup.clone.object.CloneObjectExtensions;
+import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
 
 /**
  * The class Tag represents an tag for xml or html.
@@ -98,7 +98,7 @@ public class SimpleTag implements Serializable
 	@Override
 	public Object clone()
 	{
-		return CloneObjectExtensions.cloneQuietly(this);
+		return CloneObjectQuietlyExtensions.cloneQuietly(this);
 	}
 
 	/**

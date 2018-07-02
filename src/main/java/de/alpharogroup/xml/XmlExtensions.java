@@ -88,8 +88,10 @@ public final class XmlExtensions
 	 * @param is
 	 *            the input stream
 	 * @return the object from the given input stream.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	private static <T> T loadObject(final InputStream is)
+	private static <T> T loadObject(final InputStream is) throws IOException
 	{
 		final String xmlString = ReadFileExtensions.inputStream2String(is);
 		final T object = XmlExtensions.toObjectWithXStream(xmlString);
@@ -105,8 +107,10 @@ public final class XmlExtensions
 	 * @param xmlFileName
 	 *            the xml file name
 	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T loadObject(final String xmlFileName)
+	public static <T> T loadObject(final String xmlFileName) throws IOException
 	{
 		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
 		return loadObject(is);

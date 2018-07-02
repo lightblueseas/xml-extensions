@@ -37,11 +37,11 @@ import org.testng.annotations.Test;
 
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.EmployeeList;
-import de.alpharogroup.test.objects.enums.Gender;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.auth.AccessRight;
 import de.alpharogroup.test.objects.auth.Role;
 import de.alpharogroup.test.objects.auth.Roles;
+import de.alpharogroup.test.objects.enums.Gender;
 
 public class XmlExtensionsTest
 {

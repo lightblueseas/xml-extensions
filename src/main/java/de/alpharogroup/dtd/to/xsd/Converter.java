@@ -36,13 +36,14 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 
 import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 import de.alpharogroup.dtd.to.xsd.writer.Writer;
-import de.alpharogroup.io.StreamExtensions;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class Converter.
  *
  * @author Asterios Raptis
  */
+@UtilityClass
 public final class Converter
 {
 
@@ -190,6 +191,7 @@ public final class Converter
 	public static void convert(final String targetNamespace,
 		final List<TypePattern> listXsdTypePattern, final String dtdfile, final String xsdfile)
 	{
+		@SuppressWarnings("resource")
 		OutputStream outStream = null;
 		if (xsdfile != null)
 		{
@@ -204,7 +206,15 @@ public final class Converter
 			}
 			finally
 			{
-				StreamExtensions.closeOutputStream(outStream);
+				try
+				{
+					outStream.close();
+				}
+				catch (IOException e)
+				{
+					e.printStackTrace(System.err);
+					return;
+				}
 			}
 		}
 
@@ -268,10 +278,4 @@ public final class Converter
 		}
 	}
 
-	/**
-	 * Instantiates a new dtd2 xsd converter.
-	 */
-	private Converter()
-	{
-	}
 }
