@@ -42,16 +42,23 @@ import org.testng.annotations.Test;
 import de.alpharogroup.collections.iterators.EnumerationIterator;
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.lang.ClassExtensions;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 
 /**
  * The unit test class for the class {@link XmlResourceBundleControl}
  */
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class XmlResourceBundleControlTest
 {
 
+	/** The {@link XmlResourceBundleControl} instance for unit tests. */
 	XmlResourceBundleControl xmlResourceBundleControl;
 
+	/** The properties for unit tests. */
 	Properties properties;
+	
+	/** The properties german for unit tests. */
 	Properties propertiesGerman;
 	
 	/**
@@ -131,8 +138,10 @@ public class XmlResourceBundleControlTest
 		format = "xml";
 		loader = ClassExtensions.getClassLoader();
 		reload = true;
+		// create the bundle over the factory method...
 		actual = xmlResourceBundleControl.newBundle(baseName, locale, format, loader, reload);
 		assertNotNull(actual);
+		// create the bundle over the static method...
 		expected = ResourceBundle.getBundle(baseName, locale, loader, xmlResourceBundleControl);
 		assertNotNull(expected);
 		Enumeration<String> keys = actual.getKeys();
