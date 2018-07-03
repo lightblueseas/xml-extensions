@@ -25,16 +25,32 @@
 package de.alpharogroup.xml.tag;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 /**
- * The class Tag represents an tag for xml or html where you can set the position of the child tags.
+ * The class {@link Tag} represents an tag for xml or html where you can set the position of the
+ * child tags
  */
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Tag implements Serializable
 {
 
@@ -58,7 +74,6 @@ public class Tag implements Serializable
 	/** The name of the tag. */
 	private String name;
 
-
 	/**
 	 * Adds the attribute with the given name and value.
 	 *
@@ -72,19 +87,29 @@ public class Tag implements Serializable
 	{
 		if (getAttributes() == null)
 		{
-			this.attributes = new LinkedHashMap<>();
+			this.attributes = MapFactory.newLinkedHashMap();
 		}
 		return getAttributes().put(name, value);
 	}
 
+	/**
+	 * Adds the given {@link Tag} child to the given position.
+	 *
+	 * @param child
+	 *            the {@link Tag} child
+	 * @param position
+	 *            the position to add
+	 * @return true, if the given {@link Tag} child was added successfully to the given position
+	 *         otherwise false
+	 */
 	public boolean addChild(final Tag child, final Integer position)
 	{
 		if (getChildren() == null)
 		{
-			this.childTagPositions = new ArrayList<>();
+			this.childTagPositions = ListFactory.newArrayList();
 		}
-		final ChildTagPosition childTagPosition = new ChildTagPosition(child, position);
-
+		final ChildTagPosition childTagPosition = ChildTagPosition.builder().child(child)
+			.position(position).build();
 		return getChildren().add(childTagPosition);
 	}
 
@@ -98,16 +123,6 @@ public class Tag implements Serializable
 	}
 
 	/**
-	 * Gets the attributes.
-	 *
-	 * @return the attributes
-	 */
-	public Map<String, String> getAttributes()
-	{
-		return this.attributes;
-	}
-
-	/**
 	 * Gets the children.
 	 *
 	 * @return the children
@@ -115,36 +130,6 @@ public class Tag implements Serializable
 	public List<ChildTagPosition> getChildren()
 	{
 		return this.childTagPositions;
-	}
-
-	/**
-	 * Gets the content.
-	 *
-	 * @return the content
-	 */
-	public String getContent()
-	{
-		return this.content;
-	}
-
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName()
-	{
-		return this.name;
-	}
-
-	/**
-	 * Checks if is end tag.
-	 *
-	 * @return true, if checks if is end tag
-	 */
-	public boolean isEndTag()
-	{
-		return this.endTag;
 	}
 
 	/**
@@ -164,11 +149,11 @@ public class Tag implements Serializable
 	}
 
 	/**
-	 * Removes the given child if exists.
+	 * Removes the given {@link Tag} child
 	 *
 	 * @param child
-	 *            the child
-	 * @return true, if successful
+	 *            the {@link Tag} child
+	 * @return true, if the given {@link Tag} child was removed successfully otherwise false
 	 */
 	public boolean removeChild(final Tag child)
 	{
@@ -191,39 +176,6 @@ public class Tag implements Serializable
 	}
 
 	/**
-	 * Sets the content.
-	 *
-	 * @param content
-	 *            the content
-	 */
-	public void setContent(final String content)
-	{
-		this.content = content;
-	}
-
-	/**
-	 * Sets the end tag.
-	 *
-	 * @param endTag
-	 *            the end tag
-	 */
-	public void setEndTag(final boolean endTag)
-	{
-		this.endTag = endTag;
-	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name
-	 *            the name
-	 */
-	public void setName(final String name)
-	{
-		this.name = name;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -234,7 +186,7 @@ public class Tag implements Serializable
 	}
 
 	/**
-	 * Creates from this Tag object an xml string.
+	 * Creates from this {@link Tag} object an xml string.
 	 *
 	 * @return the string buffer
 	 */

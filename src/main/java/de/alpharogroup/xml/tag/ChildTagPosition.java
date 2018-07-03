@@ -26,47 +26,33 @@ package de.alpharogroup.xml.tag;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
+
+/**
+ * The class {@link ChildTagPosition}
+ */
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChildTagPosition implements Serializable
 {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	private Tag child;
+	Tag child;
 
-	private Integer position;
-
-	public ChildTagPosition()
-	{
-	}
-
-	public ChildTagPosition(final Tag child, final Integer position)
-	{
-		super();
-		this.child = child;
-		this.position = position;
-	}
-
-	public Tag getChild()
-	{
-		return child;
-	}
-
-	public Integer getPosition()
-	{
-		return position;
-	}
-
-	public void setChild(final Tag child)
-	{
-		this.child = child;
-	}
-
-	public void setPosition(final Integer position)
-	{
-		this.position = position;
-	}
-
+	Integer position;
 }
