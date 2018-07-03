@@ -31,14 +31,17 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+import lombok.EqualsAndHashCode;
+
 /**
- * The class XmlResourceBundle offer an alternative to the {@link java.util.ResourceBundle} classes
+ * The class {@link XmlResourceBundle} offer an alternative to the {@link ResourceBundle} classes
  * since they do not support non-ANSI character sets. The intended use for this code is to enable
  * multi-language support.
  * 
- * @see java.util.ResourceBundle
+ * @see ResourceBundle
  */
-class XmlResourceBundle extends ResourceBundle
+@EqualsAndHashCode(callSuper = true)
+public class XmlResourceBundle extends ResourceBundle
 {
 
 	/** The properties. */
