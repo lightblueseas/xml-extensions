@@ -24,20 +24,26 @@
  */
 package de.alpharogroup.xml.tag;
 
-import org.testng.AssertJUnit;
+import static org.testng.AssertJUnit.assertEquals;
+
 import org.testng.annotations.Test;
 
-
+/**
+ * The unit test class for the class {@link TagAttribute}
+ */
 public class TagAttributeTest
 {
 
+	/**
+	 * Test method for {@link TagAttribute#joinValues()} 
+	 */
 	@Test
 	public void testJoinValues()
 	{
 		final String actual = TagAttribute.builder().delimiter(" ").value("row").value("fluid")
 			.build().joinValues();
 		final String expected = "row fluid";
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 
 }

@@ -24,12 +24,19 @@
  */
 package de.alpharogroup.xml.tag;
 
-import org.testng.AssertJUnit;
+import static org.testng.AssertJUnit.assertEquals;
+
 import org.testng.annotations.Test;
 
+/**
+ * The unit test class for the class {@link Tag}
+ */
 public class TagTest
 {
 
+	/**
+	 * Test method for {@link Tag}
+	 */
 	@Test
 	public void testToXmlString()
 	{
@@ -45,14 +52,14 @@ public class TagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy</div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		tag.setEndTag(false);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" />";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		tag.setEndTag(true);
 
@@ -68,7 +75,7 @@ public class TagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >x<span wicket:id=\"name\" class=\"other\" >Hello </span>y</div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		final Tag granChild1 = new Tag();
 		granChild1.setName("b");
@@ -80,7 +87,7 @@ public class TagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >x<span wicket:id=\"name\" class=\"other\" >Hello <b>world</b></span>y</div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		child1.removeChild(granChild1);
 
@@ -90,7 +97,7 @@ public class TagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >x<span wicket:id=\"name\" class=\"other\" ><b>world</b>Hello </span>y</div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 
 }

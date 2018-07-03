@@ -24,18 +24,25 @@
  */
 package de.alpharogroup.xml.tag;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 import java.io.IOException;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.velocity.VelocityExtensions;
 
+/**
+ * The unit test class for the class {@link SimpleTag}
+ */
 public class SimpleTagTest
 {
 
+	/**
+	 * Test method for {@link SimpleTag}
+	 */
 	@Test
 	public void test() throws IOException
 	{
@@ -51,20 +58,20 @@ public class SimpleTagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy</div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		tag.setEndTag(false);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" />";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		final SimpleTag cloned = (SimpleTag)tag.clone();
 
-		AssertJUnit.assertEquals(tag, cloned);
+		assertEquals(tag, cloned);
 
-		AssertJUnit.assertEquals(tag.hashCode(), cloned.hashCode());
+		assertEquals(tag.hashCode(), cloned.hashCode());
 
 		tag.setEndTag(true);
 
@@ -80,7 +87,7 @@ public class SimpleTagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello </span></div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		final SimpleTag granChild1 = new SimpleTag();
 		granChild1.setName("b");
@@ -92,7 +99,7 @@ public class SimpleTagTest
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello <b>world</b></span></div>";
 		actual = tag.toString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 
 		/* create a velocity template as String object from the tag */
@@ -108,7 +115,7 @@ public class SimpleTagTest
 			+ "#end\n" + "#end\n" + "</${span.name}>\n" + "#else />\n" + "#end\n" + "#end\n"
 			+ "</${div.name}>\n" + "#else />\n" + "#end\n";
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 		/* Merge the created velocity template from the tag and merge it with the context. */
 		final String velocityTemplate = actual;
 		/* first, we init the runtime engine. Defaults are fine. */
@@ -121,7 +128,7 @@ public class SimpleTagTest
 		actual = VelocityExtensions.merge(context, velocityTemplate);
 		expected = "<div\n wicket:id=\"contentLabel\"\n class=\"myClass\"\n >xy\n<span\n wicket:id=\"name\"\n class=\"other\"\n >Hello \n<b\n>world\n</b>\n</span>\n</div>\n";
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 
 }

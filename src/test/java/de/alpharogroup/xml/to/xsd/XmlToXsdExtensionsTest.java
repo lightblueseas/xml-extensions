@@ -24,18 +24,28 @@
  */
 package de.alpharogroup.xml.to.xsd;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 import java.io.IOException;
 
 import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
+/**
+ * The unit test class for the class {@link XmlToXsdExtensions}
+ */
 public class XmlToXsdExtensionsTest
 {
 
-	@Test(enabled = false)
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(String, Inst2XsdOptions, XmlOptions)}
+	 *
+	 * @throws XmlException the xml exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	@Test(enabled = false) // TODO check...
 	public void testXmlToXsdStringInst2XsdOptionsXmlOptions() throws XmlException, IOException
 	{
 		final String xml = "<person><name>Alfred</name></person>";
@@ -47,7 +57,7 @@ public class XmlToXsdExtensionsTest
 			+ "  <xs:complexType name=\"personType\">\r\n" + "    <xs:sequence>\r\n"
 			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\r\n" + "    </xs:sequence>\r\n"
 			+ "  </xs:complexType>\r\n" + "</xs:schema>";
-		AssertJUnit.assertTrue("Expected should be equal with the result.",
+		assertTrue("Expected should be equal with the result.",
 			expected.equals(result));
 	}
 

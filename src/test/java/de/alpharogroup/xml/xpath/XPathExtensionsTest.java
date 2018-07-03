@@ -26,19 +26,22 @@ package de.alpharogroup.xml.xpath;
 
 import org.testng.annotations.Test;
 
+/**
+ * The unit test class for the class {@link XPathExtensions}
+ */
 public class XPathExtensionsTest
 {
 
 	@Test(enabled = false)
 	public void testGetNodeListFileString()
 	{
-		throw new RuntimeException("Test not implemented");
+		throw new RuntimeException("Test not implemented");// TODO
 	}
 
 	@Test(enabled = false)
 	public void testGetNodeListStringString()
 	{
-		throw new RuntimeException("Test not implemented");
+		throw new RuntimeException("Test not implemented");// TODO
 	}
 
 }

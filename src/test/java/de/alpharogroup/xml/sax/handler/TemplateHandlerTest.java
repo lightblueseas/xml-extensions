@@ -35,8 +35,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.testng.AssertJUnit;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -47,19 +45,15 @@ import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.file.write.WriteFileQuietlyExtensions;
 
+/**
+ * The unit test class for the class {@link TemplateHandler}
+ */
 public class TemplateHandlerTest
 {
 
-	@BeforeMethod
-	public void setUp() throws Exception
-	{
-	}
-
-	@AfterMethod
-	public void tearDown() throws Exception
-	{
-	}
-
+	/**
+	 * Test method for {@link TemplateHandler#write(String)}
+	 */
 	@Test
 	public void testWrite() throws IOException
 	{

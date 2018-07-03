@@ -24,26 +24,26 @@
  */
 package de.alpharogroup.xsd.schema;
 
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import de.alpharogroup.file.search.PathFinder;
 
 /**
- * The class {@link ValidatorExtensionsTest}.
+ * The unit test class for the class {@link ValidatorExtensions}
  */
 public class ValidatorExtensionsTest
 {
 
 	/**
-	 * Test validate schema file file error handler.
+	 * Test method for {@link ValidatorExtensions#validateSchema(File, File, org.xml.sax.ErrorHandler)}
 	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurs during parsing.
@@ -61,11 +61,11 @@ public class ValidatorExtensionsTest
 		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
 		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
 		ValidatorExtensions.validateSchema(xsd, xml, errorHandler);
-		AssertJUnit.assertTrue("Validation failed.", errorHandler.isValid());
+		assertTrue("Validation failed.", errorHandler.isValid());
 	}
 
 	/**
-	 * Test validate schema string string.
+	 * Test method for {@link ValidatorExtensions#validateSchema(String, String)}
 	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurs during parsing.
@@ -84,7 +84,7 @@ public class ValidatorExtensionsTest
 		final String schemaUrl = xsd.getAbsolutePath();
 		final String xmlDocumentUrl = xml.getAbsolutePath();
 		final boolean result = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
-		AssertJUnit.assertTrue("Validation failed.", result);
+		assertTrue("Validation failed.", result);
 	}
 
 }
