@@ -35,9 +35,12 @@ import java.io.IOException;
 import java.util.Enumeration;
 import java.util.Properties;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.iterators.EnumerationIterator;
+import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 import de.alpharogroup.file.search.PathFinder;
 
 /**
@@ -46,8 +49,57 @@ import de.alpharogroup.file.search.PathFinder;
 public class XmlResourceBundleTest
 {
 
-	File propertiesXml = new File(PathFinder.getSrcTestResourcesDir(),
-		"SigninPanel.xml");
+	/** The default properties xml file for unit tests. */
+	File propertiesXml;
+	
+	/** The german properties xml file for unit tests. */
+	File propertiesDeXml;
+
+	/** The properties for unit tests. */
+	Properties properties;
+
+	/** The properties german for unit tests. */
+	Properties propertiesGerman;
+
+	/**
+	 * Sets up method will be invoked before every unit test method
+	 *
+	 * @throws Exception
+	 *             is thrown if an exception occurs
+	 */
+	@BeforeMethod
+	protected void setUp() throws Exception
+	{
+		propertiesXml = new File(PathFinder.getSrcTestResourcesDir(), "SigninPanel.xml");
+		propertiesDeXml = new File(PathFinder.getSrcTestResourcesDir(), "SigninPanel_de.xml");
+		properties = new Properties();
+		properties.setProperty("global.email.label", "Email");
+		properties.setProperty("global.enter.your.email.label", "Enter your email");
+		properties.setProperty("global.password.label", "Password");
+		properties.setProperty("global.enter.your.password.label", "Enter your password");
+		properties.setProperty("password.forgotten.label", "Forgot your password?");
+		propertiesGerman = new Properties();
+		propertiesGerman.setProperty("global.email.label", "Email");
+		propertiesGerman.setProperty("global.enter.your.email.label", "Gib deine Email ein");
+		propertiesGerman.setProperty("global.password.label", "Passwort");
+		propertiesGerman.setProperty("global.enter.your.password.label", "Gib dein Passwort ein");
+		propertiesGerman.setProperty("password.forgotten.label", "Passwort vergessen?");
+	}
+
+	/**
+	 * Tear down method will be invoked after every unit test method
+	 *
+	 * @throws Exception
+	 *             is thrown if an exception occurs
+	 */
+	@AfterMethod
+	protected void tearDown() throws Exception
+	{
+		propertiesXml = null;
+		propertiesDeXml = null;
+		properties = null;
+		propertiesGerman = null;
+	}
 
 	/**
 	 * Test method for {@link XmlResourceBundle#getKeys()}.
@@ -60,23 +112,34 @@ public class XmlResourceBundleTest
 	@Test
 	public final void testGetKeys() throws FileNotFoundException, IOException
 	{
-		Properties properties;
-		properties = new Properties();
-		properties.setProperty("global.email.label", "Email");
-		properties.setProperty("global.enter.your.email.label", "Enter your email");
-		properties.setProperty("global.password.label", "Password");
-		properties.setProperty("global.enter.your.password.label", "Enter your password");
-		properties.setProperty("password.forgotten.label", "Forgot your password?");
-		XmlResourceBundle model = new XmlResourceBundle(new FileInputStream(propertiesXml));
-		assertNotNull(model);
-		Enumeration<String> keys = model.getKeys();
-		EnumerationIterator<String> iterator = new EnumerationIterator<>(keys);
-		while( iterator.hasNext()) {
-			String key = iterator.next(); 
+		XmlResourceBundle actual;
+		Enumeration<String> keys;
+		EnumerationIterator<String> iterator;
+
+		actual = new XmlResourceBundle(new FileInputStream(propertiesXml));
+		assertNotNull(actual);
+		keys = actual.getKeys();
+		iterator = new EnumerationIterator<>(keys);
+		while (iterator.hasNext())
+		{
+			String key = iterator.next();
 			assertTrue(properties.containsKey(key));
-			String actual = model.getString(key);
-			String expected = properties.getProperty(key);
-			assertEquals(expected, actual);
+			String actualValue = actual.getString(key);
+			String expectedValue = properties.getProperty(key);
+			assertEquals(actualValue, expectedValue);
+		}
+
+		actual = new XmlResourceBundle(new FileInputStream(propertiesDeXml));
+		assertNotNull(actual);
+		keys = actual.getKeys();
+		iterator = new EnumerationIterator<>(keys);
+		while (iterator.hasNext())
+		{
+			String key = iterator.next();
+			assertTrue(propertiesGerman.containsKey(key));
+			String actualValue = actual.getString(key);
+			String expectedValue = propertiesGerman.getProperty(key);
+			assertEquals(actualValue, expectedValue);
 		}
 	}
 
@@ -91,12 +154,30 @@ public class XmlResourceBundleTest
 	@Test
 	public final void testConstructors() throws FileNotFoundException, IOException
 	{
-		String actual;
-		String expected;
 		XmlResourceBundle model = new XmlResourceBundle(new FileInputStream(propertiesXml));
 		assertNotNull(model);
-		actual = model.getString("global.enter.your.email.label");
-		expected = "Enter your email";
+	}
+	
+
+	/**
+	 * Test method for {@link XmlResourceBundle#equals(Object)} , {@link XmlResourceBundle#hashCode()} and
+	 * {@link XmlResourceBundle#toString()}
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 */
+	@Test
+	public void testEqualsHashcodeAndToString() throws FileNotFoundException, IOException
+	{
+		boolean expected;
+		boolean actual;
+		final XmlResourceBundle first =  new XmlResourceBundle(new FileInputStream(propertiesXml));
+		final XmlResourceBundle second =  new XmlResourceBundle(new FileInputStream(propertiesDeXml));
+		final XmlResourceBundle third =  new XmlResourceBundle(new FileInputStream(propertiesXml));
+		final XmlResourceBundle fourth =  new XmlResourceBundle(new FileInputStream(propertiesXml));
+
+		actual = EqualsHashCodeAndToStringEvaluator.evaluateEqualsHashcodeAndToString(first, second,
+			third, fourth);
+		expected = true;
 		assertEquals(expected, actual);
 	}
 

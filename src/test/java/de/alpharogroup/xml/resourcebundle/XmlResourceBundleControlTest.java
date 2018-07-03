@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.xml.resourcebundle;
 
+import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
@@ -96,10 +97,11 @@ public class XmlResourceBundleControlTest
 	{
 		xmlResourceBundleControl = null;
 		properties = null;
+		propertiesGerman = null;
 	}
 
 	/**
-	 * Test method for {@link XmlResourceBundleControl#getFormats(String)}.
+	 * Test method for {@link XmlResourceBundleControl#getFormats(String)}
 	 */
 	@Test
 	public void testGetFormats()
@@ -110,10 +112,19 @@ public class XmlResourceBundleControlTest
 		expected = ListFactory.newArrayList("xml");
 		assertEquals(actual, expected);
 	}
+	
+	/**
+	 * Test method for {@link XmlResourceBundleControl#getFormats(String)} that throws a NullPointerException 
+	 */
+	@Test(expectedExceptions = {NullPointerException.class})
+	public void testGetFormatsThrowNullPointerException()
+	{
+		xmlResourceBundleControl.getFormats(null);
+	}
 
 	/**
 	 * Test method for
-	 * {@link XmlResourceBundleControl#newBundle(String, Locale, String, ClassLoader, boolean)}.
+	 * {@link XmlResourceBundleControl#newBundle(String, Locale, String, ClassLoader, boolean)}
 	 *
 	 * @throws IllegalAccessException
 	 *             the illegal access exception
@@ -152,7 +163,55 @@ public class XmlResourceBundleControlTest
 			String actualValue = actual.getString(key);
 			String expectedValue = expected.getString(key);
 			assertEquals(actualValue, expectedValue);
-		}		
+		}	
+		
+		// null case with wrong format...
+		baseName = "SigninPanel";
+		locale = Locale.GERMAN;
+		format = "txt";
+		loader = ClassExtensions.getClassLoader();
+		reload = true;
+		// create the bundle over the factory method...
+		actual = xmlResourceBundleControl.newBundle(baseName, locale, format, loader, reload);
+		assertNull(actual);	
+		
+		// null case with wrong baseName...
+		baseName = "SigninPanelFOO";
+		locale = Locale.GERMAN;
+		format = "xml";
+		loader = ClassExtensions.getClassLoader();
+		reload = true;
+		// create the bundle over the factory method...
+		actual = xmlResourceBundleControl.newBundle(baseName, locale, format, loader, reload);
+		assertNull(actual);
+		
+	}
+
+	/**
+	 * Test method for
+	 * {@link XmlResourceBundleControl#newBundle(String, Locale, String, ClassLoader, boolean)} that throws a NullPointerException 
+	 *
+	 * @throws IllegalAccessException
+	 *             the illegal access exception
+	 * @throws InstantiationException
+	 *             the instantiation exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test(expectedExceptions = {NullPointerException.class})
+	public void testNewBundleThrowNullPointerException() throws IllegalAccessException, InstantiationException, IOException 
+	{
+		Locale locale;
+		String format;
+		ClassLoader loader;
+		boolean reload;
+
+		locale = Locale.GERMAN;
+		format = "xml";
+		loader = ClassExtensions.getClassLoader();
+		reload = true;
+		// create the bundle over the factory method...
+		xmlResourceBundleControl.newBundle(null, locale, format, loader, reload);			
 	}
 
 }
