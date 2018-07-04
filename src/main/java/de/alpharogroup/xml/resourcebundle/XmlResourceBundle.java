@@ -31,8 +31,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
-import lombok.EqualsAndHashCode;
-
 /**
  * The class {@link XmlResourceBundle} offer an alternative to the {@link ResourceBundle} classes
  * since they do not support non-ANSI character sets. The intended use for this code is to enable
@@ -40,7 +38,6 @@ import lombok.EqualsAndHashCode;
  * 
  * @see ResourceBundle
  */
-@EqualsAndHashCode(callSuper = true)
 public class XmlResourceBundle extends ResourceBundle
 {
 

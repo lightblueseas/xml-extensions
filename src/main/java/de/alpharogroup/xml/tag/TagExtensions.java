@@ -22,18 +22,45 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xsd.schema;
+package de.alpharogroup.xml.tag;
 
-import org.testng.annotations.Test;
+import java.util.Map;
+import java.util.Optional;
 
-public class ValidatorHandlerTest
+import lombok.experimental.UtilityClass;
+
+/**
+ * The class {@link TagExtensions}.
+ */
+@UtilityClass
+public final class TagExtensions
 {
 
-	@Test(enabled = false)
-	public final void testIsValid() throws Exception
+	/**
+	 * Creates an {@link Optional} of {@link String} from the given attributes map
+	 *
+	 * @param attributes
+	 *            the attributes map
+	 * @return the {@link Optional} of {@link String}
+	 */
+	public static Optional<String> attributesToString(Map<String, String> attributes)
 	{
-		// TODO
-		throw new RuntimeException("not yet implemented");
+		StringBuilder builder = new StringBuilder();
+		if (attributes != null && !attributes.isEmpty())
+		{
+			builder.append(" ");
+			for (final Map.Entry<String, String> entry : attributes.entrySet())
+			{
+				builder.append(entry.getKey());
+				builder.append("=");
+				builder.append("\"").append(entry.getValue()).append("\"");
+				builder.append(" ");
+			}
+		}
+		else
+		{
+			return Optional.empty();
+		}
+		return Optional.of(builder.toString());
 	}
-
 }

@@ -40,7 +40,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.iterators.EnumerationIterator;
-import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 import de.alpharogroup.file.search.PathFinder;
 
 /**
@@ -156,29 +155,6 @@ public class XmlResourceBundleTest
 	{
 		XmlResourceBundle model = new XmlResourceBundle(new FileInputStream(propertiesXml));
 		assertNotNull(model);
-	}
-	
-
-	/**
-	 * Test method for {@link XmlResourceBundle#equals(Object)} , {@link XmlResourceBundle#hashCode()} and
-	 * {@link XmlResourceBundle#toString()}
-	 * @throws IOException 
-	 * @throws FileNotFoundException 
-	 */
-	@Test(enabled=false)
-	public void testEqualsHashcodeAndToString() throws FileNotFoundException, IOException
-	{
-		boolean expected;
-		boolean actual;
-		final XmlResourceBundle first =  new XmlResourceBundle(new FileInputStream(propertiesXml));
-		final XmlResourceBundle second =  new XmlResourceBundle(new FileInputStream(propertiesDeXml));
-		final XmlResourceBundle third =  new XmlResourceBundle(new FileInputStream(propertiesXml));
-		final XmlResourceBundle fourth =  new XmlResourceBundle(new FileInputStream(propertiesXml));
-
-		actual = EqualsHashCodeAndToStringEvaluator.evaluateEqualsHashcodeAndToString(first, second,
-			third, fourth);
-		expected = true;
-		assertEquals(expected, actual);
 	}
 
 }

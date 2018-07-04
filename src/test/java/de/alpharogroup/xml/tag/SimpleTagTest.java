@@ -27,11 +27,14 @@ package de.alpharogroup.xml.tag;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 import de.alpharogroup.velocity.VelocityExtensions;
 
 /**
@@ -56,14 +59,14 @@ public class SimpleTagTest
 		tag.setEndTag(true);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy</div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
 
 		tag.setEndTag(false);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" />";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
 
@@ -85,7 +88,7 @@ public class SimpleTagTest
 
 		tag.addChild(child1);
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello </span></div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
 
@@ -97,7 +100,7 @@ public class SimpleTagTest
 		child1.addChild(granChild1);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello <b>world</b></span></div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
 
@@ -131,4 +134,41 @@ public class SimpleTagTest
 		assertEquals(expected, actual);
 	}
 
+	/**
+	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
+	 * {@link SimpleTag#toString()}
+	 *
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
+	 * @throws IllegalAccessException
+	 *             if the caller does not have access to the property accessor method
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws InstantiationException
+	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
+		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	{
+		boolean expected;
+		boolean actual;
+		actual = EqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToString(SimpleTag.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
+	
+	/**
+	 * Test method for {@link SimpleTag}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(SimpleTag.class);
+	}
+	
 }

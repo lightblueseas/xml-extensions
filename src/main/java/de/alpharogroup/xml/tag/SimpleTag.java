@@ -29,12 +29,30 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
  * The class Tag represents an tag for xml or html.
  */
+@Getter
+@Setter
+@ToString(exclude = { "attributes", "children" })
+@EqualsAndHashCode(exclude = { "attributes", "children" })
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SimpleTag implements Serializable
 {
 
@@ -44,19 +62,19 @@ public class SimpleTag implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	/** The attributes of the tag. */
-	private Map<String, String> attributes;
+	Map<String, String> attributes;
 
 	/** The children. */
-	private List<SimpleTag> children;
+	List<SimpleTag> children;
 
 	/** The content of the tag. */
-	private String content;
+	String content;
 
 	/** The flag endTag signals if this tag has an ending tag. */
-	private boolean endTag;
+	boolean endTag;
 
 	/** The name of the tag. */
-	private String name;
+	String name;
 
 	/**
 	 * Adds the attribute with the given name and value.
@@ -102,104 +120,6 @@ public class SimpleTag implements Serializable
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public boolean equals(final Object o)
-	{
-		if (this == o)
-		{
-			return true;
-		}
-		if (o == null)
-		{
-			return false;
-		}
-		if (o.getClass() != getClass())
-		{
-			return false;
-		}
-		final SimpleTag castedObj = (SimpleTag)o;
-		return (this.attributes == null
-			? castedObj.attributes == null
-			: this.attributes.equals(castedObj.attributes))
-			&& (this.children == null
-				? castedObj.children == null
-				: this.children.equals(castedObj.children))
-			&& (this.content == null
-				? castedObj.content == null
-				: this.content.equals(castedObj.content))
-			&& this.endTag == castedObj.endTag
-			&& (this.name == null ? castedObj.name == null : this.name.equals(castedObj.name));
-	}
-
-	/**
-	 * Gets the attributes.
-	 *
-	 * @return the attributes
-	 */
-	public Map<String, String> getAttributes()
-	{
-		return this.attributes;
-	}
-
-	/**
-	 * Gets the children.
-	 *
-	 * @return the children
-	 */
-	public List<SimpleTag> getChildren()
-	{
-		return this.children;
-	}
-
-	/**
-	 * Gets the content.
-	 *
-	 * @return the content
-	 */
-	public String getContent()
-	{
-		return this.content;
-	}
-
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName()
-	{
-		return this.name;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int hashCode()
-	{
-		int hashCode = 1;
-		hashCode = 31 * hashCode + (int)(+serialVersionUID ^ serialVersionUID >>> 32);
-		hashCode = 31 * hashCode + (this.attributes == null ? 0 : this.attributes.hashCode());
-		hashCode = 31 * hashCode + (this.children == null ? 0 : this.children.hashCode());
-		hashCode = 31 * hashCode + (this.content == null ? 0 : this.content.hashCode());
-		hashCode = 31 * hashCode + (this.endTag ? 1231 : 1237);
-		hashCode = 31 * hashCode + (this.name == null ? 0 : this.name.hashCode());
-		return hashCode;
-	}
-
-	/**
-	 * Checks if is end tag.
-	 *
-	 * @return true, if checks if is end tag
-	 */
-	public boolean isEndTag()
-	{
-		return this.endTag;
-	}
-
-	/**
 	 * Removes the attribute with the given name.
 	 *
 	 * @param name
@@ -229,49 +149,6 @@ public class SimpleTag implements Serializable
 			return getChildren().remove(child);
 		}
 		return false;
-	}
-
-	/**
-	 * Sets the content.
-	 *
-	 * @param content
-	 *            the content
-	 */
-	public void setContent(final String content)
-	{
-		this.content = content;
-	}
-
-	/**
-	 * Sets the end tag.
-	 *
-	 * @param endTag
-	 *            the end tag
-	 */
-	public void setEndTag(final boolean endTag)
-	{
-		this.endTag = endTag;
-	}
-
-	/**
-	 * Sets the name.
-	 *
-	 * @param name
-	 *            the name
-	 */
-	public void setName(final String name)
-	{
-		this.name = name;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String toString()
-	{
-		final StringBuilder buffer = toXmlString();
-		return buffer.toString();
 	}
 
 	/**
@@ -313,23 +190,17 @@ public class SimpleTag implements Serializable
 	/**
 	 * Creates from this Tag object an xml string.
 	 *
-	 * @return the string buffer
+	 * @return the string
 	 */
-	public StringBuilder toXmlString()
+	public String toXmlString()
 	{
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append("<");
 		buffer.append(getName());
-		if (getAttributes() != null && !getAttributes().isEmpty())
+		Optional<String> attr = TagExtensions.attributesToString(getAttributes());
+		if (attr.isPresent())
 		{
-			buffer.append(" ");
-			for (final Map.Entry<String, String> entry : getAttributes().entrySet())
-			{
-				buffer.append(entry.getKey());
-				buffer.append("=");
-				buffer.append("\"").append(entry.getValue()).append("\"");
-				buffer.append(" ");
-			}
+			buffer.append(attr.get());
 		}
 		if (isEndTag())
 		{
@@ -339,7 +210,7 @@ public class SimpleTag implements Serializable
 			{
 				for (final SimpleTag child : getChildren())
 				{
-					buffer.append(child.toString());
+					buffer.append(child.toXmlString());
 				}
 			}
 			buffer.append("</");
@@ -350,7 +221,7 @@ public class SimpleTag implements Serializable
 		{
 			buffer.append("/>");
 		}
-		return buffer;
+		return buffer.toString();
 	}
 
 }

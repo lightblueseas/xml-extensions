@@ -22,18 +22,52 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xsd.schema;
+package de.alpharogroup.xml.tag;
 
+import static org.testng.AssertJUnit.assertEquals;
+
+import java.util.Map;
+import java.util.Optional;
+
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-public class ValidatorHandlerTest
+import de.alpharogroup.collections.map.MapFactory;
+
+/**
+ * The class {@link TagExtensionsTest}
+ */
+public class TagExtensionsTest
 {
 
-	@Test(enabled = false)
-	public final void testIsValid() throws Exception
+	/**
+	 * Test method for {@link TagExtensions#attributesToString(Map)}
+	 */
+	@Test
+	public final void testAttributesToString()
 	{
-		// TODO
-		throw new RuntimeException("not yet implemented");
+		Optional<String> actual;
+		Optional<String> expected;
+		Map<String, String> attributes = MapFactory.newLinkedHashMap();
+
+		attributes.put("wicket:id", "name");
+		attributes.put("class", "other");
+		
+		actual = TagExtensions.attributesToString(attributes);
+		expected = Optional.of(" wicket:id=\"name\" class=\"other\" ");
+		assertEquals(expected, actual); 
+	}
+
+	/**
+	 * Test method for {@link TagExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(TagExtensions.class);
 	}
 
 }

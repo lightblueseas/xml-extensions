@@ -27,6 +27,7 @@ package de.alpharogroup.xml.tag;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
 import de.alpharogroup.collections.list.ListFactory;
@@ -38,6 +39,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
@@ -46,7 +48,8 @@ import lombok.experimental.FieldDefaults;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
+@ToString(exclude={"attributes", "childTagPositions"})
+@EqualsAndHashCode(exclude={"attributes", "childTagPositions"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
@@ -176,35 +179,19 @@ public class Tag implements Serializable
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String toString()
-	{
-		final StringBuilder buffer = toXmlString();
-		return buffer.toString();
-	}
-
-	/**
 	 * Creates from this {@link Tag} object an xml string.
 	 *
 	 * @return the string buffer
 	 */
-	public StringBuilder toXmlString()
+	public String toXmlString()
 	{
 		final StringBuilder buffer = new StringBuilder();
 		buffer.append("<");
 		buffer.append(getName());
-		if (getAttributes() != null && !getAttributes().isEmpty())
+		Optional<String> attr = TagExtensions.attributesToString(getAttributes());
+		if (attr.isPresent())
 		{
-			buffer.append(" ");
-			for (final Map.Entry<String, String> entry : getAttributes().entrySet())
-			{
-				buffer.append(entry.getKey());
-				buffer.append("=");
-				buffer.append("\"").append(entry.getValue()).append("\"");
-				buffer.append(" ");
-			}
+			buffer.append(attr.get());
 		}
 		if (isEndTag())
 		{
@@ -221,7 +208,7 @@ public class Tag implements Serializable
 					processingContent = processingContent.substring(lastPosition,
 						processingContent.length());
 					buffer.append(subContent);
-					buffer.append(child.getChild().toString());
+					buffer.append(child.getChild().toXmlString());
 				}
 				buffer.append(processingContent);
 			}
@@ -237,7 +224,7 @@ public class Tag implements Serializable
 		{
 			buffer.append("/>");
 		}
-		return buffer;
+		return buffer.toString();
 	}
 
 }

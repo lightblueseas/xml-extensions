@@ -10,7 +10,7 @@ ADDED:
 
 CHANGED:
 
-- update of parent version to 3.11
+- update of parent version to 3.12
 - removed unneeded .0 at the end of version
 
 Notable links:
