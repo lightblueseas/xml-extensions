@@ -37,6 +37,7 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 import de.alpharogroup.dtd.to.xsd.writer.Writer;
 import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The class Converter.
@@ -44,6 +45,7 @@ import lombok.experimental.UtilityClass;
  * @author Asterios Raptis
  */
 @UtilityClass
+@Slf4j
 public final class Converter
 {
 
@@ -67,7 +69,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 			}
 		}
 
@@ -79,11 +81,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		return xsdfile;
 	}
@@ -108,7 +110,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 			}
 		}
 
@@ -120,11 +122,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		return xsdfile;
 	}
@@ -153,7 +155,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
 		}
@@ -168,11 +170,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -191,7 +193,6 @@ public final class Converter
 	public static void convert(final String targetNamespace,
 		final List<TypePattern> listXsdTypePattern, final String dtdfile, final String xsdfile)
 	{
-		@SuppressWarnings("resource")
 		OutputStream outStream = null;
 		if (xsdfile != null)
 		{
@@ -201,24 +202,10 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
-			finally
-			{
-				try
-				{
-					outStream.close();
-				}
-				catch (IOException e)
-				{
-					e.printStackTrace(System.err);
-					return;
-				}
-			}
 		}
-
-		outStream = System.out;
 
 		final Writer writer = new Writer();
 		writer.setTargetNamespace(targetNamespace);
@@ -230,11 +217,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -257,7 +244,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
 		}
@@ -270,11 +257,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
