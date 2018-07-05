@@ -42,10 +42,12 @@ import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.lang.ClassExtensions;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlExtensions}.
  */
+@UtilityClass
 public final class XmlExtensions
 {
 
@@ -412,11 +414,5 @@ public final class XmlExtensions
 		final String xml = xstream.toXML(objectToXML);
 		return xml;
 	}
-
-	/**
-	 * Private constructor.
-	 */
-	private XmlExtensions()
-	{
-	}
+	
 }

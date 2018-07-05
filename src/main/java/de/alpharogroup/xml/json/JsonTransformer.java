@@ -41,10 +41,12 @@ import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.alpharogroup.xml.XmlExtensions;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class JsonTransformer helps to transform json string to objects and back.
  */
+@UtilityClass
 public final class JsonTransformer
 {
 	/** The Constant logger. */
@@ -317,13 +319,6 @@ public final class JsonTransformer
 		final T object = toObject(jsonString, clazz);
 		final String xmlString = XmlExtensions.toXmlWithXStream(object);
 		return xmlString;
-	}
-
-	/**
-	 * private constructor.
-	 */
-	private JsonTransformer()
-	{
 	}
 
 }

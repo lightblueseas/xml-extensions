@@ -37,12 +37,14 @@ import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of
  * XMLBeans tools.
  */
-public class XmlToXsdExtensions
+@UtilityClass
+public final class XmlToXsdExtensions
 {
 
 	/**

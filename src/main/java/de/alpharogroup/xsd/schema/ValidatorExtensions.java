@@ -40,10 +40,13 @@ import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * The class {@link ValidatorExtensions} can validate xml files.
  */
-public class ValidatorExtensions
+@UtilityClass
+public final class ValidatorExtensions
 {
 
 	/** The Constant logger. */

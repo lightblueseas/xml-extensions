@@ -36,9 +36,12 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * The class {@link XsltTransformerExtensions}.
  */
+@UtilityClass
 public final class XsltTransformerExtensions
 {
 
@@ -172,10 +175,4 @@ public final class XsltTransformerExtensions
 		transform(xmlFile, xsltFile, outputStream);
 	}
 
-	/**
-	 * Private constructor.
-	 */
-	private XsltTransformerExtensions()
-	{
-	}
 }
