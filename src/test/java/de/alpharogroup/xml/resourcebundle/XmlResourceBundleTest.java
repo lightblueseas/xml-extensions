@@ -50,7 +50,7 @@ public class XmlResourceBundleTest
 
 	/** The default properties xml file for unit tests. */
 	File propertiesXml;
-	
+
 	/** The german properties xml file for unit tests. */
 	File propertiesDeXml;
 
@@ -101,6 +101,21 @@ public class XmlResourceBundleTest
 	}
 
 	/**
+	 * Test method for {@link XmlResourceBundle} constructors.
+	 *
+	 * @throws FileNotFoundException
+	 *             the file not found exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public final void testConstructors() throws FileNotFoundException, IOException
+	{
+		XmlResourceBundle model = new XmlResourceBundle(new FileInputStream(propertiesXml));
+		assertNotNull(model);
+	}
+
+	/**
 	 * Test method for {@link XmlResourceBundle#getKeys()}.
 	 *
 	 * @throws FileNotFoundException
@@ -140,21 +155,6 @@ public class XmlResourceBundleTest
 			String expectedValue = propertiesGerman.getProperty(key);
 			assertEquals(actualValue, expectedValue);
 		}
-	}
-
-	/**
-	 * Test method for {@link XmlResourceBundle} constructors.
-	 *
-	 * @throws FileNotFoundException
-	 *             the file not found exception
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public final void testConstructors() throws FileNotFoundException, IOException
-	{
-		XmlResourceBundle model = new XmlResourceBundle(new FileInputStream(propertiesXml));
-		assertNotNull(model);
 	}
 
 }

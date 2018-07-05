@@ -99,7 +99,7 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 		}
 		final BufferedInputStream bis = new BufferedInputStream(stream);
 		bundle = new XmlResourceBundle(bis);
-		
+
 		bis.close();
 
 		return bundle;

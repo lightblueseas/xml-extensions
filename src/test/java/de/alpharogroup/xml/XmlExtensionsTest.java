@@ -53,7 +53,7 @@ public class XmlExtensionsTest
 {
 
 	/**
-	 * Test method for {@link XmlExtensions#newTag(String, String, Map)} 
+	 * Test method for {@link XmlExtensions#newTag(String, String, Map)}
 	 */
 	@Test
 	public void testCreateTag()
@@ -70,7 +70,7 @@ public class XmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#toJson(String)} 
+	 * Test method for {@link XmlExtensions#toJson(String)}
 	 */
 	@Test(enabled = false)
 	public void testToJson()
@@ -103,7 +103,7 @@ public class XmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#} 
+	 * Test method for {@link XmlExtensions#}
 	 */
 	@Test
 	public void testToObjectWithXStreamString()
@@ -125,7 +125,7 @@ public class XmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#} 
+	 * Test method for {@link XmlExtensions#}
 	 */
 	@Test(enabled = false)
 	public void testToXmlWithXStreamObject()
@@ -152,7 +152,7 @@ public class XmlExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#} 
+	 * Test method for {@link XmlExtensions#}
 	 */
 	@Test(enabled = false)
 	public void testToXmlWithXStreamXStreamObjectMapOfStringClassOfQ()

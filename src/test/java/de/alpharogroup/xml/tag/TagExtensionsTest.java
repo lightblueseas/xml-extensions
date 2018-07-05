@@ -54,10 +54,10 @@ public class TagExtensionsTest
 
 		attributes.put("wicket:id", "name");
 		attributes.put("class", "other");
-		
+
 		actual = TagExtensions.attributesToString(attributes);
 		expected = Optional.of(" wicket:id=\"name\" class=\"other\" ");
-		assertEquals(expected, actual); 
+		assertEquals(expected, actual);
 	}
 
 	/**

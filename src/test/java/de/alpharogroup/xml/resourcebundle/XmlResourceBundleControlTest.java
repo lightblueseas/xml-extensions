@@ -58,10 +58,10 @@ public class XmlResourceBundleControlTest
 
 	/** The properties for unit tests. */
 	Properties properties;
-	
+
 	/** The properties german for unit tests. */
 	Properties propertiesGerman;
-	
+
 	/**
 	 * Sets up method will be invoked before every unit test method
 	 *
@@ -71,14 +71,14 @@ public class XmlResourceBundleControlTest
 	@BeforeMethod
 	protected void setUp() throws Exception
 	{
-		xmlResourceBundleControl = new XmlResourceBundleControl();	
-		properties = new Properties();	
+		xmlResourceBundleControl = new XmlResourceBundleControl();
+		properties = new Properties();
 		properties.setProperty("global.email.label", "Email");
 		properties.setProperty("global.enter.your.email.label", "Enter your email");
 		properties.setProperty("global.password.label", "Password");
 		properties.setProperty("global.enter.your.password.label", "Enter your password");
 		properties.setProperty("password.forgotten.label", "Forgot your password?");
-		propertiesGerman = new Properties();	
+		propertiesGerman = new Properties();
 		propertiesGerman.setProperty("global.email.label", "Email");
 		propertiesGerman.setProperty("global.enter.your.email.label", "Gib deine Email ein");
 		propertiesGerman.setProperty("global.password.label", "Passwort");
@@ -112,11 +112,12 @@ public class XmlResourceBundleControlTest
 		expected = ListFactory.newArrayList("xml");
 		assertEquals(actual, expected);
 	}
-	
+
 	/**
-	 * Test method for {@link XmlResourceBundleControl#getFormats(String)} that throws a NullPointerException 
+	 * Test method for {@link XmlResourceBundleControl#getFormats(String)} that throws a
+	 * NullPointerException
 	 */
-	@Test(expectedExceptions = {NullPointerException.class})
+	@Test(expectedExceptions = { NullPointerException.class })
 	public void testGetFormatsThrowNullPointerException()
 	{
 		xmlResourceBundleControl.getFormats(null);
@@ -157,14 +158,15 @@ public class XmlResourceBundleControlTest
 		assertNotNull(expected);
 		Enumeration<String> keys = actual.getKeys();
 		EnumerationIterator<String> iterator = new EnumerationIterator<>(keys);
-		while( iterator.hasNext()) {
-			String key = iterator.next(); 
+		while (iterator.hasNext())
+		{
+			String key = iterator.next();
 			assertTrue(properties.containsKey(key));
 			String actualValue = actual.getString(key);
 			String expectedValue = expected.getString(key);
 			assertEquals(actualValue, expectedValue);
-		}	
-		
+		}
+
 		// null case with wrong format...
 		baseName = "SigninPanel";
 		locale = Locale.GERMAN;
@@ -173,8 +175,8 @@ public class XmlResourceBundleControlTest
 		reload = true;
 		// create the bundle over the factory method...
 		actual = xmlResourceBundleControl.newBundle(baseName, locale, format, loader, reload);
-		assertNull(actual);	
-		
+		assertNull(actual);
+
 		// null case with wrong baseName...
 		baseName = "SigninPanelFOO";
 		locale = Locale.GERMAN;
@@ -184,12 +186,13 @@ public class XmlResourceBundleControlTest
 		// create the bundle over the factory method...
 		actual = xmlResourceBundleControl.newBundle(baseName, locale, format, loader, reload);
 		assertNull(actual);
-		
+
 	}
 
 	/**
 	 * Test method for
-	 * {@link XmlResourceBundleControl#newBundle(String, Locale, String, ClassLoader, boolean)} that throws a NullPointerException 
+	 * {@link XmlResourceBundleControl#newBundle(String, Locale, String, ClassLoader, boolean)} that
+	 * throws a NullPointerException
 	 *
 	 * @throws IllegalAccessException
 	 *             the illegal access exception
@@ -198,8 +201,9 @@ public class XmlResourceBundleControlTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(expectedExceptions = {NullPointerException.class})
-	public void testNewBundleThrowNullPointerException() throws IllegalAccessException, InstantiationException, IOException 
+	@Test(expectedExceptions = { NullPointerException.class })
+	public void testNewBundleThrowNullPointerException()
+		throws IllegalAccessException, InstantiationException, IOException
 	{
 		Locale locale;
 		String format;
@@ -211,7 +215,7 @@ public class XmlResourceBundleControlTest
 		loader = ClassExtensions.getClassLoader();
 		reload = true;
 		// create the bundle over the factory method...
-		xmlResourceBundleControl.newBundle(null, locale, format, loader, reload);			
+		xmlResourceBundleControl.newBundle(null, locale, format, loader, reload);
 	}
 
 }

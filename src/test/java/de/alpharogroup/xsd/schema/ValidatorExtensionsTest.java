@@ -43,7 +43,8 @@ public class ValidatorExtensionsTest
 {
 
 	/**
-	 * Test method for {@link ValidatorExtensions#validateSchema(File, File, org.xml.sax.ErrorHandler)}
+	 * Test method for
+	 * {@link ValidatorExtensions#validateSchema(File, File, org.xml.sax.ErrorHandler)}
 	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurs during parsing.

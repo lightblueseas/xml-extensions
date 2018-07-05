@@ -42,8 +42,10 @@ public class XmlToXsdExtensionsTest
 	/**
 	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(String, Inst2XsdOptions, XmlOptions)}
 	 *
-	 * @throws XmlException the xml exception
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws XmlException
+	 *             the xml exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test(enabled = false) // TODO check...
 	public void testXmlToXsdStringInst2XsdOptionsXmlOptions() throws XmlException, IOException
@@ -57,8 +59,7 @@ public class XmlToXsdExtensionsTest
 			+ "  <xs:complexType name=\"personType\">\r\n" + "    <xs:sequence>\r\n"
 			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\r\n" + "    </xs:sequence>\r\n"
 			+ "  </xs:complexType>\r\n" + "</xs:schema>";
-		assertTrue("Expected should be equal with the result.",
-			expected.equals(result));
+		assertTrue("Expected should be equal with the result.", expected.equals(result));
 	}
 
 }

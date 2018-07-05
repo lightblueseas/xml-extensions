@@ -41,6 +41,32 @@ public class TagTest
 {
 
 	/**
+	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
+	 * {@link Tag#toString()}
+	 *
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
+	 * @throws IllegalAccessException
+	 *             if the caller does not have access to the property accessor method
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws InstantiationException
+	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
+		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	{
+		boolean expected;
+		boolean actual;
+		actual = EqualsHashCodeAndToStringEvaluator.evaluateEqualsHashcodeAndToString(Tag.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
+
+	/**
 	 * Test method for {@link Tag}
 	 */
 	@Test
@@ -105,34 +131,7 @@ public class TagTest
 		/* check if equal */
 		assertEquals(expected, actual);
 	}
-	
-	/**
-	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
-	 * {@link Tag#toString()}
-	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
-	 * @throws IllegalAccessException
-	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
-	 * @throws InstantiationException
-	 *             if a new instance of the bean's class cannot be instantiated
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
-	 */
-	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
-	{
-		boolean expected;
-		boolean actual;
-		actual = EqualsHashCodeAndToStringEvaluator
-			.evaluateEqualsHashcodeAndToString(Tag.class);
-		expected = true;
-		assertEquals(expected, actual);
-	}
-	
+
 	/**
 	 * Test method for {@link Tag}
 	 */
@@ -141,6 +140,6 @@ public class TagTest
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(Tag.class);
-	}	
+	}
 
 }

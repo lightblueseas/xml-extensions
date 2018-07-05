@@ -48,8 +48,8 @@ import lombok.experimental.FieldDefaults;
  */
 @Getter
 @Setter
-@ToString(exclude={"attributes", "childTagPositions"})
-@EqualsAndHashCode(exclude={"attributes", "childTagPositions"})
+@ToString(exclude = { "attributes", "childTagPositions" })
+@EqualsAndHashCode(exclude = { "attributes", "childTagPositions" })
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)

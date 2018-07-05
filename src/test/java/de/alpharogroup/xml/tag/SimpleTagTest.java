@@ -160,7 +160,7 @@ public class SimpleTagTest
 		expected = true;
 		assertEquals(expected, actual);
 	}
-	
+
 	/**
 	 * Test method for {@link SimpleTag}
 	 */
@@ -170,5 +170,5 @@ public class SimpleTagTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(SimpleTag.class);
 	}
-	
+
 }

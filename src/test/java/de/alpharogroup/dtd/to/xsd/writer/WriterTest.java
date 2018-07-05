@@ -44,12 +44,12 @@ public class WriterTest
 		Writer model = new Writer();
 		assertNotNull(model);
 	}
-	
+
 	/**
 	 * Test method for {@link Writer#parse(XMLInputSource)}.
 	 */
 	@Test
-	public final void testParse() 
+	public final void testParse()
 	{
 		Writer model = new Writer();
 		assertNotNull(model);

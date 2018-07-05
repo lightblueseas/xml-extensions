@@ -414,5 +414,5 @@ public final class XmlExtensions
 		final String xml = xstream.toXML(objectToXML);
 		return xml;
 	}
-	
+
 }

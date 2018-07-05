@@ -58,7 +58,7 @@ public class TagAttributeTest
 			.build();
 		assertNotNull(model);
 	}
-	
+
 	/**
 	 * Test method for {@link TagAttribute#equals(Object)} , {@link TagAttribute#hashCode()} and
 	 * {@link TagAttribute#toString()}
@@ -85,16 +85,6 @@ public class TagAttributeTest
 		expected = true;
 		assertEquals(expected, actual);
 	}
-	
-	/**
-	 * Test method for {@link TagAttribute}
-	 */
-	@Test
-	public void testWithBeanTester()
-	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(TagAttribute.class);
-	}
 
 	/**
 	 * Test method for {@link TagAttribute#joinValues()}
@@ -106,6 +96,16 @@ public class TagAttributeTest
 			.value("fluid").build().joinValues();
 		final String expected = "row fluid";
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link TagAttribute}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(TagAttribute.class);
 	}
 
 }

@@ -52,7 +52,7 @@ import de.alpharogroup.io.StreamExtensions;
  * The unit test class for the class {@link XsltTransformerExtensions}
  */
 public class XsltTransformerExtensionsTest extends AbstractTestCase<String, String>
-{	
+{
 
 	/**
 	 * Sets up method will be invoked before every unit test method
@@ -64,8 +64,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	protected void setUp() throws Exception
 	{
 		super.setUp();
-		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><birthdates>"
-			+ "\r\n"
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><birthdates>" + "\r\n"
 			+ "    <birthdate>\r\n" + "        <id>1</id>\r\n" + "        <date>19:07</date>\r\n"
 			+ "    </birthdate>\r\n" + "    <birthdate>\r\n" + "        <id>2</id>\r\n"
 			+ "        <date>13:48</date>\r\n" + "    </birthdate>\r\n" + "    <birthdate>\r\n"
@@ -85,13 +84,18 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		actual = null;
 		expected = null;
 	}
+
 	/**
 	 * Test method for {@link XsltTransformerExtensions#transform(File, File, OutputStream)}
 	 *
-	 * @throws TransformerConfigurationException the transformer configuration exception
-	 * @throws TransformerFactoryConfigurationError the transformer factory configuration error
-	 * @throws TransformerException the transformer exception
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TransformerConfigurationException
+	 *             the transformer configuration exception
+	 * @throws TransformerFactoryConfigurationError
+	 *             the transformer factory configuration error
+	 * @throws TransformerException
+	 *             the transformer exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testGetTransformerFile() throws TransformerConfigurationException,
@@ -136,8 +140,10 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	/**
 	 * Test method for {@link XsltTransformerExtensions#transform(Source, Source, OutputStream)}
 	 *
-	 * @throws TransformerException the transformer exception
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws TransformerException
+	 *             the transformer exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test(enabled = true)
 	public void testTransformSourceSourceOutputStream() throws TransformerException, IOException
