@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.dtd.to.xsd.configuration;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.Locale;
 
@@ -229,7 +230,13 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 		this.entityManager.reset(this);
 		this.errorReporter.reset(this);
 		this.scanner.setInputSource(source);
-		this.scanner.scanDTDExternalSubset(true);
+		try
+		{
+			this.scanner.scanDTDExternalSubset(true);
+		}
+		catch (final EOFException e)
+		{
+		}
 	}
 
 	/**

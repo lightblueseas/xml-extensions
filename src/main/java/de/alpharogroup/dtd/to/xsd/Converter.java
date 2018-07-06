@@ -40,7 +40,7 @@ import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The class Converter.
+ * The class {@link Converter}
  *
  * @author Asterios Raptis
  */
