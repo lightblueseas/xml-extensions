@@ -25,13 +25,13 @@
 package de.alpharogroup.xml.tag;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -89,7 +89,7 @@ public class SimpleTag implements Serializable
 	{
 		if (getAttributes() == null)
 		{
-			this.attributes = new LinkedHashMap<>();
+			setAttributes(MapFactory.newLinkedHashMap());
 		}
 		return getAttributes().put(name, value);
 	}
@@ -105,7 +105,7 @@ public class SimpleTag implements Serializable
 	{
 		if (getChildren() == null)
 		{
-			this.children = new ArrayList<>();
+			setChildren(ListFactory.newArrayList());
 		}
 		return getChildren().add(child);
 	}

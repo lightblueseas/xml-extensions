@@ -316,7 +316,9 @@
 								<!-- explicit bean classes -->
 								<!-- explicit constant classes with only constants -->
 								<!-- explicit delegation classes -->
+								<exclude>de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class</exclude>
 								<!-- explicit deprecated classes -->
+								<exclude>de/alpharogroup/xml/json/JsonTransformer.class</exclude>
 								<!-- explicit enums -->
 								<exclude>de/alpharogroup/xml/node/NodeType.class</exclude>
 								<!-- explicit exceptions -->

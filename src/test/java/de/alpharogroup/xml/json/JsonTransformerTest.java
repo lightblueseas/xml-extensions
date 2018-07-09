@@ -24,7 +24,8 @@
  */
 package de.alpharogroup.xml.json;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
+import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.IOException;
@@ -34,11 +35,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.json.JSONException;
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
 import de.alpharogroup.test.objects.Employee;
@@ -48,8 +53,62 @@ import de.alpharogroup.test.objects.enums.Gender;
 /**
  * The unit test class for the class {@link JsonTransformer}
  */
+@SuppressWarnings("deprecation")
 public class JsonTransformerTest
 {
+
+	/**
+	 * Test method for {@link JsonTransformer#getObjectMapper()}.
+	 */
+	@Test
+	public void testGetObjectMapper()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+
+		actual = JsonTransformer.getObjectMapper();
+		expected = JsonTransformer.getObjectMapper(false);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#getObjectMapper(boolean)}.
+	 */
+	@Test
+	public void testGetObjectMapperBoolean()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+
+		actual = JsonTransformer.getObjectMapper(false);
+		expected = JsonTransformer.getObjectMapper(false);
+		assertEquals(actual, expected);
+
+		actual = JsonTransformer.getObjectMapper(false);
+		expected = JsonTransformer.getObjectMapper(true);
+		assertNotEquals(actual, expected);
+
+		actual = JsonTransformer.getObjectMapper(true);
+		expected = JsonTransformer.getObjectMapper(true);
+		assertNotEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#toJsonQuietly(Object)}.
+	 */
+	@Test
+	public void testToJsonQuietly()
+	{
+		String expected;
+		String actual;
+		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
+
+		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toJsonQuietly(employee);
+		assertTrue("", actual.equals(expected));
+	}
 
 	/**
 	 * Test method for {@link JsonTransformer#toJson(Object)}
@@ -244,6 +303,16 @@ public class JsonTransformerTest
 		actual = JsonTransformer.toXml(jsonString, Employee.class);
 		assertEquals(actual, expected);
 
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonTransformer.class);
 	}
 
 }
