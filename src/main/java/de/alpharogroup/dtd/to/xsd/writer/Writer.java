@@ -41,7 +41,11 @@ import lombok.Setter;
  * The class {@link Writer}
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ * 			<br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
 public class Writer
 {
 

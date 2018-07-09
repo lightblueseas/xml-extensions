@@ -36,6 +36,7 @@ import de.alpharogroup.file.search.PathFinder;
 /**
  * The unit test class for the class {@link Converter}.
  */
+@SuppressWarnings("deprecation")
 public class ConverterTest
 {
 

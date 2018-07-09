@@ -43,7 +43,11 @@ import lombok.extern.slf4j.Slf4j;
  * The class {@link Converter}
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ * 			<br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
 @UtilityClass
 @Slf4j
 public final class Converter

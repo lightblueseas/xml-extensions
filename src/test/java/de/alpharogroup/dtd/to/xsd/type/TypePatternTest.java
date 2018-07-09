@@ -46,6 +46,7 @@ public class TypePatternTest
 	/**
 	 * Test method for {@link TypePattern} constructors and builders
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public final void testConstructors()
 	{
@@ -61,6 +62,7 @@ public class TypePatternTest
 	 * Test method for {@link TypePattern#equals(Object)} , {@link TypePattern#hashCode()} and
 	 * {@link TypePattern#toString()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()
 	{
@@ -75,6 +77,7 @@ public class TypePatternTest
 	/**
 	 * Test method for {@link TypePattern#match(String)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public final void testMatch() throws Exception
 	{
@@ -96,6 +99,7 @@ public class TypePatternTest
 	/**
 	 * Test method for {@link TypePattern}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testWithBeanTester()
 	{

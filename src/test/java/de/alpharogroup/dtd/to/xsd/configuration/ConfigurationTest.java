@@ -37,6 +37,7 @@ public class ConfigurationTest
 	/**
 	 * Test method for {@link Configuration} constructors
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public final void testConstructors()
 	{

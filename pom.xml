@@ -303,6 +303,11 @@
 								<!-- exceptions -->
 								<!-- interfaces -->
 								<!-- deprecated classes -->
+								<exclude>de/alpharogroup/dtd/to/xsd/**/*.class</exclude>
+								<exclude>de/alpharogroup/dtd/to/xsd/configuration/**/*.class</exclude>
+								<exclude>de/alpharogroup/dtd/to/xsd/parser/**/*.class</exclude>
+								<exclude>de/alpharogroup/dtd/to/xsd/type/**/*.class</exclude>
+								<exclude>de/alpharogroup/dtd/to/xsd/writer/**/*.class</exclude>
 								<!-- constant classes with only constants -->
 								<!-- explicit abstract classes -->
 								<exclude>de/alpharogroup/xml/sax/handler/WriterHandler.class</exclude>

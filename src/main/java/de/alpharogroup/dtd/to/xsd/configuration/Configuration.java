@@ -46,7 +46,11 @@ import org.apache.xerces.xni.parser.XMLParserConfiguration;
  * The class {@link Configuration} holds information for parsing a dtd document to an xsd document.
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ * 			<br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
 public class Configuration extends ParserConfigurationSettings implements XMLParserConfiguration
 {
 

@@ -33,6 +33,7 @@ import de.alpharogroup.dtd.to.xsd.configuration.Configuration;
 /**
  * The unit test class for the class {@link Parser}
  */
+@SuppressWarnings("deprecation")
 public class ParserTest
 {
 

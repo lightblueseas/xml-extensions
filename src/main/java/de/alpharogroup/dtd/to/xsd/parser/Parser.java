@@ -62,7 +62,11 @@ import de.alpharogroup.dtd.to.xsd.type.TypePattern;
  * The class {@link Parser} is for parsing dtd document to a xsd document.
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ * 			<br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
 public class Parser extends XMLDocumentParser
 	implements
 		XMLDTDHandler,

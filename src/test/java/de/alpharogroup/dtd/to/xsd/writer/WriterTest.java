@@ -38,6 +38,7 @@ public class WriterTest
 	/**
 	 * Test method for {@link Writer} constructors
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public final void testConstructors()
 	{
@@ -48,6 +49,7 @@ public class WriterTest
 	/**
 	 * Test method for {@link Writer#parse(XMLInputSource)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public final void testParse()
 	{
