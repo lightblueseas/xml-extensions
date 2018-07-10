@@ -31,54 +31,53 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import lombok.Getter;
+import lombok.NonNull;
+
 /**
- * The class WriterHandler.
+ * The abstract class {@link WriterHandler}.
  */
 public abstract class WriterHandler extends DefaultHandler
 {
 
-	/** The string buffer. */
-	private StringBuffer stringBuffer;
+	/** The string builder. */
+	private StringBuilder stringBuilder;
 
 	/** The writer. */
+	@Getter
 	private final Writer writer;
 
 	/**
-	 * The Constructor.
+	 * Instantiates a new {@link WriterHandler} object with the given {@link Writer}
 	 *
 	 * @param writer
 	 *            the writer
 	 */
-	public WriterHandler(final Writer writer)
+	public WriterHandler(final @NonNull Writer writer)
 	{
-		super();
 		this.writer = writer;
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.xml.sax.helpers.DefaultHandler#characters(char[], int, int)
 	 */
 	@Override
 	public void characters(final char[] buf, final int offset, final int len) throws SAXException
 	{
-		final String s = new String(buf, offset, len);
+		final String string = new String(buf, offset, len);
 
-		if (stringBuffer == null)
+		if (stringBuilder == null)
 		{
-			stringBuffer = new StringBuffer(s);
+			stringBuilder = new StringBuilder(string);
 		}
 		else
 		{
-			stringBuffer.append(s);
+			stringBuilder.append(string);
 		}
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.xml.sax.helpers.DefaultHandler#endDocument()
 	 */
 	@Override
 	public void endDocument() throws SAXException
@@ -97,9 +96,6 @@ public abstract class WriterHandler extends DefaultHandler
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String, java.lang.String,
-	 *      java.lang.String)
 	 */
 	@Override
 	public void endElement(final String namespaceURI, final String simpleName,
@@ -118,20 +114,10 @@ public abstract class WriterHandler extends DefaultHandler
 	}
 
 	/**
-	 * Gets the writer.
-	 *
-	 * @return the writer
-	 */
-	public Writer getWriter()
-	{
-		return writer;
-	}
-
-	/**
-	 * Insert new line.
+	 * Insert a new line to the writer
 	 *
 	 * @throws SAXException
-	 *             the SAX exception
+	 *             any SAX exception, possibly wrapping another exception
 	 */
 	private void insertNewLine() throws SAXException
 	{
@@ -143,13 +129,10 @@ public abstract class WriterHandler extends DefaultHandler
 		{
 			throw new SAXException("I/O error", e);
 		}
-
 	}
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.xml.sax.helpers.DefaultHandler#startDocument()
 	 */
 	@Override
 	public void startDocument() throws SAXException
@@ -160,9 +143,6 @@ public abstract class WriterHandler extends DefaultHandler
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String, java.lang.String,
-	 *      java.lang.String, org.xml.sax.Attributes)
 	 */
 	@Override
 	public void startElement(final String namespaceURI, final String simpleName,
@@ -199,29 +179,29 @@ public abstract class WriterHandler extends DefaultHandler
 	}
 
 	/**
-	 * Write.
+	 * Write the given {@link String} object
 	 *
-	 * @param s
-	 *            the s
+	 * @param string
+	 *            the string
 	 * @throws SAXException
-	 *             the SAX exception
+	 *             any SAX exception, possibly wrapping another exception
 	 */
-	protected abstract void write(final String s) throws SAXException;
+	protected abstract void write(final String string) throws SAXException;
 
 	/**
 	 * Write to buffer.
 	 *
 	 * @throws SAXException
-	 *             the SAX exception
+	 *             any SAX exception, possibly wrapping another exception
 	 */
 	private void writeToBuffer() throws SAXException
 	{
-		if (stringBuffer == null)
+		if (stringBuilder == null)
 		{
 			return;
 		}
-		final String s = "" + stringBuffer;
-		write(s);
-		stringBuffer = null;
+		final String string = stringBuilder.toString().trim();
+		write(string);
+		stringBuilder = null;
 	}
 }

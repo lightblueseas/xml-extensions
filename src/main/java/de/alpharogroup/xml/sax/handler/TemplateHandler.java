@@ -26,12 +26,13 @@ package de.alpharogroup.xml.sax.handler;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Map;
 
 import org.xml.sax.SAXException;
 
 /**
- * The class TemplateHandler.
+ * The class {@link TemplateHandler}
  */
 public class TemplateHandler extends WriterHandler
 {
@@ -40,7 +41,8 @@ public class TemplateHandler extends WriterHandler
 	private final Map<String, String> data;
 
 	/**
-	 * The Constructor.
+	 * Instantiates a new {@link TemplateHandler} object with the given data map and the given
+	 * {@link Writer}
 	 *
 	 * @param data
 	 *            the data
@@ -55,8 +57,6 @@ public class TemplateHandler extends WriterHandler
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see de.alpharogroup.xml.sax.handler.WriterHandler#write(java.lang.String)
 	 */
 	@Override
 	protected void write(final String s) throws SAXException
