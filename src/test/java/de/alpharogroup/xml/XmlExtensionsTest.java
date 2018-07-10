@@ -67,7 +67,7 @@ public class XmlExtensionsTest
 		actual = XmlExtensions.newTag("land", "france", null);
 		expected = "<land>france</land>";
 		assertEquals(actual, expected);
-		
+
 		attributes = new LinkedHashMap<>();
 		attributes.put("population", "65350000");
 		attributes.put("capital", "paris");
@@ -155,7 +155,7 @@ public class XmlExtensionsTest
 		EmployeeList expected;
 		Person person;
 		String xmlResult;
-		
+
 		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
@@ -182,7 +182,7 @@ public class XmlExtensionsTest
 		String expected;
 		Person person;
 		Employee employee;
-		
+
 		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
@@ -191,9 +191,8 @@ public class XmlExtensionsTest
 		employee.setId("23");
 		actual = XmlExtensions.toXmlWithXStream(employee);
 		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
-			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" 
-			+ "  </person>\n" + "  <id>23</id>\n"
-			+ "</de.alpharogroup.test.objects.Employee>";
+			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
+			+ "  <id>23</id>\n" + "</de.alpharogroup.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}
@@ -225,14 +224,12 @@ public class XmlExtensionsTest
 		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
-		
+
 		actual = XmlExtensions.toXmlWithXStream(employee, aliases);
 		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
-			+ "    <gender>FEMALE</gender>\n"
-			+ "  </person>\n"
-			+ "  <id>23</id>\n" + "</employee>";
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
 		assertEquals(expected, actual);
-		
+
 		// new scenario ...
 		rs = new HashSet<>();
 		roles = Roles.builder().roles(rs).build();

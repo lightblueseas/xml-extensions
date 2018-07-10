@@ -46,21 +46,6 @@ public class TagTest
 {
 
 	/**
-	 * Test method for {@link Tag} constructors and builders
-	 */
-	@Test
-	public final void testConstructors()
-	{
-		Tag model = new Tag();
-		assertNotNull(model);
-		model = new Tag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
-			false, "foo");
-		assertNotNull(model);
-		model = Tag.builder().build();
-		assertNotNull(model);
-	}
-
-	/**
 	 * Test method for {@link Tag#clone()}.
 	 */
 	@Test(enabled = true)
@@ -68,56 +53,27 @@ public class TagTest
 	{
 		Tag actual;
 		Tag expected;
-		actual = new Tag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
-			false, "foo");
-		expected = (Tag)actual.clone();		
+		actual = new Tag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar", false,
+			"foo");
+		expected = (Tag)actual.clone();
 		assertEquals(expected, actual);
 	}
-	
-	/**
-	 * Test method for {@link Tag#removeAttribute(String)}
-	 */
-	@Test
-	public void testRemoveAttribute()
-	{
-
-		Tag child1 = Tag.builder().build();
-		Tag child2 = Tag.builder().build();
-		ChildTagPosition child1Position = ChildTagPosition.builder().child(child1).position(1).build();
-		ChildTagPosition child2Position = ChildTagPosition.builder().child(child2).position(2).build();
-		Tag tag = new Tag(MapFactory.newLinkedHashMap(),
-			ListFactory.newArrayList(child1Position, child2Position), "bar", false, "foo");
-
-		tag.addAttribute("class", "fluid box");
-
-		assertTrue(tag.getAttributes().containsKey("class"));
-
-		tag.removeAttribute("class");
-		assertFalse(tag.getAttributes().containsKey("class"));
-	}
 
 	/**
-	 * Test method for {@link Tag#removeChild(Tag)}
+	 * Test method for {@link Tag} constructors and builders
 	 */
 	@Test
-	public void testRemoveChild()
+	public final void testConstructors()
 	{
-		Tag child1 = Tag.builder().build();
-		Tag child2 = Tag.builder().build();
-		ChildTagPosition child1Position = ChildTagPosition.builder().child(child1).position(1).build();
-		ChildTagPosition child2Position = ChildTagPosition.builder().child(child2).position(2).build();
-		Tag tag = new Tag(MapFactory.newLinkedHashMap(),
-			ListFactory.newArrayList(child1Position, child2Position), "bar", false, "foo");
-
-		assertTrue(tag.getChildren().contains(child1Position));
-
-		tag.removeChild(child1);
-
-		assertFalse(tag.getChildren().contains(child1Position));
-
-		assertFalse(child1.removeChild(child2));
+		Tag model = new Tag();
+		assertNotNull(model);
+		model = new Tag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar", false,
+			"foo");
+		assertNotNull(model);
+		model = Tag.builder().build();
+		assertNotNull(model);
 	}
-	
+
 	/**
 	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
 	 * {@link Tag#toString()}
@@ -142,6 +98,54 @@ public class TagTest
 		actual = EqualsHashCodeAndToStringEvaluator.evaluateEqualsHashcodeAndToString(Tag.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link Tag#removeAttribute(String)}
+	 */
+	@Test
+	public void testRemoveAttribute()
+	{
+
+		Tag child1 = Tag.builder().build();
+		Tag child2 = Tag.builder().build();
+		ChildTagPosition child1Position = ChildTagPosition.builder().child(child1).position(1)
+			.build();
+		ChildTagPosition child2Position = ChildTagPosition.builder().child(child2).position(2)
+			.build();
+		Tag tag = new Tag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1Position, child2Position), "bar", false, "foo");
+
+		tag.addAttribute("class", "fluid box");
+
+		assertTrue(tag.getAttributes().containsKey("class"));
+
+		tag.removeAttribute("class");
+		assertFalse(tag.getAttributes().containsKey("class"));
+	}
+
+	/**
+	 * Test method for {@link Tag#removeChild(Tag)}
+	 */
+	@Test
+	public void testRemoveChild()
+	{
+		Tag child1 = Tag.builder().build();
+		Tag child2 = Tag.builder().build();
+		ChildTagPosition child1Position = ChildTagPosition.builder().child(child1).position(1)
+			.build();
+		ChildTagPosition child2Position = ChildTagPosition.builder().child(child2).position(2)
+			.build();
+		Tag tag = new Tag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1Position, child2Position), "bar", false, "foo");
+
+		assertTrue(tag.getChildren().contains(child1Position));
+
+		tag.removeChild(child1);
+
+		assertFalse(tag.getChildren().contains(child1Position));
+
+		assertFalse(child1.removeChild(child2));
 	}
 
 	/**

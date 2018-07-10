@@ -86,7 +86,7 @@ public class JsonToXmlExtensionsTest
 		assertEquals(actual, expected);
 
 	}
-	
+
 	/**
 	 * Test method for {@link JsonToXmlExtensions}
 	 */

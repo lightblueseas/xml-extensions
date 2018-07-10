@@ -47,7 +47,7 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class JsonToObjectExtensionsTest
 {
-	
+
 	/**
 	 * Test method for {@link JsonToObjectExtensions#toObject(String, Class)}
 	 *
@@ -84,7 +84,8 @@ public class JsonToObjectExtensionsTest
 	{
 		final String jsonString = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
 
-		final List<Employee> actual = JsonToObjectExtensions.toObjectList(jsonString, Employee.class);
+		final List<Employee> actual = JsonToObjectExtensions.toObjectList(jsonString,
+			Employee.class);
 
 		System.out.println(actual);
 	}

@@ -48,10 +48,10 @@ public class ObjectMapperFactoryTest
 	{
 		ObjectMapper actual;
 		ObjectMapper expected;
-		
+
 		actual = ObjectMapperFactory.getObjectMapper();
 		expected = ObjectMapperFactory.getObjectMapper(false);
-		assertEquals(actual, expected);		
+		assertEquals(actual, expected);
 	}
 
 	/**
@@ -62,18 +62,18 @@ public class ObjectMapperFactoryTest
 	{
 		ObjectMapper actual;
 		ObjectMapper expected;
-		
+
 		actual = ObjectMapperFactory.getObjectMapper(false);
 		expected = ObjectMapperFactory.getObjectMapper(false);
-		assertEquals(actual, expected);	
-		
+		assertEquals(actual, expected);
+
 		actual = ObjectMapperFactory.getObjectMapper(false);
 		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertNotEquals(actual, expected);	
-		
+		assertNotEquals(actual, expected);
+
 		actual = ObjectMapperFactory.getObjectMapper(true);
 		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertNotEquals(actual, expected);	
+		assertNotEquals(actual, expected);
 	}
 
 	/**

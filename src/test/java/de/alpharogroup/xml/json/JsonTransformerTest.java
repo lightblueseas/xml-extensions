@@ -94,23 +94,6 @@ public class JsonTransformerTest
 	}
 
 	/**
-	 * Test method for {@link JsonTransformer#toJsonQuietly(Object)}.
-	 */
-	@Test
-	public void testToJsonQuietly()
-	{
-		String expected;
-		String actual;
-		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
-			.build();
-
-		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		actual = JsonTransformer.toJsonQuietly(employee);
-		assertTrue("", actual.equals(expected));
-	}
-
-	/**
 	 * Test method for {@link JsonTransformer#toJson(Object)}
 	 *
 	 * @throws JsonProcessingException
@@ -193,6 +176,23 @@ public class JsonTransformerTest
 		final String actual = JsonTransformer.toJson(employees);
 
 		final String expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
+		assertTrue("", actual.equals(expected));
+	}
+
+	/**
+	 * Test method for {@link JsonTransformer#toJsonQuietly(Object)}.
+	 */
+	@Test
+	public void testToJsonQuietly()
+	{
+		String expected;
+		String actual;
+		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
+
+		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonTransformer.toJsonQuietly(employee);
 		assertTrue("", actual.equals(expected));
 	}
 

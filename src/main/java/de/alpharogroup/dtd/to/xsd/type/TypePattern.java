@@ -40,7 +40,7 @@ import lombok.ToString;
  *
  * @author Asterios Raptis
  * @deprecated use instead the same name class from project dtd-to-xsd. <br>
- * 			<br>
+ *             <br>
  *             Note: will be removed on next minor release
  */
 @Deprecated

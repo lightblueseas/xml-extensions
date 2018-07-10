@@ -63,7 +63,7 @@ import de.alpharogroup.dtd.to.xsd.type.TypePattern;
  *
  * @author Asterios Raptis
  * @deprecated use instead the same name class from project dtd-to-xsd. <br>
- * 			<br>
+ *             <br>
  *             Note: will be removed on next minor release
  */
 @Deprecated

@@ -73,7 +73,7 @@ public class ConverterTest
 	{
 		// TODO fail("Not yet implemented");
 		String targetNamespace;
-		List<TypePattern> listXsdTypePattern; 
+		List<TypePattern> listXsdTypePattern;
 		String dtdfile;
 		File xsdfile;
 		targetNamespace = "";
@@ -81,7 +81,7 @@ public class ConverterTest
 		dtdfile = datasetDtd.getAbsolutePath();
 		xsdfile = dataset;
 		Converter.convert(targetNamespace, listXsdTypePattern, dtdfile, xsdfile);
-		
+
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class ConverterTest
 	{
 		// TODO fail("Not yet implemented");
 		String targetNamespace;
-		List<TypePattern> listXsdTypePattern; 
+		List<TypePattern> listXsdTypePattern;
 		String dtdfile;
 		String xsdfile;
 		targetNamespace = "";

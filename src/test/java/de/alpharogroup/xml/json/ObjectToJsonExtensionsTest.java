@@ -49,7 +49,7 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class ObjectToJsonExtensionsTest
 {
-	
+
 	/**
 	 * Test method for {@link ObjectToJsonExtensions#toJson(Object)}
 	 *

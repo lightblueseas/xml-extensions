@@ -126,7 +126,8 @@ public class XmlToXsdExtensionsTest
 	public void testXmlToXsdFileArrayInst2XsdOptionsFileStringIllegalArgumentException()
 		throws IOException
 	{
-		XmlToXsdExtensions.xmlToXsd(null, new Inst2XsdOptions(), PathFinder.getSrcTestResourcesDir(), null);
+		XmlToXsdExtensions.xmlToXsd(null, new Inst2XsdOptions(),
+			PathFinder.getSrcTestResourcesDir(), null);
 	}
 
 	/**

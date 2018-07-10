@@ -41,7 +41,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ObjectToJsonExtensions
 {
-	
+
 	/**
 	 * Creates from the given {@link List} to a json string.
 	 *

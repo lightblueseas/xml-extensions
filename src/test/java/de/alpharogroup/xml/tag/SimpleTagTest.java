@@ -49,60 +49,6 @@ public class SimpleTagTest
 {
 
 	/**
-	 * Test method for {@link SimpleTag#removeAttribute(String)}
-	 */
-	@Test
-	public void testRemoveAttribute()
-	{
-		SimpleTag child1 = SimpleTag.builder().name("img").build();
-		SimpleTag child2 = SimpleTag.builder().name("b").build();
-		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
-			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
-
-		simpleTag.addAttribute("class", "fluid box");
-
-		assertTrue(simpleTag.getAttributes().containsKey("class"));
-
-		simpleTag.removeAttribute("class");
-		assertFalse(simpleTag.getAttributes().containsKey("class"));
-	}
-
-	/**
-	 * Test method for {@link SimpleTag#removeChild(SimpleTag)}
-	 */
-	@Test
-	public void testRemoveChild()
-	{
-		SimpleTag child1 = SimpleTag.builder().name("img").build();
-		SimpleTag child2 = SimpleTag.builder().name("b").build();
-		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
-			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
-
-		assertTrue(simpleTag.getChildren().contains(child1));
-
-		simpleTag.removeChild(child1);
-
-		assertFalse(simpleTag.getChildren().contains(child1));
-
-		assertFalse(child1.removeChild(child2));
-	}
-
-	/**
-	 * Test method for {@link SimpleTag} constructors and builders
-	 */
-	@Test
-	public final void testConstructors()
-	{
-		SimpleTag model = new SimpleTag();
-		assertNotNull(model);
-		model = new SimpleTag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
-			false, "foo");
-		assertNotNull(model);
-		model = SimpleTag.builder().build();
-		assertNotNull(model);
-	}
-
-	/**
 	 * Test method for {@link SimpleTag}
 	 */
 	@Test
@@ -194,6 +140,21 @@ public class SimpleTagTest
 	}
 
 	/**
+	 * Test method for {@link SimpleTag} constructors and builders
+	 */
+	@Test
+	public final void testConstructors()
+	{
+		SimpleTag model = new SimpleTag();
+		assertNotNull(model);
+		model = new SimpleTag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
+			false, "foo");
+		assertNotNull(model);
+		model = SimpleTag.builder().build();
+		assertNotNull(model);
+	}
+
+	/**
 	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
 	 * {@link SimpleTag#toString()}
 	 *
@@ -218,6 +179,45 @@ public class SimpleTagTest
 			.evaluateEqualsHashcodeAndToString(SimpleTag.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#removeAttribute(String)}
+	 */
+	@Test
+	public void testRemoveAttribute()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		simpleTag.addAttribute("class", "fluid box");
+
+		assertTrue(simpleTag.getAttributes().containsKey("class"));
+
+		simpleTag.removeAttribute("class");
+		assertFalse(simpleTag.getAttributes().containsKey("class"));
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#removeChild(SimpleTag)}
+	 */
+	@Test
+	public void testRemoveChild()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		assertTrue(simpleTag.getChildren().contains(child1));
+
+		simpleTag.removeChild(child1);
+
+		assertFalse(simpleTag.getChildren().contains(child1));
+
+		assertFalse(child1.removeChild(child2));
 	}
 
 	/**

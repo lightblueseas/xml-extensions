@@ -32,12 +32,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.thoughtworks.xstream.XStream;
-
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+
+import com.thoughtworks.xstream.XStream;
 
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.EmployeeList;
@@ -60,10 +60,10 @@ public class XmlToObjectExtensionsTest
 		Person expected;
 		String xmlInputString;
 		String javaVersion;
-		
+
 		javaVersion = System.getProperty("java.version");
-		xmlInputString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\"" + javaVersion
-			+ "\" class=\"java.beans.XMLDecoder\">\n"
+		xmlInputString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\""
+			+ javaVersion + "\" class=\"java.beans.XMLDecoder\">\n"
 			+ " <object class=\"de.alpharogroup.test.objects.Person\">\n"
 			+ "  <void property=\"gender\">\n"
 			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
@@ -76,8 +76,35 @@ public class XmlToObjectExtensionsTest
 		expected = new Person();
 		expected.setGender(Gender.FEMALE);
 		expected.setName("Anna");
-		
-		assertEquals(actual, expected);		
+
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlToObjectExtensions#toObjectWithXStream(String)}
+	 */
+	@Test
+	public void testToObjectWithXStreamString()
+	{
+		EmployeeList actual;
+		EmployeeList expected;
+		Person person;
+		String xmlResult;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		final Employee employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		final List<Employee> employees = new ArrayList<>();
+		employees.add(employee);
+
+		expected = EmployeeList.builder().employees(employees).build();
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(expected);
+		actual = XmlToObjectExtensions.toObjectWithXStream(xmlResult);
+		assertNotNull(actual);
+		assertEquals(actual, expected);
 	}
 
 	/**
@@ -90,24 +117,24 @@ public class XmlToObjectExtensionsTest
 		Employee expected;
 		String xmlInputString;
 		Person person;
-		Map<String, Class<?>> aliases;		
-		
+		Map<String, Class<?>> aliases;
+
 		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
-		aliases.put(lqSimpleName, Employee.class);		
-		
+		aliases.put(lqSimpleName, Employee.class);
+
 		xmlInputString = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
 			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
-		
+
 		actual = XmlToObjectExtensions.toObjectWithXStream(xmlInputString, aliases);
-		
+
 		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
 		expected = new Employee();
 		expected.setPerson(person);
 		expected.setId("23");
-		
+
 		assertEquals(actual, expected);
 	}
 
@@ -121,51 +148,24 @@ public class XmlToObjectExtensionsTest
 		Employee expected;
 		String xmlInputString;
 		Person person;
-		Map<String, Class<?>> aliases;		
-		
+		Map<String, Class<?>> aliases;
+
 		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
-		aliases.put(lqSimpleName, Employee.class);		
-		
+		aliases.put(lqSimpleName, Employee.class);
+
 		xmlInputString = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
 			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
-		
+
 		actual = XmlToObjectExtensions.toObjectWithXStream(new XStream(), xmlInputString, aliases);
-		
+
 		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
 		expected = new Employee();
 		expected.setPerson(person);
 		expected.setId("23");
-		
-		assertEquals(actual, expected);
-	}
-	
-	/**
-	 * Test method for {@link XmlToObjectExtensions#toObjectWithXStream(String)}
-	 */
-	@Test
-	public void testToObjectWithXStreamString()
-	{
-		EmployeeList actual;
-		EmployeeList expected;
-		Person person;
-		String xmlResult;
-		
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		final Employee employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
-		final List<Employee> employees = new ArrayList<>();
-		employees.add(employee);
-		
-		expected = EmployeeList.builder().employees(employees).build();
-		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(expected);
-		actual = XmlToObjectExtensions.toObjectWithXStream(xmlResult);
-		assertNotNull(actual);
+
 		assertEquals(actual, expected);
 	}
 

@@ -34,7 +34,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ObjectMapperFactory
 {
-	
+
 	/** The constant mapper. */
 	private final static ObjectMapper MAPPER = getObjectMapper(true);
 
@@ -65,5 +65,5 @@ public class ObjectMapperFactory
 		}
 		return MAPPER;
 	}
-	
+
 }
