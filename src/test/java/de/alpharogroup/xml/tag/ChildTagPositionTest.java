@@ -46,9 +46,16 @@ public class ChildTagPositionTest
 	{
 		ChildTagPosition model = new ChildTagPosition();
 		assertNotNull(model);
-		model = new ChildTagPosition(Tag.builder().build(), 1);
+		Tag child = Tag.builder().build();
+		model = new ChildTagPosition(child, 1);
 		assertNotNull(model);
 		model = ChildTagPosition.builder().build();
+		assertNotNull(model);
+		model = ChildTagPosition.builder().position(1).build();
+		assertNotNull(model);
+		model = ChildTagPosition.builder().position(1).build();
+		assertNotNull(model);
+		model = ChildTagPosition.builder().child(child).position(1).build();
 		assertNotNull(model);
 	}
 

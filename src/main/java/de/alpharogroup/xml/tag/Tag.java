@@ -168,6 +168,7 @@ public class Tag implements Serializable
 				if (childTagPosition.getChild().equals(child))
 				{
 					found = childTagPosition;
+					break;
 				}
 			}
 			if (found != null)

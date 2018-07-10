@@ -24,7 +24,10 @@
  */
 package de.alpharogroup.xml.tag;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -34,6 +37,8 @@ import org.apache.velocity.app.Velocity;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 import de.alpharogroup.velocity.VelocityExtensions;
 
@@ -42,6 +47,60 @@ import de.alpharogroup.velocity.VelocityExtensions;
  */
 public class SimpleTagTest
 {
+
+	/**
+	 * Test method for {@link SimpleTag#removeAttribute(String)}
+	 */
+	@Test
+	public void testRemoveAttribute()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		simpleTag.addAttribute("class", "fluid box");
+
+		assertTrue(simpleTag.getAttributes().containsKey("class"));
+
+		simpleTag.removeAttribute("class");
+		assertFalse(simpleTag.getAttributes().containsKey("class"));
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#removeChild(SimpleTag)}
+	 */
+	@Test
+	public void testRemoveChild()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		assertTrue(simpleTag.getChildren().contains(child1));
+
+		simpleTag.removeChild(child1);
+
+		assertFalse(simpleTag.getChildren().contains(child1));
+
+		assertFalse(child1.removeChild(child2));
+	}
+
+	/**
+	 * Test method for {@link SimpleTag} constructors and builders
+	 */
+	@Test
+	public final void testConstructors()
+	{
+		SimpleTag model = new SimpleTag();
+		assertNotNull(model);
+		model = new SimpleTag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
+			false, "foo");
+		assertNotNull(model);
+		model = SimpleTag.builder().build();
+		assertNotNull(model);
+	}
 
 	/**
 	 * Test method for {@link SimpleTag}
