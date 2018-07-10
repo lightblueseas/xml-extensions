@@ -38,6 +38,8 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import com.thoughtworks.xstream.XStream;
+
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.auth.AccessRight;
@@ -161,6 +163,88 @@ public class ObjectToXmlExtensionsTest
 		aliases.put(lqSimpleName, AccessRight.class);
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(roles, aliases);
+		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(XStream, Object)}.
+	 */
+	@Test
+	public void testToXmlWithXStreamXStreamObject()
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee);
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
+			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
+			+ "  <id>23</id>\n" + "</de.alpharogroup.test.objects.Employee>";
+		assertNotNull(actual);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(XStream, Object, Map)}.
+	 */
+	@Test
+	public void testToXmlWithXStreamXStreamTMapOfStringClassOfQ()
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		Map<String, Class<?>> aliases;
+		Set<Role> rs;
+		Roles roles;
+		Role role;
+		Set<AccessRight> rights;
+		AccessRight right;
+
+		// new scenario ...
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		aliases = new HashMap<>();
+		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Employee.class);
+
+		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee, aliases);
+		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+		assertEquals(expected, actual);
+
+		// new scenario ...
+		rs = new HashSet<>();
+		roles = Roles.builder().roles(rs).build();
+
+		role = Role.builder().build();
+		rs.add(role);
+		rights = new HashSet<>();
+		role.setRights(rights);
+		right = AccessRight.builder().build();
+		right.setDescription("bla");
+		rights.add(right);
+		aliases = new HashMap<>();
+		lqSimpleName = Roles.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Roles.class);
+		lqSimpleName = Role.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Role.class);
+		lqSimpleName = AccessRight.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, AccessRight.class);
+
+		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), roles, aliases);
 		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
 		assertEquals(expected, actual);
 	}

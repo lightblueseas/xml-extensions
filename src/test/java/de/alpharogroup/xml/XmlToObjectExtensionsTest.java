@@ -139,6 +139,33 @@ public class XmlToObjectExtensionsTest
 	}
 
 	/**
+	 * Test method for {@link XmlToObjectExtensions#toObjectWithXStream(XStream, String)}
+	 */
+	@Test
+	public void testToObjectWithXStreamXStreamString()
+	{
+		EmployeeList actual;
+		EmployeeList expected;
+		Person person;
+		String xmlResult;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		final Employee employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		final List<Employee> employees = new ArrayList<>();
+		employees.add(employee);
+
+		expected = EmployeeList.builder().employees(employees).build();
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(expected);
+		actual = XmlToObjectExtensions.toObjectWithXStream(new XStream(), xmlResult);
+		assertNotNull(actual);
+		assertEquals(actual, expected);
+	}
+
+	/**
 	 * Test method for {@link XmlToObjectExtensions#toObjectWithXStream(XStream, String, Map)}.
 	 */
 	@Test

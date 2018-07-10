@@ -77,7 +77,8 @@ public class XmlExtensionsTest
 
 	/**
 	 * Test method for {@link XmlExtensions#loadObject(File)}.
-	 * @throws IOException 
+	 * 
+	 * @throws IOException
 	 */
 	@Test
 	public void testLoadObjectFile() throws IOException
@@ -94,7 +95,7 @@ public class XmlExtensionsTest
 		employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		
+
 		xmlFile = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "newtest.xml");
 		actual = XmlExtensions.loadObject(xmlFile);
 		assertNotNull(actual);
@@ -105,7 +106,8 @@ public class XmlExtensionsTest
 	/**
 	 * Test method for {@link XmlExtensions#loadObject(String)}.
 	 *
-	 * @throws IOException Signals that an I/O exception has occurred
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
 	public void testLoadObjectString() throws IOException
@@ -121,75 +123,13 @@ public class XmlExtensionsTest
 		employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		
+
 		actual = XmlExtensions.loadObject("newtest.xml");
 		assertNotNull(actual);
 		expected = employee;
 		assertEquals(actual, expected);
 	}
 
-	/**
-	 * Test method for {@link XmlExtensions#toObjectWithXMLDecoder(String)}.
-	 */
-	@Test
-	public void testToObjectWithXMLDecoder()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toObjectWithXStream(String, Map)}.
-	 */
-	@Test
-	public void testToObjectWithXStreamStringMapOfStringClassOfQ()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String)}.
-	 */
-	@Test
-	public void testToObjectWithXStreamXStreamString()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String, Map)}.
-	 */
-	@Test
-	public void testToObjectWithXStreamXStreamStringMapOfStringClassOfQ()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toXmlWithXMLEncoder(Object)}.
-	 */
-	@Test
-	public void testToXmlWithXMLEncoder()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object)}.
-	 */
-	@Test
-	public void testToXmlWithXStreamXStreamT()
-	{
-		// TODO fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object, Map)}.
-	 */
-	@Test
-	public void testToXmlWithXStreamXStreamTMapOfStringClassOfQ()
-	{
-		// TODO fail("Not yet implemented");
-	}
 	/**
 	 * Test method for {@link XmlExtensions#newTag(String, String, Map)}
 	 */
@@ -214,6 +154,7 @@ public class XmlExtensionsTest
 	/**
 	 * Test method for {@link XmlToJsonExtensions#toJson(String)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testToJsonString()
 	{
@@ -246,6 +187,7 @@ public class XmlExtensionsTest
 	/**
 	 * Test method for {@link XmlToJsonExtensions#toJson(String, Map)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testToJsonStringMapOfStringClass()
 	{
@@ -281,8 +223,40 @@ public class XmlExtensionsTest
 	}
 
 	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXMLDecoder(String)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToObjectWithXMLDecoder()
+	{
+		Person actual;
+		Person expected;
+		String xmlInputString;
+		String javaVersion;
+
+		javaVersion = System.getProperty("java.version");
+		xmlInputString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\""
+			+ javaVersion + "\" class=\"java.beans.XMLDecoder\">\n"
+			+ " <object class=\"de.alpharogroup.test.objects.Person\">\n"
+			+ "  <void property=\"gender\">\n"
+			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
+			+ "    <class>de.alpharogroup.test.objects.enums.Gender</class>\n"
+			+ "    <string>FEMALE</string>\n" + "   </object>\n" + "  </void>\n"
+			+ "  <void property=\"name\">\n" + "   <string>Anna</string>\n" + "  </void>\n"
+			+ " </object>\n" + "</java>\n";
+		actual = XmlExtensions.toObjectWithXMLDecoder(xmlInputString);
+
+		expected = new Person();
+		expected.setGender(Gender.FEMALE);
+		expected.setName("Anna");
+
+		assertEquals(actual, expected);
+	}
+
+	/**
 	 * Test method for {@link XmlExtensions#toObjectWithXStream(String)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testToObjectWithXStreamString()
 	{
@@ -308,8 +282,134 @@ public class XmlExtensionsTest
 	}
 
 	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(String, Map)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToObjectWithXStreamStringMapOfStringClassOfQ()
+	{
+		Employee actual;
+		Employee expected;
+		String xmlInputString;
+		Person person;
+		Map<String, Class<?>> aliases;
+
+		aliases = new HashMap<>();
+		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Employee.class);
+
+		xmlInputString = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+
+		actual = XmlExtensions.toObjectWithXStream(xmlInputString, aliases);
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		expected = new Employee();
+		expected.setPerson(person);
+		expected.setId("23");
+
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToObjectWithXStreamXStreamString()
+	{
+		EmployeeList actual;
+		EmployeeList expected;
+		Person person;
+		String xmlResult;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		final Employee employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		final List<Employee> employees = new ArrayList<>();
+		employees.add(employee);
+
+		expected = EmployeeList.builder().employees(employees).build();
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(expected);
+		actual = XmlExtensions.toObjectWithXStream(new XStream(), xmlResult);
+		assertNotNull(actual);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String, Map)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToObjectWithXStreamXStreamStringMapOfStringClassOfQ()
+	{
+		Employee actual;
+		Employee expected;
+		String xmlInputString;
+		Person person;
+		Map<String, Class<?>> aliases;
+
+		aliases = new HashMap<>();
+		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Employee.class);
+
+		xmlInputString = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+
+		actual = XmlExtensions.toObjectWithXStream(new XStream(), xmlInputString, aliases);
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		expected = new Employee();
+		expected.setPerson(person);
+		expected.setId("23");
+
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXMLEncoder(Object)}.
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToXmlWithXMLEncoder() throws IOException
+	{
+		String actual;
+		String expected;
+		Person person;
+		String javaVersion;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		actual = XmlExtensions.toXmlWithXMLEncoder(person);
+		assertNotNull(actual);
+		javaVersion = System.getProperty("java.version");
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\"" + javaVersion
+			+ "\" class=\"java.beans.XMLDecoder\">\n"
+			+ " <object class=\"de.alpharogroup.test.objects.Person\">\n"
+			+ "  <void property=\"gender\">\n"
+			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
+			+ "    <class>de.alpharogroup.test.objects.enums.Gender</class>\n"
+			+ "    <string>FEMALE</string>\n" + "   </object>\n" + "  </void>\n"
+			+ "  <void property=\"name\">\n" + "   <string>Anna</string>\n" + "  </void>\n"
+			+ " </object>\n" + "</java>\n";
+		assertEquals(actual, expected);
+	}
+
+	/**
 	 * Test method for {@link XmlExtensions#toXmlWithXStream(Object)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testToXmlWithXStreamObject()
 	{
@@ -335,6 +435,7 @@ public class XmlExtensionsTest
 	/**
 	 * Test method for {@link XmlExtensions#toXmlWithXStream(Object, Map)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testToXmlWithXStreamObjectMapOfStringClass()
 	{
@@ -385,6 +486,90 @@ public class XmlExtensionsTest
 		aliases.put(lqSimpleName, AccessRight.class);
 
 		actual = XmlExtensions.toXmlWithXStream(roles, aliases);
+		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToXmlWithXStreamXStreamT()
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		actual = XmlExtensions.toXmlWithXStream(new XStream(), employee);
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
+			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
+			+ "  <id>23</id>\n" + "</de.alpharogroup.test.objects.Employee>";
+		assertNotNull(actual);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object, Map)}.
+	 */
+	@SuppressWarnings("deprecation")
+	@Test
+	public void testToXmlWithXStreamXStreamTMapOfStringClassOfQ()
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		Map<String, Class<?>> aliases;
+		Set<Role> rs;
+		Roles roles;
+		Role role;
+		Set<AccessRight> rights;
+		AccessRight right;
+
+		// new scenario ...
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		aliases = new HashMap<>();
+		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Employee.class);
+
+		actual = XmlExtensions.toXmlWithXStream(new XStream(), employee, aliases);
+		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+		assertEquals(expected, actual);
+
+		// new scenario ...
+		rs = new HashSet<>();
+		roles = Roles.builder().roles(rs).build();
+
+		role = Role.builder().build();
+		rs.add(role);
+		rights = new HashSet<>();
+		role.setRights(rights);
+		right = AccessRight.builder().build();
+		right.setDescription("bla");
+		rights.add(right);
+		aliases = new HashMap<>();
+		lqSimpleName = Roles.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Roles.class);
+		lqSimpleName = Role.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, Role.class);
+		lqSimpleName = AccessRight.class.getSimpleName().toLowerCase();
+		aliases.put(lqSimpleName, AccessRight.class);
+
+		actual = XmlExtensions.toXmlWithXStream(new XStream(), roles, aliases);
 		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
 		assertEquals(expected, actual);
 	}
