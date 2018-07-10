@@ -27,6 +27,8 @@ package de.alpharogroup.xml;
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -39,8 +41,12 @@ import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+import org.xml.sax.InputSource;
+
+import com.thoughtworks.xstream.XStream;
 
 import de.alpharogroup.collections.map.MapFactory;
+import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.EmployeeList;
 import de.alpharogroup.test.objects.Person;
@@ -55,6 +61,135 @@ import de.alpharogroup.test.objects.enums.Gender;
 public class XmlExtensionsTest
 {
 
+	/**
+	 * Test method for {@link XmlExtensions#getInputSource(String)}.
+	 */
+	@Test
+	public void testGetInputSource()
+	{
+		InputSource actual;
+		String xmlInputString;
+		xmlInputString = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+		actual = XmlExtensions.getInputSource(xmlInputString);
+		assertNotNull(actual);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#loadObject(File)}.
+	 * @throws IOException 
+	 */
+	@Test
+	public void testLoadObjectFile() throws IOException
+	{
+		Employee actual;
+		Employee expected;
+		File xmlFile;
+		Person person;
+		Employee employee;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		
+		xmlFile = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "newtest.xml");
+		actual = XmlExtensions.loadObject(xmlFile);
+		assertNotNull(actual);
+		expected = employee;
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#loadObject(String)}.
+	 *
+	 * @throws IOException Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testLoadObjectString() throws IOException
+	{
+		Employee actual;
+		Employee expected;
+		Person person;
+		Employee employee;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		
+		actual = XmlExtensions.loadObject("newtest.xml");
+		assertNotNull(actual);
+		expected = employee;
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXMLDecoder(String)}.
+	 */
+	@Test
+	public void testToObjectWithXMLDecoder()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(String, Map)}.
+	 */
+	@Test
+	public void testToObjectWithXStreamStringMapOfStringClassOfQ()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String)}.
+	 */
+	@Test
+	public void testToObjectWithXStreamXStreamString()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(XStream, String, Map)}.
+	 */
+	@Test
+	public void testToObjectWithXStreamXStreamStringMapOfStringClassOfQ()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXMLEncoder(Object)}.
+	 */
+	@Test
+	public void testToXmlWithXMLEncoder()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object)}.
+	 */
+	@Test
+	public void testToXmlWithXStreamXStreamT()
+	{
+		// TODO fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(XStream, Object, Map)}.
+	 */
+	@Test
+	public void testToXmlWithXStreamXStreamTMapOfStringClassOfQ()
+	{
+		// TODO fail("Not yet implemented");
+	}
 	/**
 	 * Test method for {@link XmlExtensions#newTag(String, String, Map)}
 	 */
