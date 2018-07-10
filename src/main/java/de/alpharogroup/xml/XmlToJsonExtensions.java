@@ -24,25 +24,54 @@
  */
 package de.alpharogroup.xml;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+
+import lombok.experimental.UtilityClass;
+
 /**
- * The abstract Class XmlTransformation that transform a subclass as xml string.
+ * The class {@link XmlToJsonExtensions}.
  */
-public abstract class XmlTransformation
+@UtilityClass
+public final class XmlToJsonExtensions
 {
 
 	/**
-	 * To xml.
+	 * Creates from the given xml string a json string.
 	 *
-	 * @return the string
+	 * @param xmlString
+	 *            the xml as string object
+	 * @return the json string.
 	 */
-	public String toXml()
+	public static String toJson(final String xmlString)
 	{
-		final String lqSimpleName = this.getClass().getSimpleName().toLowerCase();
-		final Map<String, Class<?>> aliases = new HashMap<>();
-		aliases.put(lqSimpleName, this.getClass());
-		return ObjectToXmlExtensions.toXmlWithXStream(this, aliases);
+		return toJson(xmlString, null);
 	}
+
+	/**
+	 * Creates from the given xml string a json string.
+	 *
+	 * @param xmlString
+	 *            the xml as string object
+	 * @param aliases
+	 *            the aliases
+	 * @return the json string.
+	 */
+	public static String toJson(final String xmlString, final Map<String, Class<?>> aliases)
+	{
+		final Object object = XmlToObjectExtensions.toObjectWithXStream(xmlString);
+		final XStream xstream = new XStream(new JettisonMappedXmlDriver());
+		if (aliases != null)
+		{
+			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
+			{
+				xstream.alias(alias.getKey(), alias.getValue());
+			}
+		}
+		final String json = xstream.toXML(object);
+		return json;
+	}
+
 }

@@ -33,7 +33,7 @@ import org.json.XML;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import de.alpharogroup.xml.XmlExtensions;
+import de.alpharogroup.xml.ObjectToXmlExtensions;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -80,7 +80,7 @@ public final class JsonToXmlExtensions
 		throws JsonParseException, JsonMappingException, IOException
 	{
 		final T object = JsonToObjectExtensions.toObject(jsonString, clazz);
-		final String xmlString = XmlExtensions.toXmlWithXStream(object);
+		final String xmlString = ObjectToXmlExtensions.toXmlWithXStream(object);
 		return xmlString;
 	}
 

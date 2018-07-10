@@ -24,9 +24,8 @@
  */
 package de.alpharogroup.xml;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,8 +35,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.EmployeeList;
 import de.alpharogroup.test.objects.Person;
@@ -56,59 +59,104 @@ public class XmlExtensionsTest
 	 * Test method for {@link XmlExtensions#newTag(String, String, Map)}
 	 */
 	@Test
-	public void testCreateTag()
+	public void testNewTag()
 	{
-		String result = XmlExtensions.newTag("land", "france", null);
-		String expected = "<land>france</land>";
-		assertTrue("", result.equals(expected));
-		final Map<String, String> attributes = new LinkedHashMap<>();
+		String actual;
+		String expected;
+		Map<String, String> attributes;
+		actual = XmlExtensions.newTag("land", "france", null);
+		expected = "<land>france</land>";
+		assertEquals(actual, expected);
+		
+		attributes = new LinkedHashMap<>();
 		attributes.put("population", "65350000");
 		attributes.put("capital", "paris");
-		result = XmlExtensions.newTag("land", "france", attributes);
+		actual = XmlExtensions.newTag("land", "france", attributes);
 		expected = "<land population=\"65350000\" capital=\"paris\">france</land>";
-		assertTrue("", result.equals(expected));
+		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#toJson(String)}
+	 * Test method for {@link XmlToJsonExtensions#toJson(String)}
 	 */
-	@Test(enabled = false)
-	public void testToJson()
+	@Test
+	public void testToJsonString()
 	{
-		final Person person = new Person();
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		String xmlResult;
+
+		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
-		Employee employee = new Employee();
+		employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		String xmlResult = XmlExtensions.toXmlWithXStream(employee);
-		String actual = XmlExtensions.toJson(xmlResult);
-		String expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
-		assertTrue("", actual.equals(expected));
-		final Map<String, Class<?>> aliases = new HashMap<>();
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+		actual = XmlExtensions.toJson(xmlResult);
+		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"gender\":\"FEMALE\"},\"id\":23}}";
+		assertEquals(actual, expected);
+
+		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+		actual = XmlExtensions.toJson(xmlResult);
+		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
+
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlToJsonExtensions#toJson(String, Map)}
+	 */
+	@Test
+	public void testToJsonStringMapOfStringClass()
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		String xmlResult;
+		Map<String, Class<?>> aliases;
+
+		person = new Person();
+		person.setGender(Gender.FEMALE);
+		person.setName("Anna");
+		employee = new Employee();
+		employee.setPerson(person);
+		employee.setId("23");
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+
+		aliases = MapFactory.newHashMap();
 		aliases.put("employee", Employee.class);
 
 		actual = XmlExtensions.toJson(xmlResult, aliases);
-		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
-
-		assertTrue("", actual.equals(expected));
+		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"gender\":\"FEMALE\"},\"id\":23}}";
+		assertEquals(actual, expected);
 
 
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
-		xmlResult = XmlExtensions.toXmlWithXStream(employee);
-		actual = XmlExtensions.toJson(xmlResult);
-		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
-		System.out.println(expected);
+		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+		actual = XmlExtensions.toJson(xmlResult, aliases);
+		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":23}}";
+		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#}
+	 * Test method for {@link XmlExtensions#toObjectWithXStream(String)}
 	 */
 	@Test
 	public void testToObjectWithXStreamString()
 	{
-		final Person person = new Person();
+		EmployeeList actual;
+		EmployeeList expected;
+		Person person;
+		String xmlResult;
+		
+		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
 		final Employee employee = new Employee();
@@ -116,70 +164,84 @@ public class XmlExtensionsTest
 		employee.setId("23");
 		final List<Employee> employees = new ArrayList<>();
 		employees.add(employee);
-		final EmployeeList employeeList = EmployeeList.builder().employees(employees).build();
-		final String xmlResult = XmlExtensions.toXmlWithXStream(employeeList);
+		expected = EmployeeList.builder().employees(employees).build();
+		xmlResult = XmlExtensions.toXmlWithXStream(expected);
 
-		final EmployeeList actual = XmlExtensions.toObjectWithXStream(xmlResult);
+		actual = XmlExtensions.toObjectWithXStream(xmlResult);
 		assertNotNull(actual);
-
+		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#}
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(Object)}
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testToXmlWithXStreamObject()
 	{
-		final Person person = new Person();
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		
+		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
-		final Employee employee = new Employee();
+		employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		final String xmlResult = XmlExtensions.toXmlWithXStream(employee);
-		final String expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
-			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "    <about></about>\n"
-			+ "    <married>false</married>\n" + "  </person>\n" + "  <id>23</id>\n"
+		actual = XmlExtensions.toXmlWithXStream(employee);
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
+			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" 
+			+ "  </person>\n" + "  <id>23</id>\n"
 			+ "</de.alpharogroup.test.objects.Employee>";
-		assertTrue("", xmlResult.equals(expected));
-	}
-
-	@Test(enabled = false)
-	public void testToXmlWithXStreamXStreamObject()
-	{
-		// fail("Not yet implemented");
-
+		assertNotNull(actual);
+		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link XmlExtensions#}
+	 * Test method for {@link XmlExtensions#toXmlWithXStream(Object, Map)}
 	 */
-	@Test(enabled = false)
-	public void testToXmlWithXStreamXStreamObjectMapOfStringClassOfQ()
+	@Test(enabled = true)
+	public void testToXmlWithXStreamObjectMapOfStringClass()
 	{
-		final Person person = new Person();
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+		Map<String, Class<?>> aliases;
+		Set<Role> rs;
+		Roles roles;
+		Role role;
+		Set<AccessRight> rights;
+		AccessRight right;
+
+		// new scenario ...
+		person = new Person();
 		person.setGender(Gender.FEMALE);
 		person.setName("Anna");
-		final Employee employee = new Employee();
+		employee = new Employee();
 		employee.setPerson(person);
 		employee.setId("23");
-		Map<String, Class<?>> aliases = new HashMap<>();
+		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
-		String actual = XmlExtensions.toXmlWithXStream(employee, aliases);
-		String expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
-			+ "    <nickname></nickname>\n" + "    <gender>FEMALE</gender>\n"
-			+ "    <about></about>\n" + "    <married>false</married>\n" + "  </person>\n"
+		
+		actual = XmlExtensions.toXmlWithXStream(employee, aliases);
+		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
+			+ "    <gender>FEMALE</gender>\n"
+			+ "  </person>\n"
 			+ "  <id>23</id>\n" + "</employee>";
 		assertEquals(expected, actual);
-		final Set<Role> rs = new HashSet<>();
-		final Roles roles = Roles.builder().roles(rs).build();
+		
+		// new scenario ...
+		rs = new HashSet<>();
+		roles = Roles.builder().roles(rs).build();
 
-		final Role role = Role.builder().build();
+		role = Role.builder().build();
 		rs.add(role);
-		final Set<AccessRight> rights = new HashSet<>();
+		rights = new HashSet<>();
 		role.setRights(rights);
-		final AccessRight right = AccessRight.builder().build();
+		right = AccessRight.builder().build();
 		right.setDescription("bla");
 		rights.add(right);
 		aliases = new HashMap<>();
@@ -191,9 +253,19 @@ public class XmlExtensionsTest
 		aliases.put(lqSimpleName, AccessRight.class);
 
 		actual = XmlExtensions.toXmlWithXStream(roles, aliases);
-		System.out.println(actual);
 		expected = "<roles>\n" + "  <roles class=\"empty-set\"/>\n" + "</roles>";
 		assertEquals(expected, actual);
 	}
+
+	/**
+	 * Test method for {@link XmlExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(XmlExtensions.class);
+	}
+
 
 }

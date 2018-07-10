@@ -106,7 +106,6 @@ public class XmlToXsdExtensionsTest
 		xml = "pom.xml";
 		xmlFile = new File(projectDir, xml);
 
-
 		final File[] xmlFiles = { xmlFile };
 		inst2XsdOptions = new Inst2XsdOptions();
 		XmlToXsdExtensions.xmlToXsd(xmlFiles, inst2XsdOptions, srcTestResourcesDir, null);
@@ -114,6 +113,20 @@ public class XmlToXsdExtensionsTest
 		expected = new File(srcTestResourcesDir, xsd);
 		assertTrue(expected.exists());
 		DeleteFileExtensions.delete(expected);
+	}
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(File[], Inst2XsdOptions, File, String)}
+	 * that throws an IllegalArgumentException
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void testXmlToXsdFileArrayInst2XsdOptionsFileStringIllegalArgumentException()
+		throws IOException
+	{
+		XmlToXsdExtensions.xmlToXsd(null, new Inst2XsdOptions(), PathFinder.getSrcTestResourcesDir(), null);
 	}
 
 	/**
@@ -210,7 +223,7 @@ public class XmlToXsdExtensionsTest
 		String filename;
 		Inst2XsdOptions inst2XsdOptions;
 		XmlOptions xmlOptions;
-		
+
 		xmlOptions = new XmlOptions().setSavePrettyPrint();
 
 		inst2XsdOptions = new Inst2XsdOptions();
