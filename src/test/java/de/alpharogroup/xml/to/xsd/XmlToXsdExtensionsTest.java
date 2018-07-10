@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.xml.to.xsd;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -38,6 +39,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.file.checksum.ChecksumExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 
@@ -112,6 +114,122 @@ public class XmlToXsdExtensionsTest
 		expected = new File(srcTestResourcesDir, xsd);
 		assertTrue(expected.exists());
 		DeleteFileExtensions.delete(expected);
+	}
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(File, File)}.
+	 *
+	 * @throws XmlException
+	 *             the xml exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testXmlToXsdFileFile() throws XmlException, IOException
+	{
+		File expected;
+		File srcTestResourcesDir;
+		File xmlFile;
+		File xsdOutFile;
+		String xsdFilename;
+		String xmlFilename;
+		String filename;
+
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		filename = "test-xml";
+		xsdFilename = filename + ".xsd";
+		xmlFilename = filename + ".xml";
+		xmlFile = new File(srcTestResourcesDir, xmlFilename);
+		xsdOutFile = new File(srcTestResourcesDir, xsdFilename);
+		expected = new File(srcTestResourcesDir, "test-xsd-expected.xsd");
+		assertFalse(xsdOutFile.exists());
+		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile);
+		assertTrue(xsdOutFile.exists());
+		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+			.getCheckSumAdler32(xsdOutFile));
+		// clean up...
+		xsdOutFile.delete();
+	}
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(File, File, Inst2XsdOptions)}.
+	 *
+	 * @throws XmlException
+	 *             the xml exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testXmlToXsdFileFileInst2XsdOptions() throws XmlException, IOException
+	{
+		File expected;
+		File srcTestResourcesDir;
+		File xmlFile;
+		File xsdOutFile;
+		String xsdFilename;
+		String xmlFilename;
+		String filename;
+		Inst2XsdOptions inst2XsdOptions;
+
+		inst2XsdOptions = new Inst2XsdOptions();
+
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		filename = "test-xml";
+		xsdFilename = filename + ".xsd";
+		xmlFilename = filename + ".xml";
+		xmlFile = new File(srcTestResourcesDir, xmlFilename);
+		xsdOutFile = new File(srcTestResourcesDir, xsdFilename);
+		expected = new File(srcTestResourcesDir, "test-xsd-expected.xsd");
+		assertFalse(xsdOutFile.exists());
+
+		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions);
+		assertTrue(xsdOutFile.exists());
+		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+			.getCheckSumAdler32(xsdOutFile));
+		// clean up...
+		xsdOutFile.delete();
+	}
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(File, File, Inst2XsdOptions, XmlOptions)}
+	 *
+	 * @throws XmlException
+	 *             occurs when a give xml file is invalid
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testXmlToXsdFileFileInst2XsdOptionsXmlOptions() throws XmlException, IOException
+	{
+		File expected;
+		File srcTestResourcesDir;
+		File xmlFile;
+		File xsdOutFile;
+		String xsdFilename;
+		String xmlFilename;
+		String filename;
+		Inst2XsdOptions inst2XsdOptions;
+		XmlOptions xmlOptions;
+		
+		xmlOptions = new XmlOptions().setSavePrettyPrint();
+
+		inst2XsdOptions = new Inst2XsdOptions();
+
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		filename = "test-xml";
+		xsdFilename = filename + ".xsd";
+		xmlFilename = filename + ".xml";
+		xmlFile = new File(srcTestResourcesDir, xmlFilename);
+		xsdOutFile = new File(srcTestResourcesDir, xsdFilename);
+		expected = new File(srcTestResourcesDir, "test-xsd-expected.xsd");
+		assertFalse(xsdOutFile.exists());
+
+		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions, xmlOptions);
+		assertTrue(xsdOutFile.exists());
+		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+			.getCheckSumAdler32(xsdOutFile));
+		// clean up...
+		xsdOutFile.delete();
 	}
 
 	/**

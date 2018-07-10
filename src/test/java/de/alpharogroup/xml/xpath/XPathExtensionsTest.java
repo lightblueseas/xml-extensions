@@ -68,7 +68,7 @@ public class XPathExtensionsTest
 		File xml;
 		String xpathExpression;
 
-		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xpath.xml");
+		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xml.xml");
 		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
 		actual = XPathExtensions.getNodeList(xml, xpathExpression);
 		assertNotNull(actual);
@@ -96,7 +96,7 @@ public class XPathExtensionsTest
 		File xml;
 		String xpathExpression;
 
-		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xpath.xml");
+		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xml.xml");
 		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
 		actual = XPathExtensions.getNodeList(xml.getAbsolutePath(), xpathExpression);
 		assertNotNull(actual);
