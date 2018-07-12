@@ -24,16 +24,39 @@
  */
 package de.alpharogroup.xml.json;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+
+import de.alpharogroup.test.objects.Employee;
+import de.alpharogroup.test.objects.Person;
+import de.alpharogroup.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link ObjectToJsonQuietlyExtensions}
  */
 public class ObjectToJsonQuietlyExtensionsTest
 {
+
+	/**
+	 * Test method for {@link ObjectToJsonQuietlyExtensions#toJsonQuietly(Object)}
+	 */
+	@Test
+	public void testToJsonQuietly()
+	{
+		String expected;
+		String actual;
+		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
+			.build();
+
+		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = ObjectToJsonQuietlyExtensions.toJsonQuietly(employee);
+		assertTrue("", actual.equals(expected));
+	}
 
 	/**
 	 * Test method for {@link ObjectToJsonQuietlyExtensions}

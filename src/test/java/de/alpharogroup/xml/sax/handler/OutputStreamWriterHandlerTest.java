@@ -25,6 +25,8 @@
 package de.alpharogroup.xml.sax.handler;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
@@ -34,6 +36,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.file.search.PathFinder;
+import de.alpharogroup.io.StreamExtensions;
 
 /**
  * The unit test class for the class {@link OutputStreamWriterHandler}
@@ -42,22 +45,35 @@ public class OutputStreamWriterHandlerTest
 {
 
 	/**
-	 * Test method for {@link OutputStreamWriterHandler#write(String)}
+	 * Test method for {@link OutputStreamWriterHandler#write(String)}.
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testWrite()
+	public void testWrite() throws IOException
 	{
-		// The resources destination dir
-		final File testResDir = PathFinder.getSrcTestResourcesDir();
-		final String templateName = "LoginAsProvider";
-		final File parseFile = new File(testResDir, templateName + ".xml");
+		File testResDir;
+		String templateName;
+		File outputFile;
+		File parseFile;
 		Writer out;
+		OutputStream outputStream;
+		SAXParserFactory factory;
+
+		// The resources destination dir
+		testResDir = PathFinder.getSrcTestResourcesDir();
+		outputFile = new File(testResDir, "foo.out");
+		outputStream = StreamExtensions.getOutputStream(outputFile, true);
+		templateName = "LoginAsProvider";
+		parseFile = new File(testResDir, templateName + ".xml");
+
 		// Use the default (non-validating) parser
-		final SAXParserFactory factory = SAXParserFactory.newInstance();
+		factory = SAXParserFactory.newInstance();
 		try
 		{
 			// Set up output stream
-			out = new OutputStreamWriter(System.out, "UTF8");
+			out = new OutputStreamWriter(outputStream, "UTF8");
 			final WriterHandler handler = new OutputStreamWriterHandler(out);
 			// Parse the input
 			final SAXParser saxParser = factory.newSAXParser();
@@ -67,6 +83,7 @@ public class OutputStreamWriterHandlerTest
 		{
 			t.printStackTrace();
 		}
+		outputFile.deleteOnExit();
 	}
 
 }

@@ -1,6 +1,20 @@
 ## Change log
 ----------------------
 
+Version 4.20
+-------------
+
+CHANGED:
+
+- removed deprecated classes and methods
+- unit tests extended for improve code coverage
+- update of xercesImpl version to 2.12.0
+- update of xmlbeans version to 3.0.0
+- update of jettison version to 1.4.0
+- update of json version to 20180130
+- update of xstream version to 1.4.10
+- update of jackson-core version to 2.9.6
+
 Version 4.19
 -------------
 
