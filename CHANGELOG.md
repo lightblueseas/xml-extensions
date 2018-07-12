@@ -1,6 +1,13 @@
 ## Change log
 ----------------------
 
+Version 4.20-SNAPSHOT
+-------------
+
+CHANGED:
+
+- removed deprecated classes and methods
+
 Version 4.19
 -------------
 

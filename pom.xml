@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>4.19</version>
+	<version>4.20-SNAPSHOT</version>
 
 	<name>${project.artifactId}</name>
 
@@ -303,11 +303,6 @@
 								<!-- exceptions -->
 								<!-- interfaces -->
 								<!-- deprecated classes -->
-								<exclude>de/alpharogroup/dtd/to/xsd/**/*.class</exclude>
-								<exclude>de/alpharogroup/dtd/to/xsd/configuration/**/*.class</exclude>
-								<exclude>de/alpharogroup/dtd/to/xsd/parser/**/*.class</exclude>
-								<exclude>de/alpharogroup/dtd/to/xsd/type/**/*.class</exclude>
-								<exclude>de/alpharogroup/dtd/to/xsd/writer/**/*.class</exclude>
 								<!-- constant classes with only constants -->
 								<!-- explicit abstract classes -->
 								<exclude>de/alpharogroup/xml/sax/handler/WriterHandler.class</exclude>
@@ -318,7 +313,6 @@
 								<!-- explicit delegation classes -->
 								<exclude>de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class</exclude>
 								<!-- explicit deprecated classes -->
-								<exclude>de/alpharogroup/xml/json/JsonTransformer.class</exclude>
 								<!-- explicit enums -->
 								<exclude>de/alpharogroup/xml/node/NodeType.class</exclude>
 								<!-- explicit exceptions -->
