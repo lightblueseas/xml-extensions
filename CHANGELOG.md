@@ -7,6 +7,7 @@ Version 4.20-SNAPSHOT
 CHANGED:
 
 - removed deprecated classes and methods
+- unit tests extended for improve code coverage
 
 Version 4.19
 -------------
