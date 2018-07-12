@@ -7,6 +7,7 @@
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/xml-extensions.svg?style=flat)](https://github.com/lightblueseas/xml-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/xml-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/xml-extensions)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 </div>
 
