@@ -584,5 +584,4 @@ public class XmlExtensionsTest
 		beanTester.testBean(XmlExtensions.class);
 	}
 
-
 }

@@ -24,16 +24,101 @@
  */
 package de.alpharogroup.xsd.schema;
 
-import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
+import org.testng.annotations.Test;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+
+/**
+ * The unit test class for the class {@link ValidatorHandler}
+ */
 public class ValidatorHandlerTest
 {
 
-	@Test(enabled = false)
-	public final void testIsValid() throws Exception
+	/**
+	 * Test method for {@link ValidatorHandler#error(SAXParseException)}.
+	 * 
+	 * @throws SAXException
+	 *             Any SAX exception, possibly wrapping another exception
+	 */
+	@Test
+	public void testErrorSAXParseException() throws SAXException
 	{
-		// TODO
-		throw new RuntimeException("not yet implemented");
+		SAXParseException actual;
+		SAXParseException expected;
+		ValidatorHandler saxHandler;
+		
+		saxHandler = new ValidatorHandler();
+		expected = new SAXParseException("foo sax", null);
+		saxHandler.error(expected);
+		actual = saxHandler.getSaxParseException();
+		assertEquals(expected, actual);
+		assertTrue(saxHandler.isValidationError());
+
+	}
+
+	/**
+	 * Test method for {@link ValidatorHandler#fatalError(SAXParseException)}.
+	 * 
+	 * @throws SAXException
+	 *             Any SAX exception, possibly wrapping another exception
+	 */
+	@Test
+	public void testFatalErrorSAXParseException() throws SAXException
+	{
+		SAXParseException actual;
+		SAXParseException expected;
+		ValidatorHandler saxHandler;
+
+		saxHandler = new ValidatorHandler();
+		expected = new SAXParseException("foo sax", null);
+		saxHandler.fatalError(expected);
+		actual = saxHandler.getSaxParseException();
+		assertEquals(expected, actual);
+		assertTrue(saxHandler.isValidationError());
+
+	}
+
+	/**
+	 * Test method for {@link ValidatorHandler#isValid()}.
+	 */
+	@Test
+	public void testIsValid()
+	{
+		boolean actual;
+		boolean expected;
+		ValidatorHandler saxHandler;
+
+		saxHandler = new ValidatorHandler();
+		saxHandler.setValidationError(true);
+		actual = saxHandler.isValid();
+		expected = true;
+		assertEquals(expected, actual);
+		assertTrue(saxHandler.isValidationError());
+	}
+
+	/**
+	 * Test method for {@link ValidatorHandler#warning(SAXParseException)}
+	 * 
+	 * @throws SAXException
+	 *             Any SAX exception, possibly wrapping another exception
+	 */
+	@Test
+	public void testWarningSAXParseException() throws SAXException
+	{
+		SAXParseException actual;
+		SAXParseException expected;
+		ValidatorHandler saxHandler;
+
+		saxHandler = new ValidatorHandler();
+		expected = new SAXParseException("foo sax", null);
+		saxHandler.warning(expected);
+		actual = saxHandler.getSaxParseException();
+		assertEquals(expected, actual);
+		assertFalse(saxHandler.isValidationError());
 	}
 
 }

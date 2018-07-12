@@ -24,13 +24,16 @@
  */
 package de.alpharogroup.xsd.schema;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -58,11 +61,19 @@ public class ValidatorExtensionsTest
 	public void testValidateSchemaFileFileErrorHandler()
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final ValidatorHandler errorHandler = new ValidatorHandler();
-		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
-		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
+		boolean actual;
+		boolean expected;
+		ValidatorHandler errorHandler;
+		File xsd;
+		File xml;
+
+		errorHandler = new ValidatorHandler();
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
 		ValidatorExtensions.validateSchema(xsd, xml, errorHandler);
-		assertTrue("Validation failed.", errorHandler.isValid());
+		actual = errorHandler.isValid();
+		expected = true;
+		assertEquals(expected, actual);		
 	}
 
 	/**
@@ -80,12 +91,38 @@ public class ValidatorExtensionsTest
 	public void testValidateSchemaStringString()
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
-		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
-		final String schemaUrl = xsd.getAbsolutePath();
-		final String xmlDocumentUrl = xml.getAbsolutePath();
-		final boolean result = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
-		assertTrue("Validation failed.", result);
+		boolean actual;
+		boolean expected;
+		File xsd;
+		File xml;
+		String schemaUrl;
+		String xmlDocumentUrl;
+		
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
+		schemaUrl = xsd.getAbsolutePath();
+		xmlDocumentUrl = xml.getAbsolutePath();
+		actual = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
+		expected = true;
+		assertEquals(expected, actual);
+		
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "xml2xsdTest.xml");
+		schemaUrl = xsd.getAbsolutePath();
+		xmlDocumentUrl = xml.getAbsolutePath();
+		actual = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
+		expected = false;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link ValidatorExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(ValidatorExtensions.class);
 	}
 
 }

@@ -28,17 +28,22 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
- * The class ValidatorHandler.
+ * The class {@link ValidatorHandler}.
  */
+@Getter
+@Setter
 public class ValidatorHandler extends DefaultHandler
 {
 
 	/** The sax parse exception. */
-	private SAXParseException saxParseException = null;
+	private SAXParseException saxParseException;
 
-	/** The validation error. */
-	private boolean validationError = false;
+	/** The flag for the validation error. */
+	private boolean validationError;
 
 	/**
 	 * {@inheritDoc}
@@ -61,16 +66,6 @@ public class ValidatorHandler extends DefaultHandler
 	}
 
 	/**
-	 * Gets the sax parse exception.
-	 *
-	 * @return the sax parse exception
-	 */
-	public SAXParseException getSaxParseException()
-	{
-		return saxParseException;
-	}
-
-	/**
 	 * Checks if is validation error.
 	 *
 	 * @return true, if is validation error
@@ -80,38 +75,13 @@ public class ValidatorHandler extends DefaultHandler
 		return validationError;
 	}
 
-	public boolean isValidationError()
-	{
-		return validationError;
-	}
-
-	/**
-	 * Sets the sax parse exception.
-	 *
-	 * @param saxParseException
-	 *            the new sax parse exception
-	 */
-	public void setSaxParseException(final SAXParseException saxParseException)
-	{
-		this.saxParseException = saxParseException;
-	}
-
-	/**
-	 * Sets the validation error.
-	 *
-	 * @param validationError
-	 *            the new validation error
-	 */
-	public void setValidationError(final boolean validationError)
-	{
-		this.validationError = validationError;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public void warning(final SAXParseException exception) throws SAXException
 	{
+		this.saxParseException = exception;
 	}
+	
 }
