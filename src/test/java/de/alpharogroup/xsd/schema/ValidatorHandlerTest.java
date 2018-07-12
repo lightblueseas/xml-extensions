@@ -50,7 +50,7 @@ public class ValidatorHandlerTest
 		SAXParseException actual;
 		SAXParseException expected;
 		ValidatorHandler saxHandler;
-		
+
 		saxHandler = new ValidatorHandler();
 		expected = new SAXParseException("foo sax", null);
 		saxHandler.error(expected);

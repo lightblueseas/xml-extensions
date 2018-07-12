@@ -73,7 +73,7 @@ public class ValidatorExtensionsTest
 		ValidatorExtensions.validateSchema(xsd, xml, errorHandler);
 		actual = errorHandler.isValid();
 		expected = true;
-		assertEquals(expected, actual);		
+		assertEquals(expected, actual);
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class ValidatorExtensionsTest
 		File xml;
 		String schemaUrl;
 		String xmlDocumentUrl;
-		
+
 		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
 		xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
 		schemaUrl = xsd.getAbsolutePath();
@@ -105,7 +105,7 @@ public class ValidatorExtensionsTest
 		actual = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
 		expected = true;
 		assertEquals(expected, actual);
-		
+
 		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
 		xml = new File(PathFinder.getSrcTestResourcesDir(), "xml2xsdTest.xml");
 		schemaUrl = xsd.getAbsolutePath();

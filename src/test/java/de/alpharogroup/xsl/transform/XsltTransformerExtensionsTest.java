@@ -87,6 +87,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	@AfterMethod
 	protected void tearDown() throws Exception
 	{
+		super.tearDown();
 		actual = null;
 		expected = null;
 	}
@@ -104,7 +105,8 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testGetTransformerFile() throws TransformerConfigurationException, TransformerException, IOException
+	public void testGetTransformerFile()
+		throws TransformerConfigurationException, TransformerException, IOException
 	{
 		File resDestDir;
 		String[] dirsAndFilename;
