@@ -53,14 +53,14 @@ import lombok.experimental.FieldDefaults;
 public class XmlResourceBundleControlTest
 {
 
-	/** The {@link XmlResourceBundleControl} instance for unit tests. */
-	XmlResourceBundleControl xmlResourceBundleControl;
-
 	/** The properties for unit tests. */
 	Properties properties;
 
 	/** The properties german for unit tests. */
 	Properties propertiesGerman;
+
+	/** The {@link XmlResourceBundleControl} instance for unit tests. */
+	XmlResourceBundleControl xmlResourceBundleControl;
 
 	/**
 	 * Sets up method will be invoked before every unit test method

@@ -48,17 +48,17 @@ import de.alpharogroup.file.search.PathFinder;
 public class XmlResourceBundleTest
 {
 
-	/** The default properties xml file for unit tests. */
-	File propertiesXml;
+	/** The properties for unit tests. */
+	Properties properties;
 
 	/** The german properties xml file for unit tests. */
 	File propertiesDeXml;
 
-	/** The properties for unit tests. */
-	Properties properties;
-
 	/** The properties german for unit tests. */
 	Properties propertiesGerman;
+
+	/** The default properties xml file for unit tests. */
+	File propertiesXml;
 
 	/**
 	 * Sets up method will be invoked before every unit test method

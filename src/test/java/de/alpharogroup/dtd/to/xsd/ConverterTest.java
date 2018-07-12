@@ -43,8 +43,8 @@ public class ConverterTest
 	File dataset = new File(PathFinder.getSrcTestResourcesDir(), "result.xsd");
 	File datasetDtd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.dtd");
 
-	File propertiesXsd = new File(PathFinder.getSrcTestResourcesDir(), "properties.xsd");
 	File propertiesDtd = new File(PathFinder.getSrcTestResourcesDir(), "properties.dtd");
+	File propertiesXsd = new File(PathFinder.getSrcTestResourcesDir(), "properties.xsd");
 
 	/**
 	 * Test method for {@link Converter#convert(File, File)}
