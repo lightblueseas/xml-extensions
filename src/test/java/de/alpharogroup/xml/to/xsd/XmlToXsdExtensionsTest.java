@@ -39,6 +39,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.array.ArrayFactory;
 import de.alpharogroup.file.checksum.ChecksumExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
@@ -95,22 +96,37 @@ public class XmlToXsdExtensionsTest
 	{
 		File expected;
 		File projectDir;
+		File[] xmlFiles;
 		Inst2XsdOptions inst2XsdOptions;
 		String xml;
 		String xsd;
 		File srcTestResourcesDir;
 		File xmlFile;
+		// 1. scenario ...
 		xsd = "schema0.xsd";
 		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
 		projectDir = PathFinder.getProjectDirectory();
 		xml = "pom.xml";
 		xmlFile = new File(projectDir, xml);
 
-		final File[] xmlFiles = { xmlFile };
+		xmlFiles = ArrayFactory.newArray(xmlFile);
 		inst2XsdOptions = new Inst2XsdOptions();
 		XmlToXsdExtensions.xmlToXsd(xmlFiles, inst2XsdOptions, srcTestResourcesDir, null);
 
 		expected = new File(srcTestResourcesDir, xsd);
+		assertTrue(expected.exists());
+		DeleteFileExtensions.delete(expected);
+		// 2. scenario ...
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
+		projectDir = PathFinder.getProjectDirectory();
+		xml = "pom.xml";
+		xmlFile = new File(projectDir, xml);
+
+		xmlFiles = ArrayFactory.newArray(xmlFile);
+		inst2XsdOptions = new Inst2XsdOptions();
+		XmlToXsdExtensions.xmlToXsd(xmlFiles, inst2XsdOptions, null, null);
+
+		expected = new File(new File("."), xsd);
 		assertTrue(expected.exists());
 		DeleteFileExtensions.delete(expected);
 	}
@@ -128,6 +144,31 @@ public class XmlToXsdExtensionsTest
 	{
 		XmlToXsdExtensions.xmlToXsd(null, new Inst2XsdOptions(),
 			PathFinder.getSrcTestResourcesDir(), null);
+	}
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions#xmlToXsd(File[], Inst2XsdOptions, File, String)}
+	 * that causes a IOException and throw an IllegalArgumentException
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test(expectedExceptions = { IllegalArgumentException.class })
+	public void testXmlToXsdFileArrayInst2XsdOptionsFileStringIOException() throws IOException
+	{
+		File projectDir;
+		File[] xmlFiles;
+		Inst2XsdOptions inst2XsdOptions;
+		String xml;
+		File xmlFile;
+		// 1. scenario ...
+		projectDir = PathFinder.getProjectDirectory();
+		xml = "pom.xml";
+		xmlFile = new File(projectDir, xml);
+
+		xmlFiles = ArrayFactory.newArray(xmlFile, new File(projectDir, "notExists.xml"));
+		inst2XsdOptions = new Inst2XsdOptions();
+		XmlToXsdExtensions.xmlToXsd(xmlFiles, inst2XsdOptions, null, null);
 	}
 
 	/**
