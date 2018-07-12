@@ -24,26 +24,30 @@
  */
 package de.alpharogroup.xsd.schema;
 
+import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.testng.AssertJUnit;
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import de.alpharogroup.file.search.PathFinder;
 
 /**
- * The class {@link ValidatorExtensionsTest}.
+ * The unit test class for the class {@link ValidatorExtensions}
  */
 public class ValidatorExtensionsTest
 {
 
 	/**
-	 * Test validate schema file file error handler.
+	 * Test method for
+	 * {@link ValidatorExtensions#validateSchema(File, File, org.xml.sax.ErrorHandler)}
 	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurs during parsing.
@@ -57,15 +61,23 @@ public class ValidatorExtensionsTest
 	public void testValidateSchemaFileFileErrorHandler()
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final ValidatorHandler errorHandler = new ValidatorHandler();
-		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
-		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
+		boolean actual;
+		boolean expected;
+		ValidatorHandler errorHandler;
+		File xsd;
+		File xml;
+
+		errorHandler = new ValidatorHandler();
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
 		ValidatorExtensions.validateSchema(xsd, xml, errorHandler);
-		AssertJUnit.assertTrue("Validation failed.", errorHandler.isValid());
+		actual = errorHandler.isValid();
+		expected = true;
+		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test validate schema string string.
+	 * Test method for {@link ValidatorExtensions#validateSchema(String, String)}
 	 * 
 	 * @throws SAXException
 	 *             If a SAX error occurs during parsing.
@@ -79,12 +91,38 @@ public class ValidatorExtensionsTest
 	public void testValidateSchemaStringString()
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final File xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
-		final File xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
-		final String schemaUrl = xsd.getAbsolutePath();
-		final String xmlDocumentUrl = xml.getAbsolutePath();
-		final boolean result = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
-		AssertJUnit.assertTrue("Validation failed.", result);
+		boolean actual;
+		boolean expected;
+		File xsd;
+		File xml;
+		String schemaUrl;
+		String xmlDocumentUrl;
+
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xml");
+		schemaUrl = xsd.getAbsolutePath();
+		xmlDocumentUrl = xml.getAbsolutePath();
+		actual = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
+		expected = true;
+		assertEquals(expected, actual);
+
+		xsd = new File(PathFinder.getSrcTestResourcesDir(), "dataset.xsd");
+		xml = new File(PathFinder.getSrcTestResourcesDir(), "xml2xsdTest.xml");
+		schemaUrl = xsd.getAbsolutePath();
+		xmlDocumentUrl = xml.getAbsolutePath();
+		actual = ValidatorExtensions.validateSchema(schemaUrl, xmlDocumentUrl);
+		expected = false;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link ValidatorExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(ValidatorExtensions.class);
 	}
 
 }

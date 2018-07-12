@@ -24,20 +24,88 @@
  */
 package de.alpharogroup.xml.tag;
 
-import org.testng.AssertJUnit;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 
+/**
+ * The unit test class for the class {@link TagAttribute}
+ */
 public class TagAttributeTest
 {
 
+	/**
+	 * Test method for {@link TagAttribute} constructors and builders
+	 */
+	@Test
+	public final void testConstructors()
+	{
+		TagAttribute model = new TagAttribute();
+		assertNotNull(model);
+		model = new TagAttribute("class", " ", ListFactory.newArrayList("row", "fluid"));
+		assertNotNull(model);
+		model = TagAttribute.builder().build();
+		assertNotNull(model);
+		model = TagAttribute.builder().name("class").delimiter(" ").value("row").value("fluid")
+			.build();
+		assertNotNull(model);
+	}
+
+	/**
+	 * Test method for {@link TagAttribute#equals(Object)} , {@link TagAttribute#hashCode()} and
+	 * {@link TagAttribute#toString()}
+	 *
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
+	 * @throws IllegalAccessException
+	 *             if the caller does not have access to the property accessor method
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws InstantiationException
+	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
+		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	{
+		boolean expected;
+		boolean actual;
+		actual = EqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToString(TagAttribute.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link TagAttribute#joinValues()}
+	 */
 	@Test
 	public void testJoinValues()
 	{
-		final String actual = TagAttribute.builder().delimiter(" ").value("row").value("fluid")
-			.build().joinValues();
+		final String actual = TagAttribute.builder().name("class").delimiter(" ").value("row")
+			.value("fluid").build().joinValues();
 		final String expected = "row fluid";
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link TagAttribute}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(TagAttribute.class);
 	}
 
 }

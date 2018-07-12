@@ -43,15 +43,22 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 import org.apache.xerces.xni.parser.XMLParserConfiguration;
 
 /**
- * The class Configuration.
+ * The class {@link Configuration} holds information for parsing a dtd document to an xsd document.
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ *             <br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
 public class Configuration extends ParserConfigurationSettings implements XMLParserConfiguration
 {
 
-	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE. */
-	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE = "http://apache.org/xml/properties/locale";
+	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_MANAGER. */
+	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_MANAGER = "http://apache.org/xml/properties/internal/entity-manager";
+
+	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER. */
+	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER = "http://apache.org/xml/properties/internal/entity-resolver";
 
 	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ERROR_HANDLER. */
 	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ERROR_HANDLER = "http://apache.org/xml/properties/internal/error-handler";
@@ -59,14 +66,11 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ERROR_REPORTER. */
 	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ERROR_REPORTER = "http://apache.org/xml/properties/internal/error-reporter";
 
-	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER. */
-	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_RESOLVER = "http://apache.org/xml/properties/internal/entity-resolver";
-
-	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_MANAGER. */
-	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_ENTITY_MANAGER = "http://apache.org/xml/properties/internal/entity-manager";
-
 	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_SYMBOL_TABLE. */
 	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_INTERNAL_SYMBOL_TABLE = "http://apache.org/xml/properties/internal/symbol-table";
+
+	/** The Constant HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE. */
+	private static final String HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE = "http://apache.org/xml/properties/locale";
 
 	/** The Constant HTTP_XML_ORG_SAX_FEATURES_VALIDATION. */
 	private static final String HTTP_XML_ORG_SAX_FEATURES_VALIDATION = "http://xml.org/sax/features/validation";
@@ -142,8 +146,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the document handler.
 	 *
-	 * @return the document handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getDocumentHandler()
+	 * @return the document handler
+	 * @see XMLParserConfiguration#getDocumentHandler()
 	 */
 	@Override
 	public XMLDocumentHandler getDocumentHandler()
@@ -154,8 +158,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the dTD content model handler.
 	 *
-	 * @return the dTD content model handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getDTDContentModelHandler()
+	 * @return the dTD content model handler
+	 * @see XMLParserConfiguration#getDTDContentModelHandler()
 	 */
 	@Override
 	public XMLDTDContentModelHandler getDTDContentModelHandler()
@@ -166,8 +170,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the dTD handler.
 	 *
-	 * @return the dTD handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getDTDHandler()
+	 * @return the dTD handler
+	 * @see XMLParserConfiguration#getDTDHandler()
 	 */
 	@Override
 	public XMLDTDHandler getDTDHandler()
@@ -178,8 +182,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the entity resolver.
 	 *
-	 * @return the entity resolver {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getEntityResolver()
+	 * @return the entity resolver
+	 * @see XMLParserConfiguration#getEntityResolver()
 	 */
 	@Override
 	public XMLEntityResolver getEntityResolver()
@@ -190,8 +194,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the error handler.
 	 *
-	 * @return the error handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getErrorHandler()
+	 * @return the error handler
+	 * @see XMLParserConfiguration#getErrorHandler()
 	 */
 	@Override
 	public XMLErrorHandler getErrorHandler()
@@ -202,20 +206,13 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	/**
 	 * Gets the locale.
 	 *
-	 * @return the locale {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#getLocale()
+	 * @return the locale
+	 * @see XMLParserConfiguration#getLocale()
 	 */
 	@Override
 	public Locale getLocale()
 	{
-		Locale locale = null;
-		try
-		{
-			locale = (Locale)getProperty(HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE);
-		}
-		catch (final Exception e)
-		{
-		}
+		Locale locale = (Locale)getProperty(HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE);
 		return locale;
 	}
 
@@ -227,8 +224,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * @throws XNIException
 	 *             the xNI exception
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred. {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#parse(org.apache.xerces.xni.parser.XMLInputSource)
+	 *             Signals that an I/O exception has occurred.
+	 * @see XMLParserConfiguration#parse(XMLInputSource)
 	 */
 	@Override
 	public void parse(final XMLInputSource source) throws XNIException, IOException
@@ -250,8 +247,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * Sets the document handler.
 	 *
 	 * @param handler
-	 *            the new document handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setDocumentHandler(org.apache.xerces.xni.XMLDocumentHandler)
+	 *            the new document handler
+	 * @see XMLParserConfiguration#setDocumentHandler(XMLDocumentHandler)
 	 */
 	@Override
 	public void setDocumentHandler(final XMLDocumentHandler handler)
@@ -263,14 +260,13 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * Sets the dTD content model handler.
 	 *
 	 * @param handler
-	 *            the new dTD content model handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setDTDContentModelHandler(org.apache.xerces.xni.XMLDTDContentModelHandler)
+	 *            the new dTD content model handler
+	 * @see XMLParserConfiguration#setDTDContentModelHandler(XMLDTDContentModelHandler)
 	 */
 	@Override
 	public void setDTDContentModelHandler(final XMLDTDContentModelHandler handler)
 	{
 		this.xmlDTDContentModelHandler = handler;
-
 		this.scanner.setDTDContentModelHandler(this.xmlDTDContentModelHandler);
 	}
 
@@ -278,14 +274,13 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * Sets the dTD handler.
 	 *
 	 * @param handler
-	 *            the new dTD handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setDTDHandler(org.apache.xerces.xni.XMLDTDHandler)
+	 *            the new dTD handler
+	 * @see XMLParserConfiguration#setDTDHandler(XMLDTDHandler)
 	 */
 	@Override
 	public void setDTDHandler(final XMLDTDHandler handler)
 	{
 		this.xmlDTDHandler = handler;
-
 		this.scanner.setDTDHandler(this.xmlDTDHandler);
 	}
 
@@ -293,8 +288,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * Sets the entity resolver.
 	 *
 	 * @param resolver
-	 *            the new entity resolver {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setEntityResolver(org.apache.xerces.xni.parser.XMLEntityResolver)
+	 *            the new entity resolver
+	 * @see XMLParserConfiguration#setEntityResolver(XMLEntityResolver)
 	 */
 	@Override
 	public void setEntityResolver(final XMLEntityResolver resolver)
@@ -308,8 +303,8 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * Sets the error handler.
 	 *
 	 * @param handler
-	 *            the new error handler {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setErrorHandler(org.apache.xerces.xni.parser.XMLErrorHandler)
+	 *            the new error handler
+	 * @see XMLParserConfiguration#setErrorHandler(XMLErrorHandler)
 	 */
 	@Override
 	public void setErrorHandler(final XMLErrorHandler handler)
@@ -323,19 +318,13 @@ public class Configuration extends ParserConfigurationSettings implements XMLPar
 	 * @param locale
 	 *            the new locale
 	 * @throws XNIException
-	 *             the xNI exception {@inheritDoc}
-	 * @see org.apache.xerces.xni.parser.XMLParserConfiguration#setLocale(java.util.Locale)
+	 *             thrown if the parser does not support the specified locale
+	 * @see XMLParserConfiguration#setLocale(Locale)
 	 */
 	@Override
 	public void setLocale(final Locale locale) throws XNIException
 	{
-		try
-		{
-			setProperty(HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE, locale);
-			this.errorReporter.setLocale(locale);
-		}
-		catch (final Exception e)
-		{
-		}
+		setProperty(HTTP_APACHE_ORG_XML_PROPERTIES_LOCALE, locale);
+		this.errorReporter.setLocale(locale);
 	}
 }

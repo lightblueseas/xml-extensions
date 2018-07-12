@@ -24,7 +24,6 @@
  */
 package de.alpharogroup.xml.sax.handler;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -36,8 +35,6 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.testng.AssertJUnit;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -46,21 +43,17 @@ import de.alpharogroup.file.compare.interfaces.IFileContentResultBean;
 import de.alpharogroup.file.csv.CsvFileExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.file.write.WriteFileExtensions;
+import de.alpharogroup.file.write.WriteFileQuietlyExtensions;
 
+/**
+ * The unit test class for the class {@link TemplateHandler}
+ */
 public class TemplateHandlerTest
 {
 
-	@BeforeMethod
-	public void setUp() throws Exception
-	{
-	}
-
-	@AfterMethod
-	public void tearDown() throws Exception
-	{
-	}
-
+	/**
+	 * Test method for {@link TemplateHandler#write(String)}
+	 */
 	@Test
 	public void testWrite() throws IOException
 	{
@@ -96,7 +89,7 @@ public class TemplateHandlerTest
 		{
 			output.createNewFile();
 		}
-		WriteFileExtensions.writeStringToFile(output, writer.toString(), "UTF-8");
+		WriteFileQuietlyExtensions.writeStringToFile(output, writer.toString(), "UTF-8");
 
 		final IFileContentResultBean bean = CompareFileExtensions.compareFiles(output, expected);
 		AssertJUnit.assertTrue(bean.getContentEquality());

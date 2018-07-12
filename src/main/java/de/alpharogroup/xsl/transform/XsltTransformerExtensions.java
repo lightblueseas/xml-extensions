@@ -32,13 +32,16 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import lombok.NonNull;
+import lombok.experimental.UtilityClass;
+
 /**
- * The class {@link XsltTransformerExtensions}.
+ * The class {@link XsltTransformerExtensions}
  */
+@UtilityClass
 public final class XsltTransformerExtensions
 {
 
@@ -46,52 +49,49 @@ public final class XsltTransformerExtensions
 	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
 
 	/**
-	 * Gets the transformer.
+	 * Gets a new instance from a {@link Transformer} object
 	 *
 	 * @param xsltFile
 	 *            the xslt file
-	 * @return the transformer
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
+	 * @return the new {@link Transformer} object
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 */
 	public static Transformer getTransformer(final File xsltFile)
-		throws TransformerFactoryConfigurationError, TransformerConfigurationException
+		throws TransformerConfigurationException
 	{
 		return getTransformer(new StreamSource(xsltFile));
 	}
 
 	/**
-	 * Gets a new instance from a Transformer object.
+	 * Gets a new instance from a {@link Transformer} object
 	 *
 	 * @param xsltSource
 	 *            the xslt source
-	 * @return the transformer
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
+	 * @return the new {@link Transformer} object
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 */
 	public static Transformer getTransformer(final Source xsltSource)
-		throws TransformerFactoryConfigurationError, TransformerConfigurationException
+		throws TransformerConfigurationException
 	{
 		return TRANSFORMER_FACTORY.newTransformer(xsltSource);
 	}
 
 	/**
-	 * Gets the transformer.
+	 * Gets a new instance from a {@link Transformer} object
 	 *
 	 * @param xsltInputFile
 	 *            the xslt input file
-	 * @return the transformer
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
+	 * @return the new {@link Transformer} object
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 */
 	public static Transformer getTransformer(final String xsltInputFile)
-		throws TransformerFactoryConfigurationError, TransformerConfigurationException
+		throws TransformerConfigurationException
 	{
 		return getTransformer(new File(xsltInputFile));
 	}
@@ -105,16 +105,16 @@ public final class XsltTransformerExtensions
 	 *            the xslt file
 	 * @param outputStream
 	 *            the output stream
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 * @throws TransformerException
-	 *             the transformer exception
+	 *             is thrown if an unrecoverable error occurs during the course of the
+	 *             transformation.
 	 */
-	public static void transform(final File xmlFile, final File xsltFile,
-		final OutputStream outputStream) throws TransformerFactoryConfigurationError,
-		TransformerConfigurationException, TransformerException
+	public static void transform(final @NonNull File xmlFile, final @NonNull File xsltFile,
+		final OutputStream outputStream)
+		throws TransformerConfigurationException, TransformerException
 	{
 		final Source xmlSource = new StreamSource(xmlFile);
 		final Source xsltSource = new StreamSource(xsltFile);
@@ -130,22 +130,20 @@ public final class XsltTransformerExtensions
 	 *            the xslt source
 	 * @param outputStream
 	 *            the output stream
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 * @throws TransformerException
-	 *             the transformer exception
+	 *             is thrown if an unrecoverable error occurs during the course of the
+	 *             transformation.
 	 */
 	public static void transform(final Source xmlSource, final Source xsltSource,
-		final OutputStream outputStream) throws TransformerFactoryConfigurationError,
-		TransformerConfigurationException, TransformerException
+		final OutputStream outputStream)
+		throws TransformerConfigurationException, TransformerException
 	{
 		final Transformer transformer = getTransformer(xsltSource);
-
 		transformer.transform(xmlSource, new StreamResult(outputStream));
 	}
-
 
 	/**
 	 * Transform.
@@ -156,26 +154,20 @@ public final class XsltTransformerExtensions
 	 *            the xslt input file
 	 * @param outputStream
 	 *            the output stream
-	 * @throws TransformerFactoryConfigurationError
-	 *             the transformer factory configuration error
 	 * @throws TransformerConfigurationException
-	 *             the transformer configuration exception
+	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
+	 *             possible to create a <code>Transformer</code> instance.
 	 * @throws TransformerException
-	 *             the transformer exception
+	 *             is thrown if an unrecoverable error occurs during the course of the
+	 *             transformation.
 	 */
 	public static void transform(final String xmlInputFile, final String xsltInputFile,
-		final OutputStream outputStream) throws TransformerFactoryConfigurationError,
-		TransformerConfigurationException, TransformerException
+		final OutputStream outputStream)
+		throws TransformerConfigurationException, TransformerException
 	{
 		final File xmlFile = new File(xmlInputFile);
 		final File xsltFile = new File(xsltInputFile);
 		transform(xmlFile, xsltFile, outputStream);
 	}
 
-	/**
-	 * Private constructor.
-	 */
-	private XsltTransformerExtensions()
-	{
-	}
 }

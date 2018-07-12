@@ -45,11 +45,11 @@ import lombok.ToString;
 public class TagAttribute
 {
 
-	/** The name of the attribute. */
-	private String name;
-
 	/** The delimiter of the values from the attribute. */
 	private String delimiter;
+
+	/** The name of the attribute. */
+	private String name;
 
 	/** The values of the attribute. */
 	@Singular

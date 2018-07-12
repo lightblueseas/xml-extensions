@@ -43,6 +43,6 @@ public abstract class XmlTransformation
 		final String lqSimpleName = this.getClass().getSimpleName().toLowerCase();
 		final Map<String, Class<?>> aliases = new HashMap<>();
 		aliases.put(lqSimpleName, this.getClass());
-		return XmlExtensions.toXmlWithXStream(this, aliases);
+		return ObjectToXmlExtensions.toXmlWithXStream(this, aliases);
 	}
 }

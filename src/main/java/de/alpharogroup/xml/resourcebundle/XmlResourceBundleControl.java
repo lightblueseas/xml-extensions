@@ -50,6 +50,10 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 	@Override
 	public List<String> getFormats(final String baseName)
 	{
+		if (baseName == null)
+		{
+			throw new NullPointerException("baseName is null");
+		}
 		return Collections.unmodifiableList(Arrays.asList(XML));
 	}
 
@@ -95,6 +99,7 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 		}
 		final BufferedInputStream bis = new BufferedInputStream(stream);
 		bundle = new XmlResourceBundle(bis);
+
 		bis.close();
 
 		return bundle;

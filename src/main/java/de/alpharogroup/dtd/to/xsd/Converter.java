@@ -36,13 +36,20 @@ import org.apache.xerces.xni.parser.XMLInputSource;
 
 import de.alpharogroup.dtd.to.xsd.type.TypePattern;
 import de.alpharogroup.dtd.to.xsd.writer.Writer;
-import de.alpharogroup.io.StreamExtensions;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * The class Converter.
+ * The class {@link Converter}
  *
  * @author Asterios Raptis
+ * @deprecated use instead the same name class from project dtd-to-xsd. <br>
+ *             <br>
+ *             Note: will be removed on next minor release
  */
+@Deprecated
+@UtilityClass
+@Slf4j
 public final class Converter
 {
 
@@ -66,7 +73,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 			}
 		}
 
@@ -78,11 +85,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		return xsdfile;
 	}
@@ -107,7 +114,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 			}
 		}
 
@@ -119,11 +126,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		return xsdfile;
 	}
@@ -152,7 +159,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
 		}
@@ -167,11 +174,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -199,16 +206,10 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
-			finally
-			{
-				StreamExtensions.closeOutputStream(outStream);
-			}
 		}
-
-		outStream = System.out;
 
 		final Writer writer = new Writer();
 		writer.setTargetNamespace(targetNamespace);
@@ -220,11 +221,11 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
@@ -247,7 +248,7 @@ public final class Converter
 			}
 			catch (final FileNotFoundException e)
 			{
-				e.printStackTrace(System.err);
+				log.error(e.getLocalizedMessage(), e);
 				return;
 			}
 		}
@@ -260,18 +261,12 @@ public final class Converter
 		}
 		catch (final XNIException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 		catch (final IOException e)
 		{
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage(), e);
 		}
 	}
 
-	/**
-	 * Instantiates a new dtd2 xsd converter.
-	 */
-	private Converter()
-	{
-	}
 }

@@ -24,18 +24,33 @@
  */
 package de.alpharogroup.xml.tag;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
+
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-import org.testng.AssertJUnit;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
+import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
 import de.alpharogroup.velocity.VelocityExtensions;
 
+/**
+ * The unit test class for the class {@link SimpleTag}
+ */
 public class SimpleTagTest
 {
 
+	/**
+	 * Test method for {@link SimpleTag}
+	 */
 	@Test
 	public void test() throws IOException
 	{
@@ -49,22 +64,22 @@ public class SimpleTagTest
 		tag.setEndTag(true);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy</div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		tag.setEndTag(false);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" />";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		final SimpleTag cloned = (SimpleTag)tag.clone();
 
-		AssertJUnit.assertEquals(tag, cloned);
+		assertEquals(tag, cloned);
 
-		AssertJUnit.assertEquals(tag.hashCode(), cloned.hashCode());
+		assertEquals(tag.hashCode(), cloned.hashCode());
 
 		tag.setEndTag(true);
 
@@ -78,9 +93,9 @@ public class SimpleTagTest
 
 		tag.addChild(child1);
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello </span></div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 		final SimpleTag granChild1 = new SimpleTag();
 		granChild1.setName("b");
@@ -90,9 +105,9 @@ public class SimpleTagTest
 		child1.addChild(granChild1);
 
 		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello <b>world</b></span></div>";
-		actual = tag.toString();
+		actual = tag.toXmlString();
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 
 
 		/* create a velocity template as String object from the tag */
@@ -108,7 +123,7 @@ public class SimpleTagTest
 			+ "#end\n" + "#end\n" + "</${span.name}>\n" + "#else />\n" + "#end\n" + "#end\n"
 			+ "</${div.name}>\n" + "#else />\n" + "#end\n";
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
 		/* Merge the created velocity template from the tag and merge it with the context. */
 		final String velocityTemplate = actual;
 		/* first, we init the runtime engine. Defaults are fine. */
@@ -121,7 +136,98 @@ public class SimpleTagTest
 		actual = VelocityExtensions.merge(context, velocityTemplate);
 		expected = "<div\n wicket:id=\"contentLabel\"\n class=\"myClass\"\n >xy\n<span\n wicket:id=\"name\"\n class=\"other\"\n >Hello \n<b\n>world\n</b>\n</span>\n</div>\n";
 		/* check if equal */
-		AssertJUnit.assertEquals(expected, actual);
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link SimpleTag} constructors and builders
+	 */
+	@Test
+	public final void testConstructors()
+	{
+		SimpleTag model = new SimpleTag();
+		assertNotNull(model);
+		model = new SimpleTag(MapFactory.newLinkedHashMap(), ListFactory.newArrayList(), "bar",
+			false, "foo");
+		assertNotNull(model);
+		model = SimpleTag.builder().build();
+		assertNotNull(model);
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
+	 * {@link SimpleTag#toString()}
+	 *
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
+	 * @throws IllegalAccessException
+	 *             if the caller does not have access to the property accessor method
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws InstantiationException
+	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
+		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	{
+		boolean expected;
+		boolean actual;
+		actual = EqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToString(SimpleTag.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#removeAttribute(String)}
+	 */
+	@Test
+	public void testRemoveAttribute()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		simpleTag.addAttribute("class", "fluid box");
+
+		assertTrue(simpleTag.getAttributes().containsKey("class"));
+
+		simpleTag.removeAttribute("class");
+		assertFalse(simpleTag.getAttributes().containsKey("class"));
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#removeChild(SimpleTag)}
+	 */
+	@Test
+	public void testRemoveChild()
+	{
+		SimpleTag child1 = SimpleTag.builder().name("img").build();
+		SimpleTag child2 = SimpleTag.builder().name("b").build();
+		SimpleTag simpleTag = new SimpleTag(MapFactory.newLinkedHashMap(),
+			ListFactory.newArrayList(child1, child2), "bar", false, "foo");
+
+		assertTrue(simpleTag.getChildren().contains(child1));
+
+		simpleTag.removeChild(child1);
+
+		assertFalse(simpleTag.getChildren().contains(child1));
+
+		assertFalse(child1.removeChild(child2));
+	}
+
+	/**
+	 * Test method for {@link SimpleTag}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(SimpleTag.class);
 	}
 
 }

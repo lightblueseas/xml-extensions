@@ -33,37 +33,21 @@ import org.w3c.dom.Node;
 public enum NodeType
 {
 	/**
-	 * The node is an <code>Element</code>.
-	 */
-	ELEMENT_NODE,
-	/**
 	 * The node is an <code>Attr</code>.
 	 */
 	ATTRIBUTE_NODE,
-	/**
-	 * The node is a <code>Text</code> node.
-	 */
-	TEXT_NODE,
 	/**
 	 * The node is a <code>CDATASection</code>.
 	 */
 	CDATA_SECTION_NODE,
 	/**
-	 * The node is an <code>EntityReference</code>.
-	 */
-	ENTITY_REFERENCE_NODE,
-	/**
-	 * The node is an <code>Entity</code>.
-	 */
-	ENTITY_NODE,
-	/**
-	 * The node is a <code>ProcessingInstruction</code>.
-	 */
-	PROCESSING_INSTRUCTION_NODE,
-	/**
 	 * The node is a <code>Comment</code>.
 	 */
 	COMMENT_NODE,
+	/**
+	 * The node is a <code>DocumentFragment</code>.
+	 */
+	DOCUMENT_FRAGMENT_NODE,
 	/**
 	 * The node is a <code>Document</code>.
 	 */
@@ -73,13 +57,29 @@ public enum NodeType
 	 */
 	DOCUMENT_TYPE_NODE,
 	/**
-	 * The node is a <code>DocumentFragment</code>.
+	 * The node is an <code>Element</code>.
 	 */
-	DOCUMENT_FRAGMENT_NODE,
+	ELEMENT_NODE,
+	/**
+	 * The node is an <code>Entity</code>.
+	 */
+	ENTITY_NODE,
+	/**
+	 * The node is an <code>EntityReference</code>.
+	 */
+	ENTITY_REFERENCE_NODE,
 	/**
 	 * The node is a <code>Notation</code>.
 	 */
 	NOTATION_NODE,
+	/**
+	 * The node is a <code>ProcessingInstruction</code>.
+	 */
+	PROCESSING_INSTRUCTION_NODE,
+	/**
+	 * The node is a <code>Text</code> node.
+	 */
+	TEXT_NODE,
 
 	/** The UNDEFINED is a NullObject and is returned when nothing matches to the other one. */
 	UNDEFINED;

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Customers" type="CustomersType"/>
+  <xs:complexType name="CustomerType">
+    <xs:sequence>
+      <xs:element name="age">
+        <xs:simpleType>
+          <xs:restriction base="xs:byte">
+            <xs:enumeration value="34"/>
+            <xs:enumeration value="32"/>
+            <xs:enumeration value="20"/>
+            <xs:enumeration value="28"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="name">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="John"/>
+            <xs:enumeration value="Nelly"/>
+            <xs:enumeration value="Jim"/>
+            <xs:enumeration value="Tanja"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="gender">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Male"/>
+            <xs:enumeration value="Female"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="role">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="Cpp Developer"/>
+            <xs:enumeration value="CEO"/>
+            <xs:enumeration value="Manager"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute type="xs:byte" name="id" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="CustomersType">
+    <xs:sequence>
+      <xs:element type="CustomerType" name="Customer" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

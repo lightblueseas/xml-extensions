@@ -40,10 +40,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * The class {@link XPathExtensions}.
  */
-public class XPathExtensions
+@UtilityClass
+public final class XPathExtensions
 {
 
 	/**

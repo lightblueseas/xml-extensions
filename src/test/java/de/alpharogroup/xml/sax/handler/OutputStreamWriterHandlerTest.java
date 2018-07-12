@@ -31,25 +31,19 @@ import java.io.Writer;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.file.search.PathFinder;
 
+/**
+ * The unit test class for the class {@link OutputStreamWriterHandler}
+ */
 public class OutputStreamWriterHandlerTest
 {
 
-	@BeforeMethod
-	public void setUp() throws Exception
-	{
-	}
-
-	@AfterMethod
-	public void tearDown() throws Exception
-	{
-	}
-
+	/**
+	 * Test method for {@link OutputStreamWriterHandler#write(String)}
+	 */
 	@Test
 	public void testWrite()
 	{
@@ -74,6 +68,5 @@ public class OutputStreamWriterHandlerTest
 			t.printStackTrace();
 		}
 	}
-
 
 }

@@ -30,13 +30,13 @@ import java.io.Writer;
 import org.xml.sax.SAXException;
 
 /**
- * The class OutputStreamWriterHandler.
+ * The class {@link OutputStreamWriterHandler}
  */
 public class OutputStreamWriterHandler extends WriterHandler
 {
 
 	/**
-	 * The Constructor.
+	 * Instantiates a new {@link OutputStreamWriterHandler} object with the given {@link Writer}
 	 *
 	 * @param writer
 	 *            the writer
@@ -48,8 +48,6 @@ public class OutputStreamWriterHandler extends WriterHandler
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see de.alpharogroup.xml.sax.handler.WriterHandler#write(java.lang.String)
 	 */
 	@Override
 	protected void write(final String s) throws SAXException
@@ -63,7 +61,6 @@ public class OutputStreamWriterHandler extends WriterHandler
 		{
 			throw new SAXException("I/O error", e);
 		}
-
 	}
 
 }

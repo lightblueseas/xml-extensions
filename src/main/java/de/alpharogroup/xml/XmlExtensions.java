@@ -24,10 +24,6 @@
  */
 package de.alpharogroup.xml;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,14 +34,15 @@ import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
 
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.lang.ClassExtensions;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlExtensions}.
  */
+@UtilityClass
 public final class XmlExtensions
 {
 
@@ -88,11 +85,13 @@ public final class XmlExtensions
 	 * @param is
 	 *            the input stream
 	 * @return the object from the given input stream.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	private static <T> T loadObject(final InputStream is)
+	private static <T> T loadObject(final InputStream is) throws IOException
 	{
 		final String xmlString = ReadFileExtensions.inputStream2String(is);
-		final T object = XmlExtensions.toObjectWithXStream(xmlString);
+		final T object = XmlToObjectExtensions.toObjectWithXStream(xmlString);
 		return object;
 	}
 
@@ -105,8 +104,10 @@ public final class XmlExtensions
 	 * @param xmlFileName
 	 *            the xml file name
 	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T loadObject(final String xmlFileName)
+	public static <T> T loadObject(final String xmlFileName) throws IOException
 	{
 		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
 		return loadObject(is);
@@ -156,10 +157,14 @@ public final class XmlExtensions
 	 * @param xmlString
 	 *            the xml as string object
 	 * @return the json string.
+	 * @deprecated use instead the same name method in class {@code XmlToJsonExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static String toJson(final String xmlString)
 	{
-		return toJson(xmlString, null);
+		return XmlToJsonExtensions.toJson(xmlString);
 	}
 
 	/**
@@ -170,20 +175,14 @@ public final class XmlExtensions
 	 * @param aliases
 	 *            the aliases
 	 * @return the json string.
+	 * @deprecated use instead the same name method in class {@code XmlToJsonExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static String toJson(final String xmlString, final Map<String, Class<?>> aliases)
 	{
-		final Object object = toObjectWithXStream(xmlString);
-		final XStream xstream = new XStream(new JettisonMappedXmlDriver());
-		if (aliases != null)
-		{
-			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
-			{
-				xstream.alias(alias.getKey(), alias.getValue());
-			}
-		}
-		final String json = xstream.toXML(object);
-		return json;
+		return XmlToJsonExtensions.toJson(xmlString, aliases);
 	}
 
 	/**
@@ -194,29 +193,14 @@ public final class XmlExtensions
 	 * @param xmlString
 	 *            the xml string to transform to an java object.
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code XmlToObjectExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
-	@SuppressWarnings("unchecked")
+	@Deprecated
 	public static <T> T toObjectWithXMLDecoder(final String xmlString)
 	{
-
-		XMLDecoder dec = null;
-		T obj = null;
-		try
-		{
-			final InputStream is = new ByteArrayInputStream(xmlString.getBytes());
-			dec = new XMLDecoder(is);
-
-			obj = (T)dec.readObject();
-
-		}
-		finally
-		{
-			if (dec != null)
-			{
-				dec.close();
-			}
-		}
-		return obj;
+		return XmlToObjectExtensions.toObjectWithXMLDecoder(xmlString);
 	}
 
 	/**
@@ -227,10 +211,14 @@ public final class XmlExtensions
 	 * @param xmlString
 	 *            the xml as string object
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code XmlToObjectExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> T toObjectWithXStream(final String xmlString)
 	{
-		return toObjectWithXStream(null, xmlString);
+		return XmlToObjectExtensions.toObjectWithXStream(xmlString);
 	}
 
 	/**
@@ -244,11 +232,15 @@ public final class XmlExtensions
 	 * @param aliases
 	 *            the aliases
 	 * @return the created object from the given xml string.
+	 * @deprecated use instead the same name method in class {@code XmlToObjectExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> T toObjectWithXStream(final String xmlString,
 		final Map<String, Class<?>> aliases)
 	{
-		return toObjectWithXStream(null, xmlString, aliases);
+		return XmlToObjectExtensions.toObjectWithXStream(xmlString, aliases);
 	}
 
 	/**
@@ -261,10 +253,14 @@ public final class XmlExtensions
 	 * @param xmlString
 	 *            the xml as string object
 	 * @return the object
+	 * @deprecated use instead the same name method in class {@code XmlToObjectExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> T toObjectWithXStream(final XStream xstream, final String xmlString)
 	{
-		return toObjectWithXStream(xstream, xmlString, null);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString);
 	}
 
 	/**
@@ -280,23 +276,15 @@ public final class XmlExtensions
 	 * @param aliases
 	 *            the aliases
 	 * @return the object
+	 * @deprecated use instead the same name method in class {@code XmlToObjectExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
-	@SuppressWarnings("unchecked")
+	@Deprecated
 	public static <T> T toObjectWithXStream(XStream xstream, final String xmlString,
 		final Map<String, Class<?>> aliases)
 	{
-		if (xstream == null)
-		{
-			xstream = new XStream();
-		}
-		if (aliases != null)
-		{
-			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
-			{
-				xstream.alias(alias.getKey(), alias.getValue());
-			}
-		}
-		return (T)xstream.fromXML(xmlString);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
 	}
 
 	/**
@@ -307,26 +295,16 @@ public final class XmlExtensions
 	 * @param obj
 	 *            the obj to transform to an xml string.
 	 * @return the xml string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @deprecated use instead the same name method in class {@code ObjectToXmlExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
-	public static <T> String toXmlWithXMLEncoder(final T obj)
+	@Deprecated
+	public static <T> String toXmlWithXMLEncoder(final T obj) throws IOException
 	{
-		XMLEncoder enc = null;
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try
-		{
-			enc = new XMLEncoder(baos);
-			enc.writeObject(obj);
-			enc.close();
-			enc = null;
-		}
-		finally
-		{
-			if (enc != null)
-			{
-				enc.close();
-			}
-		}
-		return baos.toString();
+		return ObjectToXmlExtensions.toXmlWithXMLEncoder(obj);
 	}
 
 	/**
@@ -337,10 +315,14 @@ public final class XmlExtensions
 	 * @param objectToXML
 	 *            the object to xml
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code ObjectToXmlExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> String toXmlWithXStream(final T objectToXML)
 	{
-		return toXmlWithXStream(null, objectToXML);
+		return ObjectToXmlExtensions.toXmlWithXStream(objectToXML);
 	}
 
 	/**
@@ -354,11 +336,15 @@ public final class XmlExtensions
 	 * @param aliases
 	 *            the aliases
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code ObjectToXmlExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> String toXmlWithXStream(final T objectToXML,
 		final Map<String, Class<?>> aliases)
 	{
-		return toXmlWithXStream(null, objectToXML, aliases);
+		return ObjectToXmlExtensions.toXmlWithXStream(objectToXML, aliases);
 	}
 
 	/**
@@ -371,10 +357,14 @@ public final class XmlExtensions
 	 * @param objectToXML
 	 *            the object to xml
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code ObjectToXmlExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> String toXmlWithXStream(final XStream xstream, final T objectToXML)
 	{
-		return toXmlWithXStream(xstream, objectToXML, null);
+		return ObjectToXmlExtensions.toXmlWithXStream(xstream, objectToXML);
 	}
 
 	/**
@@ -390,29 +380,15 @@ public final class XmlExtensions
 	 * @param aliases
 	 *            the aliases
 	 * @return the xml string
+	 * @deprecated use instead the same name method in class {@code ObjectToXmlExtensions} <br>
+	 *             <br>
+	 *             Note: will be removed on next minor release
 	 */
+	@Deprecated
 	public static <T> String toXmlWithXStream(XStream xstream, final T objectToXML,
 		final Map<String, Class<?>> aliases)
 	{
-		if (xstream == null)
-		{
-			xstream = new XStream();
-		}
-		if (aliases != null)
-		{
-			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
-			{
-				xstream.alias(alias.getKey(), alias.getValue());
-			}
-		}
-		final String xml = xstream.toXML(objectToXML);
-		return xml;
+		return ObjectToXmlExtensions.toXmlWithXStream(xstream, objectToXML, aliases);
 	}
 
-	/**
-	 * Private constructor.
-	 */
-	private XmlExtensions()
-	{
-	}
 }

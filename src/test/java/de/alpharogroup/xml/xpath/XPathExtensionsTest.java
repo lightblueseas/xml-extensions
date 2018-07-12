@@ -24,21 +24,93 @@
  */
 package de.alpharogroup.xml.xpath;
 
-import org.testng.annotations.Test;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import de.alpharogroup.file.search.PathFinder;
+
+/**
+ * The unit test class for the class {@link XPathExtensions}
+ */
 public class XPathExtensionsTest
 {
 
-	@Test(enabled = false)
+	/**
+	 * Test method for {@link XPathExtensions#getNodeList(File, String)}
+	 * 
+	 * @throws XPathExpressionException
+	 *             the x path expression exception
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             the sAX exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test(enabled = true)
 	public void testGetNodeListFileString()
+		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		throw new RuntimeException("Test not implemented");
+		NodeList actual;
+		File xml;
+		String xpathExpression;
+
+		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xml.xml");
+		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
+		actual = XPathExtensions.getNodeList(xml, xpathExpression);
+		assertNotNull(actual);
+		assertTrue(actual.getLength() == 2);
 	}
 
-	@Test(enabled = false)
+	/**
+	 * Test method for {@link XPathExtensions#getNodeList(String, String)}
+	 * 
+	 * @throws XPathExpressionException
+	 *             the x path expression exception
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             the sAX exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test(enabled = true)
 	public void testGetNodeListStringString()
+		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		throw new RuntimeException("Test not implemented");
+
+		NodeList actual;
+		File xml;
+		String xpathExpression;
+
+		xml = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "test-xml.xml");
+		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
+		actual = XPathExtensions.getNodeList(xml.getAbsolutePath(), xpathExpression);
+		assertNotNull(actual);
+		assertTrue(actual.getLength() == 2);
+	}
+
+	/**
+	 * Test method for {@link XPathExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(XPathExtensions.class);
 	}
 
 }

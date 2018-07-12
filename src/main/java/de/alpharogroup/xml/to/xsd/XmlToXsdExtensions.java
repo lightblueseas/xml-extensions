@@ -35,40 +35,15 @@ import org.apache.xmlbeans.impl.inst2xsd.Inst2Xsd;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
 import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 
-import de.alpharogroup.file.delete.DeleteFileExtensions;
-import de.alpharogroup.file.search.PathFinder;
+import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of
  * XMLBeans tools.
  */
-public class XmlToXsdExtensions
+@UtilityClass
+public final class XmlToXsdExtensions
 {
-
-	/**
-	 * The main method.
-	 * 
-	 * @param args
-	 *            the arguments
-	 * @throws XmlException
-	 *             the xml exception
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static void main(final String[] args) throws XmlException, IOException
-	{
-		final File srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
-		final File projectDir = PathFinder.getProjectDirectory();
-		final File xmlFile = new File(projectDir, "pom.xml");
-
-		final String xsdString = xmlToXsd(xmlFile);
-		System.err.println(xsdString);
-
-		final File[] xmlFiles = { xmlFile };
-		final Inst2XsdOptions inst2XsdOptions = new Inst2XsdOptions();
-		xmlToXsd(xmlFiles, inst2XsdOptions, srcTestResourcesDir, null);
-		DeleteFileExtensions.delete(new File(srcTestResourcesDir, "schema0.xsd"));
-	}
 
 	/**
 	 * Returns a xsd String from the given XML file that can used for several purposes.
