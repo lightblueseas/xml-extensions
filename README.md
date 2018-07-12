@@ -26,7 +26,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 Than you can add the dependency to your dependencies:
 
 		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>4.19</xml-extensions.version>
+		<xml-extensions.version>4.20</xml-extensions.version>
 
 		<dependencies>
 			...
