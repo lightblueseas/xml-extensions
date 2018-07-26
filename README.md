@@ -40,7 +40,16 @@ Than you can add the dependency to your dependencies:
 			...
 		</dependencies>
 
+## Semantic Versioning
 
+The versions of xml-extensions are maintained with the Semantic Versioning guidelines.
+
+Release version numbers will be incremented in the following format:
+
+`<major>.<minor>.<patch>`
+
+For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
+		
 ## Want to Help and improve it? ###
 
 The source code for xml-extensions are on GitHub. Please feel free to fork and send pull requests!
