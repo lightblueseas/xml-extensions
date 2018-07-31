@@ -4,6 +4,10 @@
 Version 4.21-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of parent version to 4.1
+- update of jobject-extensions version to 1.12
 
 Version 4.20
 -------------
