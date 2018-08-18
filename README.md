@@ -1,4 +1,4 @@
-# xml-extensions
+# Overview
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 
 </div>
 
-Useful extensions methods and utilities for handle xml or transform dtd to xsd and xslt
+Useful extensions methods and utilities for handle xml or transform xslt
 
 ## License
 
