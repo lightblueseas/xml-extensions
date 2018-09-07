@@ -25,6 +25,7 @@
 package de.alpharogroup.xml.json;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -123,14 +124,14 @@ public final class JsonToObjectExtensions
 	}
 
 	/**
-	 * Transforms the given json string into a java object list.
+	 * Transforms the given json string into a java object {@link List}
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param jsonString
 	 *            the json string
-	 * @param clazz
-	 *            the clazz of the generic type
+	 * @param elementClass
+	 *            the element class of the generic type
 	 * @return the list with the java objects.
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object
@@ -139,13 +140,38 @@ public final class JsonToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> List<T> toObjectList(final String jsonString, final Class<T> clazz)
+	public static <T> List<T> toObjectList(final String jsonString, final Class<T> elementClass)
 		throws JsonParseException, JsonMappingException, IOException
 	{
+		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
+	}
+
+	/**
+	 * Transforms the given json string into a java object {@link Collection}
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param jsonString
+	 *            the json string
+	 * @param collectionClass
+	 *            the collection class
+	 * @param elementClass
+	 *            the element class
+	 * @return the list with the java objects.
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> Collection<T> toObjectCollection(final String jsonString,
+		@SuppressWarnings("rawtypes") Class<? extends Collection> collectionClass,
+		Class<T> elementClass) throws JsonParseException, JsonMappingException, IOException
+	{
 		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(true);
-		final List<T> objectList = mapper.readValue(jsonString,
-			mapper.getTypeFactory().constructCollectionType(List.class, clazz));
-		return objectList;
+		return mapper.readValue(jsonString,
+			mapper.getTypeFactory().constructCollectionType(collectionClass, elementClass));
 	}
 
 }
