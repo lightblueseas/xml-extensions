@@ -1,6 +1,22 @@
 ## Change log
 ----------------------
 
+Version 4.21
+-------------
+
+ADDED: 
+
+- new method created for convert a json string array to a java Collection that can be given as a type argument
+
+CHANGED:
+
+- update of parent version to 4.1
+- update of jobject-extensions version to 1.12
+- update of velocity-extensions version to 1.3
+- update of file-worker version to 4.23
+- update of xmlbeans version to 3.0.1
+- update of json version to 20180813
+
 Version 4.20
 -------------
 

@@ -1,4 +1,4 @@
-# xml-extensions
+# Overview
 
 <div align="center">
 
@@ -7,10 +7,11 @@
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/xml-extensions.svg?style=flat)](https://github.com/lightblueseas/xml-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/xml-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/xml-extensions)
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 </div>
 
-Useful extensions methods and utilities for handle xml or transform dtd to xsd and xslt
+Useful extensions methods and utilities for handle xml or transform xslt
 
 ## License
 
@@ -25,9 +26,13 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
+	<properties>
+			...
 		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>4.20</xml-extensions.version>
-
+		<xml-extensions.version>4.21</xml-extensions.version>
+			...
+	</properties>
+			...
 		<dependencies>
 			...
             <!-- XML-EXTENSIONS DEPENDENCY -->
@@ -39,7 +44,16 @@ Than you can add the dependency to your dependencies:
 			...
 		</dependencies>
 
+## Semantic Versioning
 
+The versions of xml-extensions are maintained with the Semantic Versioning guidelines.
+
+Release version numbers will be incremented in the following format:
+
+`<major>.<minor>.<patch>`
+
+For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
+		
 ## Want to Help and improve it? ###
 
 The source code for xml-extensions are on GitHub. Please feel free to fork and send pull requests!
@@ -67,11 +81,11 @@ If you like this library, please consider a donation through paypal: <a href="ht
 
 or over bitcoin or bitcoin-cash with:
 
-1Jzso5h7U82QCNmgxxSCya1yUK7UVcSXsW
+36JxRRDfRazLNqUV6NsywCw1q7TK38ukpC
 
 or over ether with:
 
-0xaB6EaE10F352268B0CA672Dd6e999C86344D49D8
+0x588Aa02De98B1Ef70afeDC3ec5290130a3E5e273
 
 or over flattr: 
 <a href="https://flattr.com/submit/auto?fid=r7vp62&url=https%3A%2F%2Fgithub.com%2Flightblueseas%2Fxml-extensions" target="_blank">
