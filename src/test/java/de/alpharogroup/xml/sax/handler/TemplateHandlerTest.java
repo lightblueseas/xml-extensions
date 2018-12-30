@@ -43,7 +43,7 @@ import de.alpharogroup.file.compare.interfaces.IFileContentResultBean;
 import de.alpharogroup.file.csv.CsvFileExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.file.write.WriteFileQuietlyExtensions;
+import de.alpharogroup.file.write.WriteFileExtensions;
 
 /**
  * The unit test class for the class {@link TemplateHandler}
@@ -89,7 +89,7 @@ public class TemplateHandlerTest
 		{
 			output.createNewFile();
 		}
-		WriteFileQuietlyExtensions.writeStringToFile(output, writer.toString(), "UTF-8");
+		WriteFileExtensions.writeStringToFile(output, writer.toString(), "UTF-8");
 
 		final IFileContentResultBean bean = CompareFileExtensions.compareFiles(output, expected);
 		AssertJUnit.assertTrue(bean.getContentEquality());
