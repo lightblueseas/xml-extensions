@@ -63,20 +63,23 @@ public class TagAttributeTest
 	 * Test method for {@link TagAttribute#equals(Object)} , {@link TagAttribute#hashCode()} and
 	 * {@link TagAttribute#toString()}
 	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
 	 * @throws IllegalAccessException
 	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
 	 * @throws InstantiationException
 	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
+	 *             Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException
+	 *             occurs if a given class cannot be located by the specified class loader
 	 */
 	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	public void testEqualsHashcodeAndToStringWithClass()
+		throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+		InstantiationException, IOException, ClassNotFoundException
 	{
 		boolean expected;
 		boolean actual;

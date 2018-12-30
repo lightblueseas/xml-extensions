@@ -24,17 +24,19 @@
  */
 package de.alpharogroup.xml.json;
 
+import java.util.logging.Level;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 
 /**
  * The class {@link ObjectToJsonQuietlyExtensions} converts java objects to json string objects in a
  * quietly manner as the name let presume.
  */
 @UtilityClass
-@Slf4j
+@Log
 public class ObjectToJsonQuietlyExtensions
 {
 
@@ -57,8 +59,10 @@ public class ObjectToJsonQuietlyExtensions
 		}
 		catch (final JsonProcessingException e)
 		{
-			log.error("An error occured when converting object to String.\nGiven object:"
-				+ object.toString() + "\n", e);
+			log.log(Level.SEVERE,
+				"An error occured when converting object to String.\nGiven object:"
+					+ object.toString() + "\n",
+				e);
 		}
 		return null;
 	}

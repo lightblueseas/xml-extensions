@@ -66,6 +66,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 * @throws Exception
 	 *             is thrown if an exception occurs
 	 */
+	@Override
 	@BeforeMethod
 	protected void setUp() throws Exception
 	{
@@ -84,6 +85,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 * @throws Exception
 	 *             is thrown if an exception occurs
 	 */
+	@Override
 	@AfterMethod
 	protected void tearDown() throws Exception
 	{

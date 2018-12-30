@@ -64,7 +64,7 @@ public class XmlToJsonExtensionsTest
 		employee.setId("23");
 		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
 		actual = XmlToJsonExtensions.toJson(xmlResult);
-		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"gender\":\"FEMALE\"},\"id\":23}}";
+		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
 		assertEquals(actual, expected);
 
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
@@ -101,7 +101,7 @@ public class XmlToJsonExtensionsTest
 		aliases.put("employee", Employee.class);
 
 		actual = XmlToJsonExtensions.toJson(xmlResult, aliases);
-		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"gender\":\"FEMALE\"},\"id\":23}}";
+		expected = "{\"employee\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"\",\"gender\":\"FEMALE\",\"about\":\"\",\"married\":false},\"id\":23}}";
 		assertEquals(actual, expected);
 
 

@@ -65,7 +65,7 @@ public class XmlExtensionsTest
 
 	/**
 	 * Test method for {@link XmlExtensions#loadObject(File)}.
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	@Test
@@ -77,12 +77,10 @@ public class XmlExtensionsTest
 		Person person;
 		Employee employee;
 
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
 
 		xmlFile = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "newtest.xml");
 		actual = XmlExtensions.loadObject(xmlFile);
@@ -105,12 +103,10 @@ public class XmlExtensionsTest
 		Person person;
 		Employee employee;
 
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
 
 		actual = XmlExtensions.loadObject("newtest.xml");
 		assertNotNull(actual);

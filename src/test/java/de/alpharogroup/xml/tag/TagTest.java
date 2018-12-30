@@ -46,10 +46,15 @@ public class TagTest
 {
 
 	/**
-	 * Test method for {@link Tag#clone()}.
+	 * Test method for {@link Tag#clone()}
+	 * 
+	 * @throws CloneNotSupportedException
+	 *             is thrown if the object's class does not support the {@code Cloneable} interface.
+	 *             Subclasses that override the {@code clone} method can also throw this exception
+	 *             to indicate that an instance cannot be cloned.
 	 */
 	@Test(enabled = true)
-	public void testClone()
+	public void testClone() throws CloneNotSupportedException
 	{
 		Tag actual;
 		Tag expected;
@@ -78,20 +83,23 @@ public class TagTest
 	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
 	 * {@link Tag#toString()}
 	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
 	 * @throws IllegalAccessException
 	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
 	 * @throws InstantiationException
 	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
+	 *             Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException
+	 *             occurs if a given class cannot be located by the specified class loader
 	 */
 	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	public void testEqualsHashcodeAndToStringWithClass()
+		throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+		InstantiationException, IOException, ClassNotFoundException
 	{
 		boolean expected;
 		boolean actual;

@@ -1,6 +1,21 @@
 ## Change log
 ----------------------
 
+Version 5
+-------------
+
+CHANGED:
+
+- update of parent version to 4.5
+- update of file-worker version to 5.0.1
+- update of test-objects dependency version to 5
+- update of velocity-extensions version to 1.3.1
+- update of jobject-extensions version to 2.5
+- update of xmlbeans version to 3.0.2
+- update of xstream version to 1.4.11.1
+- update of jackson-core version to 2.9.8
+- excluded logging dependencies
+
 Version 4.21
 -------------
 

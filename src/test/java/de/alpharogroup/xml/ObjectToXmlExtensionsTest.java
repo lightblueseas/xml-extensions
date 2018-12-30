@@ -66,10 +66,9 @@ public class ObjectToXmlExtensionsTest
 		String expected;
 		Person person;
 		String javaVersion;
+		// new scenario ...
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").build();
 
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
 		actual = ObjectToXmlExtensions.toXmlWithXMLEncoder(person);
 		assertNotNull(actual);
 		javaVersion = System.getProperty("java.version");
@@ -95,13 +94,12 @@ public class ObjectToXmlExtensionsTest
 		String expected;
 		Person person;
 		Employee employee;
+		// new scenario ...
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
 
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		employee = Employee.builder().id("23").person(person).build();
+
 		actual = ObjectToXmlExtensions.toXmlWithXStream(employee);
 		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
 			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
@@ -128,12 +126,11 @@ public class ObjectToXmlExtensionsTest
 		AccessRight right;
 
 		// new scenario ...
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
+
 		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);
@@ -178,12 +175,11 @@ public class ObjectToXmlExtensionsTest
 		Person person;
 		Employee employee;
 
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
+
 		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee);
 		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
 			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
@@ -210,12 +206,11 @@ public class ObjectToXmlExtensionsTest
 		AccessRight right;
 
 		// new scenario ...
-		person = new Person();
-		person.setGender(Gender.FEMALE);
-		person.setName("Anna");
-		employee = new Employee();
-		employee.setPerson(person);
-		employee.setId("23");
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
+
 		aliases = new HashMap<>();
 		String lqSimpleName = Employee.class.getSimpleName().toLowerCase();
 		aliases.put(lqSimpleName, Employee.class);

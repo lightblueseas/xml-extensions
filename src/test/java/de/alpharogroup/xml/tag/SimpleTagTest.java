@@ -49,10 +49,17 @@ public class SimpleTagTest
 {
 
 	/**
-	 * Test method for {@link SimpleTag}
+	 * Test method for {@link SimpleTag}.
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws CloneNotSupportedException
+	 *             is thrown if the object's class does not support the {@code Cloneable} interface.
+	 *             Subclasses that override the {@code clone} method can also throw this exception
+	 *             to indicate that an instance cannot be cloned.
 	 */
 	@Test
-	public void test() throws IOException
+	public void test() throws IOException, CloneNotSupportedException
 	{
 		String expected;
 		String actual;
@@ -158,20 +165,23 @@ public class SimpleTagTest
 	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
 	 * {@link SimpleTag#toString()}
 	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
 	 * @throws IllegalAccessException
 	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
 	 * @throws InstantiationException
 	 *             if a new instance of the bean's class cannot be instantiated
+	 * @throws InvocationTargetException
+	 *             if the property accessor method throws an exception
+	 * @throws NoSuchMethodException
+	 *             if an accessor method for this property cannot be found
 	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
+	 *             Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException
+	 *             occurs if a given class cannot be located by the specified class loader
 	 */
 	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	public void testEqualsHashcodeAndToStringWithClass()
+		throws NoSuchMethodException, IllegalAccessException, InvocationTargetException,
+		InstantiationException, IOException, ClassNotFoundException
 	{
 		boolean expected;
 		boolean actual;
