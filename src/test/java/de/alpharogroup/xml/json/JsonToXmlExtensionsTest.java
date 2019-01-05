@@ -80,7 +80,7 @@ public class JsonToXmlExtensionsTest
 		String expected;
 		String actual;
 
-		expected = "<de.alpharogroup.test.objects.Employee>\n  <person>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n    <gender>FEMALE</gender>\n    <about>Ha ha ha...</about>\n    <married>true</married>\n  </person>\n  <id>23</id>\n</de.alpharogroup.test.objects.Employee>";
+		expected = "<de.alpharogroup.test.objects.Employee>\n  <id>23</id>\n  <person>\n    <about>Ha ha ha...</about>\n    <gender>FEMALE</gender>\n    <married>true</married>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n  </person>\n</de.alpharogroup.test.objects.Employee>";
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString, Employee.class);
 		assertEquals(actual, expected);

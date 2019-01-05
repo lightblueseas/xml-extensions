@@ -65,7 +65,7 @@ public class ObjectToJsonExtensionsTest
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
 
-		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
 		actual = ObjectToJsonExtensions.toJson(employee);
 		assertTrue("", actual.equals(expected));
 	}
@@ -98,7 +98,7 @@ public class ObjectToJsonExtensionsTest
 		integerEmployeeMap.put(1, employee1);
 
 
-		expected = "{\"1\":{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}}";
+		expected = "{\"1\":{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}}";
 		actual = ObjectToJsonExtensions.toJson(integerEmployeeMap);
 		assertEquals(actual, expected);
 
@@ -132,7 +132,7 @@ public class ObjectToJsonExtensionsTest
 				.id("25").build());
 		final String actual = ObjectToJsonExtensions.toJson(employees);
 
-		final String expected = "[{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"},{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
+		final String expected = "[{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}},{\"id\":\"24\",\"person\":{\"about\":\"fine person\",\"gender\":\"MALE\",\"married\":false,\"name\":\"Andreas\",\"nickname\":\"cute\"}},{\"id\":\"25\",\"person\":{\"about\":\"Im hot\",\"gender\":\"FEMALE\",\"married\":false,\"name\":\"Tatjana\",\"nickname\":\"beautiful\"}}]";
 		assertTrue("", actual.equals(expected));
 	}
 

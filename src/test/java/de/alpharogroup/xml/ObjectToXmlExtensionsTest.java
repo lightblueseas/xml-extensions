@@ -101,9 +101,9 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(employee);
-		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
-			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
-			+ "  <id>23</id>\n" + "</de.alpharogroup.test.objects.Employee>";
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
+			+ "</de.alpharogroup.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}
@@ -136,8 +136,9 @@ public class ObjectToXmlExtensionsTest
 		aliases.put(lqSimpleName, Employee.class);
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(employee, aliases);
-		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
-			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+		expected = "<employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
+			+ "</employee>";
 		assertEquals(expected, actual);
 
 		// new scenario ...
@@ -181,9 +182,9 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee);
-		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <person>\n"
-			+ "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n" + "  </person>\n"
-			+ "  <id>23</id>\n" + "</de.alpharogroup.test.objects.Employee>";
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
+			+ "</de.alpharogroup.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}
@@ -216,8 +217,9 @@ public class ObjectToXmlExtensionsTest
 		aliases.put(lqSimpleName, Employee.class);
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee, aliases);
-		expected = "<employee>\n" + "  <person>\n" + "    <name>Anna</name>\n"
-			+ "    <gender>FEMALE</gender>\n" + "  </person>\n" + "  <id>23</id>\n" + "</employee>";
+		expected = "<employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
+			+ "</employee>";
 		assertEquals(expected, actual);
 
 		// new scenario ...

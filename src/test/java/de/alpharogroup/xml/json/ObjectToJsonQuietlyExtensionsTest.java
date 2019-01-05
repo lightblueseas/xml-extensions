@@ -53,7 +53,7 @@ public class ObjectToJsonQuietlyExtensionsTest
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
 
-		expected = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
 		actual = ObjectToJsonQuietlyExtensions.toJsonQuietly(employee);
 		assertTrue("", actual.equals(expected));
 	}
