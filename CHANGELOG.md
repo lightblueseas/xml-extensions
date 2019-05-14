@@ -12,7 +12,7 @@ CHANGED:
 
 - update of parent version to 5
 - update of xmlbeans version to 3.1.0
-- update of file-worker version to 5.2.1
+- update of file-worker version to 5.2
 - update of test-objects dependency version to 5.2
 - update of jobject-clone dependency version to 3.1.2
 - replaced obsolete dependency jobject-evaluate with new jobj-contract-verifier
