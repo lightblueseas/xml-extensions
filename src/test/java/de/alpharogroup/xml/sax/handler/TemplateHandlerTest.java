@@ -39,7 +39,7 @@ import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
 import de.alpharogroup.file.compare.CompareFileExtensions;
-import de.alpharogroup.file.compare.interfaces.IFileContentResultBean;
+import de.alpharogroup.file.compare.api.IFileContentResultBean;
 import de.alpharogroup.file.csv.CsvFileExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;

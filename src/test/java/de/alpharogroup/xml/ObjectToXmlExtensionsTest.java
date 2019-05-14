@@ -59,7 +59,8 @@ public class ObjectToXmlExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	@Test
+	@SuppressWarnings("deprecation")
+	@Test(enabled = false)
 	public void testToXmlWithXMLEncoder() throws IOException
 	{
 		String actual;

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>4.5</version>
+		<version>5</version>
 		<relativePath></relativePath>
 	</parent>
 
@@ -22,18 +23,20 @@
 	<url>https://github.com/lightblueseas/xml-extensions</url>
 
 	<properties>
-		<file-worker.version>5.0.2</file-worker.version>
-		<test-objects.version>5.0.1</test-objects.version>
+		<file-worker.version>5.2.1</file-worker.version>
+		<test-objects.version>5.2</test-objects.version>
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.3.1</velocity-extensions.version>
-		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>2.5</jobject-extensions.version>
-		<jobject-clone.version>${jobject-extensions.version}</jobject-clone.version>
-		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
+        <!-- JOBJECT-CLONE version -->
+		<jobject-clone.version>3.1.2</jobject-clone.version>
+		<!-- JOBJ-CONTRACT-VERIFIER version -->
+		<jobj-contract-verifier.version>3.2</jobj-contract-verifier.version>
+		<!-- JOBJ-CORE version -->
+		<jobj-core.version>3.2.1</jobj-core.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
 		<xercesImpl.version>2.12.0</xercesImpl.version>
-		<xmlbeans.version>3.0.2</xmlbeans.version>
+		<xmlbeans.version>3.1.0</xmlbeans.version>
 		<jettison.version>1.4.0</jettison.version>
 		<json.version>20180813</json.version>
 		<xstream.version>1.4.11.1</xstream.version>
@@ -67,6 +70,18 @@
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- JOBJ-CORE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-core</artifactId>
+				<version>${jobj-core.version}</version>
+			</dependency>
+			<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-contract-verifier</artifactId>
+				<version>${jobj-contract-verifier.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>xerces</groupId>
@@ -151,6 +166,11 @@
 	</dependencyManagement>
 
 	<dependencies>
+			<!-- JOBJ-CORE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-core</artifactId>
+			</dependency>
 
 		<dependency>
 			<groupId>xerces</groupId>
@@ -191,12 +211,6 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>jobject-clone</artifactId>
 		</dependency>
-		<!-- JOBJECT-EVALUATE DEPENDENCY -->
-		<dependency>
-			<groupId>de.alpharogroup</groupId>
-			<artifactId>jobject-evaluate</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
@@ -231,6 +245,12 @@
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>meanbean-factories</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobj-contract-verifier</artifactId>
 			<scope>test</scope>
 		</dependency>
 
