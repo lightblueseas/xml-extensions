@@ -24,7 +24,7 @@
  */
 package de.alpharogroup.xml;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertEquals;
 
 import java.util.Map;
 

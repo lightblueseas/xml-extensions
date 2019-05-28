@@ -24,8 +24,8 @@
  */
 package de.alpharogroup.xml.xpath;
 
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
