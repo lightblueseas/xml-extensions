@@ -14,6 +14,8 @@
 
 Useful extensions methods and utilities for handle xml or transform xslt
 
+If you like this project put a ⭐ and donate
+
 ## License
 
 The source code comes under the liberal MIT License, making xml-extensions great for all types of applications.
