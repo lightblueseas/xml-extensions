@@ -24,20 +24,17 @@
  */
 package de.alpharogroup.xml.tag;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
-
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.map.MapFactory;
-import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
+import de.alpharogroup.evaluate.object.verifier.ContractVerifier;
 
 /**
  * The unit test class for the class {@link Tag}
@@ -46,10 +43,15 @@ public class TagTest
 {
 
 	/**
-	 * Test method for {@link Tag#clone()}.
+	 * Test method for {@link Tag#clone()}
+	 *
+	 * @throws CloneNotSupportedException
+	 *             is thrown if the object's class does not support the {@code Cloneable} interface.
+	 *             Subclasses that override the {@code clone} method can also throw this exception
+	 *             to indicate that an instance cannot be cloned.
 	 */
 	@Test(enabled = true)
-	public void testClone()
+	public void testClone() throws CloneNotSupportedException
 	{
 		Tag actual;
 		Tag expected;
@@ -77,27 +79,11 @@ public class TagTest
 	/**
 	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
 	 * {@link Tag#toString()}
-	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
-	 * @throws IllegalAccessException
-	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
-	 * @throws InstantiationException
-	 *             if a new instance of the bean's class cannot be instantiated
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	public void verifyEqualsHashcodeAndToStringContracts()
 	{
-		boolean expected;
-		boolean actual;
-		actual = EqualsHashCodeAndToStringEvaluator.evaluateEqualsHashcodeAndToString(Tag.class);
-		expected = true;
-		assertEquals(expected, actual);
+		ContractVerifier.of(Tag.class).verify();
 	}
 
 	/**

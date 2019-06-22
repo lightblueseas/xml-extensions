@@ -24,12 +24,14 @@
  */
 package de.alpharogroup.xml.tag;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import de.alpharogroup.clone.object.CloneObjectQuietlyExtensions;
+import de.alpharogroup.clone.object.CloneObjectExtensions;
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.map.MapFactory;
 import lombok.AccessLevel;
@@ -120,9 +122,18 @@ public class Tag implements Serializable
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object clone()
+	public Object clone() throws CloneNotSupportedException
 	{
-		return CloneObjectQuietlyExtensions.cloneQuietly(this);
+		try
+		{
+			return CloneObjectExtensions.clone(this);
+		}
+		catch (NoSuchMethodException | IllegalAccessException | IllegalArgumentException
+			| InvocationTargetException | ClassNotFoundException | InstantiationException
+			| IOException e)
+		{
+			throw new CloneNotSupportedException();
+		}
 	}
 
 	/**

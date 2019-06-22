@@ -47,7 +47,10 @@ public final class ObjectToXmlExtensions
 	 * @param obj
 	 *            the obj to transform to an xml string.
 	 * @return the xml string
+	 * @deprecated use instead the method with the xstream<br>
+	 * Note: will be removed in next minor release
 	 */
+	@Deprecated
 	public static <T> String toXmlWithXMLEncoder(final T obj)
 	{
 		XMLEncoder enc = null;

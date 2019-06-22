@@ -35,7 +35,6 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
-import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
@@ -48,9 +47,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ValidatorExtensions
 {
-
-	/** The Constant logger. */
-	protected static final Logger logger = Logger.getLogger(ValidatorExtensions.class);
 
 	/** The Constant DOCUMENT_BUILDER_FACTORY_VALUE. */
 	private static final String DOCUMENT_BUILDER_FACTORY_VALUE = "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl";

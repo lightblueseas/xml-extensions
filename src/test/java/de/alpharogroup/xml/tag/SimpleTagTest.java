@@ -24,13 +24,12 @@
  */
 package de.alpharogroup.xml.tag;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -39,7 +38,7 @@ import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.map.MapFactory;
-import de.alpharogroup.evaluate.object.EqualsHashCodeAndToStringEvaluator;
+import de.alpharogroup.evaluate.object.verifier.ContractVerifier;
 import de.alpharogroup.velocity.VelocityExtensions;
 
 /**
@@ -49,10 +48,17 @@ public class SimpleTagTest
 {
 
 	/**
-	 * Test method for {@link SimpleTag}
+	 * Test method for {@link SimpleTag}.
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws CloneNotSupportedException
+	 *             is thrown if the object's class does not support the {@code Cloneable} interface.
+	 *             Subclasses that override the {@code clone} method can also throw this exception
+	 *             to indicate that an instance cannot be cloned.
 	 */
 	@Test
-	public void test() throws IOException
+	public void test() throws IOException, CloneNotSupportedException
 	{
 		String expected;
 		String actual;
@@ -157,28 +163,11 @@ public class SimpleTagTest
 	/**
 	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
 	 * {@link SimpleTag#toString()}
-	 *
-	 * @throws NoSuchMethodException
-	 *             if an accessor method for this property cannot be found
-	 * @throws IllegalAccessException
-	 *             if the caller does not have access to the property accessor method
-	 * @throws InvocationTargetException
-	 *             if the property accessor method throws an exception
-	 * @throws InstantiationException
-	 *             if a new instance of the bean's class cannot be instantiated
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testEqualsHashcodeAndToStringWithClass() throws NoSuchMethodException,
-		IllegalAccessException, InvocationTargetException, InstantiationException, IOException
+	public void verifyEqualsHashcodeAndToStringContracts()
 	{
-		boolean expected;
-		boolean actual;
-		actual = EqualsHashCodeAndToStringEvaluator
-			.evaluateEqualsHashcodeAndToString(SimpleTag.class);
-		expected = true;
-		assertEquals(expected, actual);
+		ContractVerifier.of(SimpleTag.class).verify();
 	}
 
 	/**

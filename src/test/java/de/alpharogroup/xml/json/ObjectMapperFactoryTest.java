@@ -24,7 +24,8 @@
  */
 package de.alpharogroup.xml.json;
 
-import static org.testng.Assert.assertNotEquals;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.AssertJUnit.assertEquals;
 
 import org.meanbean.factories.ObjectCreationException;
@@ -69,11 +70,11 @@ public class ObjectMapperFactoryTest
 
 		actual = ObjectMapperFactory.getObjectMapper(false);
 		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertNotEquals(actual, expected);
+		assertThat(actual, not(expected));
 
 		actual = ObjectMapperFactory.getObjectMapper(true);
 		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertNotEquals(actual, expected);
+		assertThat(actual, not(expected));
 	}
 
 	/**
@@ -85,6 +86,5 @@ public class ObjectMapperFactoryTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(ObjectMapperFactory.class);
 	}
-
 
 }
