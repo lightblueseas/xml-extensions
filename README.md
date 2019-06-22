@@ -3,7 +3,7 @@
 <div align="center">
 
 [![Build Status](https://travis-ci.org/lightblueseas/xml-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/xml-extensions)
-[![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/migrate-to-jdk11/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)
+[![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/xml-extensions.svg?style=flat)](https://github.com/lightblueseas/xml-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/xml-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/xml-extensions)
@@ -110,7 +110,7 @@ Do not hesitate to contact the xml-extensions developers with your questions, co
 
 |**codecov.io**|
 |     :---:      |
-|[![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/migrate-to-jdk11/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)|
+|[![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/master/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)|
 |Special thanks to [codecov.io](https://codecov.io) for providing a free code coverage for open source projects|
 |     <img width=1000/>     |
 
