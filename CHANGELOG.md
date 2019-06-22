@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 5.1-SNAPSHOT
+Version 6
 -------------
 
 ADDED: 
@@ -10,8 +10,8 @@ ADDED:
 
 CHANGED:
 
-- update of parent version to 6.2
 - upgrade to jdk release 11
+- update of parent version to 6.2
 - update of xmlbeans version to 3.1.0
 - update of file-worker version to 5.2
 - update of test-objects dependency version to 5.2
