@@ -149,12 +149,6 @@
 				<artifactId>jobject-clone</artifactId>
 				<version>${jobject-clone.version}</version>
 			</dependency>
-			<!-- JOBJECT-EVALUATE DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>jobject-evaluate</artifactId>
-				<version>${jobject-evaluate.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>org.json</groupId>
