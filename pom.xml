@@ -358,6 +358,13 @@
 								<goal>prepare-agent</goal>
 							</goals>
 						</execution>
+						<execution>
+							<id>report</id>
+							<phase>test</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
 					</executions>
 				</plugin>
 
@@ -375,6 +382,11 @@
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
 
 		</plugins>
