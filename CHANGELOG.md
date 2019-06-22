@@ -18,6 +18,7 @@ CHANGED:
 - update of jobject-clone dependency version to 3.1.2
 - replaced obsolete dependency jobject-evaluate with new jobj-contract-verifier
 - update of jackson-core version to 2.9.9
+- change provider of code coverage to codecov.io
 
 Version 5
 -------------
