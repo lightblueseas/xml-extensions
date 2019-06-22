@@ -129,8 +129,10 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
+		actual = StringUtils.remove(actual, ' ');
 		expected = StringUtils.remove(expected, '\r');
 		expected = StringUtils.remove(expected, '\n');
+		expected = StringUtils.remove(expected, ' ');
 		assertEquals(actual, expected);
 	}
 
@@ -218,8 +220,10 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
+		actual = StringUtils.remove(actual, ' ');
 		expected = StringUtils.remove(expected, '\r');
 		expected = StringUtils.remove(expected, '\n');
+		expected = StringUtils.remove(expected, ' ');
 		assertEquals(actual, expected);
 	}
 
@@ -265,14 +269,16 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
+		actual = StringUtils.remove(actual, ' ');
 		expected = StringUtils.remove(expected, '\r');
 		expected = StringUtils.remove(expected, '\n');
+		expected = StringUtils.remove(expected, ' ');
 		assertEquals(actual, expected);
 	}
 
 	@Test(enabled = true)
 	public void testTransformStringStringOutputStream()
-		throws IOException, TransformerConfigurationException, TransformerException
+		throws IOException, TransformerException
 	{
 		File resDestDir;
 		String[] dirsAndFilename;
@@ -297,8 +303,10 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		actual = ReadFileExtensions.readFromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
+		actual = StringUtils.remove(actual, ' ');
 		expected = StringUtils.remove(expected, '\r');
 		expected = StringUtils.remove(expected, '\n');
+		expected = StringUtils.remove(expected, ' ');
 		assertEquals(actual, expected);
 	}
 
