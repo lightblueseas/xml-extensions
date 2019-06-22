@@ -41,6 +41,7 @@
 		<json.version>20180813</json.version>
 		<xstream.version>1.4.11.1</xstream.version>
 		<jackson-core.version>2.9.9</jackson-core.version>
+		<argLine></argLine>
 	</properties>
 
 	<licenses>
@@ -367,6 +368,13 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<configuration>
+						<argLine>@{argLine} -Xmx2048m</argLine>
+					</configuration>
+				</plugin>
 
 			</plugins>
 
@@ -388,6 +396,7 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 			</plugin>
+
 
 		</plugins>
 
