@@ -10,12 +10,14 @@ ADDED:
 
 CHANGED:
 
-- update of parent version to 5
+- update of parent version to 6.2
+- upgrade to jdk release 11
 - update of xmlbeans version to 3.1.0
 - update of file-worker version to 5.2
 - update of test-objects dependency version to 5.2
 - update of jobject-clone dependency version to 3.1.2
 - replaced obsolete dependency jobject-evaluate with new jobj-contract-verifier
+- update of jackson-core version to 2.9.9
 
 Version 5
 -------------
