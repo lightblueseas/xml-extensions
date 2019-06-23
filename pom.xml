@@ -307,32 +307,31 @@
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>${jacoco-maven-plugin.version}</version>
 					<configuration>
-							<excludes>
-								<!-- abstract classes -->
-								<!-- annotations -->
-								<!-- enums -->
-								<!-- beans -->
-								<!-- exceptions -->
-								<!-- interfaces -->
-								<!-- deprecated classes -->
-								<!-- constant classes with only constants -->
-								<!-- explicit abstract classes -->
-								<exclude>de/alpharogroup/xml/sax/handler/WriterHandler.class</exclude>
-								<exclude>de/alpharogroup/xml/XmlTransformation.class</exclude>
-								<!-- explicit annotations -->
-								<!-- explicit bean classes -->
-								<!-- explicit constant classes with only constants -->
-								<!-- explicit delegation classes -->
-								<exclude>de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class</exclude>
-								<!-- explicit deprecated classes -->
-								<!-- explicit enums -->
-								<exclude>de/alpharogroup/xml/node/NodeType.class</exclude>
-								<!-- explicit exceptions -->
-								<exclude>de/alpharogroup/xml/sax/handler/BreakParsingException.class</exclude>
-								<!-- explicit interfaces -->
-							</excludes>
+						<excludes>
+							<!-- abstract classes -->
+							<!-- annotations -->
+							<!-- enums -->
+							<!-- beans -->
+							<!-- exceptions -->
+							<!-- interfaces -->
+							<!-- deprecated classes -->
+							<!-- constant classes with only constants -->
+							<!-- explicit abstract classes -->
+							<exclude>de/alpharogroup/xml/sax/handler/WriterHandler.class</exclude>
+							<exclude>de/alpharogroup/xml/XmlTransformation.class</exclude>
+							<!-- explicit annotations -->
+							<!-- explicit bean classes -->
+							<!-- explicit constant classes with only constants -->
+							<!-- explicit delegation classes -->
+							<exclude>de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class</exclude>
+							<!-- explicit deprecated classes -->
+							<!-- explicit enums -->
+							<exclude>de/alpharogroup/xml/node/NodeType.class</exclude>
+							<!-- explicit exceptions -->
+							<exclude>de/alpharogroup/xml/sax/handler/BreakParsingException.class</exclude>
+							<!-- explicit interfaces -->
+						</excludes>
 					</configuration>
 				</plugin>
 
