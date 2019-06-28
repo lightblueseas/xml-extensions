@@ -126,17 +126,7 @@ public final class ObjectToXmlExtensions
 	public static <T> String toXmlWithXStream(XStream xstream, final T objectToXML,
 		final Map<String, Class<?>> aliases)
 	{
-		if (xstream == null)
-		{
-			xstream = new XStream();
-		}
-		if (aliases != null)
-		{
-			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
-			{
-				xstream.alias(alias.getKey(), alias.getValue());
-			}
-		}
+		xstream = XmlToObjectExtensions.initializeXStream(xstream, aliases);
 		final String xml = xstream.toXML(objectToXML);
 		return xml;
 	}
