@@ -4,6 +4,12 @@
 Version 6.1-SNAPSHOT
 -------------
 
+CHANGED:
+
+- created idea run configuration scripts
+- update of parent version to 6.4.1
+- java-target version is now 1.8
+
 Version 6
 -------------
 
