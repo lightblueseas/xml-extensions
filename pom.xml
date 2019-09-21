@@ -12,7 +12,7 @@
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>6.2-SNAPSHOT</version>
+	<version>6.2</version>
 
 	<name>${project.artifactId}</name>
 
