@@ -33,6 +33,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -43,7 +44,7 @@ public class ObjectToJsonExtensions
 {
 
 	/**
-	 * Creates from the given {@link List} to a json string.
+	 * Creates from the given {@link List} a json string
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -57,12 +58,34 @@ public class ObjectToJsonExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> String toJson(final List<T> list)
+	public static <T> String toJson(final @NonNull List<T> list)
 		throws JsonGenerationException, JsonMappingException, IOException
 	{
-		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		final ObjectMapper mapper = new ObjectMapper();
+		return toJson(list, mapper);
+	}
 
+	/**
+	 * Creates from the given {@link List} a json string
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param list
+	 *            the list
+	 * @param mapper
+	 *            the object mapper
+	 * @return the string
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws JsonGenerationException
+	 *             the json generation exception
+	 * @throws JsonMappingException
+	 *             the json mapping exception
+	 */
+	public static <T> String toJson(final @NonNull List<T> list, final @NonNull ObjectMapper mapper)
+		throws IOException, JsonGenerationException, JsonMappingException
+	{
+		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		mapper.writeValue(out, list);
 
 		final byte[] bytes = out.toByteArray();
@@ -71,23 +94,23 @@ public class ObjectToJsonExtensions
 	}
 
 	/**
-	 * Creates from the given Object a json string.
+	 * Creates a json {@link String} from the given argument object
 	 *
 	 * @param <T>
-	 *            the generic type of the given argument
+	 *            the generic type of the given argument object
 	 * @param object
 	 *            the object.
 	 * @return the json string.
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final T object) throws JsonProcessingException
+	public static <T> String toJson(final @NonNull T object) throws JsonProcessingException
 	{
 		return toJson(object, false);
 	}
 
 	/**
-	 * To json.
+	 * Creates a json {@link String} from the given Object
 	 *
 	 * @param <T>
 	 *            the generic type
@@ -101,10 +124,29 @@ public class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final T object, final boolean newMapper)
+	public static <T> String toJson(final @NonNull T object, final boolean newMapper)
 		throws JsonProcessingException
 	{
 		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(newMapper);
+		return toJson(object, mapper);
+	}
+
+	/**
+	 * Creates a json {@link String} from the given Object and the given object mapper
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param object
+	 *            the object
+	 * @param mapper
+	 *            the object mapper
+	 * @return the string
+	 * @throws JsonProcessingException
+	 *             the json processing exception
+	 */
+	public static <T> String toJson(final @NonNull T object, final @NonNull ObjectMapper mapper)
+		throws JsonProcessingException
+	{
 		final String json = mapper.writeValueAsString(object);
 		return json;
 	}

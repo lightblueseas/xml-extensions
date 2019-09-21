@@ -24,10 +24,10 @@
  */
 package de.alpharogroup.xml.tag;
 
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.IOException;
 
@@ -161,16 +161,6 @@ public class SimpleTagTest
 	}
 
 	/**
-	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
-	 * {@link SimpleTag#toString()}
-	 */
-	@Test
-	public void verifyEqualsHashcodeAndToStringContracts()
-	{
-		ContractVerifier.of(SimpleTag.class).verify();
-	}
-
-	/**
 	 * Test method for {@link SimpleTag#removeAttribute(String)}
 	 */
 	@Test
@@ -217,6 +207,16 @@ public class SimpleTagTest
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(SimpleTag.class);
+	}
+
+	/**
+	 * Test method for {@link SimpleTag#equals(Object)} , {@link SimpleTag#hashCode()} and
+	 * {@link SimpleTag#toString()}
+	 */
+	@Test
+	public void verifyEqualsHashcodeAndToStringContracts()
+	{
+		ContractVerifier.of(SimpleTag.class).verify();
 	}
 
 }

@@ -277,8 +277,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	}
 
 	@Test(enabled = true)
-	public void testTransformStringStringOutputStream()
-		throws IOException, TransformerException
+	public void testTransformStringStringOutputStream() throws IOException, TransformerException
 	{
 		File resDestDir;
 		String[] dirsAndFilename;

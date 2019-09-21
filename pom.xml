@@ -7,12 +7,12 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>6.4.1</version>
+		<version>5</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>6.1</version>
+	<version>6.2</version>
 
 	<name>${project.artifactId}</name>
 
@@ -354,6 +354,13 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+				<dependencies>
+				<dependency>
+					<groupId>org.ow2.asm</groupId>
+					<artifactId>asm</artifactId>
+					<version>6.2</version> <!-- Use newer version of ASM -->
+				</dependency>
+			</dependencies>
 			</plugin>
 
 			<plugin>

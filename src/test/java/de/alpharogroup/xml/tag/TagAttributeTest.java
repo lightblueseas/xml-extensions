@@ -57,16 +57,6 @@ public class TagAttributeTest
 	}
 
 	/**
-	 * Test method for {@link TagAttribute#equals(Object)} , {@link TagAttribute#hashCode()} and
-	 * {@link TagAttribute#toString()}
-	 */
-	@Test
-	public void verifyEqualsHashcodeAndToStringContracts()
-	{
-		ContractVerifier.of(TagAttribute.class).verify();
-	}
-
-	/**
 	 * Test method for {@link TagAttribute#joinValues()}
 	 */
 	@Test
@@ -86,6 +76,16 @@ public class TagAttributeTest
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(TagAttribute.class);
+	}
+
+	/**
+	 * Test method for {@link TagAttribute#equals(Object)} , {@link TagAttribute#hashCode()} and
+	 * {@link TagAttribute#toString()}
+	 */
+	@Test
+	public void verifyEqualsHashcodeAndToStringContracts()
+	{
+		ContractVerifier.of(TagAttribute.class).verify();
 	}
 
 }

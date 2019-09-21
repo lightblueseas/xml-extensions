@@ -24,10 +24,10 @@
  */
 package de.alpharogroup.xml.tag;
 
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
@@ -74,16 +74,6 @@ public class TagTest
 		assertNotNull(model);
 		model = Tag.builder().build();
 		assertNotNull(model);
-	}
-
-	/**
-	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
-	 * {@link Tag#toString()}
-	 */
-	@Test
-	public void verifyEqualsHashcodeAndToStringContracts()
-	{
-		ContractVerifier.of(Tag.class).verify();
 	}
 
 	/**
@@ -208,6 +198,16 @@ public class TagTest
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(Tag.class);
+	}
+
+	/**
+	 * Test method for {@link Tag#equals(Object)} , {@link Tag#hashCode()} and
+	 * {@link Tag#toString()}
+	 */
+	@Test
+	public void verifyEqualsHashcodeAndToStringContracts()
+	{
+		ContractVerifier.of(Tag.class).verify();
 	}
 
 }
