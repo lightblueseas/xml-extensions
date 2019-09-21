@@ -146,8 +146,10 @@ public final class XmlToObjectExtensions
 	/**
 	 * Initialize the given {@link XStream} object with the given aliases
 	 *
-	 * @param xstream the {@link XStream} object
-	 * @param aliases the aliases
+	 * @param xstream
+	 *            the {@link XStream} object
+	 * @param aliases
+	 *            the aliases
 	 * @return the initialized {@link XStream} object
 	 */
 	public static XStream initializeXStream(XStream xstream, Map<String, Class<?>> aliases)
