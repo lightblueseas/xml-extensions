@@ -4,6 +4,16 @@
 Version 6.2-SNAPSHOT
 -------------
 
+ADDED: 
+
+- new methods for convert json to object and back with new object mapper argument
+
+CHANGED:
+
+- created idea run configuration scripts
+- downgrade of parent version to 5
+
+
 Version 6.1
 -------------
 

@@ -2,6 +2,7 @@
 # Compiled files #
 ##################
 *.class
+/.attach_pid*
 
 ##################
 # intellij files #

@@ -24,15 +24,16 @@
  */
 package de.alpharogroup.xml.json;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -53,15 +54,11 @@ public final class JsonToObjectExtensions
 	 * @param clazz
 	 *            the clazz of the generic type
 	 * @return the object
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final String jsonString, final Class<T> clazz)
-		throws JsonParseException, JsonMappingException, IOException
+	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz)
+		throws IOException
 	{
 		return toObject(jsonString, clazz, false);
 	}
@@ -80,15 +77,11 @@ public final class JsonToObjectExtensions
 	 *            ObjectMapper will be created otherwise the ObjectMapper from this class will be
 	 *            returned.
 	 * @return the object
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final String jsonString, final Class<T> clazz,
-		final boolean newMapper) throws JsonParseException, JsonMappingException, IOException
+	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
+		final boolean newMapper) throws IOException
 	{
 		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(newMapper);
 		final T object = mapper.readValue(jsonString, clazz);
@@ -107,19 +100,81 @@ public final class JsonToObjectExtensions
 	 * @param modules
 	 *            The modules to register for the mapper
 	 * @return the object
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final String jsonString, final Class<T> clazz,
-		final Module... modules) throws JsonParseException, JsonMappingException, IOException
+	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
+		final Module... modules) throws IOException
 	{
 		ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(true);
 		mapper = mapper.registerModules(modules);
+		return toObject(jsonString, clazz, mapper);
+	}
+
+	/**
+	 * Transforms the given json string into a java object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonString
+	 *            the json string
+	 * @param clazz
+	 *            the clazz of the generic type
+	 * @param mapper
+	 *            the object mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
+		final @NonNull ObjectMapper mapper) throws IOException
+	{
 		final T object = mapper.readValue(jsonString, clazz);
+		return object;
+	}
+
+	/**
+	 * Transforms the given json file into a java object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonFile
+	 *            the json file
+	 * @param clazz
+	 *            the clazz
+	 * @param mapper
+	 *            the mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final @NonNull File jsonFile, final @NonNull Class<T> clazz,
+		final @NonNull ObjectMapper mapper) throws IOException
+	{
+		final T object = mapper.readValue(jsonFile, clazz);
+		return object;
+	}
+
+	/**
+	 * Transforms the given json file into a java object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonFile
+	 *            the json file
+	 * @param typeReference
+	 *            the type reference
+	 * @param mapper
+	 *            the mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final @NonNull File jsonFile,
+		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
+		throws IOException
+	{
+		final T object = mapper.readValue(jsonFile, typeReference);
 		return object;
 	}
 
@@ -132,16 +187,12 @@ public final class JsonToObjectExtensions
 	 *            the json string
 	 * @param elementClass
 	 *            the element class of the generic type
-	 * @return the list with the java objects.
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
+	 * @return the list with the java objects
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> List<T> toObjectList(final String jsonString, final Class<T> elementClass)
-		throws JsonParseException, JsonMappingException, IOException
+	public static <T> List<T> toObjectList(final @NonNull String jsonString,
+		final @NonNull Class<T> elementClass) throws IOException
 	{
 		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
 	}
@@ -158,16 +209,12 @@ public final class JsonToObjectExtensions
 	 * @param elementClass
 	 *            the element class
 	 * @return the list with the java objects.
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> Collection<T> toObjectCollection(final String jsonString,
-		@SuppressWarnings("rawtypes") Class<? extends Collection> collectionClass,
-		Class<T> elementClass) throws JsonParseException, JsonMappingException, IOException
+	public static <T> Collection<T> toObjectCollection(final @NonNull String jsonString,
+		@SuppressWarnings("rawtypes") final @NonNull Class<? extends Collection> collectionClass,
+		final @NonNull Class<T> elementClass) throws IOException
 	{
 		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(true);
 		return mapper.readValue(jsonString,
