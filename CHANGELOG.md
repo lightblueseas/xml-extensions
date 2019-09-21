@@ -1,6 +1,17 @@
 ## Change log
 ----------------------
 
+Version 6.2.1
+-------------
+
+ADDED: 
+
+- new SAXParserFactory class created that hold factory method for deactivate parser that prevents a xml bomb attack
+
+CHANGED:
+
+- update of jackson-core version to 2.10.0.pr3
+
 Version 6.2
 -------------
 
