@@ -4,6 +4,10 @@
 Version 6.3-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of jackson-core version to 2.10.0.pr3
+
 Version 6.2
 -------------
 
