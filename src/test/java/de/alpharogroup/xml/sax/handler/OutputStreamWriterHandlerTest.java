@@ -61,7 +61,8 @@ public class OutputStreamWriterHandlerTest
 	 *             is thrown if a serious configuration error is indicated
 	 */
 	@Test
-	public void testWrite() throws IOException, SAXNotSupportedException, SAXNotRecognizedException, ParserConfigurationException
+	public void testWrite() throws IOException, SAXNotSupportedException, SAXNotRecognizedException,
+		ParserConfigurationException
 	{
 		File testResDir;
 		String templateName;
