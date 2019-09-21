@@ -30,13 +30,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.testng.annotations.Test;
+import org.xml.sax.SAXNotRecognizedException;
+import org.xml.sax.SAXNotSupportedException;
 
 import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.io.StreamExtensions;
+import de.alpharogroup.xml.sax.factory.ParserFactory;
 
 /**
  * The unit test class for the class {@link OutputStreamWriterHandler}
@@ -49,9 +53,15 @@ public class OutputStreamWriterHandlerTest
 	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
+	 * @throws SAXNotSupportedException
+	 *             is thrown if the SAX operation not supported
+	 * @throws SAXNotRecognizedException
+	 *             is thrown if the SAX have unrecognized identifier
+	 * @throws ParserConfigurationException
+	 *             is thrown if a serious configuration error is indicated
 	 */
 	@Test
-	public void testWrite() throws IOException
+	public void testWrite() throws IOException, SAXNotSupportedException, SAXNotRecognizedException, ParserConfigurationException
 	{
 		File testResDir;
 		String templateName;
@@ -69,7 +79,7 @@ public class OutputStreamWriterHandlerTest
 		parseFile = new File(testResDir, templateName + ".xml");
 
 		// Use the default (non-validating) parser
-		factory = SAXParserFactory.newInstance();
+		factory = ParserFactory.newSAXParserFactory(false);
 		try
 		{
 			// Set up output stream
@@ -85,5 +95,6 @@ public class OutputStreamWriterHandlerTest
 		}
 		outputFile.deleteOnExit();
 	}
+
 
 }
