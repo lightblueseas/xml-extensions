@@ -12,7 +12,7 @@
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>6.2</version>
+	<version>6.3-SNAPSHOT</version>
 
 	<name>${project.artifactId}</name>
 
@@ -40,7 +40,7 @@
 		<jettison.version>1.4.0</jettison.version>
 		<json.version>20180813</json.version>
 		<xstream.version>1.4.11.1</xstream.version>
-		<jackson-core.version>2.9.9</jackson-core.version>
+		<jackson-core.version>2.10.0.pr3</jackson-core.version>
 		<!-- JACOCO arg line -->
 		<argLine></argLine>
 	</properties>
