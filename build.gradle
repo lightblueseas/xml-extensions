@@ -3,16 +3,26 @@
  */
 
 plugins {
+    id 'io.franzbecker.gradle-lombok' version '3.1.0'
     id 'java'
+    id 'maven'
     id 'maven-publish'
+    id 'signing'
 }
 
+apply plugin: 'java'
+apply plugin: 'maven'
+
 repositories {
+    jcenter()
     mavenLocal()
-    maven {
-        url = 'http://repo.maven.apache.org/maven2'
-    }
+    mavenCentral()
 }
+
+group = 'de.alpharogroup'
+version = '6.3-SNAPSHOT'
+description = 'xml-extensions'
+sourceCompatibility = '1.8'
 
 dependencies {
     compile 'de.alpharogroup:jobj-core:3.2.1'
@@ -37,14 +47,14 @@ dependencies {
     testCompile 'org.mockito:mockito-core:3.1.0'
 }
 
-group = 'de.alpharogroup'
-version = '6.3-SNAPSHOT'
-description = 'xml-extensions'
-sourceCompatibility = '1.8'
-
 task sourcesJar(type: Jar) {
     classifier = 'sources'
     from(sourceSets.main.allJava)
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier = 'javadoc'
 }
 
 publishing {
@@ -53,6 +63,12 @@ publishing {
             from(components.java)
             artifact(sourcesJar)
         }
+    }
+}
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
     }
 }
 
