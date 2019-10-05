@@ -4,6 +4,10 @@
 Version 6.3-SNAPSHOT
 -------------
 
+ADDED: 
+
+- new methods created for transform JSONObject and JSONArray to java objects
+
 Version 6.2.1
 -------------
 
