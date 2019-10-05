@@ -8,6 +8,7 @@ plugins {
     id 'maven'
     id 'maven-publish'
     id 'signing'
+    id 'jacoco'
 }
 
 apply plugin: 'java'
@@ -45,6 +46,10 @@ dependencies {
     testCompile 'org.testng:testng:7.0.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:3.1.0'
+}
+
+jacoco {
+    toolVersion = "0.8.4"
 }
 
 task sourcesJar(type: Jar) {
