@@ -8,6 +8,14 @@ ADDED:
 
 - new methods created for transform JSONObject and JSONArray to java objects
 
+CHANGED:
+
+- update of parent version to 5.5
+- update of file-worker version to 5.4
+- replaced obsolete jobject-clone with the new jobj-clone test dependency
+- update of jobj-core dependency version to 3.3
+- update of jackson-core version to 2.10.1
+
 Version 6.2.1
 -------------
 
