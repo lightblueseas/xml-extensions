@@ -54,7 +54,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>6.2.1</xml-extensions.version>
+		<xml-extensions.version>6.3</xml-extensions.version>
 			...
 	</properties>
 			...
@@ -68,6 +68,25 @@ Than you can add the dependency to your dependencies:
 			</dependency>
 			...
 		</dependencies>
+
+			
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of silly-collections:
+
+```
+ext {
+			...
+    xmlExtensionsVersion = "6.3"
+			...
+}
+dependencies {
+			...
+compile "de.alpharogroup:xml-extensions:${xmlExtensionsVersion}"
+			...
+}
+```
+		
 
 ## Semantic Versioning
 
