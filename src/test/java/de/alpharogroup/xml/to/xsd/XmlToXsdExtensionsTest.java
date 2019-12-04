@@ -40,7 +40,7 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.array.ArrayFactory;
-import de.alpharogroup.file.checksum.ChecksumExtensions;
+import de.alpharogroup.crypto.file.checksum.FileChecksumExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 
@@ -200,7 +200,7 @@ public class XmlToXsdExtensionsTest
 		assertFalse(xsdOutFile.exists());
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
 			.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();
@@ -239,7 +239,7 @@ public class XmlToXsdExtensionsTest
 
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
 			.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();
@@ -281,7 +281,7 @@ public class XmlToXsdExtensionsTest
 
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions, xmlOptions);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(ChecksumExtensions.getCheckSumAdler32(expected) == ChecksumExtensions
+		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
 			.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();

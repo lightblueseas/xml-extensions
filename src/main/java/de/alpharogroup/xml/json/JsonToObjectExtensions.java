@@ -29,10 +29,14 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.alpharogroup.collections.list.ListFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -61,6 +65,27 @@ public final class JsonToObjectExtensions
 		throws IOException
 	{
 		return toObject(jsonString, clazz, false);
+	}
+
+	/**
+	 * Transforms the given json object into a java object
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonObject
+	 *            the json object
+	 * @param clazz
+	 *            the clazz of the generic type
+	 * @param mapper
+	 *            the object mapper
+	 * @return the java object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final @NonNull JSONObject jsonObject,
+		final @NonNull Class<T> clazz, final @NonNull ObjectMapper mapper) throws IOException
+	{
+		return toObject(jsonObject.toString(), clazz, mapper);
 	}
 
 	/**
@@ -195,6 +220,36 @@ public final class JsonToObjectExtensions
 		final @NonNull Class<T> elementClass) throws IOException
 	{
 		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
+	}
+
+	/**
+	 * Transforms the given {@link JSONArray} into a java object {@link List}.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonArray
+	 *            the json array the element class of the generic type
+	 * @param elementClass
+	 *            the element class
+	 * @return the list with the java objects
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> List<T> toObjectList(final @NonNull JSONArray jsonArray,
+		final @NonNull Class<T> elementClass) throws IOException
+	{
+		List<String> list = ListFactory.newArrayList();
+		for (int i = 0; i < jsonArray.length(); i++)
+		{
+			Object object = jsonArray.get(i);
+			list.add(object.toString());
+		}
+		List<T> result = ListFactory.newArrayList();
+		for (int i = 0; i < list.size(); i++)
+		{
+			result.add(JsonToObjectExtensions.toObject(list.get(i), elementClass));
+		}
+		return result;
 	}
 
 	/**

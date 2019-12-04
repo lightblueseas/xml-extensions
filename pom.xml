@@ -7,12 +7,12 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>5</version>
+		<version>5.5</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>xml-extensions</artifactId>
-	<version>6.2.1</version>
+	<version>6.3</version>
 
 	<name>${project.artifactId}</name>
 
@@ -23,16 +23,18 @@
 	<url>https://github.com/lightblueseas/${project.artifactId}</url>
 
 	<properties>
-		<file-worker.version>5.2</file-worker.version>
+		<file-worker.version>5.4</file-worker.version>
 		<test-objects.version>5.2</test-objects.version>
 		<!-- VELOCITY-EXTENSIONS version -->
 		<velocity-extensions.version>1.3.1</velocity-extensions.version>
 		<!-- JOBJECT-CLONE version -->
-		<jobject-clone.version>3.1.2</jobject-clone.version>
+		<jobj-clone.version>3.2</jobj-clone.version>
 		<!-- JOBJ-CONTRACT-VERIFIER version -->
 		<jobj-contract-verifier.version>3.2</jobj-contract-verifier.version>
 		<!-- JOBJ-CORE version -->
-		<jobj-core.version>3.2.1</jobj-core.version>
+		<jobj-core.version>3.3</jobj-core.version>
+		<!-- MYSTIC-CRYPT version -->
+		<mystic-crypt.version>7.2</mystic-crypt.version>
 		<!-- EXTERNAL LIBRARIES versions -->
 		<velocity.version>1.7</velocity.version>
 		<xercesImpl.version>2.12.0</xercesImpl.version>
@@ -40,7 +42,7 @@
 		<jettison.version>1.4.0</jettison.version>
 		<json.version>20180813</json.version>
 		<xstream.version>1.4.11.1</xstream.version>
-		<jackson-core.version>2.10.0.pr3</jackson-core.version>
+		<jackson-core.version>2.10.1</jackson-core.version>
 		<!-- JACOCO arg line -->
 		<argLine></argLine>
 	</properties>
@@ -72,6 +74,12 @@
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- MYSTIC-CRYPT DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>mystic-crypt</artifactId>
+				<version>${mystic-crypt.version}</version>
+			</dependency>
 			<!-- JOBJ-CORE DEPENDENCY -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -83,6 +91,12 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>jobj-contract-verifier</artifactId>
 				<version>${jobj-contract-verifier.version}</version>
+			</dependency>
+			<!-- JOBJ-CLONE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-clone</artifactId>
+				<version>${jobj-clone.version}</version>
 			</dependency>
 
 			<dependency>
@@ -144,12 +158,6 @@
 				<artifactId>velocity-extensions</artifactId>
 				<version>${velocity-extensions.version}</version>
 			</dependency>
-			<!-- JOBJECT-CLONE DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>jobject-clone</artifactId>
-				<version>${jobject-clone.version}</version>
-			</dependency>
 
 			<dependency>
 				<groupId>org.json</groupId>
@@ -202,10 +210,16 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>file-worker</artifactId>
 		</dependency>
-		<!-- JOBJECT-CLONE DEPENDENCY -->
+		<!-- JOBJ-CLONE DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
-			<artifactId>jobject-clone</artifactId>
+			<artifactId>jobj-clone</artifactId>
+		</dependency>
+		<!-- MYSTIC-CRYPT DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>mystic-crypt</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -355,12 +369,12 @@
 					</annotationProcessorPaths>
 				</configuration>
 				<dependencies>
-				<dependency>
-					<groupId>org.ow2.asm</groupId>
-					<artifactId>asm</artifactId>
-					<version>6.2</version> <!-- Use newer version of ASM -->
-				</dependency>
-			</dependencies>
+					<dependency>
+						<groupId>org.ow2.asm</groupId>
+						<artifactId>asm</artifactId>
+						<version>6.2</version> <!-- Use newer version of ASM -->
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
