@@ -82,9 +82,8 @@ public final class JsonToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull JSONObject jsonObject, final @NonNull Class<T> clazz,
-		final @NonNull ObjectMapper mapper)
-		throws IOException
+	public static <T> T toObject(final @NonNull JSONObject jsonObject,
+		final @NonNull Class<T> clazz, final @NonNull ObjectMapper mapper) throws IOException
 	{
 		return toObject(jsonObject.toString(), clazz, mapper);
 	}
@@ -226,11 +225,15 @@ public final class JsonToObjectExtensions
 	/**
 	 * Transforms the given {@link JSONArray} into a java object {@link List}.
 	 *
-	 * @param <T>            the generic type
-	 * @param jsonArray            the json array the element class of the generic type
-	 * @param elementClass the element class
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonArray
+	 *            the json array the element class of the generic type
+	 * @param elementClass
+	 *            the element class
 	 * @return the list with the java objects
-	 * @throws IOException             Signals that an I/O exception has occurred.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	public static <T> List<T> toObjectList(final @NonNull JSONArray jsonArray,
 		final @NonNull Class<T> elementClass) throws IOException
