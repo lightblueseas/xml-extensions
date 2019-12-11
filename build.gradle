@@ -27,7 +27,7 @@ ext {
     xstreamVersion = "1.4.11.1"
     jacksonDatabindVersion = "2.10.1"
     xercesImplVersion = "2.12.0"
-    jsonVersion = "20180813"
+    jsonVersion = "20190722"
     fileWorkerVersion = "5.4"
     jobjCoreVersion = "3.3"
     jobjCloneVersion = "3.2"
@@ -38,9 +38,9 @@ ext {
     jobjContractVerifierVersion = "3.2"
     velocityVersion = "1.7"
     meanbeanVersion = "2.0.3"
-    testngVersion = "7.0.0"
-    junitVersion = "4.13-rc-1"
-    mockitoCoreVersion = "3.1.0"
+    testngVersion = "7.1.0"
+    junitVersion = "4.13-rc-2"
+    mockitoCoreVersion = "3.2.0"
 }
 
 dependencies {
