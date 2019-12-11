@@ -74,12 +74,12 @@ public class XmlToXsdExtensionsTest
 		String xml;
 		String xsdString;
 
-		File projectDir;
+		File srcTestResourcesDir;
 
-		projectDir = PathFinder.getProjectDirectory();
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
 
-		xml = "pom.xml";
-		final File xmlFile = new File(projectDir, xml);
+		xml = "test-pom.xml";
+		final File xmlFile = new File(srcTestResourcesDir, xml);
 
 		xsdString = XmlToXsdExtensions.xmlToXsd(xmlFile);
 		assertNotNull(xsdString);
@@ -95,7 +95,6 @@ public class XmlToXsdExtensionsTest
 	public void testXmlToXsdFileArrayInst2XsdOptionsFileString() throws IOException
 	{
 		File expected;
-		File projectDir;
 		File[] xmlFiles;
 		Inst2XsdOptions inst2XsdOptions;
 		String xml;
@@ -105,9 +104,8 @@ public class XmlToXsdExtensionsTest
 		// 1. scenario ...
 		xsd = "schema0.xsd";
 		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
-		projectDir = PathFinder.getProjectDirectory();
-		xml = "pom.xml";
-		xmlFile = new File(projectDir, xml);
+		xml = "test-pom.xml";
+		xmlFile = new File(srcTestResourcesDir, xml);
 
 		xmlFiles = ArrayFactory.newArray(xmlFile);
 		inst2XsdOptions = new Inst2XsdOptions();
@@ -118,9 +116,8 @@ public class XmlToXsdExtensionsTest
 		DeleteFileExtensions.delete(expected);
 		// 2. scenario ...
 		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
-		projectDir = PathFinder.getProjectDirectory();
-		xml = "pom.xml";
-		xmlFile = new File(projectDir, xml);
+		xml = "test-pom.xml";
+		xmlFile = new File(srcTestResourcesDir, xml);
 
 		xmlFiles = ArrayFactory.newArray(xmlFile);
 		inst2XsdOptions = new Inst2XsdOptions();
@@ -302,12 +299,12 @@ public class XmlToXsdExtensionsTest
 		String xsdString;
 		Inst2XsdOptions inst2XsdOptions;
 
-		File projectDir;
+		File srcTestResourcesDir;
 
-		projectDir = PathFinder.getProjectDirectory();
+		srcTestResourcesDir = PathFinder.getSrcTestResourcesDir();
 		inst2XsdOptions = new Inst2XsdOptions();
-		xml = "pom.xml";
-		final File xmlFile = new File(projectDir, xml);
+		xml = "test-pom.xml";
+		final File xmlFile = new File(srcTestResourcesDir, xml);
 
 		xsdString = XmlToXsdExtensions.xmlToXsd(xmlFile, inst2XsdOptions);
 		assertNotNull(xsdString);
