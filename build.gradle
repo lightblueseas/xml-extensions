@@ -158,11 +158,11 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ["de/alpharogroup/xml/sax/handler/WriterHandler.class",
-                              "de/alpharogroup/xml/XmlTransformation.class",
-                              "de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class",
-                              "de/alpharogroup/xml/node/NodeType.class",
-                              "de/alpharogroup/xml/sax/handler/BreakParsingException.class"])
+                    exclude: ["de/alpharogroup/xml/sax/handler/WriterHandler",
+                              "de/alpharogroup/xml/XmlTransformation",
+                              "de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions",
+                              "de/alpharogroup/xml/node/NodeType",
+                              "de/alpharogroup/xml/sax/handler/BreakParsingException"])
         })
     }
 }
