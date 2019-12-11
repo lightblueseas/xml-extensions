@@ -155,6 +155,16 @@ jacocoTestReport {
         xml.enabled true
         html.enabled false
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ["de/alpharogroup/xml/sax/handler/WriterHandler.class",
+                              "de/alpharogroup/xml/XmlTransformation.class",
+                              "de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class",
+                              "de/alpharogroup/xml/node/NodeType.class",
+                              "de/alpharogroup/xml/sax/handler/BreakParsingException.class"])
+        })
+    }
 }
 
 check.dependsOn jacocoTestReport
