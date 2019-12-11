@@ -10,7 +10,7 @@ plugins {
 apply plugin: "jacoco"
 
 group = "de.alpharogroup"
-version = "6.4"
+version = "6.5-SNAPSHOT"
 description = "xml-extensions"
 sourceCompatibility = "1.8"
 
