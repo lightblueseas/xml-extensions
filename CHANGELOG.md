@@ -1,8 +1,20 @@
 ## Change log
 ----------------------
 
-Version 6.4-SNAPSHOT
+Version 6.4
 -------------
+ADDED:
+ 
+- gradle as new build system
+
+CHANGED:
+
+- changed project nature from maven to gradle nature
+- removed maven related files
+- update of json dependency version to 20190722
+- update of testng dependency version to 7.1.0
+- update of mockito-core dependency version to 3.2.0
+- update of junit dependency version to 4.13-rc-2
 
 Version 6.3
 -------------
