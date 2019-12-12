@@ -6,6 +6,7 @@ Version 6.5-SNAPSHOT
 
 Version 6.4
 -------------
+
 ADDED:
  
 - gradle as new build system
