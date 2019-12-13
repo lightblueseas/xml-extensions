@@ -24,9 +24,12 @@
  */
 package de.alpharogroup.xml.json;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.experimental.UtilityClass;
+
+import java.util.Map;
 
 /**
  * The factory class {@link ObjectMapperFactory} for creating ObjectMapper objects.
@@ -64,6 +67,19 @@ public class ObjectMapperFactory
 			return new ObjectMapper();
 		}
 		return MAPPER;
+	}
+
+	/**
+	 * Factory method for create a new object mapper with the given features
+	 *
+	 * @param features
+	 *            the features for the object mapper
+	 * @return the object mapper
+	 */
+	public static ObjectMapper newObjectMapper(Map<JsonParser.Feature, Boolean> features){
+		ObjectMapper objectMapper = getObjectMapper(true);
+		features.entrySet().forEach(entry-> objectMapper.configure(entry.getKey(), entry.getValue()));
+		return objectMapper;
 	}
 
 }

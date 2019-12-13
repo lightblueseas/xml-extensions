@@ -4,6 +4,10 @@
 Version 6.5-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new factory method for create new object mapper with given features
+
 Version 6.4
 -------------
 

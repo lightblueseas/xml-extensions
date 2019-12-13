@@ -109,8 +109,7 @@ public final class JsonToObjectExtensions
 		final boolean newMapper) throws IOException
 	{
 		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(newMapper);
-		final T object = mapper.readValue(jsonString, clazz);
-		return object;
+		return toObject(jsonString, clazz, mapper);
 	}
 
 	/**
@@ -154,8 +153,7 @@ public final class JsonToObjectExtensions
 	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
 		final @NonNull ObjectMapper mapper) throws IOException
 	{
-		final T object = mapper.readValue(jsonString, clazz);
-		return object;
+		return mapper.readValue(jsonString, clazz);
 	}
 
 	/**
@@ -176,8 +174,7 @@ public final class JsonToObjectExtensions
 	public static <T> T toObject(final @NonNull File jsonFile, final @NonNull Class<T> clazz,
 		final @NonNull ObjectMapper mapper) throws IOException
 	{
-		final T object = mapper.readValue(jsonFile, clazz);
-		return object;
+		return mapper.readValue(jsonFile, clazz);
 	}
 
 	/**
@@ -199,8 +196,7 @@ public final class JsonToObjectExtensions
 		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
 		throws IOException
 	{
-		final T object = mapper.readValue(jsonFile, typeReference);
-		return object;
+		return mapper.readValue(jsonFile, typeReference);
 	}
 
 	/**
