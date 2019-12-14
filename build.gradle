@@ -11,7 +11,7 @@ plugins {
 apply plugin: "jacoco"
 
 group = "de.alpharogroup"
-version = "6.5-SNAPSHOT"
+version = "6.5"
 description = "xml-extensions"
 sourceCompatibility = "1.8"
 
