@@ -2,7 +2,6 @@
 # Compiled files #
 ##################
 *.class
-/.attach_pid*
 
 ##################
 # intellij files #
@@ -63,6 +62,7 @@
 /build
 /.gradle
 /gradle
+/out
 # Ignore Gradle GUI config
 gradle-app.setting
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)

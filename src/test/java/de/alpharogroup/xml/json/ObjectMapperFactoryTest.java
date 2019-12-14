@@ -28,12 +28,17 @@ import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.AssertJUnit.assertEquals;
 
+import java.util.Map;
+
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.alpharogroup.collections.map.MapFactory;
 
 /**
  * The unit test class for the class {@link ObjectMapperFactory}
@@ -44,6 +49,7 @@ public class ObjectMapperFactoryTest
 	/**
 	 * Test method for {@link ObjectMapperFactory#getObjectMapper()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetObjectMapper()
 	{
@@ -58,6 +64,7 @@ public class ObjectMapperFactoryTest
 	/**
 	 * Test method for {@link ObjectMapperFactory#getObjectMapper(boolean)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetObjectMapperBoolean()
 	{
@@ -74,6 +81,60 @@ public class ObjectMapperFactoryTest
 
 		actual = ObjectMapperFactory.getObjectMapper(true);
 		expected = ObjectMapperFactory.getObjectMapper(true);
+		assertThat(actual, not(expected));
+	}
+
+	/**
+	 * Test method for {@link ObjectMapperFactory#newObjectMapper()}.
+	 */
+	@Test
+	public void testNewObjectMapper()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+
+		actual = ObjectMapperFactory.newObjectMapper();
+		expected = ObjectMapperFactory.newObjectMapper(false);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link ObjectMapperFactory#newObjectMapper(boolean)}.
+	 */
+	@Test
+	public void testNewObjectMapperBoolean()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+
+		actual = ObjectMapperFactory.newObjectMapper(false);
+		expected = ObjectMapperFactory.newObjectMapper(false);
+		assertEquals(actual, expected);
+
+		actual = ObjectMapperFactory.newObjectMapper(false);
+		expected = ObjectMapperFactory.newObjectMapper(true);
+		assertThat(actual, not(expected));
+
+		actual = ObjectMapperFactory.newObjectMapper(true);
+		expected = ObjectMapperFactory.newObjectMapper(true);
+		assertThat(actual, not(expected));
+	}
+
+
+	/**
+	 * Test method for {@link ObjectMapperFactory#newObjectMapper(java.util.Map)}
+	 */
+	@Test
+	public void testNewObjectMapperMapOfFeatureBoolean()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+		Map<JsonParser.Feature, Boolean> features;
+
+		features = MapFactory.newHashMap();
+		features.put(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+		actual = ObjectMapperFactory.newObjectMapper(features);
+		expected = ObjectMapperFactory.newObjectMapper(true);
 		assertThat(actual, not(expected));
 	}
 

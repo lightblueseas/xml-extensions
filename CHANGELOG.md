@@ -8,6 +8,10 @@ ADDED:
  
 - new factory method for create new object mapper with given features
 
+CHANGED:
+
+- tagged methods as deprecated in ObjectMapperFactory and replaced with the appropriate factory methods
+
 Version 6.4
 -------------
 
