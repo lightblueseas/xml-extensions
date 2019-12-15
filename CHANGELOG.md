@@ -1,10 +1,12 @@
 ## Change log
 ----------------------
 
-Version 6.6-SNAPSHOT
+Version 7
 -------------
 
+CHANGED:
 
+- moved xml specific classes to this project from mystic-crypt
 
 Version 6.5.1
 -------------
