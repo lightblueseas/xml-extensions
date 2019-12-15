@@ -26,6 +26,7 @@ package de.alpharogroup.xml.crypto.file;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 import org.apache.commons.codec.DecoderException;
@@ -58,6 +59,36 @@ public class XmlDecryptionExtensions
 	 *            the aliases for the {@link XStream} object
 	 * @param selectedFile
 	 *            the selected file to read
+	 * @param charset
+	 *            the charset
+	 * @return the generic data object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	public static <T> T readFromFileAsXmlAndHex(final @NonNull XStream xstream,
+		final @NonNull Map<String, Class<?>> aliases, final @NonNull File selectedFile,
+		String charset) throws IOException, DecoderException
+	{
+		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
+			Charset.forName(charset));
+		String xmlString = HexExtensions.decodeHex(hexXmlString);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+	}
+
+	/**
+	 * Read from file the data object that was before saved as xml and encoded into a hexadecimal
+	 * {@link String} object.
+	 *
+	 * @param <T>
+	 *            the generic type of the data object
+	 * @param xstream
+	 *            the {@link XStream} object
+	 * @param aliases
+	 *            the aliases for the {@link XStream} object
+	 * @param selectedFile
+	 *            the selected file to read
 	 * @return the generic data object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -68,9 +99,35 @@ public class XmlDecryptionExtensions
 		final @NonNull Map<String, Class<?>> aliases, final @NonNull File selectedFile)
 		throws IOException, DecoderException
 	{
-		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile);
-		String xmlString = HexExtensions.decodeHex(hexXmlString);
-		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+		return readFromFileAsXmlAndHex(xstream, aliases, selectedFile, "UTF-8");
+	}
+
+	/**
+	 * Read from file the data object that was before saved as xml and encoded into a hexadecimal
+	 * {@link String} object.
+	 *
+	 * @param <T>
+	 *            the generic type of the data object
+	 * @param aliases
+	 *            the aliases for the {@link XStream} object
+	 * @param selectedFile
+	 *            the selected file to read
+	 * @param allowTypesByWildcard
+	 *            the allow types by wildcard
+	 * @return the generic data object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	public static <T> T readFromFileAsXmlAndHex(final @NonNull Map<String, Class<?>> aliases,
+		final @NonNull File selectedFile, String... allowTypesByWildcard)
+		throws IOException, DecoderException
+	{
+		XStream xStream = new XStream();
+		XStream.setupDefaultSecurity(xStream);
+		xStream.allowTypesByWildcard(allowTypesByWildcard);
+		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
 	}
 
 }

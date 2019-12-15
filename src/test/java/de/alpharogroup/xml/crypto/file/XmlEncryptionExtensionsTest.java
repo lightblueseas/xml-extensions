@@ -105,4 +105,44 @@ public class XmlEncryptionExtensionsTest
 		assertEquals(actual, expected);
 	}
 
+	/**
+	 * Test method for
+	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(XStream, Map, Object, File)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testWriteToFileAsXmlAndHexAliasesAndAllowTypesByWildcard()
+		throws IOException, DecoderException
+	{
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		XmlEncryptionExtensions.writeToFileAsXmlAndHex(xStream, aliases, expected, xmlFile);
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(aliases, xmlFile,
+			"de.alpharogroup.**");
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for
+	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(XStream, Map, Object, File, String)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testWriteToFileAsXmlAndHexAndCharset() throws IOException, DecoderException
+	{
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		XmlEncryptionExtensions.writeToFileAsXmlAndHex(xStream, aliases, expected, xmlFile,
+			"UTF-8");
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(xStream, aliases, xmlFile,
+			"UTF-8");
+		assertEquals(actual, expected);
+	}
+
 }

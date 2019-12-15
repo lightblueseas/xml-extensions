@@ -47,7 +47,7 @@ public class XmlEncryptionExtensions
 
 	/**
 	 * Write the given data object to the given file as xml and encoded into a hexadecimal
-	 * {@link String} object
+	 * {@link String} object.
 	 *
 	 * @param <T>
 	 *            the generic type of the data object
@@ -66,10 +66,63 @@ public class XmlEncryptionExtensions
 		final @NonNull Map<String, Class<?>> aliases, final @NonNull T data, @NonNull File file)
 		throws IOException
 	{
+		writeToFileAsXmlAndHex(xstream, aliases, data, file, "UTF-8");
+	}
+
+	/**
+	 * Write the given data object to the given file as xml and encoded into a hexadecimal
+	 * {@link String} object.
+	 *
+	 * @param <T>
+	 *            the generic type of the data object
+	 * @param xstream
+	 *            the {@link XStream} object
+	 * @param aliases
+	 *            the aliases for the {@link XStream} object
+	 * @param data
+	 *            the data to write
+	 * @param file
+	 *            the file to write
+	 * @param charset
+	 *            the charset
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> void writeToFileAsXmlAndHex(final @NonNull XStream xstream,
+		final @NonNull Map<String, Class<?>> aliases, final @NonNull T data, @NonNull File file,
+		String charset) throws IOException
+	{
 		String xmlString = ObjectToXmlExtensions.toXmlWithXStream(xstream, data, aliases);
-		final String hexXmlString = HexExtensions.encodeHex(xmlString, Charset.forName("UTF-8"),
+		final String hexXmlString = HexExtensions.encodeHex(xmlString, Charset.forName(charset),
 			true);
-		WriteFileExtensions.writeStringToFile(file, hexXmlString, "UTF-8");
+		WriteFileExtensions.writeStringToFile(file, hexXmlString, charset);
+	}
+
+	/**
+	 * Write the given data object to the given file as xml and encoded into a hexadecimal
+	 * {@link String} object.
+	 *
+	 * @param <T>
+	 *            the generic type of the data object
+	 * @param aliases
+	 *            the aliases for the {@link XStream} object
+	 * @param data
+	 *            the data to write
+	 * @param file
+	 *            the file to write
+	 * @param allowTypesByWildcard
+	 *            the allowed types by wildcard
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> void writeToFileAsXmlAndHex(final @NonNull Map<String, Class<?>> aliases,
+		final @NonNull T data, final @NonNull File file,
+		String... allowTypesByWildcard) throws IOException
+	{
+		XStream xStream = new XStream();
+		XStream.setupDefaultSecurity(xStream);
+		xStream.allowTypesByWildcard(allowTypesByWildcard);
+		writeToFileAsXmlAndHex(xStream, aliases, data, file);
 	}
 
 }

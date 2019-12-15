@@ -31,7 +31,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.codec.DecoderException;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import com.google.common.collect.BiMap;
 import com.thoughtworks.xstream.XStream;
@@ -80,6 +80,46 @@ public class XmlDecryptionExtensionsTest
 		xmlFile = new File(xmlDir, "foo.sor");
 		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
 		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(xStream, aliases, xmlFile);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlDecryptionExtensions#readFromFileAsXmlAndHex(Map, File, String...)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testReadFromFileAsXmlAndHexAliasesAndAllowTypesByWildcard()
+		throws IOException, DecoderException
+	{
+		xmlDir = new File(PathFinder.getSrcTestResourcesDir(), "xml");
+		xmlFile = new File(xmlDir, "foo.sor");
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(aliases, xmlFile,
+			"de.alpharogroup.**");
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for
+	 * {@link XmlDecryptionExtensions#readFromFileAsXmlAndHex(XStream, Map, File, String)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testReadFromFileAsXmlAndHexAndCharset() throws IOException, DecoderException
+	{
+		xmlDir = new File(PathFinder.getSrcTestResourcesDir(), "xml");
+		xmlFile = new File(xmlDir, "foo.sor");
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(xStream, aliases, xmlFile,
+			"UTF-8");
 		assertEquals(actual, expected);
 	}
 
