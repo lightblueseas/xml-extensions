@@ -1,8 +1,23 @@
 ## Change log
 ----------------------
 
+Version 6.5
+-------------
+
+ADDED:
+ 
+- new factory method for create new object mapper with given features
+- new unit tests for the ParserFactory created
+- new idea run configurations for gradle builds created
+
+CHANGED:
+
+- tagged methods as deprecated in ObjectMapperFactory and replaced with the appropriate factory methods
+- removed idea run configurations for maven
+
 Version 6.4
 -------------
+
 ADDED:
  
 - gradle as new build system

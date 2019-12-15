@@ -24,28 +24,33 @@
  */
 package de.alpharogroup.xml.json;
 
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.experimental.UtilityClass;
 
 /**
- * The factory class {@link ObjectMapperFactory} for creating ObjectMapper objects.
+ * The factory class {@link ObjectMapperFactory} for creating {@link ObjectMapper} objects
  */
 @UtilityClass
 public class ObjectMapperFactory
 {
 
 	/** The constant mapper. */
-	private final static ObjectMapper MAPPER = getObjectMapper(true);
+	private final static ObjectMapper MAPPER = newObjectMapper(true);
 
 	/**
 	 * Gets the object mapper.
 	 *
 	 * @return the object mapper
+	 * @deprecated use instead the method <code>newObjectMapper()</code>
 	 */
+	@Deprecated
 	public static ObjectMapper getObjectMapper()
 	{
-		return getObjectMapper(false);
+		return newObjectMapper(false);
 	}
 
 	/**
@@ -56,14 +61,57 @@ public class ObjectMapperFactory
 	 *            ObjectMapper will be created otherwise the ObjectMapper from this class will be
 	 *            returned.
 	 * @return the object mapper
+	 * @deprecated use instead the method <code>newObjectMapper(boolean)</code>
 	 */
+	@Deprecated
 	public static ObjectMapper getObjectMapper(final boolean newMapper)
+	{
+		return newObjectMapper(newMapper);
+	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper}
+	 *
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newObjectMapper()
+	{
+		return newObjectMapper(false);
+	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper}. If the given flag is true a new
+	 * {@link ObjectMapper} will be created otherwise the default {@link ObjectMapper} will be
+	 * taken.
+	 *
+	 * @param newMapper
+	 *            flag that indicates if a new {@link ObjectMapper} should be created, if true a new
+	 *            {@link ObjectMapper} will be created otherwise the default {@link ObjectMapper}
+	 *            from this class will be returned.
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newObjectMapper(final boolean newMapper)
 	{
 		if (newMapper)
 		{
 			return new ObjectMapper();
 		}
 		return MAPPER;
+	}
+
+	/**
+	 * Factory method for create a new {@link ObjectMapper} with the given features
+	 *
+	 * @param features
+	 *            the features for the new {@link ObjectMapper}
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newObjectMapper(Map<JsonParser.Feature, Boolean> features)
+	{
+		ObjectMapper objectMapper = newObjectMapper(true);
+		features.entrySet()
+			.forEach(entry -> objectMapper.configure(entry.getKey(), entry.getValue()));
+		return objectMapper;
 	}
 
 }

@@ -127,7 +127,7 @@ public class ObjectToJsonExtensions
 	public static <T> String toJson(final @NonNull T object, final boolean newMapper)
 		throws JsonProcessingException
 	{
-		final ObjectMapper mapper = ObjectMapperFactory.getObjectMapper(newMapper);
+		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(newMapper);
 		return toJson(object, mapper);
 	}
 
@@ -147,8 +147,7 @@ public class ObjectToJsonExtensions
 	public static <T> String toJson(final @NonNull T object, final @NonNull ObjectMapper mapper)
 		throws JsonProcessingException
 	{
-		final String json = mapper.writeValueAsString(object);
-		return json;
+		return mapper.writeValueAsString(object);
 	}
 
 }

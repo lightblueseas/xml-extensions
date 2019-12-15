@@ -24,35 +24,30 @@
  */
 package de.alpharogroup.xml.sax.factory;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
-import lombok.experimental.UtilityClass;
-
 /**
- * A factory for creating {@link SAXParserFactory} objects
+ * The unit test class for the class {@link ParserFactory}
  */
-@UtilityClass
-public final class ParserFactory
+public class ParserFactoryTest
 {
 
-	/** The Constant for the key of the feature to disallow doctype declarations */
-	public static final String FEATURE_DISALLOW_DOCTYPE_DECL = "http://apache.org/xml/features/disallow-doctype-decl";
-
-	/** The Constant for the key of the feature to allow external general entities */
-	public static final String FEATURE_EXTERNAL_GENERAL_ENTITIES = "http://xml.org/sax/features/external-general-entities";
-
 	/**
-	 * Factory method for create a new {@link SAXParserFactory} with a flag for deactivate the
-	 * parser for protection from xml-bomb
+	 * Test method for {@link ParserFactory#newSAXParserFactory(boolean)}
 	 *
-	 * @param withoutParser
-	 *            the without parser
-	 * @return the new {@link SAXParserFactory} object
 	 * @throws SAXNotSupportedException
 	 *             is thrown if the SAX operation not supported
 	 * @throws SAXNotRecognizedException
@@ -60,16 +55,34 @@ public final class ParserFactory
 	 * @throws ParserConfigurationException
 	 *             is thrown if a serious configuration error is indicated
 	 */
-	public static SAXParserFactory newSAXParserFactory(boolean withoutParser)
+	@Test
+	public final void testNewSAXParserFactory()
 		throws SAXNotSupportedException, SAXNotRecognizedException, ParserConfigurationException
 	{
-		SAXParserFactory factory = SAXParserFactory.newInstance();
-		if (withoutParser)
-		{
-			factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-			factory.setFeature(ParserFactory.FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
-			factory.setFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL, true);
-		}
-		return factory;
+		SAXParserFactory saxParserFactory;
+
+		saxParserFactory = ParserFactory.newSAXParserFactory(true);
+		assertNotNull(saxParserFactory);
+		assertTrue(saxParserFactory.getFeature(XMLConstants.FEATURE_SECURE_PROCESSING));
+		assertFalse(saxParserFactory.getFeature(ParserFactory.FEATURE_EXTERNAL_GENERAL_ENTITIES));
+		assertTrue(saxParserFactory.getFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL));
+
+		saxParserFactory = ParserFactory.newSAXParserFactory(false);
+		assertNotNull(saxParserFactory);
+		assertFalse(saxParserFactory.getFeature(XMLConstants.FEATURE_SECURE_PROCESSING));
+		assertTrue(saxParserFactory.getFeature(ParserFactory.FEATURE_EXTERNAL_GENERAL_ENTITIES));
+		assertFalse(saxParserFactory.getFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL));
+
 	}
+
+	/**
+	 * Test method for {@link SAXParserFactory}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(SAXParserFactory.class);
+	}
+
 }
