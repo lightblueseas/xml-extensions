@@ -1,3 +1,12 @@
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
 ##################
 # Compiled files #
 ##################
@@ -8,13 +17,16 @@
 ##################
 *.iws
 *.iml
+*.iws
 *.ipr
 !.idea/runConfigurations
 .idea/inspectionProfiles
+.idea/copyright
 .idea/libraries
 .idea/codeStyles
 .idea/shelf
 .idea/*.*
+/.idea/$PRODUCT_WORKSPACE_FILE$
 
 #################
 # eclipse files #
@@ -56,7 +68,6 @@
 ############################
 /bin
 
-
 ################
 # gradle files #
 ################
@@ -80,4 +91,3 @@ gradle-app.setting
 ##############################################################
 hs_err_pid*
 /.attach_pid*
-
