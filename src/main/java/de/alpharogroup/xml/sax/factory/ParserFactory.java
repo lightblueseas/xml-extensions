@@ -37,12 +37,18 @@ import lombok.experimental.UtilityClass;
  * A factory for creating {@link SAXParserFactory} objects
  */
 @UtilityClass
-public class ParserFactory
+public final class ParserFactory
 {
+
+	/** The Constant for the key of the feature to disallow doctype declarations */
+	public static final String FEATURE_DISALLOW_DOCTYPE_DECL = "http://apache.org/xml/features/disallow-doctype-decl";
+
+	/** The Constant for the key of the feature to allow external general entities */
+	public static final String FEATURE_EXTERNAL_GENERAL_ENTITIES = "http://xml.org/sax/features/external-general-entities";
 
 	/**
 	 * Factory method for create a new {@link SAXParserFactory} with a flag for deactivate the
-	 * parser
+	 * parser for protection from xml-bomb
 	 *
 	 * @param withoutParser
 	 *            the without parser
@@ -61,8 +67,8 @@ public class ParserFactory
 		if (withoutParser)
 		{
 			factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-			factory.setFeature("http://xml.org/sax/features/external-general-entities", false);
-			factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+			factory.setFeature(ParserFactory.FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
+			factory.setFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL, true);
 		}
 		return factory;
 	}
