@@ -7,6 +7,7 @@ Version 6.5
 ADDED:
  
 - new factory method for create new object mapper with given features
+- new unit tests for the ParserFactory created
 
 CHANGED:
 
