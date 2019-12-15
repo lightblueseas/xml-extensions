@@ -1,6 +1,13 @@
 ## Change log
 ----------------------
 
+Version 6.5.1
+-------------
+
+CHANGED:
+
+- downgraded gradle version to 5.6.4 
+
 Version 6.5
 -------------
 
