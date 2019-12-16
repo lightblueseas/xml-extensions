@@ -48,13 +48,13 @@ import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
 
 /**
- * The unit test class for the class {@link JsonToObjectExtensions}
+ * The unit test class for the class {@link JsonStringToObjectExtensions}
  */
-public class JsonToObjectExtensionsTest
+public class JsonStringToObjectExtensionsTest
 {
 
 	/**
-	 * Test method for {@link JsonToObjectExtensions#toObject(String, Class)}
+	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
 	 *
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object
@@ -70,20 +70,18 @@ public class JsonToObjectExtensionsTest
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		final Employee actual = JsonToObjectExtensions.toObject(jsonString, Employee.class);
+		final Employee actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
 		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test method for {@link JsonToObjectExtensions#toObjectCollection(String, Class, Class)}
+	 * Test method for {@link JsonStringToObjectExtensions#toObjectCollection(String, Class, Class)}
 	 * 
 	 * @throws IOException
-	 * @throws JsonMappingException
-	 * @throws JsonParseException
+	 *             Signals that an I/O exception has occurred
 	 */
 	@Test
-	public void testToObjectCollection()
-		throws JsonParseException, JsonMappingException, IOException
+	public void testToObjectCollection() throws IOException
 	{
 		boolean actual;
 		boolean expected;
@@ -98,7 +96,7 @@ public class JsonToObjectExtensionsTest
 			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
 			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
 
-		jsonList = (Set<Employee>)JsonToObjectExtensions.toObjectCollection(jsonString,
+		jsonList = (Set<Employee>)JsonStringToObjectExtensions.toObjectCollection(jsonString,
 			LinkedHashSet.class, Employee.class);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
@@ -117,7 +115,7 @@ public class JsonToObjectExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link JsonToObjectExtensions#toObject(String, Class)}
+	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
 	 *
 	 * @throws JsonParseException
 	 *             If an error occurs when parsing the string into Object
@@ -142,7 +140,7 @@ public class JsonToObjectExtensionsTest
 			+ "{\"person\":{\"name\":\"Andreas\",\"nickname\":\"cute\",\"gender\":\"MALE\",\"about\":\"fine person\",\"married\":false},\"id\":\"24\"},"
 			+ "{\"person\":{\"name\":\"Tatjana\",\"nickname\":\"beautiful\",\"gender\":\"FEMALE\",\"about\":\"Im hot\",\"married\":false},\"id\":\"25\"}]";
 
-		jsonList = JsonToObjectExtensions.toObjectList(jsonString, Employee.class);
+		jsonList = JsonStringToObjectExtensions.toObjectList(jsonString, Employee.class);
 		firstExpected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
 			.build();
@@ -162,7 +160,7 @@ public class JsonToObjectExtensionsTest
 
 	/**
 	 * Test method for
-	 * {@link JsonToObjectExtensions#toObject(String, Class, com.fasterxml.jackson.databind.Module...)}
+	 * {@link JsonStringToObjectExtensions#toObject(String, Class, com.fasterxml.jackson.databind.Module...)}
 	 * This method shows also how to map a json string created from the org.json library. This is
 	 * provided by a Module, the {@link JsonOrgModule}.
 	 *
@@ -181,19 +179,19 @@ public class JsonToObjectExtensionsTest
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
 		final String jsonString = "{\"id\":\"23\",\"person\":{\"married\":true,\"nickname\":\"beast\",\"name\":\"Anna\",\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\"}}";
-		final Employee actual = JsonToObjectExtensions.toObject(jsonString, Employee.class,
+		final Employee actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class,
 			new JsonOrgModule());
 		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test method for {@link JsonToObjectExtensions}
+	 * Test method for {@link JsonStringToObjectExtensions}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(JsonToObjectExtensions.class);
+		beanTester.testBean(JsonStringToObjectExtensions.class);
 	}
 
 }

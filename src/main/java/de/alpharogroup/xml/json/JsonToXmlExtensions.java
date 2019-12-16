@@ -55,8 +55,7 @@ public final class JsonToXmlExtensions
 	public static String toXml(final String jsonString) throws JSONException
 	{
 		final JSONObject json = new JSONObject(jsonString);
-		final String xmlString = XML.toString(json);
-		return xmlString;
+		return XML.toString(json);
 	}
 
 	/**
@@ -79,9 +78,8 @@ public final class JsonToXmlExtensions
 	public static <T> String toXml(final String jsonString, final Class<T> clazz)
 		throws JsonParseException, JsonMappingException, IOException
 	{
-		final T object = JsonToObjectExtensions.toObject(jsonString, clazz);
-		final String xmlString = ObjectToXmlExtensions.toXmlWithXStream(object);
-		return xmlString;
+		final T object = JsonStringToObjectExtensions.toObject(jsonString, clazz);
+		return ObjectToXmlExtensions.toXmlWithXStream(object);
 	}
 
 }
