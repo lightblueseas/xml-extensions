@@ -1,0 +1,10 @@
+{
+	"person": {
+		"name": "Anna",
+		"nickname": "beast",
+		"gender": "FEMALE",
+		"about": "Ha ha ha...",
+		"married": true
+	},
+	"id": "23"
+}

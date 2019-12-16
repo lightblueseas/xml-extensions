@@ -1,0 +1,32 @@
+[
+	{
+		"person": {
+			"name": "Anna",
+			"nickname": "beast",
+			"gender": "FEMALE",
+			"about": "Ha ha ha...",
+			"married": true
+		},
+		"id": "23"
+	},
+	{
+		"person": {
+			"name": "Andreas",
+			"nickname": "cute",
+			"gender": "MALE",
+			"about": "fine person",
+			"married": false
+		},
+		"id": "24"
+	},
+	{
+		"person": {
+			"name": "Tatjana",
+			"nickname": "beautiful",
+			"gender": "FEMALE",
+			"about": "Im hot",
+			"married": false
+		},
+		"id": "25"
+	}
+]

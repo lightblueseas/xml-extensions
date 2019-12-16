@@ -4,7 +4,15 @@
 Version 7.2-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new JsonFileToObjectExtensions for conversion of json files created
+- new JSONObjectToObjectExtensions for conversion of JSONObject and JSONArray object created
 
+CHANGED:
+
+- renamed JsonToObjectExtensions class to JsonStringToObjectExtensions and moved methods to appropriate classes
+- unit tests for all new classes created
 
 Version 7.1
 -------------
