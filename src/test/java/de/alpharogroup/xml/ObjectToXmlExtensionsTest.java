@@ -27,7 +27,6 @@ package de.alpharogroup.xml;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -52,38 +51,6 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class ObjectToXmlExtensionsTest
 {
-
-	/**
-	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXMLEncoder(Object)}.
-	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = false)
-	public void testToXmlWithXMLEncoder() throws IOException
-	{
-		String actual;
-		String expected;
-		Person person;
-		String javaVersion;
-		// new scenario ...
-		person = Person.builder().gender(Gender.FEMALE).name("Anna").build();
-
-		actual = ObjectToXmlExtensions.toXmlWithXMLEncoder(person);
-		assertNotNull(actual);
-		javaVersion = System.getProperty("java.version");
-		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\"" + javaVersion
-			+ "\" class=\"java.beans.XMLDecoder\">\n"
-			+ " <object class=\"de.alpharogroup.test.objects.Person\">\n"
-			+ "  <void property=\"gender\">\n"
-			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
-			+ "    <class>de.alpharogroup.test.objects.enums.Gender</class>\n"
-			+ "    <string>FEMALE</string>\n" + "   </object>\n" + "  </void>\n"
-			+ "  <void property=\"name\">\n" + "   <string>Anna</string>\n" + "  </void>\n"
-			+ " </object>\n" + "</java>\n";
-		assertEquals(actual, expected);
-	}
 
 	/**
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object)}

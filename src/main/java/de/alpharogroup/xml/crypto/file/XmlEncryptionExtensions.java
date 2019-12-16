@@ -116,8 +116,8 @@ public class XmlEncryptionExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static <T> void writeToFileAsXmlAndHex(final @NonNull Map<String, Class<?>> aliases,
-		final @NonNull T data, final @NonNull File file,
-		String... allowTypesByWildcard) throws IOException
+		final @NonNull T data, final @NonNull File file, String... allowTypesByWildcard)
+		throws IOException
 	{
 		XStream xStream = new XStream();
 		XStream.setupDefaultSecurity(xStream);

@@ -24,8 +24,6 @@
  */
 package de.alpharogroup.xml;
 
-import java.beans.XMLEncoder;
-import java.io.ByteArrayOutputStream;
 import java.util.Map;
 
 import com.thoughtworks.xstream.XStream;
@@ -38,28 +36,6 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ObjectToXmlExtensions
 {
-
-	/**
-	 * Creates from the given Object an xml string.
-	 *
-	 * @param <T>
-	 *            the generic type of the return type
-	 * @param obj
-	 *            the obj to transform to an xml string.
-	 * @return the xml string
-	 * @deprecated use instead the method with the xstream<br>
-	 *             Note: will be removed in next minor release
-	 */
-	@Deprecated
-	public static <T> String toXmlWithXMLEncoder(final T obj)
-	{
-		XMLEncoder enc = null;
-		final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		enc = new XMLEncoder(baos);
-		enc.writeObject(obj);
-		enc.close();
-		return baos.toString();
-	}
 
 	/**
 	 * Creates from the given Object an xml string.

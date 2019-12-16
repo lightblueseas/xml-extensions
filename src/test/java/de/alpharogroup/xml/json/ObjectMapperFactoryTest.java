@@ -47,44 +47,6 @@ public class ObjectMapperFactoryTest
 {
 
 	/**
-	 * Test method for {@link ObjectMapperFactory#getObjectMapper()}.
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetObjectMapper()
-	{
-		ObjectMapper actual;
-		ObjectMapper expected;
-
-		actual = ObjectMapperFactory.getObjectMapper();
-		expected = ObjectMapperFactory.getObjectMapper(false);
-		assertEquals(actual, expected);
-	}
-
-	/**
-	 * Test method for {@link ObjectMapperFactory#getObjectMapper(boolean)}.
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetObjectMapperBoolean()
-	{
-		ObjectMapper actual;
-		ObjectMapper expected;
-
-		actual = ObjectMapperFactory.getObjectMapper(false);
-		expected = ObjectMapperFactory.getObjectMapper(false);
-		assertEquals(actual, expected);
-
-		actual = ObjectMapperFactory.getObjectMapper(false);
-		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertThat(actual, not(expected));
-
-		actual = ObjectMapperFactory.getObjectMapper(true);
-		expected = ObjectMapperFactory.getObjectMapper(true);
-		assertThat(actual, not(expected));
-	}
-
-	/**
 	 * Test method for {@link ObjectMapperFactory#newObjectMapper()}.
 	 */
 	@Test

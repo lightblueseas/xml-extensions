@@ -42,34 +42,6 @@ public class ObjectMapperFactory
 	private final static ObjectMapper MAPPER = newObjectMapper(true);
 
 	/**
-	 * Gets the object mapper.
-	 *
-	 * @return the object mapper
-	 * @deprecated use instead the method <code>newObjectMapper()</code>
-	 */
-	@Deprecated
-	public static ObjectMapper getObjectMapper()
-	{
-		return newObjectMapper(false);
-	}
-
-	/**
-	 * Gets the object mapper.
-	 *
-	 * @param newMapper
-	 *            flag that indicates if a new ObjectMapper should be created. if true a new
-	 *            ObjectMapper will be created otherwise the ObjectMapper from this class will be
-	 *            returned.
-	 * @return the object mapper
-	 * @deprecated use instead the method <code>newObjectMapper(boolean)</code>
-	 */
-	@Deprecated
-	public static ObjectMapper getObjectMapper(final boolean newMapper)
-	{
-		return newObjectMapper(newMapper);
-	}
-
-	/**
 	 * Factory method for create a new {@link ObjectMapper}
 	 *
 	 * @return the new {@link ObjectMapper}
