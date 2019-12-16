@@ -1,6 +1,15 @@
 ## Change log
 ----------------------
 
+Version 7.1
+-------------
+
+CHANGED:
+
+- reverted implementation and testImplementation back to compile and testCompile
+- removed deprecated methods
+- update of mockito-core test dependency version to 3.2.4
+
 Version 7
 -------------
 
