@@ -65,19 +65,19 @@ public class Tag implements Serializable
 	private static final long serialVersionUID = 1L;
 
 	/** The attributes of the tag. */
-	private Map<String, String> attributes;
+	Map<String, String> attributes;
 
 	/** The children. */
-	private List<ChildTagPosition> childTagPositions;
+	List<ChildTagPosition> childTagPositions;
 
 	/** The content of the tag. */
-	private String content;
+	String content;
 
 	/** The flag endTag signals if this tag has an ending tag. */
-	private boolean endTag;
+	boolean endTag;
 
 	/** The name of the tag. */
-	private String name;
+	String name;
 
 	/**
 	 * Adds the attribute with the given name and value.
@@ -211,7 +211,7 @@ public class Tag implements Serializable
 			if (getChildren() != null && !getChildren().isEmpty())
 			{
 				String processingContent = getContent();
-				Integer lastPosition = 0;
+				int lastPosition = 0;
 				for (final ChildTagPosition child : getChildren())
 				{
 					final String subContent = getContent().substring(lastPosition,

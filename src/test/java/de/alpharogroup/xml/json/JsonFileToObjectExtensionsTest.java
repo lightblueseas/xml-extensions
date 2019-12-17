@@ -30,6 +30,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -120,6 +123,16 @@ public class JsonFileToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonFileToObjectExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonFileToObjectExtensions.class);
 	}
 
 }

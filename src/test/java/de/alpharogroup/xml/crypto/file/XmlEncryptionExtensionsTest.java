@@ -80,7 +80,7 @@ public class XmlEncryptionExtensionsTest
 	 * Test method for {@link XmlEncryptionExtensions} with {@link BeanTester}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-			UnsupportedOperationException.class })
+		UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
 		BeanTester beanTester = new BeanTester();
@@ -107,6 +107,25 @@ public class XmlEncryptionExtensionsTest
 
 	/**
 	 * Test method for
+	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(Map, Object, File, String...)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testWriteToFileAsXmlAndHexWithAliases() throws IOException, DecoderException
+	{
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		XmlEncryptionExtensions.writeToFileAsXmlAndHex(aliases, expected, xmlFile,
+			"de.alpharogroup.**");
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(aliases, xmlFile,
+			"de.alpharogroup.**");
+		assertEquals(actual, expected);
+	}
+	/**
+	 * Test method for
 	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(XStream, Map, Object, File)}
 	 *
 	 * @throws IOException
@@ -115,7 +134,7 @@ public class XmlEncryptionExtensionsTest
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
 	@Test
-	public void testWriteToFileAsXmlAndHexAliasesAndAllowTypesByWildcard()
+	public void testWriteToFileAsXmlAndHexWithAliasesAndAllowTypesByWildcard()
 		throws IOException, DecoderException
 	{
 		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
@@ -135,7 +154,7 @@ public class XmlEncryptionExtensionsTest
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
 	@Test
-	public void testWriteToFileAsXmlAndHexAndCharset() throws IOException, DecoderException
+	public void testWriteToFileAsXmlAndHexWithCharset() throws IOException, DecoderException
 	{
 		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
 		XmlEncryptionExtensions.writeToFileAsXmlAndHex(xStream, aliases, expected, xmlFile,

@@ -26,6 +26,7 @@ package de.alpharogroup.xml.tag;
 
 import java.util.List;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -34,6 +35,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
@@ -42,18 +44,19 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class TagAttribute
 {
 
 	/** The delimiter of the values from the attribute. */
-	private String delimiter;
+	String delimiter;
 
 	/** The name of the attribute. */
-	private String name;
+	String name;
 
 	/** The values of the attribute. */
 	@Singular
-	private List<String> values;
+	List<String> values;
 
 	{
 		onInitializerBlock();

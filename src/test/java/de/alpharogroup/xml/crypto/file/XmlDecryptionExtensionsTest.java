@@ -31,6 +31,9 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.apache.commons.codec.DecoderException;
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.BiMap;
@@ -121,6 +124,16 @@ public class XmlDecryptionExtensionsTest
 		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(xStream, aliases, xmlFile,
 			"UTF-8");
 		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlDecryptionExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(XmlDecryptionExtensions.class);
 	}
 
 }

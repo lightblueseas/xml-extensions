@@ -70,7 +70,6 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 		{
 			throw new NullPointerException();
 		}
-		ResourceBundle bundle = null;
 		if (!format.equals(XML))
 		{
 			return null;
@@ -98,7 +97,7 @@ public class XmlResourceBundleControl extends ResourceBundle.Control
 			return null;
 		}
 		final BufferedInputStream bis = new BufferedInputStream(stream);
-		bundle = new XmlResourceBundle(bis);
+		ResourceBundle bundle = new XmlResourceBundle(bis);
 
 		bis.close();
 

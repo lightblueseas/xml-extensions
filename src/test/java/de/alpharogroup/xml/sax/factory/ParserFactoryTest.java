@@ -76,13 +76,13 @@ public class ParserFactoryTest
 	}
 
 	/**
-	 * Test method for {@link SAXParserFactory}
+	 * Test method for {@link ParserFactory}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(SAXParserFactory.class);
+		beanTester.testBean(ParserFactory.class);
 	}
 
 }

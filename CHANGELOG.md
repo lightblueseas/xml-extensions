@@ -4,7 +4,9 @@
 Version 7.3-SNAPSHOT
 -------------
 
+CHANGED:
 
+- extended unit tests for increase code coverage
 
 Version 7.2
 -------------

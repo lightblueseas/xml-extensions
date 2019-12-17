@@ -31,6 +31,9 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -109,6 +112,16 @@ public class JSONObjectToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JSONObjectToObjectExtensions}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JSONObjectToObjectExtensions.class);
 	}
 
 }
