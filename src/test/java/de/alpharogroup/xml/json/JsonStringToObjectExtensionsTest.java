@@ -26,14 +26,18 @@ package de.alpharogroup.xml.json;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.alpharogroup.file.search.PathFinder;
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -53,6 +57,16 @@ import de.alpharogroup.test.objects.enums.Gender;
 public class JsonStringToObjectExtensionsTest
 {
 
+	File jsonDir;
+	File jsonFile;
+
+	@BeforeMethod
+	protected void setUp()
+	{
+		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
+		jsonFile = new File(jsonDir, "signin.json");
+	}
+
 	/**
 	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
 	 *
@@ -66,11 +80,38 @@ public class JsonStringToObjectExtensionsTest
 	@Test
 	public void testToObject() throws JsonParseException, JsonMappingException, IOException
 	{
-		final Employee expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+		Employee actual;
+		Employee expected;
+		String jsonString;
+
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
 			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
 			.build();
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		final Employee actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
+		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToObjectWithSignin() throws JsonParseException, JsonMappingException, IOException
+	{
+		Signin actual;
+		Signin expected;
+		String jsonString;
+
+		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
+		expected = Signin.builder().username("foo").password("bar").build();
 		assertEquals(expected, actual);
 	}
 
@@ -155,6 +196,7 @@ public class JsonStringToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+
 	}
 
 

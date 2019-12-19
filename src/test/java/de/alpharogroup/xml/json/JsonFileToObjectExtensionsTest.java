@@ -75,13 +75,13 @@ public class JsonFileToObjectExtensionsTest
 	{
 		Employee actual;
 		Employee expected;
-		String jsonString;
 		ObjectMapper objectMapper;
 
 		objectMapper = ObjectMapperFactory.newObjectMapper();
 		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class, objectMapper);
-		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		expected = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
+		expected =	Employee.builder().person(Person.builder().gender(Gender.FEMALE)
+			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
+			.build();
 		assertEquals(expected, actual);
 	}
 
