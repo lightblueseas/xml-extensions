@@ -7,6 +7,8 @@ Version 7.3-SNAPSHOT
 CHANGED:
 
 - extended unit tests for increase code coverage
+- update of mystic-crypt version to 7.3
+- update of testng dependency version to 7.1.1
 
 Version 7.2
 -------------
