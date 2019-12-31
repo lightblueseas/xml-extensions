@@ -79,9 +79,8 @@ public class JsonFileToObjectExtensionsTest
 
 		objectMapper = ObjectMapperFactory.newObjectMapper();
 		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class, objectMapper);
-		expected =	Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").nickname("beast").married(true).about("Ha ha ha...").build()).id("23")
-			.build();
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
 		assertEquals(expected, actual);
 	}
 

@@ -32,8 +32,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.alpharogroup.file.search.PathFinder;
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
@@ -47,6 +45,7 @@ import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 import de.alpharogroup.collections.CollectionExtensions;
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.set.SetFactory;
+import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
@@ -84,40 +83,16 @@ public class JsonStringToObjectExtensionsTest
 		Employee expected;
 		String jsonString;
 
-		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
-			.build();
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
 		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
-	 *
-	 * @throws JsonParseException
-	 *             If an error occurs when parsing the string into Object
-	 * @throws JsonMappingException
-	 *             the If an error occurs when mapping the string into Object
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test
-	public void testToObjectWithSignin() throws JsonParseException, JsonMappingException, IOException
-	{
-		Signin actual;
-		Signin expected;
-		String jsonString;
-
-		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
-		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
-		expected = Signin.builder().username("foo").password("bar").build();
-		assertEquals(expected, actual);
-	}
-
-	/**
 	 * Test method for {@link JsonStringToObjectExtensions#toObjectCollection(String, Class, Class)}
-	 * 
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
@@ -199,7 +174,6 @@ public class JsonStringToObjectExtensionsTest
 
 	}
 
-
 	/**
 	 * Test method for
 	 * {@link JsonStringToObjectExtensions#toObject(String, Class, com.fasterxml.jackson.databind.Module...)}
@@ -223,6 +197,31 @@ public class JsonStringToObjectExtensionsTest
 		final String jsonString = "{\"id\":\"23\",\"person\":{\"married\":true,\"nickname\":\"beast\",\"name\":\"Anna\",\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\"}}";
 		final Employee actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class,
 			new JsonOrgModule());
+		assertEquals(expected, actual);
+	}
+
+
+	/**
+	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToObjectWithSignin()
+		throws JsonParseException, JsonMappingException, IOException
+	{
+		Signin actual;
+		Signin expected;
+		String jsonString;
+
+		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
+		expected = Signin.builder().username("foo").password("bar").build();
 		assertEquals(expected, actual);
 	}
 

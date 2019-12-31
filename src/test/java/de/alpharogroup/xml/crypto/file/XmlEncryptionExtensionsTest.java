@@ -80,7 +80,7 @@ public class XmlEncryptionExtensionsTest
 	 * Test method for {@link XmlEncryptionExtensions} with {@link BeanTester}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-		UnsupportedOperationException.class })
+			UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
 		BeanTester beanTester = new BeanTester();
@@ -124,6 +124,7 @@ public class XmlEncryptionExtensionsTest
 			"de.alpharogroup.**");
 		assertEquals(actual, expected);
 	}
+
 	/**
 	 * Test method for
 	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(XStream, Map, Object, File)}
