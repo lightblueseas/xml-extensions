@@ -4,11 +4,17 @@
 Version 7.3-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new gradle.properties file created and extracted dependency versions to it
+
 CHANGED:
 
 - extended unit tests for increase code coverage
 - update of mystic-crypt version to 7.3
 - update of testng dependency version to 7.1.1
+- update of jackson-core version to 2.10.2
+- update of junit dependency version to 4.13
 
 Version 7.2
 -------------
