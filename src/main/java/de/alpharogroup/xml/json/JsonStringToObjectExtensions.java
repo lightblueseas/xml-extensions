@@ -28,9 +28,11 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -127,6 +129,28 @@ public final class JsonStringToObjectExtensions
 		final @NonNull ObjectMapper mapper) throws IOException
 	{
 		return mapper.readValue(jsonString, clazz);
+	}
+
+	/**
+	 * Transforms the given json string into a java object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param jsonString
+	 *            the json string
+	 * @param typeReference
+	 *            the type reference
+	 * @param mapper
+	 *            the object mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <T> T toObject(final @NonNull String jsonString,
+		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
+		throws IOException
+	{
+		return mapper.readValue(jsonString, typeReference);
 	}
 
 	/**

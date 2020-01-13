@@ -33,6 +33,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -61,7 +62,7 @@ public class ObjectToJsonExtensions
 	public static <T> String toJson(final @NonNull List<T> list)
 		throws JsonGenerationException, JsonMappingException, IOException
 	{
-		final ObjectMapper mapper = new ObjectMapper();
+		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();
 		return toJson(list, mapper);
 	}
 

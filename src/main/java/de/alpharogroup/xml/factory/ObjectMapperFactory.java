@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xml.json;
+package de.alpharogroup.xml.factory;
 
 import java.util.Map;
 
@@ -39,7 +39,7 @@ public class ObjectMapperFactory
 {
 
 	/** The constant mapper. */
-	private final static ObjectMapper MAPPER = newObjectMapper(true);
+	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
 	/**
 	 * Factory method for create a new {@link ObjectMapper}
@@ -68,7 +68,7 @@ public class ObjectMapperFactory
 		{
 			return new ObjectMapper();
 		}
-		return MAPPER;
+		return OBJECT_MAPPER;
 	}
 
 	/**

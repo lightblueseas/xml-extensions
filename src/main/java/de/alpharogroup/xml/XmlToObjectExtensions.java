@@ -29,8 +29,13 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
+import de.alpharogroup.xml.factory.XmlMapperFactory;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -166,6 +171,58 @@ public final class XmlToObjectExtensions
 			}
 		}
 		return xstream;
+	}
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param clazz
+	 *            the clazz of the generic type
+	 * @return the object
+	 */
+	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
+		final @NonNull Class<T> clazz) throws JsonProcessingException
+	{
+		return XmlMapperFactory.newXmlMapper().readValue(xmlString, clazz);
+	}
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param typeReference
+	 *            the type reference
+	 * @return the object
+	 */
+	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
+		final @NonNull TypeReference<T> typeReference) throws JsonProcessingException
+	{
+		return toObjectWithJackson(xmlString, typeReference, XmlMapperFactory.newXmlMapper());
+	}
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param typeReference
+	 *            the type reference
+	 * @return the object
+	 */
+	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
+		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper xmlMapper)
+		throws JsonProcessingException
+	{
+		return xmlMapper.readValue(xmlString, typeReference);
 	}
 
 }

@@ -37,6 +37,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 
 import de.alpharogroup.test.objects.Employee;
@@ -51,6 +52,30 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class ObjectToXmlExtensionsTest
 {
+
+	/**
+	 * Test method for {@link ObjectToXmlExtensions#toXmlWithJackson(Object)}
+	 */
+	@Test
+	public void testToXmlWithJackson() throws JsonProcessingException
+	{
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
+
+		actual = ObjectToXmlExtensions.toXmlWithJackson(employee);
+		expected = "<Employee>\n" + "  <id>23</id>\n" + "  <person>\n" + "    <about/>\n"
+			+ "    <gender>FEMALE</gender>\n" + "    <married/>\n" + "    <name>Anna</name>\n"
+			+ "    <nickname/>\n" + "  </person>\n" + "</Employee>\n";
+		assertNotNull(actual);
+		assertEquals(actual, expected);
+	}
 
 	/**
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object)}

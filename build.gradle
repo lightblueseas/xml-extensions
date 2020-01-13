@@ -28,11 +28,14 @@ dependencies {
     compile("org.codehaus.jettison:jettison:$jettisonVersion")
     compile("com.thoughtworks.xstream:xstream:$xstreamVersion")
     compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     compile("xerces:xercesImpl:$xercesImplVersion")
     compile("org.json:json:$jsonVersion")
     compile("de.alpharogroup:file-worker:$fileWorkerVersion")
     compile("de.alpharogroup:jobj-core:$jobjCoreVersion")
     compile("de.alpharogroup:jobj-clone:$jobjCloneVersion")
+    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
+    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     testCompile("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
     testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
     testCompile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
@@ -180,6 +183,7 @@ jacocoTestReport {
                               "de/alpharogroup/xml/XmlTransformation.class",
                               "de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class",
                               "de/alpharogroup/xml/node/NodeType.class",
+                              "de/alpharogroup/xml/XmlTransformation.class",
                               "de/alpharogroup/xml/sax/handler/BreakParsingException.class"])
         }))
     }

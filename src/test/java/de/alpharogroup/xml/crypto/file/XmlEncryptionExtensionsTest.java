@@ -58,6 +58,7 @@ public class XmlEncryptionExtensionsTest
 
 	File xmlDir;
 	File xmlFile;
+	File xmlNewFile;
 	/** The {@link XStream} object */
 	XStream xStream;
 	{
@@ -74,6 +75,7 @@ public class XmlEncryptionExtensionsTest
 	{
 		xmlDir = new File(PathFinder.getSrcTestResourcesDir(), "xml");
 		xmlFile = new File(xmlDir, "foo.sor");
+		xmlNewFile = new File(xmlDir, "new-foo.sor");
 	}
 
 	/**

@@ -26,8 +26,12 @@ package de.alpharogroup.xml;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
+import de.alpharogroup.xml.factory.XmlMapperFactory;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -104,6 +108,24 @@ public final class ObjectToXmlExtensions
 	{
 		xstream = XmlToObjectExtensions.initializeXStream(xstream, aliases);
 		final String xml = xstream.toXML(objectToXML);
+		return xml;
+	}
+
+	/**
+	 * Creates from the given Object an xml string.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param objectToXML
+	 *            the object to xml
+	 * @return the xml string
+	 */
+	public static <T> String toXmlWithJackson(final @NonNull T objectToXML)
+		throws JsonProcessingException
+	{
+		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
+		final String xml = xmlMapper.writerWithDefaultPrettyPrinter()
+			.writeValueAsString(objectToXML);
 		return xml;
 	}
 

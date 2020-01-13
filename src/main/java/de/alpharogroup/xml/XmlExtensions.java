@@ -35,6 +35,7 @@ import org.xml.sax.InputSource;
 
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.lang.ClassExtensions;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -75,6 +76,25 @@ public final class XmlExtensions
 	}
 
 	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFile
+	 *            the xml file
+	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> T loadObject(final File xmlFile, final @NonNull Class<T> clazz)
+		throws IOException
+	{
+		final InputStream is = FileUtils.openInputStream(xmlFile);
+		return loadObject(is, clazz);
+	}
+
+	/**
 	 * Load from the given input stream that should represent an xml file and transform it to the
 	 * generic type object.
 	 *
@@ -94,6 +114,28 @@ public final class XmlExtensions
 	}
 
 	/**
+	 * Load from the given input stream that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param is
+	 *            the input stream
+	 * @param clazz
+	 *            the clazz of the generic type
+	 * @return the object from the given input stream.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static <T> T loadObject(final @NonNull InputStream is, final @NonNull Class<T> clazz)
+		throws IOException
+	{
+		final String xmlString = ReadFileExtensions.inputStream2String(is);
+		final T object = XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
+		return object;
+	}
+
+	/**
 	 * Load from the given file name that should represent an xml file and transform it to the
 	 * generic type object.
 	 *
@@ -109,6 +151,25 @@ public final class XmlExtensions
 	{
 		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
 		return loadObject(is);
+	}
+
+	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFileName
+	 *            the xml file name
+	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> T loadObject(final String xmlFileName, final @NonNull Class<T> clazz)
+		throws IOException
+	{
+		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
+		return loadObject(is, clazz);
 	}
 
 	/**

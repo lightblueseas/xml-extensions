@@ -7,6 +7,9 @@ Version 7.3-SNAPSHOT
 ADDED:
  
 - new gradle.properties file created and extracted dependency versions to it
+- new XmlMapperFactory class for create XmlMapper objects
+- new method in JsonStringToObjectExtensions  for conversion of json string to java objects with jackson
+- new method in ObjectToXmlExtensions for conversion of java object to xml with jackson
 
 CHANGED:
 

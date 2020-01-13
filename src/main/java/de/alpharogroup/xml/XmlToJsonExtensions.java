@@ -26,9 +26,12 @@ package de.alpharogroup.xml;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
+import de.alpharogroup.xml.json.ObjectToJsonExtensions;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -71,6 +74,23 @@ public final class XmlToJsonExtensions
 			}
 		}
 		final String json = xstream.toXML(object);
+		return json;
+	}
+
+	/**
+	 * Creates from the given xml string a json string.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlString
+	 *            the xml as string object
+	 * @return the json string.
+	 */
+	public static <T> String toJsonWithJackson(final @NonNull String xmlString,
+		final @NonNull Class<T> clazz) throws JsonProcessingException
+	{
+		final Object object = XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
+		final String json = ObjectToJsonExtensions.toJson(object);
 		return json;
 	}
 
