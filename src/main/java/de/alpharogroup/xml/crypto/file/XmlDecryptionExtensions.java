@@ -36,6 +36,7 @@ import com.thoughtworks.xstream.XStream;
 import de.alpharogroup.crypto.hex.HexExtensions;
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.xml.XmlToObjectExtensions;
+import de.alpharogroup.xml.factory.XStreamFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -124,9 +125,9 @@ public class XmlDecryptionExtensions
 		final @NonNull File selectedFile, String... allowTypesByWildcard)
 		throws IOException, DecoderException
 	{
-		XStream xStream = new XStream();
+		XStream xStream = XStreamFactory.newXStream();
 		XStream.setupDefaultSecurity(xStream);
-		xStream.allowTypesByWildcard(allowTypesByWildcard);
+		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
 		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
 	}
 

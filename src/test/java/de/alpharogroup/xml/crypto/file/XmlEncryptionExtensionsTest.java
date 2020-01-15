@@ -44,6 +44,7 @@ import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.collections.pairs.KeyValuePair;
 import de.alpharogroup.crypto.obfuscation.rule.ObfuscationOperationRule;
 import de.alpharogroup.file.search.PathFinder;
+import de.alpharogroup.xml.factory.XStreamFactory;
 
 /**
  * The unit test class for the class {@link XmlEncryptionExtensions}
@@ -62,12 +63,11 @@ public class XmlEncryptionExtensionsTest
 	/** The {@link XStream} object */
 	XStream xStream;
 	{
-		xStream = new XStream();
-		XStream.setupDefaultSecurity(xStream);
-		xStream.allowTypesByWildcard(new String[] { "de.alpharogroup.**" });
 		aliases = MapFactory.newLinkedHashMap();
 		aliases.put("KeyValuePair", KeyValuePair.class);
 		aliases.put("ObfuscationOperationRule", ObfuscationOperationRule.class);
+		xStream = XStreamFactory.newXStream(XStreamFactory.newXStream(), aliases,
+			"de.alpharogroup.**");
 	}
 
 	@BeforeMethod

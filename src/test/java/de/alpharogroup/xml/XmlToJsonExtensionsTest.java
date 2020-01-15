@@ -108,6 +108,7 @@ public class XmlToJsonExtensionsTest
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+
 		actual = XmlToJsonExtensions.toJson(xmlResult, aliases);
 		expected = "{\"employee\":{\"id\":23,\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}}";
 		assertEquals(actual, expected);

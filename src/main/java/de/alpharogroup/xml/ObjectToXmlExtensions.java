@@ -30,6 +30,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
+import de.alpharogroup.xml.factory.XStreamFactory;
 import de.alpharogroup.xml.factory.XmlMapperFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -106,9 +107,8 @@ public final class ObjectToXmlExtensions
 	public static <T> String toXmlWithXStream(XStream xstream, final T objectToXML,
 		final Map<String, Class<?>> aliases)
 	{
-		xstream = XmlToObjectExtensions.initializeXStream(xstream, aliases);
-		final String xml = xstream.toXML(objectToXML);
-		return xml;
+		xstream = XStreamFactory.initializeXStream(xstream, aliases);
+		return xstream.toXML(objectToXML);
 	}
 
 	/**
@@ -124,9 +124,8 @@ public final class ObjectToXmlExtensions
 		throws JsonProcessingException
 	{
 		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
-		final String xml = xmlMapper.writerWithDefaultPrettyPrinter()
-			.writeValueAsString(objectToXML);
-		return xml;
+		return xmlMapper.writerWithDefaultPrettyPrinter()
+				.writeValueAsString(objectToXML);
 	}
 
 }

@@ -34,6 +34,7 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 
 /**
  * The unit test class for the class {@link XmlMapperFactory}
@@ -52,6 +53,23 @@ public class XmlMapperFactoryTest
 
 		actual = XmlMapperFactory.newXmlMapper();
 		expected = XmlMapperFactory.newXmlMapper();
+		assertNotNull(actual);
+		assertNotNull(expected);
+		assertThat(actual, not(expected));
+	}
+	/**
+	 * Test method for {@link XmlMapperFactory#newXmlMapper(JacksonXmlModule)}
+	 */
+	@Test
+	public void testNewXmlMapperWithJacksonXmlModule()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+		JacksonXmlModule xmlModule = new JacksonXmlModule();
+		xmlModule.setDefaultUseWrapper(false);
+
+		actual = XmlMapperFactory.newXmlMapper(xmlModule);
+		expected = XmlMapperFactory.newXmlMapper(xmlModule);
 		assertNotNull(actual);
 		assertNotNull(expected);
 		assertThat(actual, not(expected));

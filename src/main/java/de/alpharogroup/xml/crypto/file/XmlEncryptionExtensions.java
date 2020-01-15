@@ -34,6 +34,7 @@ import com.thoughtworks.xstream.XStream;
 import de.alpharogroup.crypto.hex.HexExtensions;
 import de.alpharogroup.file.write.WriteFileExtensions;
 import de.alpharogroup.xml.ObjectToXmlExtensions;
+import de.alpharogroup.xml.factory.XStreamFactory;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -119,9 +120,9 @@ public class XmlEncryptionExtensions
 		final @NonNull T data, final @NonNull File file, String... allowTypesByWildcard)
 		throws IOException
 	{
-		XStream xStream = new XStream();
+		XStream xStream = XStreamFactory.newXStream();
 		XStream.setupDefaultSecurity(xStream);
-		xStream.allowTypesByWildcard(allowTypesByWildcard);
+		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
 		writeToFileAsXmlAndHex(xStream, aliases, data, file);
 	}
 
