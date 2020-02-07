@@ -57,6 +57,7 @@ public class XmlMapperFactoryTest
 		assertNotNull(expected);
 		assertThat(actual, not(expected));
 	}
+
 	/**
 	 * Test method for {@link XmlMapperFactory#newXmlMapper(JacksonXmlModule)}
 	 */

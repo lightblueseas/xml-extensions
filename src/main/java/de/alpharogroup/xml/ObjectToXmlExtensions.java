@@ -119,13 +119,14 @@ public final class ObjectToXmlExtensions
 	 * @param objectToXML
 	 *            the object to xml
 	 * @return the xml string
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
 	 */
 	public static <T> String toXmlWithJackson(final @NonNull T objectToXML)
 		throws JsonProcessingException
 	{
 		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
-		return xmlMapper.writerWithDefaultPrettyPrinter()
-				.writeValueAsString(objectToXML);
+		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
 	}
 
 }

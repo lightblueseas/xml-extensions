@@ -36,6 +36,7 @@ dependencies {
     compile("de.alpharogroup:jobj-clone:$jobjCloneVersion")
     testCompile("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
     testCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
+    testCompile("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
     testCompile("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
     testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
     testCompile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")

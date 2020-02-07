@@ -27,6 +27,7 @@ package de.alpharogroup.xml.json;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -118,7 +119,8 @@ public class JSONObjectToObjectExtensionsTest
 	/**
 	 * Test method for {@link JSONObjectToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test(expectedExceptions = { InvocationTargetException.class, BeanTestException.class,
+			ObjectCreationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

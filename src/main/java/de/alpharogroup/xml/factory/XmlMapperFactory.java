@@ -49,8 +49,10 @@ public class XmlMapperFactory
 	}
 
 	/**
-	 * Factory method for create a new {@link ObjectMapper}
+	 * Factory method for create a new {@link ObjectMapper}.
 	 *
+	 * @param module
+	 *            the module
 	 * @return the new {@link ObjectMapper}
 	 */
 	public static ObjectMapper newXmlMapper(JacksonXmlModule module)

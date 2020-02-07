@@ -157,8 +157,10 @@ public final class XmlToObjectExtensions
 	 * @param xmlString
 	 *            the xml
 	 * @param clazz
-	 *            the clazz of the generic type
+	 *            the class of the generic type
 	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
 	 */
 	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
 		final @NonNull Class<T> clazz) throws JsonProcessingException
@@ -176,6 +178,8 @@ public final class XmlToObjectExtensions
 	 * @param typeReference
 	 *            the type reference
 	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
 	 */
 	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
 		final @NonNull TypeReference<T> typeReference) throws JsonProcessingException
@@ -192,7 +196,11 @@ public final class XmlToObjectExtensions
 	 *            the xml
 	 * @param typeReference
 	 *            the type reference
+	 * @param xmlMapper
+	 *            the xml mapper
 	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
 	 */
 	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
 		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper xmlMapper)

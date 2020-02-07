@@ -83,6 +83,8 @@ public final class XmlExtensions
 	 *            the generic type
 	 * @param xmlFile
 	 *            the xml file
+	 * @param clazz
+	 *            the class of the generic type
 	 * @return the object from the given xml file.
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
@@ -161,6 +163,8 @@ public final class XmlExtensions
 	 *            the generic type
 	 * @param xmlFileName
 	 *            the xml file name
+	 * @param clazz
+	 *            the class of the generic type
 	 * @return the object from the given xml file.
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.

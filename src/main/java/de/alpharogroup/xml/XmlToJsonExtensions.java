@@ -84,7 +84,11 @@ public final class XmlToJsonExtensions
 	 *            the generic type
 	 * @param xmlString
 	 *            the xml as string object
+	 * @param clazz
+	 *            the class of the generic type
 	 * @return the json string.
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
 	 */
 	public static <T> String toJsonWithJackson(final @NonNull String xmlString,
 		final @NonNull Class<T> clazz) throws JsonProcessingException

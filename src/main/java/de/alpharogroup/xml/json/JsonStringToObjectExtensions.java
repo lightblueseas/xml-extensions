@@ -27,6 +27,7 @@ package de.alpharogroup.xml.json;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
@@ -148,6 +149,30 @@ public final class JsonStringToObjectExtensions
 	 */
 	public static <T> T toObject(final @NonNull String jsonString,
 		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
+		throws IOException
+	{
+		return mapper.readValue(jsonString, typeReference);
+	}
+
+	/**
+	 * Transforms the given json string into a java map object
+	 *
+	 * @param <K>
+	 *            the generic type of keys
+	 * @param <V>
+	 *            the generic type of values
+	 * @param jsonString
+	 *            the json string
+	 * @param typeReference
+	 *            the type reference
+	 * @param mapper
+	 *            the object mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <K, V> Map<K, V> toMapObject(final @NonNull String jsonString,
+		final @NonNull TypeReference<Map<K, V>> typeReference, final @NonNull ObjectMapper mapper)
 		throws IOException
 	{
 		return mapper.readValue(jsonString, typeReference);
