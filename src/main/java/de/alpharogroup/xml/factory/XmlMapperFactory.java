@@ -28,16 +28,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The factory class {@link XmlMapperFactory} for creating {@link ObjectMapper} objects for
  * serializing java beans to xml string and deserialize xml string to java beans.
  */
-@UtilityClass
-public class XmlMapperFactory
+public final class XmlMapperFactory
 {
-
+	private XmlMapperFactory(){}
 	/**
 	 * Factory method for create a new {@link ObjectMapper}
 	 *

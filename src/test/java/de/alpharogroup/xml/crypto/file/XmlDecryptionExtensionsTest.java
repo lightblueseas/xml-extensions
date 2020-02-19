@@ -129,7 +129,7 @@ public class XmlDecryptionExtensionsTest
 	/**
 	 * Test method for {@link XmlDecryptionExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

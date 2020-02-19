@@ -63,7 +63,7 @@ public class TagExtensionsTest
 	/**
 	 * Test method for {@link TagExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

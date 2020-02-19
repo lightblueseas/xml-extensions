@@ -24,25 +24,25 @@
  */
 package de.alpharogroup.xml.json;
 
-import java.io.IOException;
-import java.util.List;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.alpharogroup.collections.list.ListFactory;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import de.alpharogroup.collections.list.ListFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * The class {@link JSONObjectToObjectExtensions} converts json strings to java object and java
  * collections.
  */
-@UtilityClass
 public final class JSONObjectToObjectExtensions
 {
+
+	private JSONObjectToObjectExtensions()
+	{
+	}
 
 	/**
 	 * Transforms the given json object into a java object
@@ -59,9 +59,12 @@ public final class JSONObjectToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull JSONObject jsonObject,
-		final @NonNull Class<T> clazz, final @NonNull ObjectMapper mapper) throws IOException
+	public static <T> T toObject(final JSONObject jsonObject,
+		final Class<T> clazz, final ObjectMapper mapper) throws IOException
 	{
+		Objects.requireNonNull(jsonObject);
+		Objects.requireNonNull(clazz);
+		Objects.requireNonNull(mapper);
 		return JsonStringToObjectExtensions.toObject(jsonObject.toString(), clazz, mapper);
 	}
 
@@ -78,9 +81,11 @@ public final class JSONObjectToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> List<T> toObjectList(final @NonNull JSONArray jsonArray,
-		final @NonNull Class<T> elementClass) throws IOException
+	public static <T> List<T> toObjectList(final JSONArray jsonArray,
+		final Class<T> elementClass) throws IOException
 	{
+		Objects.requireNonNull(jsonArray);
+		Objects.requireNonNull(elementClass);
 		List<String> list = ListFactory.newArrayList();
 		for (int i = 0; i < jsonArray.length(); i++)
 		{

@@ -27,14 +27,15 @@ package de.alpharogroup.xml.tag;
 import java.util.Map;
 import java.util.Optional;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link TagExtensions}.
  */
-@UtilityClass
 public final class TagExtensions
 {
+
+	private TagExtensions()
+	{
+	}
 
 	/**
 	 * Creates an {@link Optional} of {@link String} from the given attributes map

@@ -64,7 +64,7 @@ public class XStreamFactoryTest
 	/**
 	 * Test method for {@link XStreamFactory}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

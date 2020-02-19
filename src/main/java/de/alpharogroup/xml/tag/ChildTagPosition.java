@@ -26,33 +26,132 @@ package de.alpharogroup.xml.tag;
 
 import java.io.Serializable;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
-
 /**
  * The class {@link ChildTagPosition}
  */
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder(toBuilder = true)
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChildTagPosition implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
 
-	Tag child;
+	private Tag child;
 
-	Integer position;
+	private Integer position;
+
+	public ChildTagPosition(Tag child, Integer position)
+	{
+		this.child = child;
+		this.position = position;
+	}
+
+	public ChildTagPosition()
+	{
+	}
+
+	public static ChildTagPositionBuilder builder()
+	{
+		return new ChildTagPositionBuilder();
+	}
+
+	public Tag getChild()
+	{
+		return this.child;
+	}
+
+	public Integer getPosition()
+	{
+		return this.position;
+	}
+
+	public ChildTagPosition setChild(Tag child)
+	{
+		this.child = child;
+		return this;
+	}
+
+	public ChildTagPosition setPosition(Integer position)
+	{
+		this.position = position;
+		return this;
+	}
+
+	public boolean equals(final Object o)
+	{
+		if (o == this)
+			return true;
+		if (!(o instanceof ChildTagPosition))
+			return false;
+		final ChildTagPosition other = (ChildTagPosition)o;
+		if (!other.canEqual((Object)this))
+			return false;
+		final Object this$child = this.getChild();
+		final Object other$child = other.getChild();
+		if (this$child == null ? other$child != null : !this$child.equals(other$child))
+			return false;
+		final Object this$position = this.getPosition();
+		final Object other$position = other.getPosition();
+		if (this$position == null ? other$position != null : !this$position.equals(other$position))
+			return false;
+		return true;
+	}
+
+	protected boolean canEqual(final Object other)
+	{
+		return other instanceof ChildTagPosition;
+	}
+
+	public int hashCode()
+	{
+		final int PRIME = 59;
+		int result = 1;
+		final Object $child = this.getChild();
+		result = result * PRIME + ($child == null ? 43 : $child.hashCode());
+		final Object $position = this.getPosition();
+		result = result * PRIME + ($position == null ? 43 : $position.hashCode());
+		return result;
+	}
+
+	public String toString()
+	{
+		return "ChildTagPosition(child=" + this.getChild() + ", position=" + this.getPosition()
+			+ ")";
+	}
+
+	public ChildTagPositionBuilder toBuilder()
+	{
+		return new ChildTagPositionBuilder().child(this.child).position(this.position);
+	}
+
+	public static class ChildTagPositionBuilder
+	{
+		private Tag child;
+		private Integer position;
+
+		ChildTagPositionBuilder()
+		{
+		}
+
+		public ChildTagPosition.ChildTagPositionBuilder child(Tag child)
+		{
+			this.child = child;
+			return this;
+		}
+
+		public ChildTagPosition.ChildTagPositionBuilder position(Integer position)
+		{
+			this.position = position;
+			return this;
+		}
+
+		public ChildTagPosition build()
+		{
+			return new ChildTagPosition(child, position);
+		}
+
+		public String toString()
+		{
+			return "ChildTagPosition.ChildTagPositionBuilder(child=" + this.child + ", position="
+				+ this.position + ")";
+		}
+	}
 }

@@ -24,26 +24,27 @@
  */
 package de.alpharogroup.xml.json;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
+
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import de.alpharogroup.xml.factory.ObjectMapperFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+import java.util.Objects;
 
 /**
  * The class {@link JsonStringToObjectExtensions} converts json strings to java object and java
  * collections.
  */
-@UtilityClass
 public final class JsonStringToObjectExtensions
 {
+
+	private JsonStringToObjectExtensions()
+	{
+	}
 
 	/**
 	 * Transforms the given json string into a java object.
@@ -58,9 +59,11 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz)
+	public static <T> T toObject(final String jsonString, final Class<T> clazz)
 		throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(clazz);
 		return toObject(jsonString, clazz, false);
 	}
 
@@ -81,9 +84,11 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
+	public static <T> T toObject(final String jsonString, final Class<T> clazz,
 		final boolean newMapper) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(clazz);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(newMapper);
 		return toObject(jsonString, clazz, mapper);
 	}
@@ -103,9 +108,11 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
+	public static <T> T toObject(final String jsonString, final Class<T> clazz,
 		final Module... modules) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(clazz);
 		ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(true);
 		mapper = mapper.registerModules(modules);
 		return toObject(jsonString, clazz, mapper);
@@ -126,9 +133,12 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull String jsonString, final @NonNull Class<T> clazz,
-		final @NonNull ObjectMapper mapper) throws IOException
+	public static <T> T toObject(final String jsonString, final Class<T> clazz,
+		final ObjectMapper mapper) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(clazz);
+		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonString, clazz);
 	}
 
@@ -147,10 +157,13 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull String jsonString,
-		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
+	public static <T> T toObject(final String jsonString,
+		final TypeReference<T> typeReference, final ObjectMapper mapper)
 		throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonString, typeReference);
 	}
 
@@ -171,10 +184,13 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <K, V> Map<K, V> toMapObject(final @NonNull String jsonString,
-		final @NonNull TypeReference<Map<K, V>> typeReference, final @NonNull ObjectMapper mapper)
+	public static <K, V> Map<K, V> toMapObject(final String jsonString,
+		final TypeReference<Map<K, V>> typeReference, final ObjectMapper mapper)
 		throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonString, typeReference);
 	}
 
@@ -191,9 +207,11 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> List<T> toObjectList(final @NonNull String jsonString,
-		final @NonNull Class<T> elementClass) throws IOException
+	public static <T> List<T> toObjectList(final String jsonString,
+		final Class<T> elementClass) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(elementClass);
 		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
 	}
 
@@ -212,10 +230,13 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> Collection<T> toObjectCollection(final @NonNull String jsonString,
-		@SuppressWarnings("rawtypes") final @NonNull Class<? extends Collection> collectionClass,
-		final @NonNull Class<T> elementClass) throws IOException
+	public static <T> Collection<T> toObjectCollection(final String jsonString,
+		@SuppressWarnings("rawtypes") final Class<? extends Collection> collectionClass,
+		final Class<T> elementClass) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(collectionClass);
+		Objects.requireNonNull(elementClass);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(true);
 		return mapper.readValue(jsonString,
 			mapper.getTypeFactory().constructCollectionType(collectionClass, elementClass));

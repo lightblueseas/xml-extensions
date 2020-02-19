@@ -24,27 +24,28 @@
  */
 package de.alpharogroup.xml;
 
-import java.beans.XMLDecoder;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Map;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
-
 import de.alpharogroup.xml.factory.XStreamFactory;
 import de.alpharogroup.xml.factory.XmlMapperFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+
+import java.beans.XMLDecoder;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * The class {@link XmlToObjectExtensions}.
  */
-@UtilityClass
 public final class XmlToObjectExtensions
 {
+
+	private XmlToObjectExtensions()
+	{
+	}
 
 	/**
 	 * Creates from the given xml string an java object.
@@ -162,9 +163,11 @@ public final class XmlToObjectExtensions
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
-	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
-		final @NonNull Class<T> clazz) throws JsonProcessingException
+	public static <T> T toObjectWithJackson(final String xmlString,
+		final Class<T> clazz) throws JsonProcessingException
 	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(clazz);
 		return XmlMapperFactory.newXmlMapper().readValue(xmlString, clazz);
 	}
 
@@ -181,9 +184,11 @@ public final class XmlToObjectExtensions
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
-	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
-		final @NonNull TypeReference<T> typeReference) throws JsonProcessingException
+	public static <T> T toObjectWithJackson(final String xmlString,
+		final TypeReference<T> typeReference) throws JsonProcessingException
 	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(typeReference);
 		return toObjectWithJackson(xmlString, typeReference, XmlMapperFactory.newXmlMapper());
 	}
 
@@ -202,10 +207,13 @@ public final class XmlToObjectExtensions
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
-	public static <T> T toObjectWithJackson(final @NonNull String xmlString,
-		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper xmlMapper)
+	public static <T> T toObjectWithJackson(final String xmlString,
+		final TypeReference<T> typeReference, final ObjectMapper xmlMapper)
 		throws JsonProcessingException
 	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(xmlMapper);
 		return xmlMapper.readValue(xmlString, typeReference);
 	}
 

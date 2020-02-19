@@ -128,7 +128,7 @@ public class JsonFileToObjectExtensionsTest
 	/**
 	 * Test method for {@link JsonFileToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

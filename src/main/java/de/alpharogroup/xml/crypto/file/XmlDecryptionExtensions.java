@@ -28,6 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.codec.DecoderException;
 
@@ -37,17 +38,14 @@ import de.alpharogroup.crypto.hex.HexExtensions;
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.xml.XmlToObjectExtensions;
 import de.alpharogroup.xml.factory.XStreamFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlDecryptionExtensions} provides methods for read an encrypted file and decrypt
  * xml data.
  */
-@UtilityClass
-public class XmlDecryptionExtensions
+public final class XmlDecryptionExtensions
 {
-
+	private XmlDecryptionExtensions(){}
 	/**
 	 * Read from file the data object that was before saved as xml and encoded into a hexadecimal
 	 * {@link String} object.
@@ -68,10 +66,13 @@ public class XmlDecryptionExtensions
 	 * @throws DecoderException
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
-	public static <T> T readFromFileAsXmlAndHex(final @NonNull XStream xstream,
-		final @NonNull Map<String, Class<?>> aliases, final @NonNull File selectedFile,
+	public static <T> T readFromFileAsXmlAndHex(final XStream xstream,
+		final Map<String, Class<?>> aliases, final File selectedFile,
 		String charset) throws IOException, DecoderException
 	{
+		Objects.requireNonNull(xstream);
+		Objects.requireNonNull(aliases);
+		Objects.requireNonNull(selectedFile);
 		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
 			Charset.forName(charset));
 		String xmlString = HexExtensions.decodeHex(hexXmlString);
@@ -96,10 +97,13 @@ public class XmlDecryptionExtensions
 	 * @throws DecoderException
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
-	public static <T> T readFromFileAsXmlAndHex(final @NonNull XStream xstream,
-		final @NonNull Map<String, Class<?>> aliases, final @NonNull File selectedFile)
+	public static <T> T readFromFileAsXmlAndHex(final XStream xstream,
+		final Map<String, Class<?>> aliases, final File selectedFile)
 		throws IOException, DecoderException
 	{
+		Objects.requireNonNull(xstream);
+		Objects.requireNonNull(aliases);
+		Objects.requireNonNull(selectedFile);
 		return readFromFileAsXmlAndHex(xstream, aliases, selectedFile, "UTF-8");
 	}
 
@@ -121,10 +125,12 @@ public class XmlDecryptionExtensions
 	 * @throws DecoderException
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
-	public static <T> T readFromFileAsXmlAndHex(final @NonNull Map<String, Class<?>> aliases,
-		final @NonNull File selectedFile, String... allowTypesByWildcard)
+	public static <T> T readFromFileAsXmlAndHex(final Map<String, Class<?>> aliases,
+		final File selectedFile, String... allowTypesByWildcard)
 		throws IOException, DecoderException
 	{
+		Objects.requireNonNull(aliases);
+		Objects.requireNonNull(selectedFile);
 		XStream xStream = XStreamFactory.newXStream();
 		XStream.setupDefaultSecurity(xStream);
 		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);

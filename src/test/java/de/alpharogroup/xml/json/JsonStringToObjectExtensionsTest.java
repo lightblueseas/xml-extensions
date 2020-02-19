@@ -280,8 +280,7 @@ public class JsonStringToObjectExtensionsTest
 	/**
 	 * Test method for {@link JsonStringToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { InvocationTargetException.class, BeanTestException.class,
-			ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

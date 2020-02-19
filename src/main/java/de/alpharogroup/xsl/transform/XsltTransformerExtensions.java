@@ -24,29 +24,25 @@
  */
 package de.alpharogroup.xsl.transform;
 
-import java.io.File;
-import java.io.OutputStream;
-
-import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+import java.io.File;
+import java.io.OutputStream;
+import java.util.Objects;
 
 /**
  * The class {@link XsltTransformerExtensions}
  */
-@UtilityClass
 public final class XsltTransformerExtensions
 {
 
 	/** The Constant TRANSFORMER_FACTORY. */
 	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
+
+	private XsltTransformerExtensions()
+	{
+	}
 
 	/**
 	 * Gets a new instance from a {@link Transformer} object
@@ -112,10 +108,12 @@ public final class XsltTransformerExtensions
 	 *             is thrown if an unrecoverable error occurs during the course of the
 	 *             transformation.
 	 */
-	public static void transform(final @NonNull File xmlFile, final @NonNull File xsltFile,
+	public static void transform(final File xmlFile, final File xsltFile,
 		final OutputStream outputStream)
 		throws TransformerConfigurationException, TransformerException
 	{
+		Objects.requireNonNull(xmlFile);
+		Objects.requireNonNull(xsltFile);
 		final Source xmlSource = new StreamSource(xmlFile);
 		final Source xsltSource = new StreamSource(xsltFile);
 		transform(xmlSource, xsltSource, outputStream);

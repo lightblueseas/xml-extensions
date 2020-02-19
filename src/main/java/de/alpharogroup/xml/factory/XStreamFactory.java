@@ -30,11 +30,10 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.HierarchicalStreamDriver;
 import com.thoughtworks.xstream.security.WildcardTypePermission;
 
-import lombok.experimental.UtilityClass;
 
-@UtilityClass
-public class XStreamFactory
+public final class XStreamFactory
 {
+	private XStreamFactory(){}
 	/**
 	 * Initialize the given {@link XStream} object with the given aliases
 	 *

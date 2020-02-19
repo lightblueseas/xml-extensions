@@ -24,22 +24,23 @@
  */
 package de.alpharogroup.xml.crypto.file;
 
-import java.util.Set;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
-
 import de.alpharogroup.collections.set.SetFactory;
 import de.alpharogroup.crypto.obfuscation.rule.ObfuscationOperationRule;
 import de.alpharogroup.crypto.obfuscation.rule.Operation;
-import lombok.experimental.UtilityClass;
+
+import java.util.Set;
 
 /**
  * The class {@link ObfuscationOperationTestData} provides test data for test the obfuscation rules
  */
-@UtilityClass
-public class ObfuscationOperationTestData
+public final class ObfuscationOperationTestData
 {
+
+	private ObfuscationOperationTestData()
+	{
+	}
 
 	/**
 	 * Gets the {@link BiMap} for obfuscation operation rules with only three operation rules for

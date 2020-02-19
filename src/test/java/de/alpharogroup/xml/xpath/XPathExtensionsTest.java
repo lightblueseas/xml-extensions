@@ -106,7 +106,7 @@ public class XPathExtensionsTest
 	/**
 	 * Test method for {@link XPathExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

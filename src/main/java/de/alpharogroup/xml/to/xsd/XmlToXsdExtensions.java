@@ -24,10 +24,6 @@
  */
 package de.alpharogroup.xml.to.xsd;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-
 import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlObject;
 import org.apache.xmlbeans.XmlOptions;
@@ -35,15 +31,20 @@ import org.apache.xmlbeans.impl.inst2xsd.Inst2Xsd;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
 import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 
-import lombok.experimental.UtilityClass;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 
 /**
  * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of
  * XMLBeans tools.
  */
-@UtilityClass
 public final class XmlToXsdExtensions
 {
+
+	private XmlToXsdExtensions()
+	{
+	}
 
 	/**
 	 * Returns a xsd String from the given XML file that can used for several purposes.

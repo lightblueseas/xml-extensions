@@ -53,7 +53,7 @@ public class XmlToXsdExtensionsTest
 	/**
 	 * Test method for {@link XmlToXsdExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

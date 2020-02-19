@@ -24,25 +24,26 @@
  */
 package de.alpharogroup.xml.json;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import de.alpharogroup.xml.factory.ObjectMapperFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * The class {@link ObjectToJsonExtensions} converts java objects to json string objects.
  */
-@UtilityClass
-public class ObjectToJsonExtensions
+public final class ObjectToJsonExtensions
 {
+
+	private ObjectToJsonExtensions()
+	{
+	}
 
 	/**
 	 * Creates from the given {@link List} a json string
@@ -59,9 +60,10 @@ public class ObjectToJsonExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> String toJson(final @NonNull List<T> list)
+	public static <T> String toJson(final List<T> list)
 		throws JsonGenerationException, JsonMappingException, IOException
 	{
+		Objects.requireNonNull(list);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper();
 		return toJson(list, mapper);
 	}
@@ -83,9 +85,11 @@ public class ObjectToJsonExtensions
 	 * @throws JsonMappingException
 	 *             the json mapping exception
 	 */
-	public static <T> String toJson(final @NonNull List<T> list, final @NonNull ObjectMapper mapper)
+	public static <T> String toJson(final List<T> list, final ObjectMapper mapper)
 		throws IOException, JsonGenerationException, JsonMappingException
 	{
+		Objects.requireNonNull(list);
+		Objects.requireNonNull(mapper);
 		final ByteArrayOutputStream out = new ByteArrayOutputStream();
 		mapper.writeValue(out, list);
 
@@ -105,8 +109,9 @@ public class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final @NonNull T object) throws JsonProcessingException
+	public static <T> String toJson(final T object) throws JsonProcessingException
 	{
+		Objects.requireNonNull(object);
 		return toJson(object, false);
 	}
 
@@ -125,9 +130,10 @@ public class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             If an error occurs when converting object to String
 	 */
-	public static <T> String toJson(final @NonNull T object, final boolean newMapper)
+	public static <T> String toJson(final T object, final boolean newMapper)
 		throws JsonProcessingException
 	{
+		Objects.requireNonNull(object);
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(newMapper);
 		return toJson(object, mapper);
 	}
@@ -145,9 +151,11 @@ public class ObjectToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             the json processing exception
 	 */
-	public static <T> String toJson(final @NonNull T object, final @NonNull ObjectMapper mapper)
+	public static <T> String toJson(final T object, final ObjectMapper mapper)
 		throws JsonProcessingException
 	{
+		Objects.requireNonNull(object);
+		Objects.requireNonNull(mapper);
 		return mapper.writeValueAsString(object);
 	}
 

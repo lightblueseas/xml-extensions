@@ -103,7 +103,7 @@ public class ObjectMapperFactoryTest
 	/**
 	 * Test method for {@link ObjectMapperFactory}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

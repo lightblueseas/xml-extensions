@@ -43,24 +43,21 @@ import org.testng.annotations.Test;
 import de.alpharogroup.collections.iterators.EnumerationIterator;
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.lang.ClassExtensions;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 
 /**
  * The unit test class for the class {@link XmlResourceBundleControl}
  */
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class XmlResourceBundleControlTest
 {
 
 	/** The properties for unit tests. */
-	Properties properties;
+	private Properties properties;
 
 	/** The properties german for unit tests. */
-	Properties propertiesGerman;
+	private Properties propertiesGerman;
 
 	/** The {@link XmlResourceBundleControl} instance for unit tests. */
-	XmlResourceBundleControl xmlResourceBundleControl;
+	private XmlResourceBundleControl xmlResourceBundleControl;
 
 	/**
 	 * Sets up method will be invoked before every unit test method

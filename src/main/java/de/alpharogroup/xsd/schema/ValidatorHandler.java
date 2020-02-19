@@ -28,16 +28,31 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * The class {@link ValidatorHandler}.
  */
-@Getter
-@Setter
 public class ValidatorHandler extends DefaultHandler
 {
+
+	public SAXParseException getSaxParseException()
+	{
+		return saxParseException;
+	}
+
+	public void setSaxParseException(SAXParseException saxParseException)
+	{
+		this.saxParseException = saxParseException;
+	}
+
+	public boolean isValidationError()
+	{
+		return validationError;
+	}
+
+	public void setValidationError(boolean validationError)
+	{
+		this.validationError = validationError;
+	}
 
 	/** The sax parse exception. */
 	private SAXParseException saxParseException;

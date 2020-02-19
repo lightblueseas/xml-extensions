@@ -24,8 +24,9 @@
  */
 package de.alpharogroup.xsd.schema;
 
-import java.io.File;
-import java.io.IOException;
+import org.w3c.dom.Document;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -34,17 +35,12 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
-
-import org.w3c.dom.Document;
-import org.xml.sax.ErrorHandler;
-import org.xml.sax.SAXException;
-
-import lombok.experimental.UtilityClass;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * The class {@link ValidatorExtensions} can validate xml files.
  */
-@UtilityClass
 public final class ValidatorExtensions
 {
 
@@ -62,6 +58,10 @@ public final class ValidatorExtensions
 
 	/** The Constant HTTP_WWW_W3_ORG_2001_XML_SCHEMA. */
 	private static final String HTTP_WWW_W3_ORG_2001_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+
+	private ValidatorExtensions()
+	{
+	}
 
 	/**
 	 * Gets the document builder factory.

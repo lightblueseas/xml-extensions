@@ -199,7 +199,7 @@ public class XmlToObjectExtensionsTest
 	/**
 	 * Test method for {@link XmlToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

@@ -242,7 +242,7 @@ public class ObjectToXmlExtensionsTest
 	/**
 	 * Test method for {@link ObjectToXmlExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

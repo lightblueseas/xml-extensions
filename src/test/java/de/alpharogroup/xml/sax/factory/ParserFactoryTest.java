@@ -78,7 +78,7 @@ public class ParserFactoryTest
 	/**
 	 * Test method for {@link ParserFactory}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

@@ -29,15 +29,12 @@ import java.util.Map;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The factory class {@link ObjectMapperFactory} for creating {@link ObjectMapper} objects
  */
-@UtilityClass
-public class ObjectMapperFactory
+public final class ObjectMapperFactory
 {
-
+	private ObjectMapperFactory(){}
 	/** The constant mapper. */
 	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 

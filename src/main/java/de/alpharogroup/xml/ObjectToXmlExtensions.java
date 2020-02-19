@@ -24,23 +24,24 @@
  */
 package de.alpharogroup.xml;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
-
 import de.alpharogroup.xml.factory.XStreamFactory;
 import de.alpharogroup.xml.factory.XmlMapperFactory;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
+
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * The class {@link ObjectToXmlExtensions}.
  */
-@UtilityClass
 public final class ObjectToXmlExtensions
 {
+
+	private ObjectToXmlExtensions()
+	{
+	}
 
 	/**
 	 * Creates from the given Object an xml string.
@@ -122,9 +123,10 @@ public final class ObjectToXmlExtensions
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
-	public static <T> String toXmlWithJackson(final @NonNull T objectToXML)
+	public static <T> String toXmlWithJackson(final T objectToXML)
 		throws JsonProcessingException
 	{
+		Objects.requireNonNull(objectToXML);
 		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
 		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
 	}

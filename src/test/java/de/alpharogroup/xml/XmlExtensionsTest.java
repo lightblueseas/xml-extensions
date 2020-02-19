@@ -138,7 +138,7 @@ public class XmlExtensionsTest
 	/**
 	 * Test method for {@link XmlExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

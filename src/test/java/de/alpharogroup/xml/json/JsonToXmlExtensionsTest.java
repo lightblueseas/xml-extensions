@@ -95,7 +95,7 @@ public class JsonToXmlExtensionsTest
 	/**
 	 * Test method for {@link JsonToXmlExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

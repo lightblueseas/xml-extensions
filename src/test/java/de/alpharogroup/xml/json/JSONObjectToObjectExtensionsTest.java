@@ -119,8 +119,7 @@ public class JSONObjectToObjectExtensionsTest
 	/**
 	 * Test method for {@link JSONObjectToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { InvocationTargetException.class, BeanTestException.class,
-			ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

@@ -1,6 +1,5 @@
 
 plugins {
-    id "io.franzbecker.gradle-lombok" version "3.2.0"
     id "java"
     id "maven-publish"
     id "signing"
@@ -11,7 +10,7 @@ plugins {
 apply plugin: "jacoco"
 
 group = "de.alpharogroup"
-version = "7.3-SNAPSHOT"
+version = "$projectVersion"
 description = "xml-extensions"
 sourceCompatibility = "1.8"
 
@@ -22,8 +21,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly("org.projectlombok:lombok:$lombokVersion")
-    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     compile("org.apache.xmlbeans:xmlbeans:$xmlbeansVersion")
     compile("org.codehaus.jettison:jettison:$jettisonVersion")
     compile("com.thoughtworks.xstream:xstream:$xstreamVersion")
@@ -153,7 +150,6 @@ license {
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
-              "**/*.lombok.config",
               "src/test/resources/**",
               "src/main/resources/**",
               "out/**",
