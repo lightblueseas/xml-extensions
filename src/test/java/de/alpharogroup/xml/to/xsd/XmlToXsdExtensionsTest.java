@@ -40,7 +40,7 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.array.ArrayFactory;
-import de.alpharogroup.crypto.file.checksum.FileChecksumExtensions;
+import de.alpharogroup.checksum.FileChecksumExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 

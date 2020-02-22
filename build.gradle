@@ -3,7 +3,7 @@ plugins {
     id "java"
     id "maven-publish"
     id "signing"
-    id "com.github.ben-manes.versions" version "0.27.0"
+    id "com.github.ben-manes.versions" version "0.28.0"
     id "com.github.hierynomus.license" version "0.15.0"
 }
 
@@ -31,6 +31,7 @@ dependencies {
     compile("de.alpharogroup:file-worker:$fileWorkerVersion")
     compile("de.alpharogroup:jobj-core:$jobjCoreVersion")
     compile("de.alpharogroup:jobj-clone:$jobjCloneVersion")
+    compile("de.alpharogroup:crypt-data:$cryptDataVersion")
     testCompile("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
     testCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     testCompile("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
@@ -39,12 +40,11 @@ dependencies {
     testCompile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
     testCompile("de.alpharogroup:meanbean-factories:$meanbeanFactoriesVersion")
     testCompile("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
+    testCompile("de.alpharogroup:checksum-up:$checksumUpVersion")
     testCompile("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
     testCompile("org.apache.velocity:velocity:$velocityVersion")
     testCompile("org.meanbean:meanbean:$meanbeanVersion")
     testCompile("org.testng:testng:$testngVersion")
-    testCompile("junit:junit:$junitVersion")
-    testCompile("org.mockito:mockito-core:$mockitoCoreVersion")
 }
 
 task sourcesJar(type: Jar) {
@@ -57,6 +57,8 @@ task javadocJar(type: Jar) {
     archiveClassifier.set("javadoc")
     javadoc.properties.failOnError = true
 }
+
+def releaseVersion = !version.endsWith("SNAPSHOT")
 
 publishing {
     publications {
@@ -106,13 +108,15 @@ publishing {
             }
             def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
             def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
-            url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
         }
     }
 }
 
 signing {
-    sign publishing.publications.mavenJava
+    if (releaseVersion) {
+        sign publishing.publications.mavenJava
+    }
 }
 
 javadoc {
