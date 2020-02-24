@@ -54,7 +54,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>7.2</xml-extensions.version>
+		<xml-extensions.version>7.3</xml-extensions.version>
 			...
 	</properties>
 			...
@@ -77,12 +77,12 @@ You can first define the version in the ext section and add than the following g
 ```
 ext {
 			...
-    xmlExtensionsVersion = "7.2"
+    xmlExtensionsVersion = "7.3"
 			...
 }
 dependencies {
 			...
-compile "de.alpharogroup:xml-extensions:${xmlExtensionsVersion}"
+compile("de.alpharogroup:xml-extensions:$xmlExtensionsVersion")
 			...
 }
 ```
