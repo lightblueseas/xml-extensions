@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -42,6 +43,7 @@ import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The unit test class for the class {@link JsonFileToObjectExtensions}
@@ -72,13 +74,12 @@ public class JsonFileToObjectExtensionsTest
 	{
 		Employee actual;
 		Employee expected;
-		String jsonString;
 		ObjectMapper objectMapper;
 
 		objectMapper = ObjectMapperFactory.newObjectMapper();
 		actual = JsonFileToObjectExtensions.toObject(jsonFile, Employee.class, objectMapper);
-		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		expected = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.nickname("beast").married(true).about("Ha ha ha...").build()).id("23").build();
 		assertEquals(expected, actual);
 	}
 
@@ -120,6 +121,16 @@ public class JsonFileToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JsonFileToObjectExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JsonFileToObjectExtensions.class);
 	}
 
 }

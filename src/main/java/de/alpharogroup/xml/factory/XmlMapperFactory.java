@@ -22,48 +22,42 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xml.json;
+package de.alpharogroup.xml.factory;
 
-import java.util.logging.Level;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-
-import lombok.experimental.UtilityClass;
-import lombok.extern.java.Log;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 /**
- * The class {@link ObjectToJsonQuietlyExtensions} converts java objects to json string objects in a
- * quietly manner as the name let presume.
+ * The factory class {@link XmlMapperFactory} for creating {@link ObjectMapper} objects for
+ * serializing java beans to xml string and deserialize xml string to java beans.
  */
-@UtilityClass
-@Log
-public class ObjectToJsonQuietlyExtensions
+public final class XmlMapperFactory
 {
-
+	/**
+	 * Factory method for create a new {@link ObjectMapper}
+	 *
+	 * @return the new {@link ObjectMapper}
+	 */
+	public static ObjectMapper newXmlMapper()
+	{
+		return new XmlMapper();
+	}
 
 	/**
-	 * Creates from the given Object a json string. Note if an exception occurs null will be
-	 * returned.
+	 * Factory method for create a new {@link ObjectMapper}.
 	 *
-	 * @param <T>
-	 *            the generic type of the given argument
-	 * @param object
-	 *            the object.
-	 * @return the json string or null if an error occured by parsing.
+	 * @param module
+	 *            the module
+	 * @return the new {@link ObjectMapper}
 	 */
-	public static <T> String toJsonQuietly(final T object)
+	public static ObjectMapper newXmlMapper(JacksonXmlModule module)
 	{
-		try
-		{
-			return ObjectToJsonExtensions.toJson(object);
-		}
-		catch (final JsonProcessingException e)
-		{
-			log.log(Level.SEVERE,
-				"An error occured when converting object to String.\nGiven object:"
-					+ object.toString() + "\n",
-				e);
-		}
-		return null;
+		return new XmlMapper(module);
 	}
+
+	private XmlMapperFactory()
+	{
+	}
+
 }

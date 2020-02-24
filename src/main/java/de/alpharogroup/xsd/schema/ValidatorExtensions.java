@@ -39,29 +39,26 @@ import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link ValidatorExtensions} can validate xml files.
  */
-@UtilityClass
 public final class ValidatorExtensions
 {
-
-	/** The Constant DOCUMENT_BUILDER_FACTORY_VALUE. */
-	private static final String DOCUMENT_BUILDER_FACTORY_VALUE = "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl";
 
 	/** The Constant DOCUMENT_BUILDER_FACTORY_KEY. */
 	private static final String DOCUMENT_BUILDER_FACTORY_KEY = "javax.xml.parsers.DocumentBuilderFactory";
 
-	/** The Constant SCHEMA_SOURCE_KEY. */
-	private static final String SCHEMA_SOURCE_KEY = "http://java.sun.com/xml/jaxp/properties/schemaSource";
+	/** The Constant DOCUMENT_BUILDER_FACTORY_VALUE. */
+	private static final String DOCUMENT_BUILDER_FACTORY_VALUE = "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl";
+
+	/** The Constant HTTP_WWW_W3_ORG_2001_XML_SCHEMA. */
+	private static final String HTTP_WWW_W3_ORG_2001_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
 
 	/** The Constant SCHEMA_LANGUAGE_KEY. */
 	private static final String SCHEMA_LANGUAGE_KEY = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
 
-	/** The Constant HTTP_WWW_W3_ORG_2001_XML_SCHEMA. */
-	private static final String HTTP_WWW_W3_ORG_2001_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
+	/** The Constant SCHEMA_SOURCE_KEY. */
+	private static final String SCHEMA_SOURCE_KEY = "http://java.sun.com/xml/jaxp/properties/schemaSource";
 
 	/**
 	 * Gets the document builder factory.
@@ -185,7 +182,6 @@ public final class ValidatorExtensions
 		validator.validate(getDOMSource(xml, errorHandler));
 	}
 
-
 	/**
 	 * Validate given xml schema.
 	 *
@@ -220,6 +216,11 @@ public final class ValidatorExtensions
 			return false;
 		}
 		return true;
+	}
+
+
+	private ValidatorExtensions()
+	{
 	}
 
 

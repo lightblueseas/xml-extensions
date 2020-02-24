@@ -28,17 +28,88 @@ import java.beans.XMLDecoder;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Objects;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
-import lombok.experimental.UtilityClass;
+import de.alpharogroup.xml.factory.XStreamFactory;
+import de.alpharogroup.xml.factory.XmlMapperFactory;
 
 /**
  * The class {@link XmlToObjectExtensions}.
  */
-@UtilityClass
 public final class XmlToObjectExtensions
 {
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param clazz
+	 *            the class of the generic type
+	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
+	 */
+	public static <T> T toObjectWithJackson(final String xmlString, final Class<T> clazz)
+		throws JsonProcessingException
+	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(clazz);
+		return XmlMapperFactory.newXmlMapper().readValue(xmlString, clazz);
+	}
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param typeReference
+	 *            the type reference
+	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
+	 */
+	public static <T> T toObjectWithJackson(final String xmlString,
+		final TypeReference<T> typeReference) throws JsonProcessingException
+	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(typeReference);
+		return toObjectWithJackson(xmlString, typeReference, XmlMapperFactory.newXmlMapper());
+	}
+
+	/**
+	 * Creates from the given xml string an java object.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xmlString
+	 *            the xml
+	 * @param typeReference
+	 *            the type reference
+	 * @param xmlMapper
+	 *            the xml mapper
+	 * @return the object
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
+	 */
+	public static <T> T toObjectWithJackson(final String xmlString,
+		final TypeReference<T> typeReference, final ObjectMapper xmlMapper)
+		throws JsonProcessingException
+	{
+		Objects.requireNonNull(xmlString);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(xmlMapper);
+		return xmlMapper.readValue(xmlString, typeReference);
+	}
 
 	/**
 	 * Creates from the given xml string an java object.
@@ -54,7 +125,7 @@ public final class XmlToObjectExtensions
 	{
 
 		XMLDecoder dec = null;
-		T obj = null;
+		T obj;
 		try
 		{
 			final InputStream is = new ByteArrayInputStream(xmlString.getBytes());
@@ -139,33 +210,12 @@ public final class XmlToObjectExtensions
 	public static <T> T toObjectWithXStream(XStream xstream, final String xmlString,
 		final Map<String, Class<?>> aliases)
 	{
-		xstream = XmlToObjectExtensions.initializeXStream(xstream, aliases);
+		xstream = XStreamFactory.initializeXStream(xstream, aliases);
 		return (T)xstream.fromXML(xmlString);
 	}
 
-	/**
-	 * Initialize the given {@link XStream} object with the given aliases
-	 *
-	 * @param xstream
-	 *            the {@link XStream} object
-	 * @param aliases
-	 *            the aliases
-	 * @return the initialized {@link XStream} object
-	 */
-	public static XStream initializeXStream(XStream xstream, Map<String, Class<?>> aliases)
+	private XmlToObjectExtensions()
 	{
-		if (xstream == null)
-		{
-			xstream = new XStream();
-		}
-		if (aliases != null)
-		{
-			for (final Map.Entry<String, Class<?>> alias : aliases.entrySet())
-			{
-				xstream.alias(alias.getKey(), alias.getValue());
-			}
-		}
-		return xstream;
 	}
 
 }

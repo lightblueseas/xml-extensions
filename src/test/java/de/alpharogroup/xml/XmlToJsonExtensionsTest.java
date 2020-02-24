@@ -28,8 +28,6 @@ import static org.testng.AssertJUnit.assertEquals;
 
 import java.util.Map;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -108,6 +106,7 @@ public class XmlToJsonExtensionsTest
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
+
 		actual = XmlToJsonExtensions.toJson(xmlResult, aliases);
 		expected = "{\"employee\":{\"id\":23,\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}}";
 		assertEquals(actual, expected);
@@ -116,7 +115,7 @@ public class XmlToJsonExtensionsTest
 	/**
 	 * Test method for {@link XmlToJsonExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

@@ -35,13 +35,10 @@ import org.apache.xmlbeans.impl.inst2xsd.Inst2Xsd;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
 import org.apache.xmlbeans.impl.xb.xsdschema.SchemaDocument;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link XmlToXsdExtensions} generates XML schema from XML files. It makes use of
  * XMLBeans tools.
  */
-@UtilityClass
 public final class XmlToXsdExtensions
 {
 
@@ -247,5 +244,9 @@ public final class XmlToXsdExtensions
 		final StringWriter writer = new StringWriter();
 		schema.save(writer, xmlOptions);
 		return writer.toString();
+	}
+
+	private XmlToXsdExtensions()
+	{
 	}
 }

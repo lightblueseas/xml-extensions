@@ -25,17 +25,38 @@
 package de.alpharogroup.xml;
 
 import java.util.Map;
+import java.util.Objects;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
-import lombok.experimental.UtilityClass;
+import de.alpharogroup.xml.factory.XStreamFactory;
+import de.alpharogroup.xml.factory.XmlMapperFactory;
 
 /**
  * The class {@link ObjectToXmlExtensions}.
  */
-@UtilityClass
 public final class ObjectToXmlExtensions
 {
+
+	/**
+	 * Creates from the given Object an xml string.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param objectToXML
+	 *            the object to xml
+	 * @return the xml string
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
+	 */
+	public static <T> String toXmlWithJackson(final T objectToXML) throws JsonProcessingException
+	{
+		Objects.requireNonNull(objectToXML);
+		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
+		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
+	}
 
 	/**
 	 * Creates from the given Object an xml string.
@@ -102,9 +123,12 @@ public final class ObjectToXmlExtensions
 	public static <T> String toXmlWithXStream(XStream xstream, final T objectToXML,
 		final Map<String, Class<?>> aliases)
 	{
-		xstream = XmlToObjectExtensions.initializeXStream(xstream, aliases);
-		final String xml = xstream.toXML(objectToXML);
-		return xml;
+		xstream = XStreamFactory.initializeXStream(xstream, aliases);
+		return xstream.toXML(objectToXML);
+	}
+
+	private ObjectToXmlExtensions()
+	{
 	}
 
 }

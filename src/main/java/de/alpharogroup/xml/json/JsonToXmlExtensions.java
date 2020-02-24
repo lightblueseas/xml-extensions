@@ -34,12 +34,10 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import de.alpharogroup.xml.ObjectToXmlExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
  */
-@UtilityClass
 public final class JsonToXmlExtensions
 {
 
@@ -80,6 +78,10 @@ public final class JsonToXmlExtensions
 	{
 		final T object = JsonStringToObjectExtensions.toObject(jsonString, clazz);
 		return ObjectToXmlExtensions.toXmlWithXStream(object);
+	}
+
+	private JsonToXmlExtensions()
+	{
 	}
 
 }

@@ -26,32 +26,94 @@ package de.alpharogroup.xml.json;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
+import de.alpharogroup.check.Argument;
 import de.alpharogroup.collections.CollectionExtensions;
 import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.collections.set.SetFactory;
+import de.alpharogroup.file.search.PathFinder;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The unit test class for the class {@link JsonStringToObjectExtensions}
  */
 public class JsonStringToObjectExtensionsTest
 {
+
+	public static <K> Map<K, Integer> newCounterMap(final Collection<K> elements)
+	{
+		Argument.notNull(elements, "elements");
+		Map<K, Integer> elementsCount = MapFactory.newHashMap();
+		for (K element : elements)
+		{
+			if (elementsCount.containsKey(element))
+			{
+				elementsCount.merge(element, 1, Integer::sum);
+				continue;
+			}
+			elementsCount.put(element, 0);
+		}
+		return elementsCount;
+	}
+
+	File jsonDir;
+
+	File jsonFile;
+
+	@BeforeMethod
+	protected void setUp()
+	{
+		jsonDir = new File(PathFinder.getSrcTestResourcesDir(), "json");
+		jsonFile = new File(jsonDir, "signin.json");
+	}
+
+	/**
+	 * Test method for
+	 * {@link JsonStringToObjectExtensions#toMapObject(String, TypeReference, ObjectMapper)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToMapObject() throws IOException
+	{
+		Map<Integer, Integer> actual;
+		Map<Integer, Integer> expected;
+		TypeReference<Map<Integer, Integer>> typeReference;
+		String jsonString;
+
+		jsonString = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
+
+		// new scenario: try to convert json to integer map
+		typeReference = new TypeReference<Map<Integer, Integer>>()
+		{
+		};
+		actual = JsonStringToObjectExtensions.toMapObject(jsonString, typeReference,
+			ObjectMapperFactory.newObjectMapper());
+		expected = newCounterMap(ListFactory.newRangeList(1, 5));
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
@@ -66,17 +128,20 @@ public class JsonStringToObjectExtensionsTest
 	@Test
 	public void testToObject() throws JsonParseException, JsonMappingException, IOException
 	{
-		final Employee expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
-			.build();
-		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
-		final Employee actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
+		Employee actual;
+		Employee expected;
+		String jsonString;
+
+		expected = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
+			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
+		jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Employee.class);
 		assertEquals(expected, actual);
 	}
 
 	/**
 	 * Test method for {@link JsonStringToObjectExtensions#toObjectCollection(String, Class, Class)}
-	 * 
+	 *
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
@@ -155,8 +220,8 @@ public class JsonStringToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
-	}
 
+	}
 
 	/**
 	 * Test method for
@@ -184,10 +249,35 @@ public class JsonStringToObjectExtensionsTest
 		assertEquals(expected, actual);
 	}
 
+
+	/**
+	 * Test method for {@link JsonStringToObjectExtensions#toObject(String, Class)}
+	 *
+	 * @throws JsonParseException
+	 *             If an error occurs when parsing the string into Object
+	 * @throws JsonMappingException
+	 *             the If an error occurs when mapping the string into Object
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToObjectWithSignin()
+		throws JsonParseException, JsonMappingException, IOException
+	{
+		Signin actual;
+		Signin expected;
+		String jsonString;
+
+		jsonString = "{\"username\":\"foo\",\"password\":\"bar\"}";
+		actual = JsonStringToObjectExtensions.toObject(jsonString, Signin.class);
+		expected = Signin.builder().username("foo").password("bar").build();
+		assertEquals(expected, actual);
+	}
+
 	/**
 	 * Test method for {@link JsonStringToObjectExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

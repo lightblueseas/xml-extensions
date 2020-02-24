@@ -29,8 +29,6 @@ import static org.testng.AssertJUnit.assertEquals;
 import java.io.IOException;
 
 import org.json.JSONException;
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -50,6 +48,7 @@ public class JsonToXmlExtensionsTest
 	 * Test method for {@link JsonToXmlExtensions#toXml(String)}
 	 * 
 	 * @throws JSONException
+	 *             if there is a syntax error in the source string or a duplicated key
 	 */
 	@Test
 	public void testToXmlString() throws JSONException
@@ -80,7 +79,11 @@ public class JsonToXmlExtensionsTest
 		String expected;
 		String actual;
 
-		expected = "<de.alpharogroup.test.objects.Employee>\n  <id>23</id>\n  <person>\n    <about>Ha ha ha...</about>\n    <gender>FEMALE</gender>\n    <married>true</married>\n    <name>Anna</name>\n    <nickname>beast</nickname>\n  </person>\n</de.alpharogroup.test.objects.Employee>";
+		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+			+ "    <about>Ha ha ha...</about>\n" + "    <gender>FEMALE</gender>\n"
+			+ "    <married>true</married>\n" + "    <name>Anna</name>\n"
+			+ "    <nickname>beast</nickname>\n" + "  </person>\n"
+			+ "</de.alpharogroup.test.objects.Employee>";
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString, Employee.class);
 		assertEquals(actual, expected);
@@ -90,7 +93,7 @@ public class JsonToXmlExtensionsTest
 	/**
 	 * Test method for {@link JsonToXmlExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

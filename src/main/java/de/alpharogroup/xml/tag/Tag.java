@@ -34,35 +34,79 @@ import java.util.Optional;
 import de.alpharogroup.clone.object.CloneObjectExtensions;
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.map.MapFactory;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
 
 /**
  * The class {@link Tag} represents an tag for xml or html where you can set the position of the
  * child tags
  */
-@Getter
-@Setter
-@ToString(exclude = { "attributes", "childTagPositions" })
-@EqualsAndHashCode(exclude = { "attributes", "childTagPositions" })
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder(toBuilder = true)
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Tag implements Serializable
 {
+
+	public static class TagBuilder
+	{
+		private Map<String, String> attributes;
+		private List<ChildTagPosition> childTagPositions;
+		private String content;
+		private boolean endTag;
+		private String name;
+
+		TagBuilder()
+		{
+		}
+
+		public Tag.TagBuilder attributes(Map<String, String> attributes)
+		{
+			this.attributes = attributes;
+			return this;
+		}
+
+		public Tag build()
+		{
+			return new Tag(attributes, childTagPositions, content, endTag, name);
+		}
+
+		public Tag.TagBuilder childTagPositions(List<ChildTagPosition> childTagPositions)
+		{
+			this.childTagPositions = childTagPositions;
+			return this;
+		}
+
+		public Tag.TagBuilder content(String content)
+		{
+			this.content = content;
+			return this;
+		}
+
+		public Tag.TagBuilder endTag(boolean endTag)
+		{
+			this.endTag = endTag;
+			return this;
+		}
+
+		public Tag.TagBuilder name(String name)
+		{
+			this.name = name;
+			return this;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "Tag.TagBuilder(attributes=" + this.attributes + ", childTagPositions="
+				+ this.childTagPositions + ", content=" + this.content + ", endTag=" + this.endTag
+				+ ", name=" + this.name + ")";
+		}
+	}
 
 	/**
 	 * The Constant serialVersionUID.
 	 */
 	private static final long serialVersionUID = 1L;
+
+	public static TagBuilder builder()
+	{
+		return new TagBuilder();
+	}
 
 	/** The attributes of the tag. */
 	private Map<String, String> attributes;
@@ -78,6 +122,20 @@ public class Tag implements Serializable
 
 	/** The name of the tag. */
 	private String name;
+
+	public Tag()
+	{
+	}
+
+	public Tag(Map<String, String> attributes, List<ChildTagPosition> childTagPositions,
+		String content, boolean endTag, String name)
+	{
+		this.attributes = attributes;
+		this.childTagPositions = childTagPositions;
+		this.content = content;
+		this.endTag = endTag;
+		this.name = name;
+	}
 
 	/**
 	 * Adds the attribute with the given name and value.
@@ -118,6 +176,11 @@ public class Tag implements Serializable
 		return getChildren().add(childTagPosition);
 	}
 
+	protected boolean canEqual(final Object other)
+	{
+		return other instanceof Tag;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -136,6 +199,34 @@ public class Tag implements Serializable
 		}
 	}
 
+	@Override
+	public boolean equals(final Object o)
+	{
+		if (o == this)
+			return true;
+		if (!(o instanceof Tag))
+			return false;
+		final Tag other = (Tag)o;
+		if (!other.canEqual(this))
+			return false;
+		final Object this$content = this.getContent();
+		final Object other$content = other.getContent();
+		if (this$content == null ? other$content != null : !this$content.equals(other$content))
+			return false;
+		if (this.isEndTag() != other.isEndTag())
+			return false;
+		final Object this$name = this.getName();
+		final Object other$name = other.getName();
+		if (this$name == null ? other$name != null : !this$name.equals(other$name))
+			return false;
+		return true;
+	}
+
+	public Map<String, String> getAttributes()
+	{
+		return this.attributes;
+	}
+
 	/**
 	 * Gets the children.
 	 *
@@ -144,6 +235,39 @@ public class Tag implements Serializable
 	public List<ChildTagPosition> getChildren()
 	{
 		return this.childTagPositions;
+	}
+
+	public List<ChildTagPosition> getChildTagPositions()
+	{
+		return this.childTagPositions;
+	}
+
+	public String getContent()
+	{
+		return this.content;
+	}
+
+	public String getName()
+	{
+		return this.name;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int PRIME = 59;
+		int result = 1;
+		final Object $content = this.getContent();
+		result = result * PRIME + ($content == null ? 43 : $content.hashCode());
+		result = result * PRIME + (this.isEndTag() ? 79 : 97);
+		final Object $name = this.getName();
+		result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+		return result;
+	}
+
+	public boolean isEndTag()
+	{
+		return this.endTag;
 	}
 
 	/**
@@ -190,6 +314,50 @@ public class Tag implements Serializable
 		return false;
 	}
 
+	public Tag setAttributes(Map<String, String> attributes)
+	{
+		this.attributes = attributes;
+		return this;
+	}
+
+	public Tag setChildTagPositions(List<ChildTagPosition> childTagPositions)
+	{
+		this.childTagPositions = childTagPositions;
+		return this;
+	}
+
+	public Tag setContent(String content)
+	{
+		this.content = content;
+		return this;
+	}
+
+	public Tag setEndTag(boolean endTag)
+	{
+		this.endTag = endTag;
+		return this;
+	}
+
+	public Tag setName(String name)
+	{
+		this.name = name;
+		return this;
+	}
+
+	public TagBuilder toBuilder()
+	{
+		return new TagBuilder().attributes(this.attributes)
+			.childTagPositions(this.childTagPositions).content(this.content).endTag(this.endTag)
+			.name(this.name);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Tag(content=" + this.getContent() + ", endTag=" + this.isEndTag() + ", name="
+			+ this.getName() + ")";
+	}
+
 	/**
 	 * Creates from this {@link Tag} object an xml string.
 	 *
@@ -211,7 +379,7 @@ public class Tag implements Serializable
 			if (getChildren() != null && !getChildren().isEmpty())
 			{
 				String processingContent = getContent();
-				Integer lastPosition = 0;
+				int lastPosition = 0;
 				for (final ChildTagPosition child : getChildren())
 				{
 					final String subContent = getContent().substring(lastPosition,
@@ -238,5 +406,4 @@ public class Tag implements Serializable
 		}
 		return buffer.toString();
 	}
-
 }

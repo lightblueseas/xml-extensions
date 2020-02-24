@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,6 +41,7 @@ import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.test.objects.Employee;
 import de.alpharogroup.test.objects.Person;
 import de.alpharogroup.test.objects.enums.Gender;
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The unit test class for the class {@link JSONObjectToObjectExtensions}
@@ -109,6 +111,16 @@ public class JSONObjectToObjectExtensionsTest
 		actual = CollectionExtensions.isEqualCollection(jsonList, objectList);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link JSONObjectToObjectExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(JSONObjectToObjectExtensions.class);
 	}
 
 }

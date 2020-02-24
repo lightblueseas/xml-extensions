@@ -29,18 +29,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Map;
+import java.util.Objects;
 
 import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
 
 import de.alpharogroup.file.read.ReadFileExtensions;
 import de.alpharogroup.lang.ClassExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link XmlExtensions}.
  */
-@UtilityClass
 public final class XmlExtensions
 {
 
@@ -75,6 +74,27 @@ public final class XmlExtensions
 	}
 
 	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFile
+	 *            the xml file
+	 * @param clazz
+	 *            the class of the generic type
+	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> T loadObject(final File xmlFile, final Class<T> clazz) throws IOException
+	{
+		Objects.requireNonNull(clazz);
+		final InputStream is = FileUtils.openInputStream(xmlFile);
+		return loadObject(is, clazz);
+	}
+
+	/**
 	 * Load from the given input stream that should represent an xml file and transform it to the
 	 * generic type object.
 	 *
@@ -94,6 +114,29 @@ public final class XmlExtensions
 	}
 
 	/**
+	 * Load from the given input stream that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param is
+	 *            the input stream
+	 * @param clazz
+	 *            the clazz of the generic type
+	 * @return the object from the given input stream.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	private static <T> T loadObject(final InputStream is, final Class<T> clazz) throws IOException
+	{
+		Objects.requireNonNull(is);
+		Objects.requireNonNull(clazz);
+		final String xmlString = ReadFileExtensions.inputStream2String(is);
+		final T object = XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
+		return object;
+	}
+
+	/**
 	 * Load from the given file name that should represent an xml file and transform it to the
 	 * generic type object.
 	 *
@@ -109,6 +152,28 @@ public final class XmlExtensions
 	{
 		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
 		return loadObject(is);
+	}
+
+	/**
+	 * Load from the given file name that should represent an xml file and transform it to the
+	 * generic type object.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param xmlFileName
+	 *            the xml file name
+	 * @param clazz
+	 *            the class of the generic type
+	 * @return the object from the given xml file.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> T loadObject(final String xmlFileName, final Class<T> clazz)
+		throws IOException
+	{
+		Objects.requireNonNull(clazz);
+		final InputStream is = ClassExtensions.getResourceAsStream(xmlFileName);
+		return loadObject(is, clazz);
 	}
 
 	/**
@@ -147,6 +212,10 @@ public final class XmlExtensions
 		xmlTag.append(value);
 		xmlTag.append("</").append(tagname).append(">");
 		return xmlTag.toString();
+	}
+
+	private XmlExtensions()
+	{
 	}
 
 }

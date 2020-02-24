@@ -34,13 +34,11 @@ import java.io.IOException;
 import org.apache.xmlbeans.XmlException;
 import org.apache.xmlbeans.XmlOptions;
 import org.apache.xmlbeans.impl.inst2xsd.Inst2XsdOptions;
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.checksum.FileChecksumExtensions;
 import de.alpharogroup.collections.array.ArrayFactory;
-import de.alpharogroup.crypto.file.checksum.FileChecksumExtensions;
 import de.alpharogroup.file.delete.DeleteFileExtensions;
 import de.alpharogroup.file.search.PathFinder;
 
@@ -53,7 +51,7 @@ public class XmlToXsdExtensionsTest
 	/**
 	 * Test method for {@link XmlToXsdExtensions}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

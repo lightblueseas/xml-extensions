@@ -22,50 +22,51 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xml.json;
+package de.alpharogroup.xml.factory;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertNotNull;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
 
 /**
- * The unit test class for the class {@link ObjectToJsonQuietlyExtensions}
+ * The unit test class for the class {@link XStreamFactory}
  */
-public class ObjectToJsonQuietlyExtensionsTest
+public class XStreamFactoryTest
 {
 
 	/**
-	 * Test method for {@link ObjectToJsonQuietlyExtensions#toJsonQuietly(Object)}
+	 * Test method for {@link XStreamFactory#newXStream()}
 	 */
 	@Test
-	public void testToJsonQuietly()
+	public void testNewXStream()
 	{
-		String expected;
-		String actual;
-		final Employee employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE)
-			.name("Anna").married(true).about("Ha ha ha...").nickname("beast").build()).id("23")
-			.build();
-
-		expected = "{\"id\":\"23\",\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}";
-		actual = ObjectToJsonQuietlyExtensions.toJsonQuietly(employee);
-		assertTrue("", actual.equals(expected));
+		XStream xStream = XStreamFactory.newXStream();
+		assertNotNull(xStream);
 	}
 
 	/**
-	 * Test method for {@link ObjectToJsonQuietlyExtensions}
+	 * Test method for
+	 * {@link XStreamFactory#newXStream(com.thoughtworks.xstream.io.HierarchicalStreamDriver)}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, ObjectCreationException.class })
+	@Test
+	public void testNewXStreamWithHierarchicalStreamDriver()
+	{
+		XStream xStream = XStreamFactory.newXStream(new StaxDriver());
+		assertNotNull(xStream);
+	}
+
+	/**
+	 * Test method for {@link XStreamFactory}
+	 */
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(ObjectToJsonQuietlyExtensions.class);
+		beanTester.testBean(XStreamFactory.class);
 	}
 
 }

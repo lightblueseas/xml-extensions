@@ -28,11 +28,9 @@ import static org.testng.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import org.apache.commons.codec.DecoderException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -44,6 +42,7 @@ import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.collections.pairs.KeyValuePair;
 import de.alpharogroup.crypto.obfuscation.rule.ObfuscationOperationRule;
 import de.alpharogroup.file.search.PathFinder;
+import de.alpharogroup.xml.factory.XStreamFactory;
 
 /**
  * The unit test class for the class {@link XmlEncryptionExtensions}
@@ -58,15 +57,15 @@ public class XmlEncryptionExtensionsTest
 
 	File xmlDir;
 	File xmlFile;
+	File xmlNewFile;
 	/** The {@link XStream} object */
 	XStream xStream;
 	{
-		xStream = new XStream();
-		XStream.setupDefaultSecurity(xStream);
-		xStream.allowTypesByWildcard(new String[] { "de.alpharogroup.**" });
 		aliases = MapFactory.newLinkedHashMap();
 		aliases.put("KeyValuePair", KeyValuePair.class);
 		aliases.put("ObfuscationOperationRule", ObfuscationOperationRule.class);
+		xStream = XStreamFactory.newXStream(XStreamFactory.newXStream(), aliases,
+			"de.alpharogroup.**");
 	}
 
 	@BeforeMethod
@@ -74,13 +73,13 @@ public class XmlEncryptionExtensionsTest
 	{
 		xmlDir = new File(PathFinder.getSrcTestResourcesDir(), "xml");
 		xmlFile = new File(xmlDir, "foo.sor");
+		xmlNewFile = new File(xmlDir, "new-foo.sor");
 	}
 
 	/**
 	 * Test method for {@link XmlEncryptionExtensions} with {@link BeanTester}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-			UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		BeanTester beanTester = new BeanTester();
@@ -107,6 +106,26 @@ public class XmlEncryptionExtensionsTest
 
 	/**
 	 * Test method for
+	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(Map, Object, File, String...)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 * @throws DecoderException
+	 *             is thrown if an odd number or illegal of characters is supplied
+	 */
+	@Test
+	public void testWriteToFileAsXmlAndHexWithAliases() throws IOException, DecoderException
+	{
+		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
+		XmlEncryptionExtensions.writeToFileAsXmlAndHex(aliases, expected, xmlFile,
+			"de.alpharogroup.**");
+		actual = XmlDecryptionExtensions.readFromFileAsXmlAndHex(aliases, xmlFile,
+			"de.alpharogroup.**");
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for
 	 * {@link XmlEncryptionExtensions#writeToFileAsXmlAndHex(XStream, Map, Object, File)}
 	 *
 	 * @throws IOException
@@ -115,7 +134,7 @@ public class XmlEncryptionExtensionsTest
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
 	@Test
-	public void testWriteToFileAsXmlAndHexAliasesAndAllowTypesByWildcard()
+	public void testWriteToFileAsXmlAndHexWithAliasesAndAllowTypesByWildcard()
 		throws IOException, DecoderException
 	{
 		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
@@ -135,7 +154,7 @@ public class XmlEncryptionExtensionsTest
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
 	@Test
-	public void testWriteToFileAsXmlAndHexAndCharset() throws IOException, DecoderException
+	public void testWriteToFileAsXmlAndHexWithCharset() throws IOException, DecoderException
 	{
 		expected = ObfuscationOperationTestData.getFirstBiMapObfuscationOperationRules();
 		XmlEncryptionExtensions.writeToFileAsXmlAndHex(xStream, aliases, expected, xmlFile,

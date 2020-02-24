@@ -26,21 +26,17 @@ package de.alpharogroup.xml.json;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link JsonFileToObjectExtensions} converts json strings to java object and java
  * collections.
  */
-@UtilityClass
 public final class JsonFileToObjectExtensions
 {
-
 	/**
 	 * Transforms the given json file into a java object.
 	 *
@@ -56,9 +52,12 @@ public final class JsonFileToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull File jsonFile, final @NonNull Class<T> clazz,
-		final @NonNull ObjectMapper mapper) throws IOException
+	public static <T> T toObject(final File jsonFile, final Class<T> clazz,
+		final ObjectMapper mapper) throws IOException
 	{
+		Objects.requireNonNull(jsonFile);
+		Objects.requireNonNull(clazz);
+		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonFile, clazz);
 	}
 
@@ -77,11 +76,17 @@ public final class JsonFileToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final @NonNull File jsonFile,
-		final @NonNull TypeReference<T> typeReference, final @NonNull ObjectMapper mapper)
-		throws IOException
+	public static <T> T toObject(final File jsonFile, final TypeReference<T> typeReference,
+		final ObjectMapper mapper) throws IOException
 	{
+		Objects.requireNonNull(jsonFile);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonFile, typeReference);
+	}
+
+	private JsonFileToObjectExtensions()
+	{
 	}
 
 }

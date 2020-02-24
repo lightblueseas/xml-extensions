@@ -26,13 +26,11 @@ package de.alpharogroup.xml.sax.handler;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Objects;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
-
-import lombok.Getter;
-import lombok.NonNull;
 
 /**
  * The abstract class {@link WriterHandler}.
@@ -44,7 +42,6 @@ public abstract class WriterHandler extends DefaultHandler
 	private StringBuilder stringBuilder;
 
 	/** The writer. */
-	@Getter
 	private final Writer writer;
 
 	/**
@@ -53,8 +50,9 @@ public abstract class WriterHandler extends DefaultHandler
 	 * @param writer
 	 *            the writer
 	 */
-	public WriterHandler(final @NonNull Writer writer)
+	public WriterHandler(final Writer writer)
 	{
+		Objects.requireNonNull(writer);
 		this.writer = writer;
 	}
 
@@ -111,6 +109,11 @@ public abstract class WriterHandler extends DefaultHandler
 		}
 
 		write("</" + elementName + ">");
+	}
+
+	public Writer getWriter()
+	{
+		return writer;
 	}
 
 	/**

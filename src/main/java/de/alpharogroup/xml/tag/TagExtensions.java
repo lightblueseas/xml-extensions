@@ -27,12 +27,9 @@ package de.alpharogroup.xml.tag;
 import java.util.Map;
 import java.util.Optional;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link TagExtensions}.
  */
-@UtilityClass
 public final class TagExtensions
 {
 
@@ -62,5 +59,9 @@ public final class TagExtensions
 			return Optional.empty();
 		}
 		return Optional.of(builder.toString());
+	}
+
+	private TagExtensions()
+	{
 	}
 }

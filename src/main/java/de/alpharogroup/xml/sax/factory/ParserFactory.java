@@ -31,12 +31,9 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * A factory for creating {@link SAXParserFactory} objects
  */
-@UtilityClass
 public final class ParserFactory
 {
 
@@ -71,5 +68,9 @@ public final class ParserFactory
 			factory.setFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL, true);
 		}
 		return factory;
+	}
+
+	private ParserFactory()
+	{
 	}
 }

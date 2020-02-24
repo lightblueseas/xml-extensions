@@ -22,50 +22,66 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.xml.tag;
+package de.alpharogroup.xml.factory;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.util.Map;
-import java.util.Optional;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.collections.map.MapFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 
 /**
- * The class {@link TagExtensionsTest}
+ * The unit test class for the class {@link XmlMapperFactory}
  */
-public class TagExtensionsTest
+public class XmlMapperFactoryTest
 {
 
 	/**
-	 * Test method for {@link TagExtensions#attributesToString(Map)}
+	 * Test method for {@link XmlMapperFactory#newXmlMapper()}
 	 */
 	@Test
-	public final void testAttributesToString()
+	public void testNewXmlMapper()
 	{
-		Optional<String> actual;
-		Optional<String> expected;
-		Map<String, String> attributes = MapFactory.newLinkedHashMap();
+		ObjectMapper actual;
+		ObjectMapper expected;
 
-		attributes.put("wicket:id", "name");
-		attributes.put("class", "other");
-
-		actual = TagExtensions.attributesToString(attributes);
-		expected = Optional.of(" wicket:id=\"name\" class=\"other\" ");
-		assertEquals(expected, actual);
+		actual = XmlMapperFactory.newXmlMapper();
+		expected = XmlMapperFactory.newXmlMapper();
+		assertNotNull(actual);
+		assertNotNull(expected);
+		assertThat(actual, not(expected));
 	}
 
 	/**
-	 * Test method for {@link TagExtensions}
+	 * Test method for {@link XmlMapperFactory#newXmlMapper(JacksonXmlModule)}
+	 */
+	@Test
+	public void testNewXmlMapperWithJacksonXmlModule()
+	{
+		ObjectMapper actual;
+		ObjectMapper expected;
+		JacksonXmlModule xmlModule = new JacksonXmlModule();
+		xmlModule.setDefaultUseWrapper(false);
+
+		actual = XmlMapperFactory.newXmlMapper(xmlModule);
+		expected = XmlMapperFactory.newXmlMapper(xmlModule);
+		assertNotNull(actual);
+		assertNotNull(expected);
+		assertThat(actual, not(expected));
+	}
+
+	/**
+	 * Test method for {@link XmlMapperFactory}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(TagExtensions.class);
+		beanTester.testBean(XmlMapperFactory.class);
 	}
 
 }

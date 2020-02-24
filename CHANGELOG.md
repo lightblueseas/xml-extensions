@@ -1,6 +1,32 @@
 ## Change log
 ----------------------
 
+Version 7.3
+-------------
+
+ADDED:
+ 
+- new gradle.properties file created and extracted dependency versions to it
+- new XmlMapperFactory class for create XmlMapper objects
+- new XStreamFactory class for create XStream objects
+- new method in JsonStringToObjectExtensions for conversion of json string to java objects with jackson
+- new method in JsonStringToObjectExtensions for conversion of json string to java map objects with jackson
+- new method in ObjectToXmlExtensions for conversion of java object to xml with jackson 
+- new test dependency silly-collecctions in version 8 added
+
+CHANGED:
+
+- extended unit tests for increase code coverage
+- update of mystic-crypt version to 7.4
+- update of testng dependency version to 7.1.1
+- update of jackson-core version to 2.10.2
+- update of junit dependency version to 4.13
+- update of jobj-core dependency version to 3.5
+- update of jobj-clone dependency version to 3.3
+- update of file-worker version to 5.5
+- remove of junit test dependency
+- remove of mockito-core test dependency
+
 Version 7.2
 -------------
 

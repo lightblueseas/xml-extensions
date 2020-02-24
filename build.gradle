@@ -1,17 +1,17 @@
 
 plugins {
-    id "io.franzbecker.gradle-lombok" version "3.2.0"
     id "java"
+    id "java-library"
     id "maven-publish"
     id "signing"
-    id "com.github.ben-manes.versions" version "0.27.0"
+    id "com.github.ben-manes.versions" version "0.28.0"
     id "com.github.hierynomus.license" version "0.15.0"
 }
 
 apply plugin: "jacoco"
 
 group = "de.alpharogroup"
-version = "7.2"
+version = "$projectVersion"
 description = "xml-extensions"
 sourceCompatibility = "1.8"
 
@@ -21,52 +21,31 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    lombokVersion = "1.18.10"
-    xmlbeansVersion = "3.1.0"
-    jettisonVersion = "1.4.0"
-    xstreamVersion = "1.4.11.1"
-    jacksonDatabindVersion = "2.10.1"
-    xercesImplVersion = "2.12.0"
-    jsonVersion = "20190722"
-    fileWorkerVersion = "5.4"
-    jobjCoreVersion = "3.3"
-    jobjCloneVersion = "3.2"
-    mysticCryptVersion = "7.2"
-    testObjectsVersion = "5.2"
-    velocityExtensionsVersion = "1.3.1"
-    meanbeanFactoriesVersion = "1.1.1"
-    jobjContractVerifierVersion = "3.2"
-    velocityVersion = "1.7"
-    meanbeanVersion = "2.0.3"
-    testngVersion = "7.1.0"
-    junitVersion = "4.13-rc-2"
-    mockitoCoreVersion = "3.2.4"
-}
-
 dependencies {
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-    compile "org.apache.xmlbeans:xmlbeans:${xmlbeansVersion}"
-    compile "org.codehaus.jettison:jettison:${jettisonVersion}"
-    compile "com.thoughtworks.xstream:xstream:${xstreamVersion}"
-    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
-    compile "xerces:xercesImpl:${xercesImplVersion}"
-    compile "org.json:json:${jsonVersion}"
-    compile "de.alpharogroup:file-worker:${fileWorkerVersion}"
-    compile "de.alpharogroup:jobj-core:${jobjCoreVersion}"
-    compile "de.alpharogroup:jobj-clone:${jobjCloneVersion}"
-    testCompile "de.alpharogroup:mystic-crypt:${mysticCryptVersion}"
-    testCompile "de.alpharogroup:test-objects:${testObjectsVersion}"
-    testCompile "de.alpharogroup:velocity-extensions:${velocityExtensionsVersion}"
-    testCompile "de.alpharogroup:meanbean-factories:${meanbeanFactoriesVersion}"
-    testCompile "de.alpharogroup:jobj-contract-verifier:${jobjContractVerifierVersion}"
-    testCompile "com.fasterxml.jackson.datatype:jackson-datatype-json-org:${jacksonDatabindVersion}"
-    testCompile "org.apache.velocity:velocity:${velocityVersion}"
-    testCompile "org.meanbean:meanbean:${meanbeanVersion}"
-    testCompile "org.testng:testng:${testngVersion}"
-    testCompile "junit:junit:${junitVersion}"
-    testCompile "org.mockito:mockito-core:${mockitoCoreVersion}"
+    implementation("org.apache.xmlbeans:xmlbeans:$xmlbeansVersion")
+    implementation("org.codehaus.jettison:jettison:$jettisonVersion")
+    implementation("com.thoughtworks.xstream:xstream:$xstreamVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
+    implementation("xerces:xercesImpl:$xercesImplVersion")
+    implementation("org.json:json:$jsonVersion")
+    implementation("de.alpharogroup:file-worker:$fileWorkerVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("de.alpharogroup:jobj-clone:$jobjCloneVersion")
+    implementation("de.alpharogroup:crypt-data:$cryptDataVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
+    testImplementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    testImplementation("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
+    testImplementation("de.alpharogroup:meanbean-factories:$meanbeanFactoriesVersion")
+    testImplementation("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
+    testImplementation("de.alpharogroup:checksum-up:$checksumUpVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
+    testImplementation("org.apache.velocity:velocity:$velocityVersion")
+    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("org.testng:testng:$testngVersion")
 }
 
 task sourcesJar(type: Jar) {
@@ -80,24 +59,35 @@ task javadocJar(type: Jar) {
     javadoc.properties.failOnError = true
 }
 
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name,
+                "Implementation-Version": project.version)
+    }
+}
+
+def releaseVersion = !version.endsWith("SNAPSHOT")
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "${rootProject.name}"
+            groupId = "$group"
+            artifactId = "$rootProject.name"
+            version = "$version"
             from components.java
             artifact sourcesJar
             artifact javadocJar
             pom {
-                name = "${rootProject.name}"
+                name = "$rootProject.name"
                 description = "Useful extensions and utilities for handle xml or transform dtd to xsd and xslt"
-                url = "https://github.com/lightblueseas/"+"${rootProject.name}"
+                url = "https://github.com/lightblueseas/"+"$rootProject.name"
                 organization {
                     name = "Alpha Ro Group UG (haftungsbeschrängt)"
                     url = "http://www.alpharogroup.de/"
                 }
                 issueManagement {
                     system = "GitHub"
-                    url = "https://github.com/lightblueseas/"+"${rootProject.name}"+"/issues"
+                    url = "https://github.com/lightblueseas/"+"$rootProject.name"+"/issues"
                 }
                 licenses {
                     license {
@@ -113,9 +103,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:git:@github.com:lightblueseas/"+"${rootProject.name}"+".git"
-                    developerConnection = "scm:git:git@github.com:lightblueseas/"+"${rootProject.name}"+".git"
-                    url = "git:@github.com:lightblueseas/"+"${rootProject.name}"+".git"
+                    connection = "scm:git:git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
+                    developerConnection = "scm:git:git@github.com:lightblueseas/"+"$rootProject.name"+".git"
+                    url = "git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
                 }
             }
         }
@@ -128,13 +118,15 @@ publishing {
             }
             def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
             def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
-            url = version.endsWith("SNAPSHOT") ? snapshotsRepoUrl : releasesRepoUrl
+            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
         }
     }
 }
 
 signing {
-    sign publishing.publications.mavenJava
+    if (releaseVersion) {
+        sign publishing.publications.mavenJava
+    }
 }
 
 javadoc {
@@ -146,7 +138,7 @@ javadoc {
 license {
     ext.year="2015"
     ext.owner="Asterios Raptis"
-    header rootProject.file('src/main/resources/LICENSE.txt')
+    header rootProject.file("src/main/resources/LICENSE.txt")
     excludes(["**/README",
               "**/README.md",
               "**/LICENSE",
@@ -172,7 +164,6 @@ license {
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
-              "**/*.lombok.config",
               "src/test/resources/**",
               "src/main/resources/**",
               "out/**",
@@ -199,10 +190,13 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ["de/alpharogroup/xml/sax/handler/WriterHandler.class",
+                    exclude: ["de/alpharogroup/xml/api/Transformable.class",
+                              "de/alpharogroup/xml/api/Xmlable.class",
+                              "de/alpharogroup/xml/sax/handler/WriterHandler.class",
                               "de/alpharogroup/xml/XmlTransformation.class",
                               "de/alpharogroup/xml/json/ObjectToJsonQuietlyExtensions.class",
                               "de/alpharogroup/xml/node/NodeType.class",
+                              "de/alpharogroup/xml/XmlTransformation.class",
                               "de/alpharogroup/xml/sax/handler/BreakParsingException.class"])
         }))
     }
