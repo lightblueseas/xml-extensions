@@ -45,38 +45,34 @@ import de.alpharogroup.xml.factory.XStreamFactory;
  */
 public final class XmlDecryptionExtensions
 {
-	private XmlDecryptionExtensions(){}
 	/**
 	 * Read from file the data object that was before saved as xml and encoded into a hexadecimal
 	 * {@link String} object.
 	 *
 	 * @param <T>
 	 *            the generic type of the data object
-	 * @param xstream
-	 *            the {@link XStream} object
 	 * @param aliases
 	 *            the aliases for the {@link XStream} object
 	 * @param selectedFile
 	 *            the selected file to read
-	 * @param charset
-	 *            the charset
+	 * @param allowTypesByWildcard
+	 *            the allow types by wildcard
 	 * @return the generic data object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws DecoderException
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
-	public static <T> T readFromFileAsXmlAndHex(final XStream xstream,
-		final Map<String, Class<?>> aliases, final File selectedFile,
-		String charset) throws IOException, DecoderException
+	public static <T> T readFromFileAsXmlAndHex(final Map<String, Class<?>> aliases,
+		final File selectedFile, String... allowTypesByWildcard)
+		throws IOException, DecoderException
 	{
-		Objects.requireNonNull(xstream);
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(selectedFile);
-		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
-			Charset.forName(charset));
-		String xmlString = HexExtensions.decodeHex(hexXmlString);
-		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+		XStream xStream = XStreamFactory.newXStream();
+		XStream.setupDefaultSecurity(xStream);
+		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
+		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
 	}
 
 	/**
@@ -113,28 +109,35 @@ public final class XmlDecryptionExtensions
 	 *
 	 * @param <T>
 	 *            the generic type of the data object
+	 * @param xstream
+	 *            the {@link XStream} object
 	 * @param aliases
 	 *            the aliases for the {@link XStream} object
 	 * @param selectedFile
 	 *            the selected file to read
-	 * @param allowTypesByWildcard
-	 *            the allow types by wildcard
+	 * @param charset
+	 *            the charset
 	 * @return the generic data object
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 * @throws DecoderException
 	 *             is thrown if an odd number or illegal of characters is supplied
 	 */
-	public static <T> T readFromFileAsXmlAndHex(final Map<String, Class<?>> aliases,
-		final File selectedFile, String... allowTypesByWildcard)
+	public static <T> T readFromFileAsXmlAndHex(final XStream xstream,
+		final Map<String, Class<?>> aliases, final File selectedFile, String charset)
 		throws IOException, DecoderException
 	{
+		Objects.requireNonNull(xstream);
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(selectedFile);
-		XStream xStream = XStreamFactory.newXStream();
-		XStream.setupDefaultSecurity(xStream);
-		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
-		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
+		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
+			Charset.forName(charset));
+		String xmlString = HexExtensions.decodeHex(hexXmlString);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+	}
+
+	private XmlDecryptionExtensions()
+	{
 	}
 
 }

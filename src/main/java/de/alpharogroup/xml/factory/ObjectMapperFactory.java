@@ -34,7 +34,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class ObjectMapperFactory
 {
-	private ObjectMapperFactory(){}
 	/** The constant mapper. */
 	private final static ObjectMapper OBJECT_MAPPER = newObjectMapper(true);
 
@@ -81,6 +80,10 @@ public final class ObjectMapperFactory
 		features.entrySet()
 			.forEach(entry -> objectMapper.configure(entry.getKey(), entry.getValue()));
 		return objectMapper;
+	}
+
+	private ObjectMapperFactory()
+	{
 	}
 
 }

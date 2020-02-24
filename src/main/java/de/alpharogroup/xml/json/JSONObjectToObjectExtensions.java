@@ -24,14 +24,16 @@
  */
 package de.alpharogroup.xml.json;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.alpharogroup.collections.list.ListFactory;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.alpharogroup.collections.list.ListFactory;
 
 /**
  * The class {@link JSONObjectToObjectExtensions} converts json strings to java object and java
@@ -39,10 +41,6 @@ import java.util.Objects;
  */
 public final class JSONObjectToObjectExtensions
 {
-
-	private JSONObjectToObjectExtensions()
-	{
-	}
 
 	/**
 	 * Transforms the given json object into a java object
@@ -59,8 +57,8 @@ public final class JSONObjectToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final JSONObject jsonObject,
-		final Class<T> clazz, final ObjectMapper mapper) throws IOException
+	public static <T> T toObject(final JSONObject jsonObject, final Class<T> clazz,
+		final ObjectMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(jsonObject);
 		Objects.requireNonNull(clazz);
@@ -81,8 +79,8 @@ public final class JSONObjectToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> List<T> toObjectList(final JSONArray jsonArray,
-		final Class<T> elementClass) throws IOException
+	public static <T> List<T> toObjectList(final JSONArray jsonArray, final Class<T> elementClass)
+		throws IOException
 	{
 		Objects.requireNonNull(jsonArray);
 		Objects.requireNonNull(elementClass);
@@ -98,6 +96,10 @@ public final class JSONObjectToObjectExtensions
 			result.add(JsonStringToObjectExtensions.toObject(list.get(i), elementClass));
 		}
 		return result;
+	}
+
+	private JSONObjectToObjectExtensions()
+	{
 	}
 
 }

@@ -32,96 +32,6 @@ import java.io.Serializable;
 public class ChildTagPosition implements Serializable
 {
 
-	private static final long serialVersionUID = 1L;
-
-	private Tag child;
-
-	private Integer position;
-
-	public ChildTagPosition(Tag child, Integer position)
-	{
-		this.child = child;
-		this.position = position;
-	}
-
-	public ChildTagPosition()
-	{
-	}
-
-	public static ChildTagPositionBuilder builder()
-	{
-		return new ChildTagPositionBuilder();
-	}
-
-	public Tag getChild()
-	{
-		return this.child;
-	}
-
-	public Integer getPosition()
-	{
-		return this.position;
-	}
-
-	public ChildTagPosition setChild(Tag child)
-	{
-		this.child = child;
-		return this;
-	}
-
-	public ChildTagPosition setPosition(Integer position)
-	{
-		this.position = position;
-		return this;
-	}
-
-	public boolean equals(final Object o)
-	{
-		if (o == this)
-			return true;
-		if (!(o instanceof ChildTagPosition))
-			return false;
-		final ChildTagPosition other = (ChildTagPosition)o;
-		if (!other.canEqual((Object)this))
-			return false;
-		final Object this$child = this.getChild();
-		final Object other$child = other.getChild();
-		if (this$child == null ? other$child != null : !this$child.equals(other$child))
-			return false;
-		final Object this$position = this.getPosition();
-		final Object other$position = other.getPosition();
-		if (this$position == null ? other$position != null : !this$position.equals(other$position))
-			return false;
-		return true;
-	}
-
-	protected boolean canEqual(final Object other)
-	{
-		return other instanceof ChildTagPosition;
-	}
-
-	public int hashCode()
-	{
-		final int PRIME = 59;
-		int result = 1;
-		final Object $child = this.getChild();
-		result = result * PRIME + ($child == null ? 43 : $child.hashCode());
-		final Object $position = this.getPosition();
-		result = result * PRIME + ($position == null ? 43 : $position.hashCode());
-		return result;
-	}
-
-	public String toString()
-	{
-		return "ChildTagPosition(child=" + this.getChild() + ", position=" + this.getPosition()
-			+ ")";
-	}
-
-	public ChildTagPositionBuilder toBuilder()
-	{
-		return new ChildTagPositionBuilder().child(this.child).position(this.position);
-	}
-
 	public static class ChildTagPositionBuilder
 	{
 		private Tag child;
@@ -129,6 +39,11 @@ public class ChildTagPosition implements Serializable
 
 		ChildTagPositionBuilder()
 		{
+		}
+
+		public ChildTagPosition build()
+		{
+			return new ChildTagPosition(child, position);
 		}
 
 		public ChildTagPosition.ChildTagPositionBuilder child(Tag child)
@@ -143,15 +58,104 @@ public class ChildTagPosition implements Serializable
 			return this;
 		}
 
-		public ChildTagPosition build()
-		{
-			return new ChildTagPosition(child, position);
-		}
-
+		@Override
 		public String toString()
 		{
 			return "ChildTagPosition.ChildTagPositionBuilder(child=" + this.child + ", position="
 				+ this.position + ")";
 		}
+	}
+
+	private static final long serialVersionUID = 1L;
+
+	public static ChildTagPositionBuilder builder()
+	{
+		return new ChildTagPositionBuilder();
+	}
+
+	private Tag child;
+
+	private Integer position;
+
+	public ChildTagPosition()
+	{
+	}
+
+	public ChildTagPosition(Tag child, Integer position)
+	{
+		this.child = child;
+		this.position = position;
+	}
+
+	protected boolean canEqual(final Object other)
+	{
+		return other instanceof ChildTagPosition;
+	}
+
+	@Override
+	public boolean equals(final Object o)
+	{
+		if (o == this)
+			return true;
+		if (!(o instanceof ChildTagPosition))
+			return false;
+		final ChildTagPosition other = (ChildTagPosition)o;
+		if (!other.canEqual(this))
+			return false;
+		final Object this$child = this.getChild();
+		final Object other$child = other.getChild();
+		if (this$child == null ? other$child != null : !this$child.equals(other$child))
+			return false;
+		final Object this$position = this.getPosition();
+		final Object other$position = other.getPosition();
+		if (this$position == null ? other$position != null : !this$position.equals(other$position))
+			return false;
+		return true;
+	}
+
+	public Tag getChild()
+	{
+		return this.child;
+	}
+
+	public Integer getPosition()
+	{
+		return this.position;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int PRIME = 59;
+		int result = 1;
+		final Object $child = this.getChild();
+		result = result * PRIME + ($child == null ? 43 : $child.hashCode());
+		final Object $position = this.getPosition();
+		result = result * PRIME + ($position == null ? 43 : $position.hashCode());
+		return result;
+	}
+
+	public ChildTagPosition setChild(Tag child)
+	{
+		this.child = child;
+		return this;
+	}
+
+	public ChildTagPosition setPosition(Integer position)
+	{
+		this.position = position;
+		return this;
+	}
+
+	public ChildTagPositionBuilder toBuilder()
+	{
+		return new ChildTagPositionBuilder().child(this.child).position(this.position);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "ChildTagPosition(child=" + this.getChild() + ", position=" + this.getPosition()
+			+ ")";
 	}
 }

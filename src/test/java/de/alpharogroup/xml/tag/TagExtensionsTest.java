@@ -29,8 +29,6 @@ import static org.testng.AssertJUnit.assertEquals;
 import java.util.Map;
 import java.util.Optional;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 

@@ -1,6 +1,7 @@
 
 plugins {
     id "java"
+    id "java-library"
     id "maven-publish"
     id "signing"
     id "com.github.ben-manes.versions" version "0.28.0"
@@ -21,30 +22,30 @@ repositories {
 }
 
 dependencies {
-    compile("org.apache.xmlbeans:xmlbeans:$xmlbeansVersion")
-    compile("org.codehaus.jettison:jettison:$jettisonVersion")
-    compile("com.thoughtworks.xstream:xstream:$xstreamVersion")
-    compile("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
-    compile("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
-    compile("xerces:xercesImpl:$xercesImplVersion")
-    compile("org.json:json:$jsonVersion")
-    compile("de.alpharogroup:file-worker:$fileWorkerVersion")
-    compile("de.alpharogroup:jobj-core:$jobjCoreVersion")
-    compile("de.alpharogroup:jobj-clone:$jobjCloneVersion")
-    compile("de.alpharogroup:crypt-data:$cryptDataVersion")
-    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
-    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
-    testCompile("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
-    testCompile("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
-    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
-    testCompile("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
-    testCompile("de.alpharogroup:meanbean-factories:$meanbeanFactoriesVersion")
-    testCompile("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
-    testCompile("de.alpharogroup:checksum-up:$checksumUpVersion")
-    testCompile("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
-    testCompile("org.apache.velocity:velocity:$velocityVersion")
-    testCompile("org.meanbean:meanbean:$meanbeanVersion")
-    testCompile("org.testng:testng:$testngVersion")
+    implementation("org.apache.xmlbeans:xmlbeans:$xmlbeansVersion")
+    implementation("org.codehaus.jettison:jettison:$jettisonVersion")
+    implementation("com.thoughtworks.xstream:xstream:$xstreamVersion")
+    implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
+    implementation("xerces:xercesImpl:$xercesImplVersion")
+    implementation("org.json:json:$jsonVersion")
+    implementation("de.alpharogroup:file-worker:$fileWorkerVersion")
+    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    implementation("de.alpharogroup:jobj-clone:$jobjCloneVersion")
+    implementation("de.alpharogroup:crypt-data:$cryptDataVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
+    testImplementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    testImplementation("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
+    testImplementation("de.alpharogroup:meanbean-factories:$meanbeanFactoriesVersion")
+    testImplementation("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
+    testImplementation("de.alpharogroup:checksum-up:$checksumUpVersion")
+    testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
+    testImplementation("org.apache.velocity:velocity:$velocityVersion")
+    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("org.testng:testng:$testngVersion")
 }
 
 task sourcesJar(type: Jar) {
@@ -58,26 +59,35 @@ task javadocJar(type: Jar) {
     javadoc.properties.failOnError = true
 }
 
+jar {
+    manifest {
+        attributes("Implementation-Title": project.name,
+                "Implementation-Version": project.version)
+    }
+}
+
 def releaseVersion = !version.endsWith("SNAPSHOT")
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "${rootProject.name}"
+            groupId = "$group"
+            artifactId = "$rootProject.name"
+            version = "$version"
             from components.java
             artifact sourcesJar
             artifact javadocJar
             pom {
-                name = "${rootProject.name}"
+                name = "$rootProject.name"
                 description = "Useful extensions and utilities for handle xml or transform dtd to xsd and xslt"
-                url = "https://github.com/lightblueseas/"+"${rootProject.name}"
+                url = "https://github.com/lightblueseas/"+"$rootProject.name"
                 organization {
                     name = "Alpha Ro Group UG (haftungsbeschrängt)"
                     url = "http://www.alpharogroup.de/"
                 }
                 issueManagement {
                     system = "GitHub"
-                    url = "https://github.com/lightblueseas/"+"${rootProject.name}"+"/issues"
+                    url = "https://github.com/lightblueseas/"+"$rootProject.name"+"/issues"
                 }
                 licenses {
                     license {
@@ -93,9 +103,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection = "scm:git:git:@github.com:lightblueseas/"+"${rootProject.name}"+".git"
-                    developerConnection = "scm:git:git@github.com:lightblueseas/"+"${rootProject.name}"+".git"
-                    url = "git:@github.com:lightblueseas/"+"${rootProject.name}"+".git"
+                    connection = "scm:git:git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
+                    developerConnection = "scm:git:git@github.com:lightblueseas/"+"$rootProject.name"+".git"
+                    url = "git:@github.com:lightblueseas/"+"$rootProject.name"+".git"
                 }
             }
         }

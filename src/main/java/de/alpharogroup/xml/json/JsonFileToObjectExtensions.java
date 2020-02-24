@@ -37,8 +37,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public final class JsonFileToObjectExtensions
 {
-	private JsonFileToObjectExtensions(){}
-
 	/**
 	 * Transforms the given json file into a java object.
 	 *
@@ -78,14 +76,17 @@ public final class JsonFileToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final File jsonFile,
-		final TypeReference<T> typeReference, final ObjectMapper mapper)
-		throws IOException
+	public static <T> T toObject(final File jsonFile, final TypeReference<T> typeReference,
+		final ObjectMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(jsonFile);
 		Objects.requireNonNull(typeReference);
 		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonFile, typeReference);
+	}
+
+	private JsonFileToObjectExtensions()
+	{
 	}
 
 }

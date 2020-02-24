@@ -24,16 +24,17 @@
  */
 package de.alpharogroup.xml.json;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.alpharogroup.xml.factory.ObjectMapperFactory;
-
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The class {@link JsonStringToObjectExtensions} converts json strings to java object and java
@@ -42,8 +43,30 @@ import java.util.Objects;
 public final class JsonStringToObjectExtensions
 {
 
-	private JsonStringToObjectExtensions()
+	/**
+	 * Transforms the given json string into a java map object
+	 *
+	 * @param <K>
+	 *            the generic type of keys
+	 * @param <V>
+	 *            the generic type of values
+	 * @param jsonString
+	 *            the json string
+	 * @param typeReference
+	 *            the type reference
+	 * @param mapper
+	 *            the object mapper
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <K, V> Map<K, V> toMapObject(final String jsonString,
+		final TypeReference<Map<K, V>> typeReference, final ObjectMapper mapper) throws IOException
 	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(typeReference);
+		Objects.requireNonNull(mapper);
+		return mapper.readValue(jsonString, typeReference);
 	}
 
 	/**
@@ -59,8 +82,7 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T toObject(final String jsonString, final Class<T> clazz)
-		throws IOException
+	public static <T> T toObject(final String jsonString, final Class<T> clazz) throws IOException
 	{
 		Objects.requireNonNull(jsonString);
 		Objects.requireNonNull(clazz);
@@ -157,62 +179,13 @@ public final class JsonStringToObjectExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	public static <T> T toObject(final String jsonString,
-		final TypeReference<T> typeReference, final ObjectMapper mapper)
-		throws IOException
+	public static <T> T toObject(final String jsonString, final TypeReference<T> typeReference,
+		final ObjectMapper mapper) throws IOException
 	{
 		Objects.requireNonNull(jsonString);
 		Objects.requireNonNull(typeReference);
 		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonString, typeReference);
-	}
-
-	/**
-	 * Transforms the given json string into a java map object
-	 *
-	 * @param <K>
-	 *            the generic type of keys
-	 * @param <V>
-	 *            the generic type of values
-	 * @param jsonString
-	 *            the json string
-	 * @param typeReference
-	 *            the type reference
-	 * @param mapper
-	 *            the object mapper
-	 * @return the t
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred
-	 */
-	public static <K, V> Map<K, V> toMapObject(final String jsonString,
-		final TypeReference<Map<K, V>> typeReference, final ObjectMapper mapper)
-		throws IOException
-	{
-		Objects.requireNonNull(jsonString);
-		Objects.requireNonNull(typeReference);
-		Objects.requireNonNull(mapper);
-		return mapper.readValue(jsonString, typeReference);
-	}
-
-	/**
-	 * Transforms the given json string into a java object {@link List}
-	 *
-	 * @param <T>
-	 *            the generic type of the return type
-	 * @param jsonString
-	 *            the json string
-	 * @param elementClass
-	 *            the element class of the generic type
-	 * @return the list with the java objects
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static <T> List<T> toObjectList(final String jsonString,
-		final Class<T> elementClass) throws IOException
-	{
-		Objects.requireNonNull(jsonString);
-		Objects.requireNonNull(elementClass);
-		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
 	}
 
 	/**
@@ -240,6 +213,31 @@ public final class JsonStringToObjectExtensions
 		final ObjectMapper mapper = ObjectMapperFactory.newObjectMapper(true);
 		return mapper.readValue(jsonString,
 			mapper.getTypeFactory().constructCollectionType(collectionClass, elementClass));
+	}
+
+	/**
+	 * Transforms the given json string into a java object {@link List}
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param jsonString
+	 *            the json string
+	 * @param elementClass
+	 *            the element class of the generic type
+	 * @return the list with the java objects
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> List<T> toObjectList(final String jsonString, final Class<T> elementClass)
+		throws IOException
+	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(elementClass);
+		return (List<T>)toObjectCollection(jsonString, List.class, elementClass);
+	}
+
+	private JsonStringToObjectExtensions()
+	{
 	}
 
 }

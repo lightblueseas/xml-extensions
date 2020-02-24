@@ -24,11 +24,6 @@
  */
 package de.alpharogroup.xml;
 
-import de.alpharogroup.file.read.ReadFileExtensions;
-import de.alpharogroup.lang.ClassExtensions;
-import org.apache.commons.io.FileUtils;
-import org.xml.sax.InputSource;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,15 +31,17 @@ import java.io.StringReader;
 import java.util.Map;
 import java.util.Objects;
 
+import org.apache.commons.io.FileUtils;
+import org.xml.sax.InputSource;
+
+import de.alpharogroup.file.read.ReadFileExtensions;
+import de.alpharogroup.lang.ClassExtensions;
+
 /**
  * The class {@link XmlExtensions}.
  */
 public final class XmlExtensions
 {
-
-	private XmlExtensions()
-	{
-	}
 
 	/**
 	 * Gets the input source from the given xml string.
@@ -90,8 +87,7 @@ public final class XmlExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static <T> T loadObject(final File xmlFile, final Class<T> clazz)
-		throws IOException
+	public static <T> T loadObject(final File xmlFile, final Class<T> clazz) throws IOException
 	{
 		Objects.requireNonNull(clazz);
 		final InputStream is = FileUtils.openInputStream(xmlFile);
@@ -131,8 +127,7 @@ public final class XmlExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	private static <T> T loadObject(final InputStream is, final Class<T> clazz)
-		throws IOException
+	private static <T> T loadObject(final InputStream is, final Class<T> clazz) throws IOException
 	{
 		Objects.requireNonNull(is);
 		Objects.requireNonNull(clazz);
@@ -217,6 +212,10 @@ public final class XmlExtensions
 		xmlTag.append(value);
 		xmlTag.append("</").append(tagname).append(">");
 		return xmlTag.toString();
+	}
+
+	private XmlExtensions()
+	{
 	}
 
 }

@@ -24,24 +24,22 @@
  */
 package de.alpharogroup.xml.json;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import de.alpharogroup.xml.ObjectToXmlExtensions;
+import java.io.IOException;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.XML;
 
-import java.io.IOException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+import de.alpharogroup.xml.ObjectToXmlExtensions;
 
 /**
  * The class {@link JsonToXmlExtensions} helps to transform a given json string to an xml string.
  */
 public final class JsonToXmlExtensions
 {
-
-	private JsonToXmlExtensions()
-	{
-	}
 
 	/**
 	 * Transform the given json as {@link String} object to an xml as {@link String} object.
@@ -80,6 +78,10 @@ public final class JsonToXmlExtensions
 	{
 		final T object = JsonStringToObjectExtensions.toObject(jsonString, clazz);
 		return ObjectToXmlExtensions.toXmlWithXStream(object);
+	}
+
+	private JsonToXmlExtensions()
+	{
 	}
 
 }

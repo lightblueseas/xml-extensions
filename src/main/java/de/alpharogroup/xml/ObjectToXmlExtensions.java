@@ -24,14 +24,15 @@
  */
 package de.alpharogroup.xml;
 
+import java.util.Map;
+import java.util.Objects;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
+
 import de.alpharogroup.xml.factory.XStreamFactory;
 import de.alpharogroup.xml.factory.XmlMapperFactory;
-
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * The class {@link ObjectToXmlExtensions}.
@@ -39,8 +40,22 @@ import java.util.Objects;
 public final class ObjectToXmlExtensions
 {
 
-	private ObjectToXmlExtensions()
+	/**
+	 * Creates from the given Object an xml string.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param objectToXML
+	 *            the object to xml
+	 * @return the xml string
+	 * @throws JsonProcessingException
+	 *             is thrown when processing json content that are not pure I/O problems
+	 */
+	public static <T> String toXmlWithJackson(final T objectToXML) throws JsonProcessingException
 	{
+		Objects.requireNonNull(objectToXML);
+		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
+		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
 	}
 
 	/**
@@ -112,23 +127,8 @@ public final class ObjectToXmlExtensions
 		return xstream.toXML(objectToXML);
 	}
 
-	/**
-	 * Creates from the given Object an xml string.
-	 *
-	 * @param <T>
-	 *            the generic type of the return type
-	 * @param objectToXML
-	 *            the object to xml
-	 * @return the xml string
-	 * @throws JsonProcessingException
-	 *             is thrown when processing json content that are not pure I/O problems
-	 */
-	public static <T> String toXmlWithJackson(final T objectToXML)
-		throws JsonProcessingException
+	private ObjectToXmlExtensions()
 	{
-		Objects.requireNonNull(objectToXML);
-		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
-		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
 	}
 
 }

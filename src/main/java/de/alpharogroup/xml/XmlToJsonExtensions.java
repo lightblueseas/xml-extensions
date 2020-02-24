@@ -24,23 +24,20 @@
  */
 package de.alpharogroup.xml;
 
+import java.util.Map;
+import java.util.Objects;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
-import de.alpharogroup.xml.json.ObjectToJsonExtensions;
 
-import java.util.Map;
-import java.util.Objects;
+import de.alpharogroup.xml.json.ObjectToJsonExtensions;
 
 /**
  * The class {@link XmlToJsonExtensions}.
  */
 public final class XmlToJsonExtensions
 {
-
-	private XmlToJsonExtensions()
-	{
-	}
 
 	/**
 	 * Creates from the given xml string a json string.
@@ -91,14 +88,18 @@ public final class XmlToJsonExtensions
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
-	public static <T> String toJsonWithJackson(final String xmlString,
-		final Class<T> clazz) throws JsonProcessingException
+	public static <T> String toJsonWithJackson(final String xmlString, final Class<T> clazz)
+		throws JsonProcessingException
 	{
 		Objects.requireNonNull(xmlString);
 		Objects.requireNonNull(clazz);
 		final Object object = XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
 		final String json = ObjectToJsonExtensions.toJson(object);
 		return json;
+	}
+
+	private XmlToJsonExtensions()
+	{
 	}
 
 }

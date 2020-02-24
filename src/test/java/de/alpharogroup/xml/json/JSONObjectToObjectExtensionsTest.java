@@ -27,13 +27,10 @@ package de.alpharogroup.xml.json;
 import static org.testng.AssertJUnit.assertEquals;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 

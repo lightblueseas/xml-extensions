@@ -26,8 +26,6 @@ package de.alpharogroup.xml.factory;
 
 import static org.testng.Assert.assertNotNull;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 

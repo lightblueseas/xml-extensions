@@ -24,10 +24,6 @@
  */
 package de.alpharogroup.xml.tag;
 
-import de.alpharogroup.clone.object.CloneObjectExtensions;
-import de.alpharogroup.collections.list.ListFactory;
-import de.alpharogroup.collections.map.MapFactory;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
@@ -35,16 +31,81 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import de.alpharogroup.clone.object.CloneObjectExtensions;
+import de.alpharogroup.collections.list.ListFactory;
+import de.alpharogroup.collections.map.MapFactory;
+
 /**
  * The class Tag represents an tag for xml or html.
  */
 public class SimpleTag implements Serializable
 {
 
+	public static class SimpleTagBuilder
+	{
+		private Map<String, String> attributes;
+		private List<SimpleTag> children;
+		private String content;
+		private boolean endTag;
+		private String name;
+
+		SimpleTagBuilder()
+		{
+		}
+
+		public SimpleTag.SimpleTagBuilder attributes(Map<String, String> attributes)
+		{
+			this.attributes = attributes;
+			return this;
+		}
+
+		public SimpleTag build()
+		{
+			return new SimpleTag(attributes, children, content, endTag, name);
+		}
+
+		public SimpleTag.SimpleTagBuilder children(List<SimpleTag> children)
+		{
+			this.children = children;
+			return this;
+		}
+
+		public SimpleTag.SimpleTagBuilder content(String content)
+		{
+			this.content = content;
+			return this;
+		}
+
+		public SimpleTag.SimpleTagBuilder endTag(boolean endTag)
+		{
+			this.endTag = endTag;
+			return this;
+		}
+
+		public SimpleTag.SimpleTagBuilder name(String name)
+		{
+			this.name = name;
+			return this;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "SimpleTag.SimpleTagBuilder(attributes=" + this.attributes + ", children="
+				+ this.children + ", content=" + this.content + ", endTag=" + this.endTag
+				+ ", name=" + this.name + ")";
+		}
+	}
+
 	/**
 	 * The Constant serialVersionUID.
 	 */
 	private static final long serialVersionUID = 1L;
+
+	public static SimpleTagBuilder builder()
+	{
+		return new SimpleTagBuilder();
+	}
 
 	/** The attributes of the tag. */
 	private Map<String, String> attributes;
@@ -61,6 +122,10 @@ public class SimpleTag implements Serializable
 	/** The name of the tag. */
 	private String name;
 
+	public SimpleTag()
+	{
+	}
+
 	public SimpleTag(Map<String, String> attributes, List<SimpleTag> children, String content,
 		boolean endTag, String name)
 	{
@@ -69,15 +134,6 @@ public class SimpleTag implements Serializable
 		this.content = content;
 		this.endTag = endTag;
 		this.name = name;
-	}
-
-	public SimpleTag()
-	{
-	}
-
-	public static SimpleTagBuilder builder()
-	{
-		return new SimpleTagBuilder();
 	}
 
 	/**
@@ -114,6 +170,11 @@ public class SimpleTag implements Serializable
 		return getChildren().add(child);
 	}
 
+	protected boolean canEqual(final Object other)
+	{
+		return other instanceof SimpleTag;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -130,6 +191,67 @@ public class SimpleTag implements Serializable
 		{
 			throw new CloneNotSupportedException();
 		}
+	}
+
+	@Override
+	public boolean equals(final Object o)
+	{
+		if (o == this)
+			return true;
+		if (!(o instanceof SimpleTag))
+			return false;
+		final SimpleTag other = (SimpleTag)o;
+		if (!other.canEqual(this))
+			return false;
+		final Object this$content = this.getContent();
+		final Object other$content = other.getContent();
+		if (this$content == null ? other$content != null : !this$content.equals(other$content))
+			return false;
+		if (this.isEndTag() != other.isEndTag())
+			return false;
+		final Object this$name = this.getName();
+		final Object other$name = other.getName();
+		if (this$name == null ? other$name != null : !this$name.equals(other$name))
+			return false;
+		return true;
+	}
+
+	public Map<String, String> getAttributes()
+	{
+		return this.attributes;
+	}
+
+	public List<SimpleTag> getChildren()
+	{
+		return this.children;
+	}
+
+	public String getContent()
+	{
+		return this.content;
+	}
+
+	public String getName()
+	{
+		return this.name;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		final int PRIME = 59;
+		int result = 1;
+		final Object $content = this.getContent();
+		result = result * PRIME + ($content == null ? 43 : $content.hashCode());
+		result = result * PRIME + (this.isEndTag() ? 79 : 97);
+		final Object $name = this.getName();
+		result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+		return result;
+	}
+
+	public boolean isEndTag()
+	{
+		return this.endTag;
 	}
 
 	/**
@@ -162,6 +284,49 @@ public class SimpleTag implements Serializable
 			return getChildren().remove(child);
 		}
 		return false;
+	}
+
+	public SimpleTag setAttributes(Map<String, String> attributes)
+	{
+		this.attributes = attributes;
+		return this;
+	}
+
+	public SimpleTag setChildren(List<SimpleTag> children)
+	{
+		this.children = children;
+		return this;
+	}
+
+	public SimpleTag setContent(String content)
+	{
+		this.content = content;
+		return this;
+	}
+
+	public SimpleTag setEndTag(boolean endTag)
+	{
+		this.endTag = endTag;
+		return this;
+	}
+
+	public SimpleTag setName(String name)
+	{
+		this.name = name;
+		return this;
+	}
+
+	public SimpleTagBuilder toBuilder()
+	{
+		return new SimpleTagBuilder().attributes(this.attributes).children(this.children)
+			.content(this.content).endTag(this.endTag).name(this.name);
+	}
+
+	@Override
+	public String toString()
+	{
+		return "SimpleTag(content=" + this.getContent() + ", endTag=" + this.isEndTag() + ", name="
+			+ this.getName() + ")";
 	}
 
 	/**
@@ -235,166 +400,5 @@ public class SimpleTag implements Serializable
 			buffer.append("/>");
 		}
 		return buffer.toString();
-	}
-
-	public Map<String, String> getAttributes()
-	{
-		return this.attributes;
-	}
-
-	public List<SimpleTag> getChildren()
-	{
-		return this.children;
-	}
-
-	public String getContent()
-	{
-		return this.content;
-	}
-
-	public boolean isEndTag()
-	{
-		return this.endTag;
-	}
-
-	public String getName()
-	{
-		return this.name;
-	}
-
-	public SimpleTag setAttributes(Map<String, String> attributes)
-	{
-		this.attributes = attributes;
-		return this;
-	}
-
-	public SimpleTag setChildren(List<SimpleTag> children)
-	{
-		this.children = children;
-		return this;
-	}
-
-	public SimpleTag setContent(String content)
-	{
-		this.content = content;
-		return this;
-	}
-
-	public SimpleTag setEndTag(boolean endTag)
-	{
-		this.endTag = endTag;
-		return this;
-	}
-
-	public SimpleTag setName(String name)
-	{
-		this.name = name;
-		return this;
-	}
-
-	public boolean equals(final Object o)
-	{
-		if (o == this)
-			return true;
-		if (!(o instanceof SimpleTag))
-			return false;
-		final SimpleTag other = (SimpleTag)o;
-		if (!other.canEqual((Object)this))
-			return false;
-		final Object this$content = this.getContent();
-		final Object other$content = other.getContent();
-		if (this$content == null ? other$content != null : !this$content.equals(other$content))
-			return false;
-		if (this.isEndTag() != other.isEndTag())
-			return false;
-		final Object this$name = this.getName();
-		final Object other$name = other.getName();
-		if (this$name == null ? other$name != null : !this$name.equals(other$name))
-			return false;
-		return true;
-	}
-
-	protected boolean canEqual(final Object other)
-	{
-		return other instanceof SimpleTag;
-	}
-
-	public int hashCode()
-	{
-		final int PRIME = 59;
-		int result = 1;
-		final Object $content = this.getContent();
-		result = result * PRIME + ($content == null ? 43 : $content.hashCode());
-		result = result * PRIME + (this.isEndTag() ? 79 : 97);
-		final Object $name = this.getName();
-		result = result * PRIME + ($name == null ? 43 : $name.hashCode());
-		return result;
-	}
-
-	public String toString()
-	{
-		return "SimpleTag(content=" + this.getContent() + ", endTag=" + this.isEndTag() + ", name="
-			+ this.getName() + ")";
-	}
-
-	public SimpleTagBuilder toBuilder()
-	{
-		return new SimpleTagBuilder().attributes(this.attributes).children(this.children)
-			.content(this.content).endTag(this.endTag).name(this.name);
-	}
-
-	public static class SimpleTagBuilder
-	{
-		private Map<String, String> attributes;
-		private List<SimpleTag> children;
-		private String content;
-		private boolean endTag;
-		private String name;
-
-		SimpleTagBuilder()
-		{
-		}
-
-		public SimpleTag.SimpleTagBuilder attributes(Map<String, String> attributes)
-		{
-			this.attributes = attributes;
-			return this;
-		}
-
-		public SimpleTag.SimpleTagBuilder children(List<SimpleTag> children)
-		{
-			this.children = children;
-			return this;
-		}
-
-		public SimpleTag.SimpleTagBuilder content(String content)
-		{
-			this.content = content;
-			return this;
-		}
-
-		public SimpleTag.SimpleTagBuilder endTag(boolean endTag)
-		{
-			this.endTag = endTag;
-			return this;
-		}
-
-		public SimpleTag.SimpleTagBuilder name(String name)
-		{
-			this.name = name;
-			return this;
-		}
-
-		public SimpleTag build()
-		{
-			return new SimpleTag(attributes, children, content, endTag, name);
-		}
-
-		public String toString()
-		{
-			return "SimpleTag.SimpleTagBuilder(attributes=" + this.attributes + ", children="
-				+ this.children + ", content=" + this.content + ", endTag=" + this.endTag
-				+ ", name=" + this.name + ")";
-		}
 	}
 }

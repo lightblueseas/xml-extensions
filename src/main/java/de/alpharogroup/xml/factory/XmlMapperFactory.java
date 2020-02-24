@@ -34,7 +34,6 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  */
 public final class XmlMapperFactory
 {
-	private XmlMapperFactory(){}
 	/**
 	 * Factory method for create a new {@link ObjectMapper}
 	 *
@@ -55,6 +54,10 @@ public final class XmlMapperFactory
 	public static ObjectMapper newXmlMapper(JacksonXmlModule module)
 	{
 		return new XmlMapper(module);
+	}
+
+	private XmlMapperFactory()
+	{
 	}
 
 }

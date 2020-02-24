@@ -26,8 +26,51 @@ package de.alpharogroup.xml.json;
 
 public class Signin
 {
+	public static class SigninBuilder
+	{
+		private String password;
+		private String username;
+
+		SigninBuilder()
+		{
+		}
+
+		public Signin build()
+		{
+			return new Signin(password, username);
+		}
+
+		public Signin.SigninBuilder password(String password)
+		{
+			this.password = password;
+			return this;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "Signin.SigninBuilder(password=" + this.password + ", username=" + this.username
+				+ ")";
+		}
+
+		public Signin.SigninBuilder username(String username)
+		{
+			this.username = username;
+			return this;
+		}
+	}
+	public static SigninBuilder builder()
+	{
+		return new SigninBuilder();
+	}
+
 	private String password;
+
 	private String username;
+
+	public Signin()
+	{
+	}
 
 	public Signin(String password, String username)
 	{
@@ -35,35 +78,12 @@ public class Signin
 		this.username = username;
 	}
 
-	public Signin()
+	protected boolean canEqual(final Object other)
 	{
+		return other instanceof Signin;
 	}
 
-	public static SigninBuilder builder()
-	{
-		return new SigninBuilder();
-	}
-
-	public String getPassword()
-	{
-		return this.password;
-	}
-
-	public String getUsername()
-	{
-		return this.username;
-	}
-
-	public void setPassword(String password)
-	{
-		this.password = password;
-	}
-
-	public void setUsername(String username)
-	{
-		this.username = username;
-	}
-
+	@Override
 	public boolean equals(final Object o)
 	{
 		if (o == this)
@@ -71,7 +91,7 @@ public class Signin
 		if (!(o instanceof Signin))
 			return false;
 		final Signin other = (Signin)o;
-		if (!other.canEqual((Object)this))
+		if (!other.canEqual(this))
 			return false;
 		final Object this$password = this.getPassword();
 		final Object other$password = other.getPassword();
@@ -84,11 +104,17 @@ public class Signin
 		return true;
 	}
 
-	protected boolean canEqual(final Object other)
+	public String getPassword()
 	{
-		return other instanceof Signin;
+		return this.password;
 	}
 
+	public String getUsername()
+	{
+		return this.username;
+	}
+
+	@Override
 	public int hashCode()
 	{
 		final int PRIME = 59;
@@ -100,41 +126,19 @@ public class Signin
 		return result;
 	}
 
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
+
+	public void setUsername(String username)
+	{
+		this.username = username;
+	}
+
+	@Override
 	public String toString()
 	{
 		return "Signin(password=" + this.getPassword() + ", username=" + this.getUsername() + ")";
-	}
-
-	public static class SigninBuilder
-	{
-		private String password;
-		private String username;
-
-		SigninBuilder()
-		{
-		}
-
-		public Signin.SigninBuilder password(String password)
-		{
-			this.password = password;
-			return this;
-		}
-
-		public Signin.SigninBuilder username(String username)
-		{
-			this.username = username;
-			return this;
-		}
-
-		public Signin build()
-		{
-			return new Signin(password, username);
-		}
-
-		public String toString()
-		{
-			return "Signin.SigninBuilder(password=" + this.password + ", username=" + this.username
-				+ ")";
-		}
 	}
 }

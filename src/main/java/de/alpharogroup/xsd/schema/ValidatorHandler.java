@@ -34,26 +34,6 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ValidatorHandler extends DefaultHandler
 {
 
-	public SAXParseException getSaxParseException()
-	{
-		return saxParseException;
-	}
-
-	public void setSaxParseException(SAXParseException saxParseException)
-	{
-		this.saxParseException = saxParseException;
-	}
-
-	public boolean isValidationError()
-	{
-		return validationError;
-	}
-
-	public void setValidationError(boolean validationError)
-	{
-		this.validationError = validationError;
-	}
-
 	/** The sax parse exception. */
 	private SAXParseException saxParseException;
 
@@ -80,6 +60,11 @@ public class ValidatorHandler extends DefaultHandler
 		saxParseException = exception;
 	}
 
+	public SAXParseException getSaxParseException()
+	{
+		return saxParseException;
+	}
+
 	/**
 	 * Checks if is validation error.
 	 *
@@ -88,6 +73,21 @@ public class ValidatorHandler extends DefaultHandler
 	public boolean isValid()
 	{
 		return validationError;
+	}
+
+	public boolean isValidationError()
+	{
+		return validationError;
+	}
+
+	public void setSaxParseException(SAXParseException saxParseException)
+	{
+		this.saxParseException = saxParseException;
+	}
+
+	public void setValidationError(boolean validationError)
+	{
+		this.validationError = validationError;
 	}
 
 	/**

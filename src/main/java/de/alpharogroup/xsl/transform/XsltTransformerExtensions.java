@@ -24,12 +24,17 @@
  */
 package de.alpharogroup.xsl.transform;
 
-import javax.xml.transform.*;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.Objects;
+
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 /**
  * The class {@link XsltTransformerExtensions}
@@ -39,10 +44,6 @@ public final class XsltTransformerExtensions
 
 	/** The Constant TRANSFORMER_FACTORY. */
 	private static final TransformerFactory TRANSFORMER_FACTORY = TransformerFactory.newInstance();
-
-	private XsltTransformerExtensions()
-	{
-	}
 
 	/**
 	 * Gets a new instance from a {@link Transformer} object
@@ -166,6 +167,10 @@ public final class XsltTransformerExtensions
 		final File xmlFile = new File(xmlInputFile);
 		final File xsltFile = new File(xsltInputFile);
 		transform(xmlFile, xsltFile, outputStream);
+	}
+
+	private XsltTransformerExtensions()
+	{
 	}
 
 }

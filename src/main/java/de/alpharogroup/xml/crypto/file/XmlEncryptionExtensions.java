@@ -43,7 +43,35 @@ import de.alpharogroup.xml.factory.XStreamFactory;
  */
 public final class XmlEncryptionExtensions
 {
-	private XmlEncryptionExtensions(){}
+	/**
+	 * Write the given data object to the given file as xml and encoded into a hexadecimal
+	 * {@link String} object.
+	 *
+	 * @param <T>
+	 *            the generic type of the data object
+	 * @param aliases
+	 *            the aliases for the {@link XStream} object
+	 * @param data
+	 *            the data to write
+	 * @param file
+	 *            the file to write
+	 * @param allowTypesByWildcard
+	 *            the allowed types by wildcard
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static <T> void writeToFileAsXmlAndHex(final Map<String, Class<?>> aliases, final T data,
+		final File file, String... allowTypesByWildcard) throws IOException
+	{
+		Objects.requireNonNull(aliases);
+		Objects.requireNonNull(data);
+		Objects.requireNonNull(file);
+		XStream xStream = XStreamFactory.newXStream();
+		XStream.setupDefaultSecurity(xStream);
+		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
+		writeToFileAsXmlAndHex(xStream, aliases, data, file);
+	}
+
 	/**
 	 * Write the given data object to the given file as xml and encoded into a hexadecimal
 	 * {@link String} object.
@@ -62,8 +90,7 @@ public final class XmlEncryptionExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static <T> void writeToFileAsXmlAndHex(final XStream xstream,
-		final Map<String, Class<?>> aliases, final T data, File file)
-		throws IOException
+		final Map<String, Class<?>> aliases, final T data, File file) throws IOException
 	{
 		Objects.requireNonNull(xstream);
 		Objects.requireNonNull(aliases);
@@ -92,8 +119,8 @@ public final class XmlEncryptionExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static <T> void writeToFileAsXmlAndHex(final XStream xstream,
-		final Map<String, Class<?>> aliases, final T data, File file,
-		String charset) throws IOException
+		final Map<String, Class<?>> aliases, final T data, File file, String charset)
+		throws IOException
 	{
 		Objects.requireNonNull(xstream);
 		Objects.requireNonNull(aliases);
@@ -105,34 +132,8 @@ public final class XmlEncryptionExtensions
 		WriteFileExtensions.writeStringToFile(file, hexXmlString, charset);
 	}
 
-	/**
-	 * Write the given data object to the given file as xml and encoded into a hexadecimal
-	 * {@link String} object.
-	 *
-	 * @param <T>
-	 *            the generic type of the data object
-	 * @param aliases
-	 *            the aliases for the {@link XStream} object
-	 * @param data
-	 *            the data to write
-	 * @param file
-	 *            the file to write
-	 * @param allowTypesByWildcard
-	 *            the allowed types by wildcard
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static <T> void writeToFileAsXmlAndHex(final Map<String, Class<?>> aliases,
-		final T data, final File file, String... allowTypesByWildcard)
-		throws IOException
+	private XmlEncryptionExtensions()
 	{
-		Objects.requireNonNull(aliases);
-		Objects.requireNonNull(data);
-		Objects.requireNonNull(file);
-		XStream xStream = XStreamFactory.newXStream();
-		XStream.setupDefaultSecurity(xStream);
-		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
-		writeToFileAsXmlAndHex(xStream, aliases, data, file);
 	}
 
 }

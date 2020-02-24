@@ -24,12 +24,12 @@
  */
 package de.alpharogroup.xml.sax.factory;
 
-import org.xml.sax.SAXNotRecognizedException;
-import org.xml.sax.SAXNotSupportedException;
-
 import javax.xml.XMLConstants;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
+
+import org.xml.sax.SAXNotRecognizedException;
+import org.xml.sax.SAXNotSupportedException;
 
 /**
  * A factory for creating {@link SAXParserFactory} objects
@@ -42,10 +42,6 @@ public final class ParserFactory
 
 	/** The Constant for the key of the feature to allow external general entities */
 	public static final String FEATURE_EXTERNAL_GENERAL_ENTITIES = "http://xml.org/sax/features/external-general-entities";
-
-	private ParserFactory()
-	{
-	}
 
 	/**
 	 * Factory method for create a new {@link SAXParserFactory} with a flag for deactivate the
@@ -72,5 +68,9 @@ public final class ParserFactory
 			factory.setFeature(ParserFactory.FEATURE_DISALLOW_DOCTYPE_DECL, true);
 		}
 		return factory;
+	}
+
+	private ParserFactory()
+	{
 	}
 }

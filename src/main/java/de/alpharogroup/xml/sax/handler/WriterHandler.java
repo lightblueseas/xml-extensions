@@ -111,6 +111,11 @@ public abstract class WriterHandler extends DefaultHandler
 		write("</" + elementName + ">");
 	}
 
+	public Writer getWriter()
+	{
+		return writer;
+	}
+
 	/**
 	 * Insert a new line to the writer
 	 *
@@ -201,9 +206,5 @@ public abstract class WriterHandler extends DefaultHandler
 		final String string = stringBuilder.toString().trim();
 		write(string);
 		stringBuilder = null;
-	}
-	public Writer getWriter()
-	{
-		return writer;
 	}
 }

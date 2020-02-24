@@ -33,7 +33,6 @@ import com.thoughtworks.xstream.security.WildcardTypePermission;
 
 public final class XStreamFactory
 {
-	private XStreamFactory(){}
 	/**
 	 * Initialize the given {@link XStream} object with the given aliases
 	 *
@@ -78,5 +77,9 @@ public final class XStreamFactory
 		}
 		initializeXStream(xstream, aliases);
 		return xstream;
+	}
+
+	private XStreamFactory()
+	{
 	}
 }

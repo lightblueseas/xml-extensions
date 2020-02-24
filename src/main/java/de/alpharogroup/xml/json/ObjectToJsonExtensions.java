@@ -24,26 +24,23 @@
  */
 package de.alpharogroup.xml.json;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import de.alpharogroup.xml.factory.ObjectMapperFactory;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The class {@link ObjectToJsonExtensions} converts java objects to json string objects.
  */
 public final class ObjectToJsonExtensions
 {
-
-	private ObjectToJsonExtensions()
-	{
-	}
 
 	/**
 	 * Creates from the given {@link List} a json string
@@ -157,6 +154,10 @@ public final class ObjectToJsonExtensions
 		Objects.requireNonNull(object);
 		Objects.requireNonNull(mapper);
 		return mapper.writeValueAsString(object);
+	}
+
+	private ObjectToJsonExtensions()
+	{
 	}
 
 }
