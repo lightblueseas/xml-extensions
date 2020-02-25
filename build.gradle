@@ -12,7 +12,7 @@ apply plugin: "jacoco"
 
 group = "de.alpharogroup"
 version = "$projectVersion"
-description = "xml-extensions"
+description = "$rootProject.name"
 sourceCompatibility = "1.8"
 
 repositories {
