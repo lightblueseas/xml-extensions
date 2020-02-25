@@ -4,7 +4,10 @@
 Version 7.4-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update of test dependency velocity-extensions to new version 1.4
+- update of test dependency meanbean-factories to new version 1.2
 
 Version 7.3
 -------------
