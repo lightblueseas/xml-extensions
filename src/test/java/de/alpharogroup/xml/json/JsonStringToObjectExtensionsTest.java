@@ -61,22 +61,6 @@ import de.alpharogroup.xml.factory.ObjectMapperFactory;
 public class JsonStringToObjectExtensionsTest
 {
 
-	public static <K> Map<K, Integer> newCounterMap(final Collection<K> elements)
-	{
-		Argument.notNull(elements, "elements");
-		Map<K, Integer> elementsCount = MapFactory.newHashMap();
-		for (K element : elements)
-		{
-			if (elementsCount.containsKey(element))
-			{
-				elementsCount.merge(element, 1, Integer::sum);
-				continue;
-			}
-			elementsCount.put(element, 0);
-		}
-		return elementsCount;
-	}
-
 	File jsonDir;
 
 	File jsonFile;
@@ -96,7 +80,7 @@ public class JsonStringToObjectExtensionsTest
 	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
-	public void testToMapObject() throws IOException
+	public void testToMapObjectStringTypeReferenceObjectMapper() throws IOException
 	{
 		Map<Integer, Integer> actual;
 		Map<Integer, Integer> expected;
@@ -111,7 +95,33 @@ public class JsonStringToObjectExtensionsTest
 		};
 		actual = JsonStringToObjectExtensions.toMapObject(jsonString, typeReference,
 			ObjectMapperFactory.newObjectMapper());
-		expected = newCounterMap(ListFactory.newRangeList(1, 5));
+		expected = MapFactory.newCounterMap(ListFactory.newRangeList(1, 5));
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for
+	 * {@link JsonStringToObjectExtensions#toMapObject(String, TypeReference)}
+	 *
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	@Test
+	public void testToMapObjectStringTypeReference() throws IOException
+	{
+		Map<Integer, Integer> actual;
+		Map<Integer, Integer> expected;
+		TypeReference<Map<Integer, Integer>> typeReference;
+		String jsonString;
+
+		jsonString = "{\"1\":0,\"2\":0,\"3\":0,\"4\":0,\"5\":0}";
+
+		// new scenario: try to convert json to integer map
+		typeReference = new TypeReference<Map<Integer, Integer>>()
+		{
+		};
+		actual = JsonStringToObjectExtensions.toMapObject(jsonString, typeReference);
+		expected = MapFactory.newCounterMap(ListFactory.newRangeList(1, 5));
 		assertEquals(expected, actual);
 	}
 

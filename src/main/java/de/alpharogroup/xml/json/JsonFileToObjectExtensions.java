@@ -34,6 +34,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * The class {@link JsonFileToObjectExtensions} converts json strings to java object and java
  * collections.
+ * @deprecated use instead the same name class in new project json-extensions
+ * <br><br>Note: will be removed in next minor release
  */
 public final class JsonFileToObjectExtensions
 {

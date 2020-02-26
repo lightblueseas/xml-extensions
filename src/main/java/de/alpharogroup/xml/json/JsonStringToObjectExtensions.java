@@ -39,6 +39,8 @@ import de.alpharogroup.xml.factory.ObjectMapperFactory;
 /**
  * The class {@link JsonStringToObjectExtensions} converts json strings to java object and java
  * collections.
+ * @deprecated use instead the same name class in new project json-extensions
+ * <br><br>Note: will be removed in next minor release
  */
 public final class JsonStringToObjectExtensions
 {
@@ -67,6 +69,50 @@ public final class JsonStringToObjectExtensions
 		Objects.requireNonNull(typeReference);
 		Objects.requireNonNull(mapper);
 		return mapper.readValue(jsonString, typeReference);
+	}
+
+	/**
+	 * Transforms the given json string into a java map object
+	 *
+	 * @param <K>
+	 *            the generic type of keys
+	 * @param <V>
+	 *            the generic type of values
+	 * @param jsonString
+	 *            the json string
+	 * @param typeReference
+	 *            the type reference
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <K, V> Map<K, V> toMapObject(final String jsonString,
+		final TypeReference<Map<K, V>> typeReference) throws IOException
+	{
+		Objects.requireNonNull(jsonString);
+		Objects.requireNonNull(typeReference);
+		return toMapObject(jsonString, typeReference,
+			ObjectMapperFactory.newObjectMapper(true));
+	}
+
+	/**
+	 * Transforms the given json string into a java map object
+	 *
+	 * @param <K>
+	 *            the generic type of keys
+	 * @param <V>
+	 *            the generic type of values
+	 * @param jsonString
+	 *            the json string
+	 * @return the t
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 */
+	public static <K, V> Map<K, V> toMapObject(final String jsonString) throws IOException
+	{
+		Objects.requireNonNull(jsonString);
+		return toMapObject(jsonString, new TypeReference<Map<K, V>>(){},
+			ObjectMapperFactory.newObjectMapper(true));
 	}
 
 	/**

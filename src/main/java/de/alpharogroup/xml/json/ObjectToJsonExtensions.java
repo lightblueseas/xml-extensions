@@ -38,6 +38,8 @@ import de.alpharogroup.xml.factory.ObjectMapperFactory;
 
 /**
  * The class {@link ObjectToJsonExtensions} converts java objects to json string objects.
+ * @deprecated use instead the same name class in new project json-extensions
+ * <br><br>Note: will be removed in next minor release
  */
 public final class ObjectToJsonExtensions
 {

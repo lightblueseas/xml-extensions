@@ -49,6 +49,8 @@ public final class JsonToXmlExtensions
 	 * @return the transformed xml as {@link String} object
 	 * @throws JSONException
 	 *             if there is a syntax error in the source string or a duplicated key.
+	 * @deprecated use instead the same name method in the same name class in new project json-extensions
+	 * <br><br>Note: will be removed in next minor release
 	 */
 	public static String toXml(final String jsonString) throws JSONException
 	{
