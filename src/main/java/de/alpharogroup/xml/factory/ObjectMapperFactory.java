@@ -31,6 +31,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * The factory class {@link ObjectMapperFactory} for creating {@link ObjectMapper} objects
+ *
+ * @deprecated use instead the same name class in new project json-extensions
+ * <br><br>Note: will be removed in next minor release
  */
 public final class ObjectMapperFactory
 {
