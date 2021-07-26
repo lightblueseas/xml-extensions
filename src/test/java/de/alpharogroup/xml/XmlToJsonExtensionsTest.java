@@ -32,9 +32,9 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.map.MapFactory;
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link XmlToJsonExtensions}
@@ -62,14 +62,14 @@ public class XmlToJsonExtensionsTest
 		employee.setId("23");
 		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
 		actual = XmlToJsonExtensions.toJson(xmlResult);
-		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"id\":23,\"person\":{\"about\":\"\",\"gender\":\"FEMALE\",\"married\":false,\"name\":\"Anna\",\"nickname\":\"\"}}}";
+		expected = "{\"io.github.astrapi69.test.objects.Employee\":{\"id\":23,\"person\":{\"about\":\"\",\"gender\":\"FEMALE\",\"married\":false,\"name\":\"Anna\",\"nickname\":\"\"}}}";
 		assertEquals(actual, expected);
 
 		employee = Employee.builder().person(Person.builder().gender(Gender.FEMALE).name("Anna")
 			.married(true).about("Ha ha ha...").nickname("beast").build()).id("23").build();
 		xmlResult = ObjectToXmlExtensions.toXmlWithXStream(employee);
 		actual = XmlToJsonExtensions.toJson(xmlResult);
-		expected = "{\"de.alpharogroup.test.objects.Employee\":{\"id\":23,\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}}";
+		expected = "{\"io.github.astrapi69.test.objects.Employee\":{\"id\":23,\"person\":{\"about\":\"Ha ha ha...\",\"gender\":\"FEMALE\",\"married\":true,\"name\":\"Anna\",\"nickname\":\"beast\"}}}";
 
 		assertEquals(actual, expected);
 	}

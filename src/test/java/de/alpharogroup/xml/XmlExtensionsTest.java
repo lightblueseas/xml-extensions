@@ -37,9 +37,9 @@ import org.testng.annotations.Test;
 import org.xml.sax.InputSource;
 
 import de.alpharogroup.file.search.PathFinder;
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link XmlExtensions}

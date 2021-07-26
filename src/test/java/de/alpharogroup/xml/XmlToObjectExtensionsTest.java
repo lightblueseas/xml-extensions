@@ -37,10 +37,10 @@ import org.testng.annotations.Test;
 
 import com.thoughtworks.xstream.XStream;
 
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.EmployeeList;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.EmployeeList;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link XmlToObjectExtensions}
@@ -62,10 +62,10 @@ public class XmlToObjectExtensionsTest
 		javaVersion = System.getProperty("java.version");
 		xmlInputString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\""
 			+ javaVersion + "\" class=\"java.beans.XMLDecoder\">\n"
-			+ " <object class=\"de.alpharogroup.test.objects.Person\">\n"
+			+ " <object class=\"io.github.astrapi69.test.objects.Person\">\n"
 			+ "  <void property=\"gender\">\n"
 			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
-			+ "    <class>de.alpharogroup.test.objects.enums.Gender</class>\n"
+			+ "    <class>io.github.astrapi69.test.objects.enums.Gender</class>\n"
 			+ "    <string>FEMALE</string>\n" + "   </object>\n" + "  </void>\n"
 			+ "  <void property=\"name\">\n" + "   <string>Anna</string>\n" + "  </void>\n"
 			+ " </object>\n" + "</java>\n";

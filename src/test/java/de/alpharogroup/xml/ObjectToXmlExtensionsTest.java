@@ -38,12 +38,12 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.auth.AccessRight;
-import de.alpharogroup.test.objects.auth.Role;
-import de.alpharogroup.test.objects.auth.Roles;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.auth.AccessRight;
+import io.github.astrapi69.test.objects.auth.Role;
+import io.github.astrapi69.test.objects.auth.Roles;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link ObjectToXmlExtensions}
@@ -92,9 +92,9 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(employee);
-		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+		expected = "<io.github.astrapi69.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
 			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
-			+ "</de.alpharogroup.test.objects.Employee>";
+			+ "</io.github.astrapi69.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}
@@ -173,9 +173,9 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee);
-		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+		expected = "<io.github.astrapi69.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
 			+ "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n" + "  </person>\n"
-			+ "</de.alpharogroup.test.objects.Employee>";
+			+ "</io.github.astrapi69.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}

@@ -35,7 +35,7 @@ import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
 
 import de.alpharogroup.file.read.ReadFileExtensions;
-import de.alpharogroup.lang.ClassExtensions;
+import io.github.astrapi69.lang.ClassExtensions;
 
 /**
  * The class {@link XmlExtensions}.

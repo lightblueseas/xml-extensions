@@ -42,9 +42,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.collections.map.MapFactory;
-import de.alpharogroup.test.objects.Employee;
-import de.alpharogroup.test.objects.Person;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.Employee;
+import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link ObjectToJsonExtensions}

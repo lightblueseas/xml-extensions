@@ -6,6 +6,9 @@ Version 7.4-SNAPSHOT
 
 CHANGED:
 
+- update gradle to new version 7.1
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+- update of test dependency test-objects to new version 5.5
 - update of test dependency velocity-extensions to new version 1.4
 - update of test dependency meanbean-factories to new version 1.2
 

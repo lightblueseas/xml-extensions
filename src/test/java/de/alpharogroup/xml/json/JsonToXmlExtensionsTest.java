@@ -35,7 +35,7 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import de.alpharogroup.test.objects.Employee;
+import io.github.astrapi69.test.objects.Employee;
 
 /**
  * The unit test class for the class {@link JsonToXmlExtensions}
@@ -79,11 +79,11 @@ public class JsonToXmlExtensionsTest
 		String expected;
 		String actual;
 
-		expected = "<de.alpharogroup.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
+		expected = "<io.github.astrapi69.test.objects.Employee>\n" + "  <id>23</id>\n" + "  <person>\n"
 			+ "    <about>Ha ha ha...</about>\n" + "    <gender>FEMALE</gender>\n"
 			+ "    <married>true</married>\n" + "    <name>Anna</name>\n"
 			+ "    <nickname>beast</nickname>\n" + "  </person>\n"
-			+ "</de.alpharogroup.test.objects.Employee>";
+			+ "</io.github.astrapi69.test.objects.Employee>";
 		final String jsonString = "{\"person\":{\"name\":\"Anna\",\"nickname\":\"beast\",\"gender\":\"FEMALE\",\"about\":\"Ha ha ha...\",\"married\":true},\"id\":\"23\"}";
 		actual = JsonToXmlExtensions.toXml(jsonString, Employee.class);
 		assertEquals(actual, expected);
