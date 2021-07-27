@@ -208,6 +208,7 @@ dependencies {
     implementation("io.github.astrapi69:jobj-clone:$jobjCloneVersion")
     implementation("io.github.astrapi69:crypt-data:$cryptDataVersion")
     implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
+    implementation("io.github.astrapi69:json-extensions:$jsonExtensionsVersion")
     testImplementation("io.github.astrapi69:mystic-crypt:$mysticCryptVersion")
     testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
     testImplementation("io.github.astrapi69:meanbean-factories:$meanbeanFactoriesVersion")

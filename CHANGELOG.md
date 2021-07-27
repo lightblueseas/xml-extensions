@@ -13,6 +13,7 @@ CHANGED:
 - update of test dependency test-objects to new version 5.5
 - update of test dependency velocity-extensions to new version 1.5
 - update of test dependency meanbean-factories to new version 1.2
+- removed deprecated classes
 
 Version 7.3
 -------------

@@ -31,7 +31,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
 
-import io.github.astrapi69.xml.json.ObjectToJsonExtensions;
+import io.github.astrapi69.json.ObjectToJsonExtensions;
 
 /**
  * The class {@link XmlToJsonExtensions}.
