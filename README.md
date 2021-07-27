@@ -5,8 +5,8 @@
 [![Build Status](https://travis-ci.org/lightblueseas/xml-extensions.svg?branch=master)](https://travis-ci.org/lightblueseas/xml-extensions)
 [![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/xml-extensions.svg?style=flat)](https://github.com/lightblueseas/xml-extensions/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/xml-extensions)
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/xml-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/xml-extensions)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/xml-extensions)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/xml-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/xml-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 </div>
@@ -45,7 +45,7 @@ The source code comes under the liberal MIT License, making xml-extensions great
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~xml-extensions~~~) for latest snapshots and releases.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~xml-extensions~~~) for latest snapshots and releases.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of xml-extensions:
 
@@ -62,7 +62,7 @@ Than you can add the dependency to your dependencies:
 			...
             <!-- XML-EXTENSIONS DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>xml-extensions</artifactId>
 				<version>${xml-extensions.version}</version>
 			</dependency>
@@ -82,7 +82,7 @@ ext {
 }
 dependencies {
 			...
-compile("de.alpharogroup:xml-extensions:$xmlExtensionsVersion")
+compile("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
 			...
 }
 ```
@@ -123,7 +123,7 @@ Do not hesitate to contact the xml-extensions developers with your questions, co
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/xml-extensions.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~xml-extensions~~~)|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/xml-extensions.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~xml-extensions~~~)|
 |Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
 |     <img width=1000/>     |
 
@@ -135,7 +135,7 @@ Do not hesitate to contact the xml-extensions developers with your questions, co
 
 |**javadoc.io**|
 |     :---:      |
-|[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/xml-extensions.svg)](http://www.javadoc.io/doc/de.alpharogroup/xml-extensions)|
+|[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/xml-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/xml-extensions)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
 

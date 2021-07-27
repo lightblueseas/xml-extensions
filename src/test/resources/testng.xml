@@ -3,14 +3,13 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-		<class name="de.alpharogroup.dtd.to.xsd.ConverterTest"/>
-		<class name="de.alpharogroup.xml.sax.handler.OutputStreamWriterHandlerTest"/>
-		<class name="de.alpharogroup.xml.sax.handler.TemplateHandlerTest"/>
-		<class name="de.alpharogroup.xml.to.xsd.XmlToXsdExtensionsTest"/>
-		<class name="de.alpharogroup.xml.XmlExtensionsTest"/>
-		<class name="de.alpharogroup.xml.xpath.XPathExtensionsTest"/>
-		<class name="de.alpharogroup.xsd.schema.ValidatorExtensionsTest"/>
-		<class name="de.alpharogroup.xsl.transform.XsltTransformerExtensionsTest"/>
+		<class name="io.github.astrapi69.xml.sax.handler.OutputStreamWriterHandlerTest"/>
+		<class name="io.github.astrapi69.xml.sax.handler.TemplateHandlerTest"/>
+		<class name="io.github.astrapi69.xml.to.xsd.XmlToXsdExtensionsTest"/>
+		<class name="io.github.astrapi69.xml.XmlExtensionsTest"/>
+		<class name="io.github.astrapi69.xml.xpath.XPathExtensionsTest"/>
+		<class name="io.github.astrapi69.xsd.schema.ValidatorExtensionsTest"/>
+		<class name="io.github.astrapi69.xsl.transform.XsltTransformerExtensionsTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

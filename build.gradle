@@ -167,6 +167,7 @@ license {
               "**/*.dtd",
               "**/*.html",
               "**/*.jsp",
+              "**/*.json",
               "**/*.jpa",
               "**/*.sql",
               "**/*.properties",
@@ -198,24 +199,28 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation("xerces:xercesImpl:$xercesImplVersion")
     implementation("org.json:json:$jsonVersion")
-    implementation("de.alpharogroup:file-worker:$fileWorkerVersion")
+    implementation("commons-codec:commons-codec:$commonsCodecVersion")
+    implementation("commons-io:commons-io:$commonsIoVersion")
+    implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
+    implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")
+    implementation("io.github.astrapi69:file-worker:$fileWorkerVersion")
     implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
-    implementation("de.alpharogroup:jobj-clone:$jobjCloneVersion")
-    implementation("de.alpharogroup:crypt-data:$cryptDataVersion")
+    implementation("io.github.astrapi69:jobj-clone:$jobjCloneVersion")
+    implementation("io.github.astrapi69:crypt-data:$cryptDataVersion")
+    implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
+    testImplementation("io.github.astrapi69:mystic-crypt:$mysticCryptVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("io.github.astrapi69:meanbean-factories:$meanbeanFactoriesVersion")
+    testImplementation("io.github.astrapi69:jobj-contract-verifier:$jobjContractVerifierVersion")
+    testImplementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
+    testImplementation("io.github.astrapi69:silly-io:$sillyIoVersion")
+    testImplementation("io.github.astrapi69:velocity-extensions:$velocityExtensionsVersion")
+    testImplementation("org.apache.velocity:velocity:$velocityVersion")
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion")
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-json-org:$jacksonVersion")
-    testImplementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
-    testImplementation("de.alpharogroup:mystic-crypt:$mysticCryptVersion")
-    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
-    testImplementation("de.alpharogroup:velocity-extensions:$velocityExtensionsVersion")
-    testImplementation("de.alpharogroup:meanbean-factories:$meanbeanFactoriesVersion")
-    testImplementation("de.alpharogroup:jobj-contract-verifier:$jobjContractVerifierVersion")
-    testImplementation("de.alpharogroup:checksum-up:$checksumUpVersion")
-    testImplementation("org.apache.velocity:velocity:$velocityVersion")
     testImplementation("org.meanbean:meanbean:$meanbeanVersion")
     testImplementation("org.testng:testng:$testngVersion")
-    // https://mvnrepository.com/artifact/org.hamcrest/hamcrest-all
-    testImplementation group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+    testImplementation("org.hamcrest:hamcrest-all:$hamcrestVersion")
 
 }
