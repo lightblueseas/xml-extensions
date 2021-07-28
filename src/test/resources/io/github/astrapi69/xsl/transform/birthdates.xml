@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<birthdates>
+    <birthdate>
+        <id>1</id>
+        <date>2007-11-08T19:07:00+01:00</date>
+    </birthdate>
+    <birthdate>
+        <id>2</id>
+        <date>2010-05-12T13:48:00+01:00</date>
+    </birthdate>
+    <birthdate>
+        <id>3</id>
+        <date>2012-04-19T08:40:00+01:00</date>
+    </birthdate>
+</birthdates>

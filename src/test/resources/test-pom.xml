@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>de.alpharogroup</groupId>
+        <groupId>io.github.astrapi69</groupId>
         <artifactId>mvn-java-parent</artifactId>
         <version>5.5</version>
         <relativePath></relativePath>
@@ -76,25 +76,25 @@
         <dependencies>
             <!-- MYSTIC-CRYPT DEPENDENCY -->
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>mystic-crypt</artifactId>
                 <version>${mystic-crypt.version}</version>
             </dependency>
             <!-- JOBJ-CORE DEPENDENCY -->
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>jobj-core</artifactId>
                 <version>${jobj-core.version}</version>
             </dependency>
             <!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>jobj-contract-verifier</artifactId>
                 <version>${jobj-contract-verifier.version}</version>
             </dependency>
             <!-- JOBJ-CLONE DEPENDENCY -->
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>jobj-clone</artifactId>
                 <version>${jobj-clone.version}</version>
             </dependency>
@@ -142,19 +142,19 @@
             </dependency>
 
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>file-worker</artifactId>
                 <version>${file-worker.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>test-objects</artifactId>
                 <version>${test-objects.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>de.alpharogroup</groupId>
+                <groupId>io.github.astrapi69</groupId>
                 <artifactId>velocity-extensions</artifactId>
                 <version>${velocity-extensions.version}</version>
             </dependency>
@@ -172,7 +172,7 @@
     <dependencies>
         <!-- JOBJ-CORE DEPENDENCY -->
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>jobj-core</artifactId>
         </dependency>
 
@@ -207,17 +207,17 @@
         </dependency>
 
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>file-worker</artifactId>
         </dependency>
         <!-- JOBJ-CLONE DEPENDENCY -->
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>jobj-clone</artifactId>
         </dependency>
         <!-- MYSTIC-CRYPT DEPENDENCY -->
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>mystic-crypt</artifactId>
             <scope>test</scope>
         </dependency>
@@ -235,13 +235,13 @@
         </dependency>
 
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>test-objects</artifactId>
             <scope>test</scope>
         </dependency>
 
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>velocity-extensions</artifactId>
             <scope>test</scope>
         </dependency>
@@ -253,13 +253,13 @@
         </dependency>
         <!-- MEANBEAN-FACTORIES DEPENDENCY -->
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>meanbean-factories</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
         <dependency>
-            <groupId>de.alpharogroup</groupId>
+            <groupId>io.github.astrapi69</groupId>
             <artifactId>jobj-contract-verifier</artifactId>
             <scope>test</scope>
         </dependency>
