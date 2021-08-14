@@ -223,5 +223,7 @@ dependencies {
     testImplementation("org.meanbean:meanbean:$meanbeanVersion")
     testImplementation("org.testng:testng:$testngVersion")
     testImplementation("org.hamcrest:hamcrest-all:$hamcrestVersion")
+    testImplementation("io.github.astrapi69:throw-able:$throwAbleVersion")
+    testImplementation("org.bouncycastle:bcprov-jdk15on:$bouncycastleVersion")
 
 }

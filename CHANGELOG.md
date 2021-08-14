@@ -4,6 +4,10 @@
 Version 7.5-SNAPSHOT
 -------------
 
+ADDED:
+
+- new interface Xmlable that provides a method for transform to xml string for all classes that implement it
+
 Version 7.4
 -------------
 
