@@ -198,7 +198,6 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation("xerces:xercesImpl:$xercesImplVersion")
-    implementation("org.json:json:$jsonVersion")
     implementation("commons-codec:commons-codec:$commonsCodecVersion")
     implementation("commons-io:commons-io:$commonsIoVersion")
     implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")

@@ -40,7 +40,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.collections.iterators.EnumerationIterator;
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.search.PathFinder;
 
 /**
  * The unit test class for the class {@link XmlResourceBundle}

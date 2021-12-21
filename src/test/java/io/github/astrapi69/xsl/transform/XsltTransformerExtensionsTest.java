@@ -49,8 +49,8 @@ import org.testng.annotations.Test;
 import io.github.astrapi69.AbstractTestCase;
 import io.github.astrapi69.collections.array.ArrayFactory;
 import io.github.astrapi69.io.StreamExtensions;
-import io.github.astrapi69.read.ReadFileExtensions;
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
 
 /**
  * The unit test class for the class {@link XsltTransformerExtensions}

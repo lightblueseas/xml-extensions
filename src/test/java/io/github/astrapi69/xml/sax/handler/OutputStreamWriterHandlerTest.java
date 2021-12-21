@@ -39,7 +39,7 @@ import org.xml.sax.SAXNotRecognizedException;
 import org.xml.sax.SAXNotSupportedException;
 
 import io.github.astrapi69.io.StreamExtensions;
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.xml.sax.factory.ParserFactory;
 
 /**

@@ -36,7 +36,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.read.ReadFileExtensions;
+import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.throwable.RuntimeExceptionDecorator;
 import io.github.astrapi69.xml.factory.XStreamFactory;
 import io.github.astrapi69.xml.factory.XmlMapperFactory;
@@ -127,6 +127,8 @@ public final class XmlFileToObjectExtensions
 	/**
 	 * Creates from the given xml string an java object.
 	 *
+	 * @param xmlFile
+	 *            the xml file
 	 * @param <T>
 	 *            the generic type
 	 * @return the xml string
