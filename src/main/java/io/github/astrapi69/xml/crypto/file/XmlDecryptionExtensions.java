@@ -74,7 +74,6 @@ public final class XmlDecryptionExtensions
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(selectedFile);
 		XStream xStream = XStreamFactory.newXStream();
-		XStream.setupDefaultSecurity(xStream);
 		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
 		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
 	}

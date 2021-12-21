@@ -8,6 +8,10 @@ ADDED:
 
 - new interface Xmlable that provides a method for transform to xml string for all classes that implement it
 
+CHANGED:
+
+- update gradle to new version 7.2
+
 Version 7.4
 -------------
 

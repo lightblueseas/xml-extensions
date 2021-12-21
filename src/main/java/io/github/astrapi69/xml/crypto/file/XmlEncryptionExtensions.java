@@ -71,7 +71,6 @@ public final class XmlEncryptionExtensions
 		Objects.requireNonNull(data);
 		Objects.requireNonNull(file);
 		XStream xStream = XStreamFactory.newXStream();
-		XStream.setupDefaultSecurity(xStream);
 		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
 		writeToFileAsXmlAndHex(xStream, aliases, data, file);
 	}

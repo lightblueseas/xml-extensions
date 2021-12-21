@@ -86,7 +86,7 @@ public class ObjectToXmlExtensionsTest
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object)}
 	 */
 	@Test(enabled = true)
-	public void testToXmlWithXStreamObject() throws NoSuchAlgorithmException, NoSuchProviderException {
+	public void testToXmlWithXStreamObject() {
 		String actual;
 		String expected;
 		Person person;
@@ -104,12 +104,6 @@ public class ObjectToXmlExtensionsTest
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 
-		KeyPair keyPair = KeyPairFactory.newKeyPair(KeyPairGeneratorAlgorithm.DIFFIE_HELLMAN,
-				KeySize.KEYSIZE_2048);
-
-		String xmlWithXStream = ObjectToXmlExtensions.toXmlWithXStream(keyPair.getPrivate());
-		PrivateKey privateKey = XmlToObjectExtensions.toObjectWithXStream(xmlWithXStream);
-		assertEquals(privateKey, keyPair.getPrivate());
 	}
 
 	/**
