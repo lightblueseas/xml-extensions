@@ -27,18 +27,11 @@ package io.github.astrapi69.xml;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import io.github.astrapi69.crypto.algorithm.KeyPairGeneratorAlgorithm;
-import io.github.astrapi69.crypto.factories.KeyPairFactory;
-import io.github.astrapi69.crypto.key.KeySize;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -86,7 +79,8 @@ public class ObjectToXmlExtensionsTest
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object)}
 	 */
 	@Test(enabled = true)
-	public void testToXmlWithXStreamObject() {
+	public void testToXmlWithXStreamObject()
+	{
 		String actual;
 		String expected;
 		Person person;

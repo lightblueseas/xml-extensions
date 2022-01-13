@@ -28,7 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The interface {@link Xmlable} provides a method for transform a class to xml string that implement this interface
+ * The interface {@link Xmlable} provides a method for transform a class to xml string that
+ * implement this interface
  */
 public interface Xmlable
 {

@@ -24,11 +24,9 @@
  */
 package io.github.astrapi69.xml;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * The abstract Class XmlTransformation that transform a subclass as xml string.
  */
-public abstract class XmlTransformation implements Xmlable {
+public abstract class XmlTransformation implements Xmlable
+{
 }

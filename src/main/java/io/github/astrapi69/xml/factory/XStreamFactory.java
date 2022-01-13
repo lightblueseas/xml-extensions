@@ -59,17 +59,13 @@ public final class XStreamFactory
 				xstream.alias(alias.getKey(), alias.getValue());
 			}
 		}
-		xstream.allowTypesByWildcard(new String[] {
-			"io.github.astrapi69.**"
-		});
+		xstream.allowTypesByWildcard(new String[] { "io.github.astrapi69.**" });
 		return xstream;
 	}
 
 	public static XStream newXStream()
 	{
-		XStream xstream = new XStream();
-		XStream.setupDefaultSecurity(xstream);
-		return xstream;
+		return new XStream();
 	}
 
 	public static XStream newXStream(HierarchicalStreamDriver hierarchicalStreamDriver)

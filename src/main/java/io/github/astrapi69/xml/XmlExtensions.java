@@ -34,8 +34,8 @@ import java.util.Objects;
 import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
 
-import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
+import io.github.astrapi69.lang.ClassExtensions;
 
 /**
  * The class {@link XmlExtensions}.

@@ -24,10 +24,7 @@
  */
 package io.github.astrapi69.xml;
 
-import java.beans.XMLDecoder;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 
@@ -39,7 +36,6 @@ import com.thoughtworks.xstream.XStream;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.throwable.RuntimeExceptionDecorator;
 import io.github.astrapi69.xml.factory.XStreamFactory;
-import io.github.astrapi69.xml.factory.XmlMapperFactory;
 
 /**
  * The class {@link XmlFileToObjectExtensions}.
