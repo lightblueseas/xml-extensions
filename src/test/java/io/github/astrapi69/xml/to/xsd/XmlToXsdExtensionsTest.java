@@ -174,7 +174,7 @@ public class XmlToXsdExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testXmlToXsdFileFile() throws XmlException, IOException
 	{
 		File expected;
@@ -209,7 +209,7 @@ public class XmlToXsdExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testXmlToXsdFileFileInst2XsdOptions() throws XmlException, IOException
 	{
 		File expected;
@@ -248,7 +248,7 @@ public class XmlToXsdExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testXmlToXsdFileFileInst2XsdOptionsXmlOptions() throws XmlException, IOException
 	{
 		File expected;
