@@ -24,9 +24,26 @@
  */
 package io.github.astrapi69.xml;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * The abstract Class XmlTransformation that transform a subclass as xml string.
+ * The interface {@link Xmlable} provides a method for transform a class to xml string that
+ * implement this interface
  */
-public abstract class XmlTransformation implements Xmlable
+public interface Xmlable
 {
+
+	/**
+	 * To xml.
+	 *
+	 * @return the string
+	 */
+	default String toXml()
+	{
+		final String lqSimpleName = this.getClass().getSimpleName().toLowerCase();
+		final Map<String, Class<?>> aliases = new HashMap<>();
+		aliases.put(lqSimpleName, this.getClass());
+		return ObjectToXmlExtensions.toXmlWithXStream(this, aliases);
+	}
 }

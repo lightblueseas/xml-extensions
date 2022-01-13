@@ -38,12 +38,12 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
-import io.github.astrapi69.compare.CompareFileExtensions;
-import io.github.astrapi69.compare.api.IFileContentResultBean;
-import io.github.astrapi69.csv.CsvFileExtensions;
-import io.github.astrapi69.delete.DeleteFileExtensions;
-import io.github.astrapi69.search.PathFinder;
-import io.github.astrapi69.write.WriteFileExtensions;
+import io.github.astrapi69.file.compare.CompareFileExtensions;
+import io.github.astrapi69.file.compare.api.IFileContentResultBean;
+import io.github.astrapi69.file.csv.CsvFileExtensions;
+import io.github.astrapi69.file.delete.DeleteFileExtensions;
+import io.github.astrapi69.file.search.PathFinder;
+import io.github.astrapi69.file.write.WriteFileExtensions;
 
 /**
  * The unit test class for the class {@link TemplateHandler}

@@ -35,7 +35,7 @@ import org.apache.commons.codec.DecoderException;
 import com.thoughtworks.xstream.XStream;
 
 import io.github.astrapi69.crypto.hex.HexExtensions;
-import io.github.astrapi69.read.ReadFileExtensions;
+import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.xml.XmlToObjectExtensions;
 import io.github.astrapi69.xml.factory.XStreamFactory;
 
@@ -74,7 +74,6 @@ public final class XmlDecryptionExtensions
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(selectedFile);
 		XStream xStream = XStreamFactory.newXStream();
-		XStream.setupDefaultSecurity(xStream);
 		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
 		return readFromFileAsXmlAndHex(xStream, aliases, selectedFile);
 	}

@@ -40,7 +40,7 @@ import com.thoughtworks.xstream.XStream;
 import io.github.astrapi69.collections.map.MapFactory;
 import io.github.astrapi69.collections.pairs.KeyValuePair;
 import io.github.astrapi69.crypto.obfuscation.rule.ObfuscationOperationRule;
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.xml.factory.XStreamFactory;
 
 /**

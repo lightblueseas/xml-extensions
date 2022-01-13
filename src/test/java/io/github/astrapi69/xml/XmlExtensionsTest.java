@@ -36,7 +36,7 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 import org.xml.sax.InputSource;
 
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.objects.Employee;
 import io.github.astrapi69.test.objects.Person;
 import io.github.astrapi69.test.objects.enums.Gender;

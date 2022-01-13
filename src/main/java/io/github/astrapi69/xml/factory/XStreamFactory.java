@@ -59,6 +59,7 @@ public final class XStreamFactory
 				xstream.alias(alias.getKey(), alias.getValue());
 			}
 		}
+		xstream.allowTypesByWildcard(new String[] { "io.github.astrapi69.**" });
 		return xstream;
 	}
 

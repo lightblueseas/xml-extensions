@@ -24,9 +24,25 @@
  */
 package io.github.astrapi69.xml;
 
-/**
- * The abstract Class XmlTransformation that transform a subclass as xml string.
- */
-public abstract class XmlTransformation implements Xmlable
+import java.security.PrivateKey;
+
+public class TestBox implements Xmlable
 {
+
+	private PrivateKey privateKey;
+
+	public TestBox(PrivateKey privateKey)
+	{
+		this.privateKey = privateKey;
+	}
+
+	public PrivateKey getPrivateKey()
+	{
+		return privateKey;
+	}
+
+	public void setPrivateKey(PrivateKey privateKey)
+	{
+		this.privateKey = privateKey;
+	}
 }

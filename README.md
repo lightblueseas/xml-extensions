@@ -20,6 +20,55 @@ Useful extensions methods and utilities for handle xml or transform xslt
 >
 > If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to
+your project `build.gradle` if you want to import the core functionality of xml-extensions:
+
+define version in file gradle.properties
+
+```
+xmlExtensionsVersion=7.5
+```
+
+or in build.gradle ext area
+
+```
+    xmlExtensionsVersion = "7.5"
+```
+
+then add the dependency to the dependencies area
+
+```
+    implementation("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
+```
+
+## Maven dependency
+
+Maven dependency is now on sonatype.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~xml-extensions~~~) for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of xml-extensions:
+
+Than you can add the dependency to your dependencies:
+
+	<properties>
+			...
+		<!-- XML-EXTENSIONS version -->
+		<xml-extensions.version>7.5</xml-extensions.version>
+			...
+	</properties>
+			...
+		<dependencies>
+			...
+            <!-- XML-EXTENSIONS DEPENDENCY -->
+			<dependency>
+				<groupId>io.github.astrapi69</groupId>
+				<artifactId>xml-extensions</artifactId>
+				<version>${xml-extensions.version}</version>
+			</dependency>
+			...
+		</dependencies>
 
 ## Note
 
@@ -92,67 +141,6 @@ or over flattr:
 ## License
 
 The source code comes under the liberal MIT License, making xml-extensions great for all types of applications.
-
-## Maven dependency
-
-Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~xml-extensions~~~) for latest snapshots and releases.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of xml-extensions:
-
-Than you can add the dependency to your dependencies:
-
-	<properties>
-			...
-		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>7.4</xml-extensions.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
-            <!-- XML-EXTENSIONS DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>xml-extensions</artifactId>
-				<version>${xml-extensions.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-			
-## gradle dependency
-
-You can first define the version in the ext section and add than the following gradle dependency to 
-your project `build.gradle` if you want to import the core functionality of xml-extensions:
-
-define version in file gradle.properties
-
-```
-
-xmlExtensionsVersion=7.4
-```
-
-or in build.gradle ext area
-
-```
-ext {
-			...
-    xmlExtensionsVersion = "7.4"
-			...
-}
-```
-
-then add the dependency to the dependencies area
-
-```
-dependencies {
-			...
-    implementation("io.github.astrapi69:xml-extensions:$xmlExtensionsVersion")
-			...
-}
-```
-		
 
 ## Semantic Versioning
 

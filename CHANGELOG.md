@@ -1,6 +1,23 @@
 ## Change log
 ----------------------
 
+Version 7.5
+-------------
+
+ADDED:
+
+- new interface Xmlable that provides a method for transform to xml string for all classes that implement it
+
+CHANGED:
+
+- update gradle to new version 7.3.3
+- update dependency of com.github.ben-manes.versions.gradle.plugin to new version 0.41.0
+- update of xmlbeans version to 5.0.3
+- update of jobj-core dependency version to 5.2
+- update of test dependency test-objects to new version 5.7
+- update of test dependency jobj-contract-verifier to new version 3.5
+- update of testng dependency version to 7.5
+
 Version 7.4
 -------------
 

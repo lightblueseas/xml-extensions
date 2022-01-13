@@ -38,7 +38,7 @@ import org.testng.annotations.Test;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import io.github.astrapi69.search.PathFinder;
+import io.github.astrapi69.file.search.PathFinder;
 
 /**
  * The unit test class for the class {@link XPathExtensions}

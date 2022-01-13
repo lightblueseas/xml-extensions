@@ -97,6 +97,7 @@ public class ObjectToXmlExtensionsTest
 			+ "  </person>\n" + "</io.github.astrapi69.test.objects.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
+
 	}
 
 	/**
