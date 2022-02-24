@@ -25,6 +25,7 @@
 package io.github.astrapi69.xml;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Objects;
 
@@ -37,7 +38,7 @@ import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.throwable.RuntimeExceptionDecorator;
 
 /**
- * The class {@link XmlFileToObjectExtensions} provides algorithms for transform an xml file to a
+ * The class {@link XmlFileToObjectExtensions} provides algorithms for transform a given xml file to a
  * java object
  */
 public final class XmlFileToObjectExtensions
@@ -149,9 +150,8 @@ public final class XmlFileToObjectExtensions
 	public static <T> T toObjectWithXStream(final File xmlFile)
 	{
 		Objects.requireNonNull(xmlFile);
-		final String xmlString = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
-		return XmlToObjectExtensions.toObjectWithXStream(null, xmlString);
+		return XmlToObjectExtensions.toObjectWithXStream(null, RuntimeExceptionDecorator
+				.decorate(() -> ReadFileExtensions.readFromFile(xmlFile)));
 	}
 
 	/**
@@ -169,9 +169,8 @@ public final class XmlFileToObjectExtensions
 	public static <T> T toObjectWithXStream(final File xmlFile, final Map<String, Class<?>> aliases)
 	{
 		Objects.requireNonNull(xmlFile);
-		final String xmlString = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
-		return XmlToObjectExtensions.toObjectWithXStream(null, xmlString, aliases);
+		return XmlToObjectExtensions.toObjectWithXStream(null, RuntimeExceptionDecorator
+				.decorate(() -> ReadFileExtensions.readFromFile(xmlFile)), aliases);
 	}
 
 	/**
@@ -188,9 +187,8 @@ public final class XmlFileToObjectExtensions
 	public static <T> T toObjectWithXStream(final XStream xstream, final File xmlFile)
 	{
 		Objects.requireNonNull(xmlFile);
-		final String xmlString = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
-		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, null);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, RuntimeExceptionDecorator
+				.decorate(() -> ReadFileExtensions.readFromFile(xmlFile)), null);
 	}
 
 	/**
@@ -208,12 +206,35 @@ public final class XmlFileToObjectExtensions
 	 * @return the created object from the given xml file
 	 */
 	public static <T> T toObjectWithXStream(XStream xstream, final File xmlFile,
-		final Map<String, Class<?>> aliases)
+											final Map<String, Class<?>> aliases)
 	{
 		Objects.requireNonNull(xmlFile);
-		final String xmlString = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
-		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, RuntimeExceptionDecorator
+				.decorate(() -> ReadFileExtensions.readFromFile(xmlFile)), aliases);
+	}
+
+	/**
+	 * Creates from the given xml file a java object. The given map hold the aliases. For more
+	 * information with aliasing see documentation of xstream.
+	 *
+	 * @param <T>
+	 *            the generic type of the return type
+	 * @param xstream
+	 *            the xstream object.
+	 * @param xmlFile
+	 *            the xml file
+	 * @param charsetName
+	 *            the encoding name of the charset form the given xml file
+	 * @param aliases
+	 *            the aliases
+	 * @return the created object from the given xml file
+	 */
+	public static <T> T toObjectWithXStream(XStream xstream, final File xmlFile, final String charsetName,
+											final Map<String, Class<?>> aliases)
+	{
+		Objects.requireNonNull(xmlFile);
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, RuntimeExceptionDecorator
+				.decorate(() -> ReadFileExtensions.readFromFile(xmlFile, Charset.forName(charsetName))), aliases);
 	}
 
 }

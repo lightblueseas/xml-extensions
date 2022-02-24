@@ -127,7 +127,7 @@ public final class XmlToObjectExtensions
 	@SuppressWarnings("unchecked")
 	public static <T> T toObjectWithXMLDecoder(final String xmlString)
 	{
-
+		Objects.requireNonNull(xmlString);
 		XMLDecoder dec = null;
 		T obj;
 		try
@@ -214,6 +214,7 @@ public final class XmlToObjectExtensions
 	public static <T> T toObjectWithXStream(XStream xstream, final String xmlString,
 		final Map<String, Class<?>> aliases)
 	{
+		Objects.requireNonNull(xmlString);
 		xstream = XStreamFactory.initializeXStream(xstream, aliases);
 		return (T)xstream.fromXML(xmlString);
 	}
