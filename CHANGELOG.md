@@ -6,8 +6,21 @@ Version 7.6-SNAPSHOT
 
 ADDED:
 
-- update gradle to new version 7.4
 - new gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle in minor version 6.3.0
+
+CHANGED:
+
+- update gradle to new version 7.4
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.42.0
+- update of dependency xstream to new patch version 1.4.19
+- update of dependency file-worker to new minor version 8.2
+- update of dependency jobj-core to new minor version 5.3
+- update of dependency crypt-api to new minor version 7.7
+- update of dependency xercesImpl to new patch version 2.12.2
+- update of dependency crypt-data to new patch version 7.11.1
+- update of test dependency test-objects to new major version 6
+- update of test dependency mystic-crypt to new minor version 7.11
+- update of test dependency silly-io to new minor version 1.7
 
 Version 7.5
 -------------

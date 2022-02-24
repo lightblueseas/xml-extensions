@@ -37,9 +37,9 @@ import org.testng.annotations.Test;
 import org.xml.sax.InputSource;
 
 import io.github.astrapi69.file.search.PathFinder;
-import io.github.astrapi69.test.objects.Employee;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link XmlExtensions}
@@ -65,6 +65,7 @@ public class XmlExtensionsTest
 	 * Test method for {@link XmlExtensions#loadObject(File)}.
 	 *
 	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
 	@Test
 	public void testLoadObjectFile() throws IOException

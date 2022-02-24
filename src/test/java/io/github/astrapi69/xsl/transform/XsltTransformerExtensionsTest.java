@@ -141,7 +141,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
 	 *             possible to create a <code>Transformer</code> instance.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testGetTransformerSource() throws TransformerConfigurationException
 	{
 		Transformer actual;
@@ -165,7 +165,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
 	 *             possible to create a <code>Transformer</code> instance.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testGetTransformerString() throws TransformerConfigurationException
 	{
 		Transformer actual;
@@ -192,7 +192,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testTransformFileFileOutputStream()
 		throws TransformerConfigurationException, TransformerException, IOException
 	{
@@ -234,7 +234,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testTransformSourceSourceOutputStream() throws TransformerException, IOException
 	{
 		File resDestDir;
@@ -274,7 +274,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		assertEquals(actual, expected);
 	}
 
-	@Test(enabled = true)
+	@Test
 	public void testTransformStringStringOutputStream() throws IOException, TransformerException
 	{
 		File resDestDir;

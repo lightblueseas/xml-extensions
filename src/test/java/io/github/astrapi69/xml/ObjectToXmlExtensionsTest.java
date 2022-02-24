@@ -38,12 +38,12 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.test.objects.Employee;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.auth.AccessRight;
-import io.github.astrapi69.test.objects.auth.Role;
-import io.github.astrapi69.test.objects.auth.Roles;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.auth.AccessRight;
+import io.github.astrapi69.test.object.auth.Role;
+import io.github.astrapi69.test.object.auth.Roles;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link ObjectToXmlExtensions}
@@ -78,7 +78,7 @@ public class ObjectToXmlExtensionsTest
 	/**
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testToXmlWithXStreamObject()
 	{
 		String actual;
@@ -92,18 +92,17 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(employee);
-		expected = "<io.github.astrapi69.test.objects.Employee>\n" + "  <id>23</id>\n"
+		expected = "<io.github.astrapi69.test.object.Employee>\n" + "  <id>23</id>\n"
 			+ "  <person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
-			+ "  </person>\n" + "</io.github.astrapi69.test.objects.Employee>";
+			+ "  </person>\n" + "</io.github.astrapi69.test.object.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
-
 	}
 
 	/**
 	 * Test method for {@link ObjectToXmlExtensions#toXmlWithXStream(Object, Map)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testToXmlWithXStreamObjectMapOfStringClass()
 	{
 		String actual;
@@ -174,9 +173,9 @@ public class ObjectToXmlExtensionsTest
 		employee = Employee.builder().id("23").person(person).build();
 
 		actual = ObjectToXmlExtensions.toXmlWithXStream(new XStream(), employee);
-		expected = "<io.github.astrapi69.test.objects.Employee>\n" + "  <id>23</id>\n"
+		expected = "<io.github.astrapi69.test.object.Employee>\n" + "  <id>23</id>\n"
 			+ "  <person>\n" + "    <gender>FEMALE</gender>\n" + "    <name>Anna</name>\n"
-			+ "  </person>\n" + "</io.github.astrapi69.test.objects.Employee>";
+			+ "  </person>\n" + "</io.github.astrapi69.test.object.Employee>";
 		assertNotNull(actual);
 		assertEquals(actual, expected);
 	}
