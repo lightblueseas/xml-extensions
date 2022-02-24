@@ -9,7 +9,7 @@
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/xml-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/xml-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
-[![Hits Of Code](https://hitsofcode.com/github/astrapi69/xml-extensions?branch=develop)](https://hitsofcode.com/github/astrapi69/xml-extensions/view?branch=develop)
+[![Hits Of Code](https://hitsofcode.com/github/lightblueseas/xml-extensions?branch=develop)](https://hitsofcode.com/github/lightblueseas/xml-extensions/view?branch=develop)
 
 </div>
 
