@@ -4,7 +4,10 @@
 Version 7.6-SNAPSHOT
 -------------
 
+ADDED:
 
+- update gradle to new version 7.4
+- new gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle in minor version 6.3.0
 
 Version 7.5
 -------------
@@ -41,13 +44,13 @@ Version 7.3
 -------------
 
 ADDED:
- 
+
 - new gradle.properties file created and extracted dependency versions to it
 - new XmlMapperFactory class for create XmlMapper objects
 - new XStreamFactory class for create XStream objects
 - new method in JsonStringToObjectExtensions for conversion of json string to java objects with jackson
 - new method in JsonStringToObjectExtensions for conversion of json string to java map objects with jackson
-- new method in ObjectToXmlExtensions for conversion of java object to xml with jackson 
+- new method in ObjectToXmlExtensions for conversion of java object to xml with jackson
 - new test dependency silly-collecctions in version 8 added
 
 CHANGED:
@@ -67,7 +70,7 @@ Version 7.2
 -------------
 
 ADDED:
- 
+
 - new JsonFileToObjectExtensions for conversion of json files created
 - new JSONObjectToObjectExtensions for conversion of JSONObject and JSONArray object created
 
@@ -97,13 +100,13 @@ Version 6.5.1
 
 CHANGED:
 
-- downgraded gradle version to 5.6.4 
+- downgraded gradle version to 5.6.4
 
 Version 6.5
 -------------
 
 ADDED:
- 
+
 - new factory method for create new object mapper with given features
 - new unit tests for the ParserFactory created
 - new idea run configurations for gradle builds created
@@ -117,7 +120,7 @@ Version 6.4
 -------------
 
 ADDED:
- 
+
 - gradle as new build system
 
 CHANGED:
@@ -132,7 +135,7 @@ CHANGED:
 Version 6.3
 -------------
 
-ADDED: 
+ADDED:
 
 - new methods created for transform JSONObject and JSONArray to java objects
 
@@ -147,7 +150,7 @@ CHANGED:
 Version 6.2.1
 -------------
 
-ADDED: 
+ADDED:
 
 - new SAXParserFactory class created that hold factory method for deactivate parser that prevents a xml bomb attack
 
@@ -158,7 +161,7 @@ CHANGED:
 Version 6.2
 -------------
 
-ADDED: 
+ADDED:
 
 - new methods for convert json to object and back with new object mapper argument
 
@@ -180,7 +183,7 @@ CHANGED:
 Version 6
 -------------
 
-ADDED: 
+ADDED:
 
 - new dependency jobj-core in version 3.2.1
 
@@ -214,7 +217,7 @@ CHANGED:
 Version 4.21
 -------------
 
-ADDED: 
+ADDED:
 
 - new method created for convert a json string array to a java Collection that can be given as a type argument
 
@@ -244,7 +247,7 @@ CHANGED:
 Version 4.19
 -------------
 
-ADDED: 
+ADDED:
 
 - new CHANGELOG.md file created
 
