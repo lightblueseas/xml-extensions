@@ -122,23 +122,6 @@ public final class XmlFileToObjectExtensions
 	}
 
 	/**
-	 * Creates from the given xml file a java object
-	 *
-	 * @param xmlFile
-	 *            the xml file
-	 * @param <T>
-	 *            the generic type
-	 * @return the created object from the given xml file
-	 */
-	public static <T> T toObjectWithXMLDecoder(final File xmlFile)
-	{
-		Objects.requireNonNull(xmlFile);
-		final String xmlString = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
-		return XmlToObjectExtensions.toObjectWithXMLDecoder(xmlString);
-	}
-
-	/**
 	 * Creates from the given xml string an java object.
 	 *
 	 * @param <T>

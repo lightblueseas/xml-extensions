@@ -24,9 +24,6 @@
  */
 package io.github.astrapi69.xml;
 
-import java.beans.XMLDecoder;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Map;
 import java.util.Objects;
 
@@ -113,39 +110,6 @@ public final class XmlToObjectExtensions
 		Objects.requireNonNull(typeReference);
 		Objects.requireNonNull(xmlMapper);
 		return xmlMapper.readValue(xmlString, typeReference);
-	}
-
-	/**
-	 * Creates from the given xml string an java object.
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param xmlString
-	 *            the xml string to transform to an java object.
-	 * @return the xml string
-	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T toObjectWithXMLDecoder(final String xmlString)
-	{
-		Objects.requireNonNull(xmlString);
-		XMLDecoder dec = null;
-		T obj;
-		try
-		{
-			final InputStream is = new ByteArrayInputStream(xmlString.getBytes());
-			dec = new XMLDecoder(is);
-
-			obj = (T)dec.readObject();
-
-		}
-		finally
-		{
-			if (dec != null)
-			{
-				dec.close();
-			}
-		}
-		return obj;
 	}
 
 	/**

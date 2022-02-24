@@ -49,36 +49,6 @@ public class XmlToObjectExtensionsTest
 {
 
 	/**
-	 * Test method for {@link XmlToObjectExtensions#toObjectWithXMLDecoder(String)}
-	 */
-	@Test
-	public void testToObjectWithXMLDecoder()
-	{
-		Person actual;
-		Person expected;
-		String xmlInputString;
-		String javaVersion;
-
-		javaVersion = System.getProperty("java.version");
-		xmlInputString = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<java version=\""
-			+ javaVersion + "\" class=\"java.beans.XMLDecoder\">\n"
-			+ " <object class=\"io.github.astrapi69.test.object.Person\">\n"
-			+ "  <void property=\"gender\">\n"
-			+ "   <object class=\"java.lang.Enum\" method=\"valueOf\">\n"
-			+ "    <class>io.github.astrapi69.test.object.enumtype.Gender</class>\n"
-			+ "    <string>FEMALE</string>\n" + "   </object>\n" + "  </void>\n"
-			+ "  <void property=\"name\">\n" + "   <string>Anna</string>\n" + "  </void>\n"
-			+ " </object>\n" + "</java>\n";
-		actual = XmlToObjectExtensions.toObjectWithXMLDecoder(xmlInputString);
-
-		expected = new Person();
-		expected.setGender(Gender.FEMALE);
-		expected.setName("Anna");
-
-		assertEquals(actual, expected);
-	}
-
-	/**
 	 * Test method for {@link XmlToObjectExtensions#toObjectWithXStream(String)}
 	 */
 	@Test
