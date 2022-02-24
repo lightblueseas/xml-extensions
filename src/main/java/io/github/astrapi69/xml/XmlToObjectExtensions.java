@@ -198,7 +198,7 @@ public final class XmlToObjectExtensions
 
 	/**
 	 * Creates from the given xml string an java object. The given map hold the aliases. For more
-	 * information with aliasing see documation of xstream.
+	 * information with aliasing see documentation of xstream.
 	 *
 	 * @param <T>
 	 *            the generic type of the return type

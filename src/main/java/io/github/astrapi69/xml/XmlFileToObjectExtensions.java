@@ -35,10 +35,10 @@ import com.thoughtworks.xstream.XStream;
 
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.throwable.RuntimeExceptionDecorator;
-import io.github.astrapi69.xml.factory.XStreamFactory;
 
 /**
- * The class {@link XmlFileToObjectExtensions}.
+ * The class {@link XmlFileToObjectExtensions} provides algorithms for transform an xml file to a
+ * java object
  */
 public final class XmlFileToObjectExtensions
 {
@@ -48,7 +48,7 @@ public final class XmlFileToObjectExtensions
 	}
 
 	/**
-	 * Creates from the given xml string an java object.
+	 * Creates from the given xml file a java object
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
@@ -56,7 +56,7 @@ public final class XmlFileToObjectExtensions
 	 *            the xml file
 	 * @param clazz
 	 *            the class of the generic type
-	 * @return the object
+	 * @return the created object from the given xml file
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
@@ -71,7 +71,7 @@ public final class XmlFileToObjectExtensions
 	}
 
 	/**
-	 * Creates from the given xml string an java object.
+	 * Creates from the given xml file a java object
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
@@ -79,7 +79,7 @@ public final class XmlFileToObjectExtensions
 	 *            the xml file
 	 * @param typeReference
 	 *            the type reference
-	 * @return the object
+	 * @return the created object from the given xml file
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
@@ -94,7 +94,7 @@ public final class XmlFileToObjectExtensions
 	}
 
 	/**
-	 * Creates from the given xml string an java object.
+	 * Creates from the given xml file a java object
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
@@ -104,7 +104,7 @@ public final class XmlFileToObjectExtensions
 	 *            the type reference
 	 * @param xmlMapper
 	 *            the xml mapper
-	 * @return the object
+	 * @return the created object from the given xml file
 	 * @throws JsonProcessingException
 	 *             is thrown when processing json content that are not pure I/O problems
 	 */
@@ -121,17 +121,17 @@ public final class XmlFileToObjectExtensions
 	}
 
 	/**
-	 * Creates from the given xml string an java object.
+	 * Creates from the given xml file a java object
 	 *
 	 * @param xmlFile
 	 *            the xml file
 	 * @param <T>
 	 *            the generic type
-	 * @return the xml string
+	 * @return the created object from the given xml file
 	 */
-	@SuppressWarnings("unchecked")
 	public static <T> T toObjectWithXMLDecoder(final File xmlFile)
 	{
+		Objects.requireNonNull(xmlFile);
 		final String xmlString = RuntimeExceptionDecorator
 			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
 		return XmlToObjectExtensions.toObjectWithXMLDecoder(xmlString);
@@ -142,69 +142,78 @@ public final class XmlFileToObjectExtensions
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
-	 * @param xmlString
-	 *            the xml as string object
-	 * @return the xml string
+	 * @param xmlFile
+	 *            the xml file
+	 * @return the created object from the given xml file
 	 */
-	public static <T> T toObjectWithXStream(final String xmlString)
+	public static <T> T toObjectWithXStream(final File xmlFile)
 	{
-		return toObjectWithXStream(null, xmlString);
+		Objects.requireNonNull(xmlFile);
+		final String xmlString = RuntimeExceptionDecorator
+			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+		return XmlToObjectExtensions.toObjectWithXStream(null, xmlString);
 	}
 
 	/**
-	 * Creates from the given xml string an Object. The given map hold the aliases. For more
+	 * Creates from the given xml file a java object. The given map hold the aliases. For more
 	 * information with aliasing see documation of xstream.
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
-	 * @param xmlString
-	 *            the xml as string object
+	 * @param xmlFile
+	 *            the xml file
 	 * @param aliases
 	 *            the aliases
-	 * @return the created object from the given xml string.
+	 * @return the created object from the given xml file
 	 */
-	public static <T> T toObjectWithXStream(final String xmlString,
-		final Map<String, Class<?>> aliases)
+	public static <T> T toObjectWithXStream(final File xmlFile, final Map<String, Class<?>> aliases)
 	{
-		return toObjectWithXStream(null, xmlString, aliases);
+		Objects.requireNonNull(xmlFile);
+		final String xmlString = RuntimeExceptionDecorator
+			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+		return XmlToObjectExtensions.toObjectWithXStream(null, xmlString, aliases);
 	}
 
 	/**
-	 * Creates from the given xml string an java object.
+	 * Creates from the given xml file a java object
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param xstream
 	 *            the xstream object.
-	 * @param xmlString
-	 *            the xml as string object
-	 * @return the object
+	 * @param xmlFile
+	 *            the xml file
+	 * @return the created object from the given xml file
 	 */
-	public static <T> T toObjectWithXStream(final XStream xstream, final String xmlString)
+	public static <T> T toObjectWithXStream(final XStream xstream, final File xmlFile)
 	{
-		return toObjectWithXStream(xstream, xmlString, null);
+		Objects.requireNonNull(xmlFile);
+		final String xmlString = RuntimeExceptionDecorator
+			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, null);
 	}
 
 	/**
-	 * Creates from the given xml string an java object. The given map hold the aliases. For more
-	 * information with aliasing see documation of xstream.
+	 * Creates from the given xml file a java object. The given map hold the aliases. For more
+	 * information with aliasing see documentation of xstream.
 	 *
 	 * @param <T>
 	 *            the generic type of the return type
 	 * @param xstream
 	 *            the xstream object.
-	 * @param xmlString
-	 *            the xml
+	 * @param xmlFile
+	 *            the xml file
 	 * @param aliases
 	 *            the aliases
-	 * @return the object
+	 * @return the created object from the given xml file
 	 */
-	@SuppressWarnings("unchecked")
-	public static <T> T toObjectWithXStream(XStream xstream, final String xmlString,
+	public static <T> T toObjectWithXStream(XStream xstream, final File xmlFile,
 		final Map<String, Class<?>> aliases)
 	{
-		xstream = XStreamFactory.initializeXStream(xstream, aliases);
-		return (T)xstream.fromXML(xmlString);
+		Objects.requireNonNull(xmlFile);
+		final String xmlString = RuntimeExceptionDecorator
+			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
 	}
 
 }

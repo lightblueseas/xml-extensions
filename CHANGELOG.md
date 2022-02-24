@@ -4,7 +4,9 @@
 Version 7.7-SNAPSHOT
 -------------
 
+ADDED:
 
+- new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 
 Version 7.6
 -------------
