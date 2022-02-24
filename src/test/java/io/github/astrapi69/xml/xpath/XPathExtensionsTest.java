@@ -24,8 +24,8 @@
  */
 package io.github.astrapi69.xml.xpath;
 
+import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class XPathExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testGetNodeListFileString()
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
@@ -70,7 +70,7 @@ public class XPathExtensionsTest
 		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
 		actual = XPathExtensions.getNodeList(xml, xpathExpression);
 		assertNotNull(actual);
-		assertTrue(actual.getLength() == 2);
+		assertEquals(actual.getLength(), 2);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class XPathExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testGetNodeListStringString()
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
@@ -98,7 +98,7 @@ public class XPathExtensionsTest
 		xpathExpression = "/Customers/Customer[gender='Female']/name/text()";
 		actual = XPathExtensions.getNodeList(xml.getAbsolutePath(), xpathExpression);
 		assertNotNull(actual);
-		assertTrue(actual.getLength() == 2);
+		assertEquals(actual.getLength(), 2);
 	}
 
 	/**

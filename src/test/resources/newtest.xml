@@ -1,7 +1,7 @@
-<io.github.astrapi69.test.objects.Employee>
+<io.github.astrapi69.test.object.Employee>
   <person>
     <name>Anna</name>
     <gender>FEMALE</gender>
   </person>
   <id>23</id>
-</io.github.astrapi69.test.objects.Employee>
+</io.github.astrapi69.test.object.Employee>

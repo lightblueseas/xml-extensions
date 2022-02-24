@@ -50,7 +50,7 @@ public class TagTest
 	 *             Subclasses that override the {@code clone} method can also throw this exception
 	 *             to indicate that an instance cannot be cloned.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testClone() throws CloneNotSupportedException
 	{
 		Tag actual;

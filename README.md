@@ -2,13 +2,15 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://travis-ci.com/lightblueseas/xml-extensions.svg?branch=master)](https://travis-ci.com/github/lightblueseas/xml-extensions)
+[![Java CI with Gradle](https://github.com/lightblueseas/xml-extensions/actions/workflows/gradle.yml/badge.svg)](https://github.com/lightblueseas/xml-extensions/actions/workflows/gradle.yml)
 [![Coverage Status](https://codecov.io/gh/lightblueseas/xml-extensions/branch/develop/graph/badge.svg)](https://codecov.io/gh/lightblueseas/xml-extensions)
 [![Open Issues](https://img.shields.io/github/issues/lightblueseas/xml-extensions.svg?style=flat)](https://github.com/lightblueseas/xml-extensions/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/xml-extensions/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/xml-extensions)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/xml-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/xml-extensions)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/xml-extensions?branch=develop)](https://hitsofcode.com/github/astrapi69/xml-extensions/view?branch=develop)
+
 </div>
 
 Useful extensions methods and utilities for handle xml or transform xslt
@@ -28,13 +30,13 @@ your project `build.gradle` if you want to import the core functionality of xml-
 define version in file gradle.properties
 
 ```
-xmlExtensionsVersion=7.5
+xmlExtensionsVersion=7.6
 ```
 
 or in build.gradle ext area
 
 ```
-    xmlExtensionsVersion = "7.5"
+    xmlExtensionsVersion = "7.6"
 ```
 
 then add the dependency to the dependencies area
@@ -52,23 +54,23 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 
 Than you can add the dependency to your dependencies:
 
-	<properties>
-			...
-		<!-- XML-EXTENSIONS version -->
-		<xml-extensions.version>7.5</xml-extensions.version>
-			...
-	</properties>
-			...
-		<dependencies>
-			...
+    <properties>
+            ...
+        <!-- XML-EXTENSIONS version -->
+        <xml-extensions.version>7.6</xml-extensions.version>
+            ...
+    </properties>
+            ...
+        <dependencies>
+            ...
             <!-- XML-EXTENSIONS DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>xml-extensions</artifactId>
-				<version>${xml-extensions.version}</version>
-			</dependency>
-			...
-		</dependencies>
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>xml-extensions</artifactId>
+                <version>${xml-extensions.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
 ## Note
 
@@ -132,7 +134,7 @@ or over Monero(XMR) with:
 src="https://github.com/astrapi69/jgeohash/blob/master/src/main/resources/img/49bqeRQ7Bf49oJFVC72pqpe5hFbb62pfXDYPdLsadGGF81KZW2ZfrPZ8PbAVu5X2v1TYAspeczMya3cYQysNS4usRRPQHVw.png"
 alt="Donation Monero Wallet" width="250"/>
 
-or over flattr: 
+or over flattr:
 
 <a href="https://flattr.com/submit/auto?fid=r7vp62&url=https%3A%2F%2Fgithub.com%2Flightblueseas%2Fxml-extensions" target="_blank">
 <img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" style="border: none" />
@@ -151,7 +153,7 @@ Release version numbers will be incremented in the following format:
 `<major>.<minor>.<patch>`
 
 For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
-		
+
 ## Want to Help and improve it? ###
 
 The source code for xml-extensions are on GitHub. Please feel free to fork and send pull requests!
@@ -168,12 +170,6 @@ Do not hesitate to contact the xml-extensions developers with your questions, co
 - Feature requests, questions and bug reports can be reported at the [issues page](https://github.com/lightblueseas/xml-extensions/issues).
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)](https://travis-ci.com)|
-|Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
@@ -192,5 +188,3 @@ Do not hesitate to contact the xml-extensions developers with your questions, co
 |[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/xml-extensions.svg)](http://www.javadoc.io/doc/io.github.astrapi69/xml-extensions)|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
-
-

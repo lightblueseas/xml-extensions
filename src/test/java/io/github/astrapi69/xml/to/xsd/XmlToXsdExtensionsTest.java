@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.xml.to.xsd;
 
+import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
@@ -195,8 +196,8 @@ public class XmlToXsdExtensionsTest
 		assertFalse(xsdOutFile.exists());
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
-			.getCheckSumAdler32(xsdOutFile));
+		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
+			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();
 	}
@@ -234,8 +235,8 @@ public class XmlToXsdExtensionsTest
 
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
-			.getCheckSumAdler32(xsdOutFile));
+		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
+			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();
 	}
@@ -276,8 +277,8 @@ public class XmlToXsdExtensionsTest
 
 		XmlToXsdExtensions.xmlToXsd(xmlFile, xsdOutFile, inst2XsdOptions, xmlOptions);
 		assertTrue(xsdOutFile.exists());
-		assertTrue(FileChecksumExtensions.getCheckSumAdler32(expected) == FileChecksumExtensions
-			.getCheckSumAdler32(xsdOutFile));
+		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
+			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
 		xsdOutFile.delete();
 	}
@@ -316,7 +317,7 @@ public class XmlToXsdExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testXmlToXsdStringInst2XsdOptionsXmlOptions() throws XmlException, IOException
 	{
 		String actual;
@@ -332,7 +333,7 @@ public class XmlToXsdExtensionsTest
 			+ "  <xs:complexType name=\"personType\">\n" + "    <xs:sequence>\n"
 			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\n" + "    </xs:sequence>\n"
 			+ "  </xs:complexType>\n" + "</xs:schema>";
-		assertTrue("Expected should be equal with the result.", expected.equals(actual));
+		assertEquals("Expected should be equal with the result.", expected, actual);
 	}
 
 }
