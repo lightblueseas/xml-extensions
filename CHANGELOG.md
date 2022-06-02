@@ -18,6 +18,7 @@ CHANGED:
 - update of test dependency silly-collections to new minor version 18.2
 - update of test dependency silly-io to new minor version 1.9
 - update of test dependency checksum-up to new minor version 1.3
+- update of test dependency test-objects to new major version 6
 
 Version 7.6
 -------------
