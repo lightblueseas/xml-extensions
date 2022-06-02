@@ -8,6 +8,16 @@ ADDED:
 
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 
+CHANGED:
+
+- update gradle to new version 7.4.2
+- extracted sections from build.gradle to own gradle files
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.6.1
+- update of dependency jackson-core to new patch version 2.13.3
+- update of test dependency silly-collections to new minor version 18.2
+- update of test dependency silly-io to new minor version 1.9
+- update of test dependency checksum-up to new minor version 1.3
+
 Version 7.6
 -------------
 
