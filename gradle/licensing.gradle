@@ -25,6 +25,7 @@ license {
               "**/*.log",
               "**/*.map",
               "**/*.js.map",
+              "**/*.json",
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
