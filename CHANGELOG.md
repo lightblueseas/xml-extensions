@@ -7,6 +7,7 @@ Version 7.7-SNAPSHOT
 ADDED:
 
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
+- new factory methods for create Document objects in ValidatorExtensions class
 
 CHANGED:
 

@@ -27,8 +27,6 @@ package io.github.astrapi69.xml.xpath;
 import java.io.File;
 import java.io.IOException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -39,6 +37,8 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import io.github.astrapi69.xsd.schema.ValidatorExtensions;
 
 /**
  * The class {@link XPathExtensions}.
@@ -63,23 +63,19 @@ public final class XPathExtensions
 	 * @throws ParserConfigurationException
 	 *             the parser configuration exception
 	 * @throws SAXException
-	 *             the sAX exception
+	 *             is thrown if a sax parse error occurs
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static NodeList getNodeList(final File xml, final String xpathExpression)
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
-		domFactory.setNamespaceAware(true);
-		final DocumentBuilder builder = domFactory.newDocumentBuilder();
-		final Document doc = builder.parse(xml);
+		final Document doc = ValidatorExtensions.getDocument(xml);
 		final XPath xpath = XPathFactory.newInstance().newXPath();
 		final XPathExpression expr = xpath.compile(xpathExpression);
 
 		final Object result = expr.evaluate(doc, XPathConstants.NODESET);
-		final NodeList nodes = (NodeList)result;
-		return nodes;
+		return (NodeList)result;
 	}
 
 	/**
@@ -95,22 +91,18 @@ public final class XPathExtensions
 	 * @throws ParserConfigurationException
 	 *             the parser configuration exception
 	 * @throws SAXException
-	 *             the sAX exception
+	 *             is thrown if a sax parse error occurs
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static NodeList getNodeList(final String xml, final String xpathExpression)
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
-		domFactory.setNamespaceAware(true);
-		final DocumentBuilder builder = domFactory.newDocumentBuilder();
-		final Document doc = builder.parse(xml);
+		final Document document = ValidatorExtensions.getDocument(xml);
 		final XPath xpath = XPathFactory.newInstance().newXPath();
 		final XPathExpression expr = xpath.compile(xpathExpression);
 
-		final Object result = expr.evaluate(doc, XPathConstants.NODESET);
-		final NodeList nodes = (NodeList)result;
-		return nodes;
+		final Object result = expr.evaluate(document, XPathConstants.NODESET);
+		return (NodeList)result;
 	}
 }

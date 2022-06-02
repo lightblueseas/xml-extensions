@@ -73,11 +73,34 @@ public final class ValidatorExtensions
 	 */
 	public static DocumentBuilderFactory getDocumentBuilderFactory(final String schema)
 	{
-		System.setProperty(DOCUMENT_BUILDER_FACTORY_KEY, DOCUMENT_BUILDER_FACTORY_VALUE);
+		return getDocumentBuilderFactory(schema, HTTP_WWW_W3_ORG_2001_XML_SCHEMA,
+			DOCUMENT_BUILDER_FACTORY_VALUE, true, true);
+	}
+
+	/**
+	 * Gets the document builder factory.
+	 *
+	 * @param schema
+	 *            the schema
+	 * @param schemaLanguage
+	 *            the schema language
+	 * @param documentBuilderFactoryName
+	 *            the name of the document builder factory
+	 * @param namespaceAwareness
+	 *            the flag if the namespace should be aware
+	 * @param factoryValidating
+	 *            the flag if the factory should validate
+	 * @return the document builder factory
+	 */
+	public static DocumentBuilderFactory getDocumentBuilderFactory(final String schema,
+		final String schemaLanguage, final String documentBuilderFactoryName,
+		boolean namespaceAwareness, boolean factoryValidating)
+	{
+		System.setProperty(DOCUMENT_BUILDER_FACTORY_KEY, documentBuilderFactoryName);
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setNamespaceAware(true);
-		factory.setValidating(true);
-		factory.setAttribute(SCHEMA_LANGUAGE_KEY, HTTP_WWW_W3_ORG_2001_XML_SCHEMA);
+		factory.setNamespaceAware(namespaceAwareness);
+		factory.setValidating(factoryValidating);
+		factory.setAttribute(SCHEMA_LANGUAGE_KEY, schemaLanguage);
 		factory.setAttribute(SCHEMA_SOURCE_KEY, schema);
 		return factory;
 	}
@@ -189,9 +212,9 @@ public final class ValidatorExtensions
 	/**
 	 * Validate given xml schema.
 	 *
-	 * @param SchemaUrl
+	 * @param schemaUrl
 	 *            the schema url
-	 * @param XmlDocumentUrl
+	 * @param xmlDocumentUrl
 	 *            the xml document url
 	 * @return true if the given xml is valid otherwise false
 	 * @throws SAXException
@@ -202,25 +225,59 @@ public final class ValidatorExtensions
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static boolean validateSchema(final String SchemaUrl, final String XmlDocumentUrl)
+	public static boolean validateSchema(final String schemaUrl, final String xmlDocumentUrl)
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		System.setProperty(DOCUMENT_BUILDER_FACTORY_KEY, DOCUMENT_BUILDER_FACTORY_VALUE);
-		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setNamespaceAware(true);
-		factory.setValidating(true);
-		factory.setAttribute(SCHEMA_LANGUAGE_KEY, HTTP_WWW_W3_ORG_2001_XML_SCHEMA);
-		factory.setAttribute(SCHEMA_SOURCE_KEY, SchemaUrl);
+		final DocumentBuilderFactory factory = getDocumentBuilderFactory(schemaUrl);
 		final DocumentBuilder builder = factory.newDocumentBuilder();
 		final ValidatorHandler handler = new ValidatorHandler();
 		builder.setErrorHandler(handler);
-		builder.parse(XmlDocumentUrl);
-		if (handler.isValid())
-		{
-			return false;
-		}
-		return true;
+		builder.parse(xmlDocumentUrl);
+		return !handler.isValid();
 	}
 
+	/**
+	 * Gets the {@link Document} from the given xml file
+	 *
+	 * @param xml
+	 *            the xml file as string
+	 * @return the node list
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static Document getDocument(File xml)
+		throws ParserConfigurationException, SAXException, IOException
+	{
+		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+		domFactory.setNamespaceAware(true);
+		final DocumentBuilder builder = domFactory.newDocumentBuilder();
+		return builder.parse(xml);
+	}
+
+	/**
+	 * Gets the {@link Document} from the given xml string
+	 *
+	 * @param xml
+	 *            the xml file as string
+	 * @return the node list
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static Document getDocument(String xml)
+		throws ParserConfigurationException, SAXException, IOException
+	{
+		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
+		domFactory.setNamespaceAware(true);
+		final DocumentBuilder builder = domFactory.newDocumentBuilder();
+		return builder.parse(xml);
+	}
 
 }
