@@ -8,6 +8,7 @@ ADDED:
 
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 - new factory methods for create Document objects in ValidatorExtensions class
+- new interface Objectable that provide a method for transform an xml string or file to an object
 
 CHANGED:
 

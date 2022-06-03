@@ -25,12 +25,18 @@
 package io.github.astrapi69.xml.api;
 
 /**
- * A class that implements this interface marks the object that it can be transformed to an xml
- * string and from an xml String to an Object back.
- *
- * @param <T>
- *            the generic type
+ * A class that implements this interface can transform an xml string or file to an object
  */
-public interface Transformable<T> extends Xmlable, Objectable
+public interface Objectable
 {
+
+	/**
+	 * Transforms the given xml string to an object of type T
+	 *
+	 * @param xml
+	 *            the xml String
+	 * @return the object
+	 */
+	<T> T toObject(final String xml);
+
 }
