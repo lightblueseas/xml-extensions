@@ -28,11 +28,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.validation.Schema;
-import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
 import org.w3c.dom.Document;
@@ -44,65 +42,8 @@ import org.xml.sax.SAXException;
  */
 public final class ValidatorExtensions
 {
-
-	/** The Constant DOCUMENT_BUILDER_FACTORY_KEY. */
-	private static final String DOCUMENT_BUILDER_FACTORY_KEY = "javax.xml.parsers.DocumentBuilderFactory";
-
-	/** The Constant DOCUMENT_BUILDER_FACTORY_VALUE. */
-	private static final String DOCUMENT_BUILDER_FACTORY_VALUE = "org.apache.xerces.jaxp.DocumentBuilderFactoryImpl";
-
-	/** The Constant HTTP_WWW_W3_ORG_2001_XML_SCHEMA. */
-	private static final String HTTP_WWW_W3_ORG_2001_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
-
-	/** The Constant SCHEMA_LANGUAGE_KEY. */
-	private static final String SCHEMA_LANGUAGE_KEY = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
-
-	/** The Constant SCHEMA_SOURCE_KEY. */
-	private static final String SCHEMA_SOURCE_KEY = "http://java.sun.com/xml/jaxp/properties/schemaSource";
-
 	private ValidatorExtensions()
 	{
-	}
-
-	/**
-	 * Gets the document builder factory.
-	 *
-	 * @param schema
-	 *            the schema
-	 * @return the document builder factory
-	 */
-	public static DocumentBuilderFactory getDocumentBuilderFactory(final String schema)
-	{
-		return getDocumentBuilderFactory(schema, HTTP_WWW_W3_ORG_2001_XML_SCHEMA,
-			DOCUMENT_BUILDER_FACTORY_VALUE, true, true);
-	}
-
-	/**
-	 * Gets the document builder factory.
-	 *
-	 * @param schema
-	 *            the schema
-	 * @param schemaLanguage
-	 *            the schema language
-	 * @param documentBuilderFactoryName
-	 *            the name of the document builder factory
-	 * @param namespaceAwareness
-	 *            the flag if the namespace should be aware
-	 * @param factoryValidating
-	 *            the flag if the factory should validate
-	 * @return the document builder factory
-	 */
-	public static DocumentBuilderFactory getDocumentBuilderFactory(final String schema,
-		final String schemaLanguage, final String documentBuilderFactoryName,
-		boolean namespaceAwareness, boolean factoryValidating)
-	{
-		System.setProperty(DOCUMENT_BUILDER_FACTORY_KEY, documentBuilderFactoryName);
-		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		factory.setNamespaceAware(namespaceAwareness);
-		factory.setValidating(factoryValidating);
-		factory.setAttribute(SCHEMA_LANGUAGE_KEY, schemaLanguage);
-		factory.setAttribute(SCHEMA_SOURCE_KEY, schema);
-		return factory;
 	}
 
 	/**
@@ -128,32 +69,6 @@ public final class ValidatorExtensions
 	}
 
 	/**
-	 * Gets the schema.
-	 *
-	 * @param xsd
-	 *            the xsd
-	 * @param errorHandler
-	 *            the error handler
-	 * @return the schema
-	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
-	 */
-	public static Schema getSchema(final File xsd, final ErrorHandler errorHandler)
-		throws SAXException
-	{
-		// Create a new instance for an XSD-aware SchemaFactory
-		final SchemaFactory schemaFactory = SchemaFactory
-			.newInstance(HTTP_WWW_W3_ORG_2001_XML_SCHEMA);
-
-		// Set the ErrorHandler implementation.
-		schemaFactory.setErrorHandler(errorHandler);
-
-		// get the custom xsd schema that describes
-		// the required format for my XML files.
-		return schemaFactory.newSchema(xsd);
-	}
-
-	/**
 	 * Parses the.
 	 *
 	 * @param xml
@@ -172,8 +87,8 @@ public final class ValidatorExtensions
 	public static Document parse(final File xml, final ErrorHandler errorHandler)
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final DocumentBuilderFactory factory = getDocumentBuilderFactory(xml.getName());
-		final DocumentBuilder builder = factory.newDocumentBuilder();
+		final DocumentBuilder builder = DocumentBuilderFactoryInitializer
+			.newDocumentBuilder(xml.getName());
 		builder.setErrorHandler(errorHandler);
 		return builder.parse(xml);
 	}
@@ -200,7 +115,7 @@ public final class ValidatorExtensions
 		throws SAXException, ParserConfigurationException, IOException
 	{
 
-		final Schema schemaXSD = getSchema(xsd, errorHandler);
+		final Schema schemaXSD = SchemaInitializer.newSchema(xsd, errorHandler);
 
 		// Create a Validator capable of validating XML files according to my custom schema.
 		final Validator validator = schemaXSD.newValidator();
@@ -228,8 +143,8 @@ public final class ValidatorExtensions
 	public static boolean validateSchema(final String schemaUrl, final String xmlDocumentUrl)
 		throws SAXException, ParserConfigurationException, IOException
 	{
-		final DocumentBuilderFactory factory = getDocumentBuilderFactory(schemaUrl);
-		final DocumentBuilder builder = factory.newDocumentBuilder();
+		final DocumentBuilder builder = DocumentBuilderFactoryInitializer
+			.newDocumentBuilder(schemaUrl);
 		final ValidatorHandler handler = new ValidatorHandler();
 		builder.setErrorHandler(handler);
 		builder.parse(xmlDocumentUrl);
@@ -252,10 +167,7 @@ public final class ValidatorExtensions
 	public static Document getDocument(File xml)
 		throws ParserConfigurationException, SAXException, IOException
 	{
-		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
-		domFactory.setNamespaceAware(true);
-		final DocumentBuilder builder = domFactory.newDocumentBuilder();
-		return builder.parse(xml);
+		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
 	}
 
 	/**
@@ -274,10 +186,7 @@ public final class ValidatorExtensions
 	public static Document getDocument(String xml)
 		throws ParserConfigurationException, SAXException, IOException
 	{
-		final DocumentBuilderFactory domFactory = DocumentBuilderFactory.newInstance();
-		domFactory.setNamespaceAware(true);
-		final DocumentBuilder builder = domFactory.newDocumentBuilder();
-		return builder.parse(xml);
+		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
 	}
 
 }
