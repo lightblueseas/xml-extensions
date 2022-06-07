@@ -27,7 +27,10 @@ package io.github.astrapi69.xml.api;
 /**
  * A class that implements this interface marks the object that it can be transformed to an xml
  * string.
+ * 
+ * @deprecated use instead the same name interface from the new module xml-api
  */
+@Deprecated
 public interface Xmlable
 {
 

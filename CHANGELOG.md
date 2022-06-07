@@ -9,6 +9,7 @@ ADDED:
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 - new factory methods for create Document objects in ValidatorExtensions class
 - new interface Objectable that provide a method for transform an xml string or file to an object
+- new initializer classes for DocumentBuilderFactory and DocumentBuilder
 
 CHANGED:
 
@@ -20,6 +21,7 @@ CHANGED:
 - update of test dependency silly-io to new minor version 1.9
 - update of test dependency checksum-up to new minor version 1.3
 - update of test dependency test-objects to new major version 6
+- tagged api interfaces as deprecated
 
 Version 7.6
 -------------
