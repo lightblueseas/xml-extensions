@@ -1,8 +1,15 @@
 package io.github.astrapi69.xsd.schema;
 
+import org.w3c.dom.Document;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.SAXException;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.dom.DOMSource;
+import java.io.File;
+import java.io.IOException;
 
 public class DocumentBuilderFactoryInitializer
 {
@@ -102,5 +109,90 @@ public class DocumentBuilderFactoryInitializer
 		final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
 		documentBuilderFactory.setNamespaceAware(true);
 		return documentBuilderFactory.newDocumentBuilder();
+	}
+
+	/**
+	 * Gets the {@link Document} from the given xml file
+	 *
+	 * @param xml
+	 *            the xml file as string
+	 * @return the node list
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static Document newDocument(File xml)
+		throws ParserConfigurationException, SAXException, IOException
+	{
+		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
+	}
+
+	/**
+	 * Gets the {@link Document} from the given xml string
+	 *
+	 * @param xml
+	 *            the xml file as string
+	 * @return the node list
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static Document newDocument(String xml)
+		throws ParserConfigurationException, SAXException, IOException
+	{
+		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
+	}
+
+	/**
+	 * Parses the given xml file and the given error handler
+	 *
+	 * @param xml
+	 *            the xml
+	 * @param errorHandler
+	 *            the error handler
+	 * @return the document
+	 * @throws SAXException
+	 *             If a SAX error occurs during parsing.
+	 * @throws ParserConfigurationException
+	 *             if a DocumentBuilder cannot be created which satisfies the configuration
+	 *             requested.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static Document parse(final File xml, final ErrorHandler errorHandler)
+		throws SAXException, ParserConfigurationException, IOException
+	{
+		final DocumentBuilder builder = DocumentBuilderFactoryInitializer
+			.newDocumentBuilder(xml.getName());
+		builder.setErrorHandler(errorHandler);
+		return builder.parse(xml);
+	}
+
+	/**
+	 * Factory method for create a new {@link DOMSource} object with the given error handler
+	 *
+	 * @param xml
+	 *            the xml
+	 * @param errorHandler
+	 *            the error handler
+	 * @return the dOM source
+	 * @throws SAXException
+	 *             If a SAX error occurs during parsing.
+	 * @throws ParserConfigurationException
+	 *             if a DocumentBuilder cannot be created which satisfies the configuration
+	 *             requested.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static DOMSource newDOMSource(final File xml, final ErrorHandler errorHandler)
+		throws SAXException, ParserConfigurationException, IOException
+	{
+		return new DOMSource(DocumentBuilderFactoryInitializer.parse(xml, errorHandler));
 	}
 }

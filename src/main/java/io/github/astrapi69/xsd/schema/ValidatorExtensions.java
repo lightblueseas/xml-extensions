@@ -47,53 +47,6 @@ public final class ValidatorExtensions
 	}
 
 	/**
-	 * Gets the dOM source.
-	 *
-	 * @param xml
-	 *            the xml
-	 * @param errorHandler
-	 *            the error handler
-	 * @return the dOM source
-	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
-	 * @throws ParserConfigurationException
-	 *             if a DocumentBuilder cannot be created which satisfies the configuration
-	 *             requested.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static DOMSource getDOMSource(final File xml, final ErrorHandler errorHandler)
-		throws SAXException, ParserConfigurationException, IOException
-	{
-		return new DOMSource(parse(xml, errorHandler));
-	}
-
-	/**
-	 * Parses the.
-	 *
-	 * @param xml
-	 *            the xml
-	 * @param errorHandler
-	 *            the error handler
-	 * @return the document
-	 * @throws SAXException
-	 *             If a SAX error occurs during parsing.
-	 * @throws ParserConfigurationException
-	 *             if a DocumentBuilder cannot be created which satisfies the configuration
-	 *             requested.
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static Document parse(final File xml, final ErrorHandler errorHandler)
-		throws SAXException, ParserConfigurationException, IOException
-	{
-		final DocumentBuilder builder = DocumentBuilderFactoryInitializer
-			.newDocumentBuilder(xml.getName());
-		builder.setErrorHandler(errorHandler);
-		return builder.parse(xml);
-	}
-
-	/**
 	 * Validate xml through xsd.
 	 *
 	 * @param xsd
@@ -121,7 +74,7 @@ public final class ValidatorExtensions
 		final Validator validator = schemaXSD.newValidator();
 
 		// parse the XML DOM tree againts the stricter XSD schema
-		validator.validate(getDOMSource(xml, errorHandler));
+		validator.validate(DocumentBuilderFactoryInitializer.newDOMSource(xml, errorHandler));
 	}
 
 	/**
@@ -149,44 +102,6 @@ public final class ValidatorExtensions
 		builder.setErrorHandler(handler);
 		builder.parse(xmlDocumentUrl);
 		return !handler.isValid();
-	}
-
-	/**
-	 * Gets the {@link Document} from the given xml file
-	 *
-	 * @param xml
-	 *            the xml file as string
-	 * @return the node list
-	 * @throws ParserConfigurationException
-	 *             the parser configuration exception
-	 * @throws SAXException
-	 *             is thrown if a sax parse error occurs
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static Document getDocument(File xml)
-		throws ParserConfigurationException, SAXException, IOException
-	{
-		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
-	}
-
-	/**
-	 * Gets the {@link Document} from the given xml string
-	 *
-	 * @param xml
-	 *            the xml file as string
-	 * @return the node list
-	 * @throws ParserConfigurationException
-	 *             the parser configuration exception
-	 * @throws SAXException
-	 *             is thrown if a sax parse error occurs
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	public static Document getDocument(String xml)
-		throws ParserConfigurationException, SAXException, IOException
-	{
-		return DocumentBuilderFactoryInitializer.newDocumentBuilder().parse(xml);
 	}
 
 }

@@ -34,6 +34,7 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import io.github.astrapi69.xsd.schema.DocumentBuilderFactoryInitializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -70,11 +71,11 @@ public final class XPathExtensions
 	public static NodeList getNodeList(final File xml, final String xpathExpression)
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		final Document doc = ValidatorExtensions.getDocument(xml);
+		final Document document = DocumentBuilderFactoryInitializer.newDocument(xml);
 		final XPath xpath = XPathFactory.newInstance().newXPath();
-		final XPathExpression expr = xpath.compile(xpathExpression);
+		final XPathExpression xPathExpression = xpath.compile(xpathExpression);
 
-		final Object result = expr.evaluate(doc, XPathConstants.NODESET);
+		final Object result = xPathExpression.evaluate(document, XPathConstants.NODESET);
 		return (NodeList)result;
 	}
 
@@ -98,11 +99,11 @@ public final class XPathExtensions
 	public static NodeList getNodeList(final String xml, final String xpathExpression)
 		throws XPathExpressionException, ParserConfigurationException, SAXException, IOException
 	{
-		final Document document = ValidatorExtensions.getDocument(xml);
+		final Document document = DocumentBuilderFactoryInitializer.newDocument(xml);
 		final XPath xpath = XPathFactory.newInstance().newXPath();
-		final XPathExpression expr = xpath.compile(xpathExpression);
+		final XPathExpression xPathExpression = xpath.compile(xpathExpression);
 
-		final Object result = expr.evaluate(document, XPathConstants.NODESET);
+		final Object result = xPathExpression.evaluate(document, XPathConstants.NODESET);
 		return (NodeList)result;
 	}
 }
