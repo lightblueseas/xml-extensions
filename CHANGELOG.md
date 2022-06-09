@@ -13,6 +13,7 @@ ADDED:
 
 CHANGED:
 
+- upgrade of jdk to version 11
 - update gradle to new version 7.4.2
 - extracted sections from build.gradle to own gradle files
 - update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.6.1
@@ -23,6 +24,7 @@ CHANGED:
 - update of test dependency test-objects to new major version 6
 - tagged api interfaces as deprecated
 - moved factory methods from class ValidatorExtensions to new factory class DocumentBuilderFactoryInitializer
+- removed unused interface Xmlable and class XmlTransformation
 
 Version 7.6
 -------------
