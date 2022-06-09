@@ -34,11 +34,10 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import io.github.astrapi69.xml.parser.DocumentBuilderFactoryInitializer;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
-import io.github.astrapi69.xsd.schema.DocumentBuilderFactoryInitializer;
 
 /**
  * The class {@link XPathExtensions}.

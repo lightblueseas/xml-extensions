@@ -7,25 +7,25 @@ Version 7.7-SNAPSHOT
 ADDED:
 
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
-- new factory methods for create Document objects in ValidatorExtensions class
-- new interface Objectable that provide a method for transform an xml string or file to an object
-- new initializer classes for DocumentBuilderFactory and DocumentBuilder
+- new dependency xml-api in major version 1
+- new dependency xml-base in major version 1
 
 CHANGED:
 
 - upgrade of jdk to version 11
 - update gradle to new version 7.4.2
 - extracted sections from build.gradle to own gradle files
-- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.6.1
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.7.0
 - update of dependency jackson-core to new patch version 2.13.3
+- update of dependency throwable to new minor version 2.1
 - update of test dependency silly-collections to new minor version 18.2
 - update of test dependency silly-io to new minor version 1.9
 - update of test dependency checksum-up to new minor version 1.3
 - update of test dependency test-objects to new major version 6
 - update of test dependency testng to new minor version 7.6.0
 - tagged api interfaces as deprecated
-- moved factory methods from class ValidatorExtensions to new factory class DocumentBuilderFactoryInitializer
-- removed unused interface Xmlable and class XmlTransformation
+- removed class ValidatorExtensions
+- removed unused interfaces in api package and interface Xmlable and class XmlTransformation
 
 Version 7.6
 -------------
