@@ -26,6 +26,7 @@ CHANGED:
 - tagged api interfaces as deprecated
 - removed class ValidatorExtensions
 - removed unused interfaces in api package and interface Xmlable and class XmlTransformation
+- dependency xerces:xercesImpl to test dependency
 
 Version 7.6
 -------------
