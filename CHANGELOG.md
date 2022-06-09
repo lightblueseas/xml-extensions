@@ -22,6 +22,7 @@ CHANGED:
 - update of test dependency silly-io to new minor version 1.9
 - update of test dependency checksum-up to new minor version 1.3
 - update of test dependency test-objects to new major version 6
+- update of test dependency testng to new minor version 7.6.0
 - tagged api interfaces as deprecated
 - moved factory methods from class ValidatorExtensions to new factory class DocumentBuilderFactoryInitializer
 - removed unused interface Xmlable and class XmlTransformation
