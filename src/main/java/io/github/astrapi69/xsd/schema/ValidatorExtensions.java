@@ -37,6 +37,8 @@ import org.xml.sax.SAXException;
 
 /**
  * The class {@link ValidatorExtensions} can validate xml files.
+ *
+ * @deprecated use instead the same named class in the module xml-base
  */
 public final class ValidatorExtensions
 {

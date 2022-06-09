@@ -30,6 +30,8 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * The class {@link ValidatorHandler}.
+ *
+ * @deprecated use instead the same named class in the module xml-base
  */
 public class ValidatorHandler extends DefaultHandler
 {

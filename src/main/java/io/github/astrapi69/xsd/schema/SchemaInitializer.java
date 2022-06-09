@@ -8,6 +8,11 @@ import javax.xml.validation.SchemaFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
+/**
+ * The class {@link SchemaInitializer} provides method for initialize {@link Schema} objects
+ * 
+ * @deprecated use instead the same named class in the module xml-base
+ */
 public class SchemaInitializer
 {
 

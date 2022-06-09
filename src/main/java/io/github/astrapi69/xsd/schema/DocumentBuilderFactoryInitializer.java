@@ -12,6 +12,13 @@ import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 
+/**
+ * The class {@link DocumentBuilderFactoryInitializer} provides method for initialize
+ * {@link DocumentBuilderFactory}, {@link DocumentBuilder}, {@link Document} and {@link DOMSource}
+ * objects
+ * 
+ * @deprecated use instead the same named class in the module xml-base
+ */
 public class DocumentBuilderFactoryInitializer
 {
 
