@@ -25,7 +25,6 @@
 package io.github.astrapi69.xsl.transform;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -35,7 +34,6 @@ import java.io.OutputStream;
 import java.util.Arrays;
 
 import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.stream.StreamSource;
@@ -132,52 +130,6 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		expected = StringUtils.remove(expected, '\n');
 		expected = StringUtils.remove(expected, ' ');
 		assertEquals(actual, expected);
-	}
-
-	/**
-	 * Test method for {@link XsltTransformerExtensions#getTransformer(Source)}
-	 *
-	 * @throws TransformerConfigurationException
-	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
-	 *             possible to create a <code>Transformer</code> instance.
-	 */
-	@Test
-	public void testGetTransformerSource() throws TransformerConfigurationException
-	{
-		Transformer actual;
-		File resDestDir;
-		File xsltFile;
-		StreamSource xsltSource;
-
-		resDestDir = PathFinder.getSrcTestResourcesDir();
-		xsltFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
-			"io.github.astrapi69.xsl.transform", "functions.xsl");
-		xsltSource = new StreamSource(xsltFile);
-
-		actual = XsltTransformerExtensions.getTransformer(xsltSource);
-		assertNotNull(actual);
-	}
-
-	/**
-	 * Test method for {@link XsltTransformerExtensions#getTransformer(String)}
-	 *
-	 * @throws TransformerConfigurationException
-	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
-	 *             possible to create a <code>Transformer</code> instance.
-	 */
-	@Test
-	public void testGetTransformerString() throws TransformerConfigurationException
-	{
-		Transformer actual;
-		File resDestDir;
-		File xsltFile;
-
-		resDestDir = PathFinder.getSrcTestResourcesDir();
-		xsltFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
-			"io.github.astrapi69.xsl.transform", "functions.xsl");
-
-		actual = XsltTransformerExtensions.getTransformer(xsltFile.getAbsolutePath());
-		assertNotNull(actual);
 	}
 
 	/**
@@ -316,6 +268,5 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(XsltTransformerExtensions.class);
 	}
-
 
 }
