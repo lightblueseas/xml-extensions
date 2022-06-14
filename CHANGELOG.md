@@ -6,6 +6,7 @@ Version 7.7-SNAPSHOT
 
 ADDED:
 
+- new methods in class XmlToXsdExtensions for transform a xml string to a xsd string
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 - new dependency xml-api in major version 1
 - new dependency xml-base in minor version 1.1
