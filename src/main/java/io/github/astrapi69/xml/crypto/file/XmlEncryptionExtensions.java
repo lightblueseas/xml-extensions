@@ -34,8 +34,8 @@ import com.thoughtworks.xstream.XStream;
 
 import io.github.astrapi69.crypto.hex.HexExtensions;
 import io.github.astrapi69.file.write.WriteFileExtensions;
-import io.github.astrapi69.xml.ObjectToXmlExtensions;
-import io.github.astrapi69.xml.factory.XStreamFactory;
+import io.github.astrapi69.xstream.ObjectToXmlExtensions;
+import io.github.astrapi69.xstream.factory.XStreamFactory;
 
 /**
  * The class {@link XmlEncryptionExtensions} provides methods for encrypt data object to the given
@@ -70,9 +70,9 @@ public final class XmlEncryptionExtensions
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(data);
 		Objects.requireNonNull(file);
-		XStream xStream = XStreamFactory.newXStream();
-		XStreamFactory.newXStream(xStream, aliases, allowTypesByWildcard);
-		writeToFileAsXmlAndHex(xStream, aliases, data, file);
+		writeToFileAsXmlAndHex(
+			XStreamFactory.newXStream(XStreamFactory.newXStream(), aliases, allowTypesByWildcard),
+			aliases, data, file);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public final class XmlEncryptionExtensions
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(data);
 		Objects.requireNonNull(file);
-		String xmlString = ObjectToXmlExtensions.toXmlWithXStream(xstream, data, aliases);
+		String xmlString = ObjectToXmlExtensions.toXml(xstream, data, aliases);
 		final String hexXmlString = HexExtensions.encodeHex(xmlString, Charset.forName(charset),
 			true);
 		WriteFileExtensions.writeStringToFile(file, hexXmlString, charset);

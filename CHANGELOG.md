@@ -10,6 +10,7 @@ ADDED:
 - new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
 - new dependency xml-api in minor version 1.1
 - new dependency xml-base in minor version 1.3
+- new dependency xstream-extensions in major version 1
 
 CHANGED:
 

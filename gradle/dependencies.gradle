@@ -9,6 +9,7 @@ dependencies {
     implementation("commons-io:commons-io:$commonsIoVersion")
     implementation("io.github.astrapi69:xml-api:$xmlApiVersion")
     implementation("io.github.astrapi69:xml-base:$xmlBaseVersion")
+    implementation("io.github.astrapi69:xstream-extensions:$xstreamExtensionsVersion")
     implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
     implementation("io.github.astrapi69:silly-beans:$sillyBeansVersion")
     implementation("io.github.astrapi69:file-worker:$fileWorkerVersion")

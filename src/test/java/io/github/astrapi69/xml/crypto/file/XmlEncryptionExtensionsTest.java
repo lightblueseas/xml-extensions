@@ -42,7 +42,7 @@ import io.github.astrapi69.collections.map.MapFactory;
 import io.github.astrapi69.collections.pairs.KeyValuePair;
 import io.github.astrapi69.crypto.obfuscation.rule.ObfuscationOperationRule;
 import io.github.astrapi69.file.search.PathFinder;
-import io.github.astrapi69.xml.factory.XStreamFactory;
+import io.github.astrapi69.xstream.factory.XStreamFactory;
 
 /**
  * The unit test class for the class {@link XmlEncryptionExtensions}

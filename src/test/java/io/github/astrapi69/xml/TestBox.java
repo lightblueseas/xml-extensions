@@ -29,6 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.astrapi69.xml.api.Xmlable;
+import io.github.astrapi69.xstream.ObjectToXmlExtensions;
 
 public class TestBox implements Xmlable
 {
@@ -55,6 +56,6 @@ public class TestBox implements Xmlable
 		final String lqSimpleName = this.getClass().getSimpleName().toLowerCase();
 		final Map<String, Class<?>> aliases = new HashMap<>();
 		aliases.put(lqSimpleName, this.getClass());
-		return ObjectToXmlExtensions.toXmlWithXStream(this, aliases);
+		return ObjectToXmlExtensions.toXml(this, aliases);
 	}
 }

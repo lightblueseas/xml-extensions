@@ -24,18 +24,16 @@
  */
 package io.github.astrapi69.xml;
 
-import java.util.Map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.xml.factory.XStreamFactory;
 import io.github.astrapi69.xml.factory.XmlMapperFactory;
 
 /**
- * The class {@link ObjectToXmlExtensions}.
+ * The class {@link ObjectToXmlExtensions} provides methods for convert java objects to xml string
+ * objects
  */
 public final class ObjectToXmlExtensions
 {
@@ -60,75 +58,6 @@ public final class ObjectToXmlExtensions
 		Objects.requireNonNull(objectToXML);
 		ObjectMapper xmlMapper = XmlMapperFactory.newXmlMapper();
 		return xmlMapper.writerWithDefaultPrettyPrinter().writeValueAsString(objectToXML);
-	}
-
-	/**
-	 * Creates from the given Object an xml string.
-	 *
-	 * @param <T>
-	 *            the generic type of the return type
-	 * @param objectToXML
-	 *            the object to xml
-	 * @return the xml string
-	 */
-	public static <T> String toXmlWithXStream(final T objectToXML)
-	{
-		return toXmlWithXStream(null, objectToXML);
-	}
-
-	/**
-	 * Creates from the given Object an xml string. The given map hold the aliases. For more
-	 * information with aliasing see documation of xstream.
-	 *
-	 * @param <T>
-	 *            the generic type of the object that will be transformed to xml
-	 * @param objectToXML
-	 *            the object to xml
-	 * @param aliases
-	 *            the aliases
-	 * @return the xml string
-	 */
-	public static <T> String toXmlWithXStream(final T objectToXML,
-		final Map<String, Class<?>> aliases)
-	{
-		return toXmlWithXStream(null, objectToXML, aliases);
-	}
-
-	/**
-	 * Creates from the given Object an xml string.
-	 *
-	 * @param <T>
-	 *            the generic type of the object that will be transformed to xml
-	 * @param xstream
-	 *            the xstream object.
-	 * @param objectToXML
-	 *            the object to xml
-	 * @return the xml string
-	 */
-	public static <T> String toXmlWithXStream(final XStream xstream, final T objectToXML)
-	{
-		return toXmlWithXStream(xstream, objectToXML, null);
-	}
-
-	/**
-	 * Creates from the given Object an xml string. The given map hold the aliases. For more
-	 * information with aliasing see documation of xstream.
-	 *
-	 * @param <T>
-	 *            the generic type of the return type
-	 * @param xstream
-	 *            the xstream
-	 * @param objectToXML
-	 *            the object to xml
-	 * @param aliases
-	 *            the aliases
-	 * @return the xml string
-	 */
-	public static <T> String toXmlWithXStream(XStream xstream, final T objectToXML,
-		final Map<String, Class<?>> aliases)
-	{
-		xstream = XStreamFactory.initializeXStream(xstream, aliases);
-		return xstream.toXML(objectToXML);
 	}
 
 }

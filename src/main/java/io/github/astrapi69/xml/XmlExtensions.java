@@ -112,9 +112,8 @@ public final class XmlExtensions
 	 */
 	private static <T> T loadObject(final InputStream is) throws IOException
 	{
-		final String xmlString = ReadFileExtensions.inputStream2String(is);
-		final T object = XmlToObjectExtensions.toObjectWithXStream(xmlString);
-		return object;
+		return io.github.astrapi69.xstream.XmlToObjectExtensions
+			.toObject(ReadFileExtensions.inputStream2String(is));
 	}
 
 	/**
@@ -136,8 +135,7 @@ public final class XmlExtensions
 		Objects.requireNonNull(is);
 		Objects.requireNonNull(clazz);
 		final String xmlString = ReadFileExtensions.inputStream2String(is);
-		final T object = XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
-		return object;
+		return XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
 	}
 
 	/**
