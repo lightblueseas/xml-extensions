@@ -11,6 +11,7 @@ ADDED:
 - new dependency xml-api in minor version 1.1
 - new dependency xml-base in minor version 1.3
 - new dependency xstream-extensions in major version 1
+- added new dependency xml-jackson-extensions in major version 1
 
 CHANGED:
 
@@ -29,6 +30,8 @@ CHANGED:
 - removed class ValidatorExtensions
 - removed unused interfaces in api package and interface Xmlable and class XmlTransformation
 - dependency xerces:xercesImpl to test dependency
+- removed all classes that have moved to new module xml-jackson-extensions
+- removed all unused dependencies and test dependencies
 
 Version 7.6
 -------------

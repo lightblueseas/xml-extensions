@@ -45,7 +45,6 @@ import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.enumtype.Gender;
-import io.github.astrapi69.xml.ObjectToXmlExtensions;
 
 /**
  * The unit test class for the class {@link XmlToXsdExtensions}
@@ -66,7 +65,7 @@ public class XmlToXsdExtensionsTest
 
 		employee = Employee.builder().id("23").person(person).build();
 
-		String xml = ObjectToXmlExtensions.toXmlWithJackson(employee);
+		String xml = io.github.astrapi69.xml.jackson.ObjectToXmlExtensions.toXml(employee);
 
 		actual = XmlToXsdExtensions.xmlToXsd(xml);
 		expected = "<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n"
@@ -84,7 +83,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(actual, expected);
 		employee = Employee.builder().id("1").person(Person.builder().build()).build();
 
-		xml = ObjectToXmlExtensions.toXmlWithJackson(employee);
+		xml = io.github.astrapi69.xml.jackson.ObjectToXmlExtensions.toXml(employee);
 
 		actual = XmlToXsdExtensions.xmlToXsd(xml);
 		assertEquals(actual, expected);
@@ -230,7 +229,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**
@@ -269,7 +268,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**
@@ -311,7 +310,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**

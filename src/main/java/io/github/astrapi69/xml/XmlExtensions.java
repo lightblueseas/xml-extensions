@@ -135,7 +135,7 @@ public final class XmlExtensions
 		Objects.requireNonNull(is);
 		Objects.requireNonNull(clazz);
 		final String xmlString = ReadFileExtensions.inputStream2String(is);
-		return XmlToObjectExtensions.toObjectWithJackson(xmlString, clazz);
+		return io.github.astrapi69.xml.jackson.XmlToObjectExtensions.toObject(xmlString, clazz);
 	}
 
 	/**

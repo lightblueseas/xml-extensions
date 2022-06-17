@@ -24,8 +24,6 @@
  */
 package io.github.astrapi69.xsl.transform;
 
-import io.github.astrapi69.xml.transform.TransformerFactoryInitializer;
-
 import java.io.File;
 import java.io.OutputStream;
 import java.util.Objects;
@@ -37,6 +35,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import io.github.astrapi69.xml.transform.TransformerFactoryInitializer;
 
 /**
  * The class {@link XsltTransformerExtensions}

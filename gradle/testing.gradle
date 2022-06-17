@@ -11,14 +11,7 @@ jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it,
-                    exclude: ["io/github/astrapi69/xml/api/Transformable.class",
-                              "io/github/astrapi69/xml/api/Xmlable.class",
-                              "io/github/astrapi69/xml/sax/handler/WriterHandler.class",
-                              "io/github/astrapi69/xml/XmlTransformation.class",
-                              "io/github/astrapi69/xml/json/ObjectToJsonQuietlyExtensions.class",
-                              "io/github/astrapi69/xml/node/NodeType.class",
-                              "io/github/astrapi69/xml/XmlTransformation.class",
-                              "io/github/astrapi69/xml/sax/handler/BreakParsingException.class"])
+                    exclude: ["io/github/astrapi69/xml/node/NodeType.class"])
         }))
     }
 }
