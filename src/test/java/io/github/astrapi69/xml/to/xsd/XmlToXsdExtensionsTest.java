@@ -39,9 +39,12 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.checksum.FileChecksumExtensions;
-import io.github.astrapi69.collections.array.ArrayFactory;
+import io.github.astrapi69.collection.array.ArrayFactory;
 import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link XmlToXsdExtensions}
@@ -49,14 +52,42 @@ import io.github.astrapi69.file.search.PathFinder;
 public class XmlToXsdExtensionsTest
 {
 
-	/**
-	 * Test method for {@link XmlToXsdExtensions}
-	 */
 	@Test
-	public void testWithBeanTester()
+	public void testObjectToXmlToXsd() throws IOException, XmlException
 	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(XmlToXsdExtensions.class);
+		String actual;
+		String expected;
+		Person person;
+		Employee employee;
+
+		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
+			.about(null).build();
+
+		employee = Employee.builder().id("23").person(person).build();
+
+		String xml = io.github.astrapi69.xml.jackson.ObjectToXmlExtensions.toXml(employee);
+
+		actual = XmlToXsdExtensions.xmlToXsd(xml);
+		expected = "<xs:schema attributeFormDefault=\"unqualified\" elementFormDefault=\"qualified\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema\">\n"
+			+ "  <xs:element name=\"Employee\" type=\"EmployeeType\"/>\n"
+			+ "  <xs:complexType name=\"personType\">\n" + "    <xs:sequence>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"about\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"gender\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"married\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"nickname\"/>\n" + "    </xs:sequence>\n"
+			+ "  </xs:complexType>\n" + "  <xs:complexType name=\"EmployeeType\">\n"
+			+ "    <xs:sequence>\n" + "      <xs:element type=\"xs:byte\" name=\"id\"/>\n"
+			+ "      <xs:element type=\"personType\" name=\"person\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"subOrdinates\"/>\n"
+			+ "    </xs:sequence>\n" + "  </xs:complexType>\n" + "</xs:schema>";
+		assertEquals(actual, expected);
+		employee = Employee.builder().id("1").person(Person.builder().build()).build();
+
+		xml = io.github.astrapi69.xml.jackson.ObjectToXmlExtensions.toXml(employee);
+
+		actual = XmlToXsdExtensions.xmlToXsd(xml);
+		assertEquals(actual, expected);
 	}
 
 	/**
@@ -199,7 +230,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**
@@ -238,7 +269,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**
@@ -280,7 +311,7 @@ public class XmlToXsdExtensionsTest
 		assertEquals(FileChecksumExtensions.getCheckSumAdler32(expected),
 			FileChecksumExtensions.getCheckSumAdler32(xsdOutFile));
 		// clean up...
-		xsdOutFile.delete();
+		DeleteFileExtensions.delete(xsdOutFile);
 	}
 
 	/**
@@ -334,6 +365,17 @@ public class XmlToXsdExtensionsTest
 			+ "      <xs:element type=\"xs:string\" name=\"name\"/>\n" + "    </xs:sequence>\n"
 			+ "  </xs:complexType>\n" + "</xs:schema>";
 		assertEquals("Expected should be equal with the result.", expected, actual);
+	}
+
+
+	/**
+	 * Test method for {@link XmlToXsdExtensions}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(XmlToXsdExtensions.class);
 	}
 
 }

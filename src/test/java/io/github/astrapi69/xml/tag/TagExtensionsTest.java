@@ -32,7 +32,7 @@ import java.util.Optional;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 
 /**
  * The class {@link TagExtensionsTest}

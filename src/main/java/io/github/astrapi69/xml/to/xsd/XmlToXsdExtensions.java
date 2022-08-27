@@ -63,6 +63,22 @@ public final class XmlToXsdExtensions
 	}
 
 	/**
+	 * Returns a xsd String from the given XML string that can used for several purposes.
+	 *
+	 * @param xmlString
+	 *            the XML string
+	 * @return the resulted xsd String
+	 * @throws XmlException
+	 *             the xml exception
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static String xmlToXsd(final String xmlString) throws XmlException, IOException
+	{
+		return xmlToXsd(xmlString, new Inst2XsdOptions());
+	}
+
+	/**
 	 * Creates or update the given xsd output file from the given XML file.
 	 *
 	 * @param xmlInputFile
@@ -141,6 +157,25 @@ public final class XmlToXsdExtensions
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public static String xmlToXsd(final File xmlFile, final Inst2XsdOptions inst2XsdOptions)
+		throws XmlException, IOException
+	{
+		return xmlToXsd(xmlFile, inst2XsdOptions, new XmlOptions().setSavePrettyPrint());
+	}
+
+	/**
+	 * Returns a xsd String from the given XML file that can used for several purposes.
+	 *
+	 * @param xmlFile
+	 *            the XML file.
+	 * @param inst2XsdOptions
+	 *            the inst2 xsd options
+	 * @return the resulted xsd String
+	 * @throws XmlException
+	 *             occurs when a give xml file is invalid.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static String xmlToXsd(final String xmlFile, final Inst2XsdOptions inst2XsdOptions)
 		throws XmlException, IOException
 	{
 		return xmlToXsd(xmlFile, inst2XsdOptions, new XmlOptions().setSavePrettyPrint());
@@ -238,15 +273,30 @@ public final class XmlToXsdExtensions
 		}
 	}
 
-	public static String xmlToXsd(final String xmlFile, final Inst2XsdOptions inst2XsdOptions,
+	/**
+	 * Creates or update the given xsd output file from the given XML String
+	 *
+	 * @param xmlString
+	 *            the xml String
+	 * @param inst2XsdOptions
+	 *            the inst2 xsd options
+	 * @param xmlOptions
+	 *            the xml options
+	 * @throws XmlException
+	 *             occurs when a give xml file is invalid.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
+	 */
+	public static String xmlToXsd(final String xmlString, final Inst2XsdOptions inst2XsdOptions,
 		final XmlOptions xmlOptions) throws XmlException, IOException
 	{
 		final XmlObject[] xmlInstances = new XmlObject[1];
-		xmlInstances[0] = XmlObject.Factory.parse(xmlFile);
+		xmlInstances[0] = XmlObject.Factory.parse(xmlString);
 		final SchemaDocument[] schemaDocs = Inst2Xsd.inst2xsd(xmlInstances, inst2XsdOptions);
 		final SchemaDocument schema = schemaDocs[0];
 		final StringWriter writer = new StringWriter();
 		schema.save(writer, xmlOptions);
 		return writer.toString();
 	}
+
 }

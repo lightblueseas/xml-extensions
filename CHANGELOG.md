@@ -1,6 +1,44 @@
 ## Change log
 ----------------------
 
+Version 8
+-------------
+
+ADDED:
+
+- new methods in class XmlToXsdExtensions for transform a xml string to a xsd string
+- new methods in class XmlFileToObjectExtensions for transform a xml file to a java object
+- new dependency xml-api in minor version 1.2
+- new dependency xml-base in minor version 1.4
+- new dependency xstream-extensions in major version 1
+- new dependency xml-jackson-extensions in major version 1
+- new test dependency nl.jqno.equalsverifier:equalsverifier in patch version 3.10.1
+
+CHANGED:
+
+- upgrade of jdk to version 11
+- update gradle to new version 7.5.1
+- extracted sections from build.gradle to own gradle files
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.10.0
+- update of dependency jackson-core to new patch version 2.13.3
+- update of dependency throwable to new minor version 2.3
+- update of dependency xmlbeans to new minor version 5.1.0
+- update of dependency crypt-api to new minor version 8.3
+- update of dependency crypt-data to new patch version 8.1
+- update of test dependency silly-collection to new major version 20
+- update of test dependency silly-bean to new major version 2
+- update of test dependency silly-io to new minor version 2.1
+- update of test dependency checksum-up to new minor version 2.1
+- update of test dependency test-object to new minor version 7.1
+- update of test dependency testng to new minor version 7.6.1
+- removed of test dependency jobj-contract-verifier
+- tagged api interfaces as deprecated
+- removed class ValidatorExtensions
+- removed unused interfaces in api package and interface Xmlable and class XmlTransformation
+- dependency xerces:xercesImpl to test dependency
+- removed all classes that have moved to new module xml-jackson-extensions
+- removed all unused dependencies and test dependencies
+
 Version 7.6
 -------------
 

@@ -34,10 +34,10 @@ import org.apache.commons.codec.DecoderException;
 
 import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.crypto.hex.HexExtensions;
+import io.github.astrapi69.crypt.data.hex.HexExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
-import io.github.astrapi69.xml.XmlToObjectExtensions;
-import io.github.astrapi69.xml.factory.XStreamFactory;
+import io.github.astrapi69.xstream.XmlToObjectExtensions;
+import io.github.astrapi69.xstream.factory.XStreamFactory;
 
 /**
  * The class {@link XmlDecryptionExtensions} provides methods for read an encrypted file and decrypt
@@ -136,7 +136,7 @@ public final class XmlDecryptionExtensions
 		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
 			Charset.forName(charset));
 		String xmlString = HexExtensions.decodeHex(hexXmlString);
-		return XmlToObjectExtensions.toObjectWithXStream(xstream, xmlString, aliases);
+		return XmlToObjectExtensions.toObject(xstream, xmlString, aliases);
 	}
 
 }

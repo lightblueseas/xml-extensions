@@ -36,6 +36,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+import io.github.astrapi69.xml.transform.TransformerFactoryInitializer;
+
 /**
  * The class {@link XsltTransformerExtensions}
  */
@@ -47,54 +49,6 @@ public final class XsltTransformerExtensions
 
 	private XsltTransformerExtensions()
 	{
-	}
-
-	/**
-	 * Gets a new instance from a {@link Transformer} object
-	 *
-	 * @param xsltFile
-	 *            the xslt file
-	 * @return the new {@link Transformer} object
-	 * @throws TransformerConfigurationException
-	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
-	 *             possible to create a <code>Transformer</code> instance.
-	 */
-	public static Transformer getTransformer(final File xsltFile)
-		throws TransformerConfigurationException
-	{
-		return getTransformer(new StreamSource(xsltFile));
-	}
-
-	/**
-	 * Gets a new instance from a {@link Transformer} object
-	 *
-	 * @param xsltSource
-	 *            the xslt source
-	 * @return the new {@link Transformer} object
-	 * @throws TransformerConfigurationException
-	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
-	 *             possible to create a <code>Transformer</code> instance.
-	 */
-	public static Transformer getTransformer(final Source xsltSource)
-		throws TransformerConfigurationException
-	{
-		return TRANSFORMER_FACTORY.newTransformer(xsltSource);
-	}
-
-	/**
-	 * Gets a new instance from a {@link Transformer} object
-	 *
-	 * @param xsltInputFile
-	 *            the xslt input file
-	 * @return the new {@link Transformer} object
-	 * @throws TransformerConfigurationException
-	 *             is thrown if there are errors when parsing the <code>Source</code> or it is not
-	 *             possible to create a <code>Transformer</code> instance.
-	 */
-	public static Transformer getTransformer(final String xsltInputFile)
-		throws TransformerConfigurationException
-	{
-		return getTransformer(new File(xsltInputFile));
 	}
 
 	/**
@@ -144,7 +98,7 @@ public final class XsltTransformerExtensions
 		final OutputStream outputStream)
 		throws TransformerConfigurationException, TransformerException
 	{
-		final Transformer transformer = getTransformer(xsltSource);
+		final Transformer transformer = TransformerFactoryInitializer.newTransformer(xsltSource);
 		transformer.transform(xmlSource, new StreamResult(outputStream));
 	}
 

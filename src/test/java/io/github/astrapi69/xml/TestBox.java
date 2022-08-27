@@ -25,6 +25,11 @@
 package io.github.astrapi69.xml;
 
 import java.security.PrivateKey;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.github.astrapi69.xml.api.Xmlable;
+import io.github.astrapi69.xstream.ObjectToXmlExtensions;
 
 public class TestBox implements Xmlable
 {
@@ -44,5 +49,13 @@ public class TestBox implements Xmlable
 	public void setPrivateKey(PrivateKey privateKey)
 	{
 		this.privateKey = privateKey;
+	}
+
+	public String toXml()
+	{
+		final String lqSimpleName = this.getClass().getSimpleName().toLowerCase();
+		final Map<String, Class<?>> aliases = new HashMap<>();
+		aliases.put(lqSimpleName, this.getClass());
+		return ObjectToXmlExtensions.toXml(this, aliases);
 	}
 }
