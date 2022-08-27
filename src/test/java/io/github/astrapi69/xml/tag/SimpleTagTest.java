@@ -31,14 +31,15 @@ import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.IOException;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.collections.list.ListFactory;
-import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.evaluate.object.verifier.ContractVerifier;
+import io.github.astrapi69.collection.list.ListFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.velocity.VelocityExtensions;
 
 /**
@@ -86,8 +87,13 @@ public class SimpleTagTest
 		assertEquals(tag, cloned);
 
 		assertEquals(tag.hashCode(), cloned.hashCode());
-
+		// add end tag to the div
 		tag.setEndTag(true);
+
+		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy</div>";
+		actual = tag.toXmlString();
+		/* check if equal */
+		assertEquals(expected, actual);
 
 		final SimpleTag child1 = new SimpleTag();
 
@@ -98,7 +104,8 @@ public class SimpleTagTest
 		child1.setEndTag(true);
 
 		tag.addChild(child1);
-		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello </span></div>";
+		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" "
+			+ "class=\"other\" >Hello </span></div>";
 		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
@@ -110,7 +117,8 @@ public class SimpleTagTest
 
 		child1.addChild(granChild1);
 
-		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" class=\"other\" >Hello <b>world</b></span></div>";
+		expected = "<div wicket:id=\"contentLabel\" class=\"myClass\" >xy<span wicket:id=\"name\" "
+			+ "class=\"other\" >Hello <b>world</b></span></div>";
 		actual = tag.toXmlString();
 		/* check if equal */
 		assertEquals(expected, actual);
@@ -140,7 +148,9 @@ public class SimpleTagTest
 		/* put the tag into the context */
 		context.put(tag.getName(), tag);
 		actual = VelocityExtensions.merge(context, velocityTemplate);
-		expected = "<div\n wicket:id=\"contentLabel\"\n class=\"myClass\"\n >xy\n<span\n wicket:id=\"name\"\n class=\"other\"\n >Hello \n<b\n>world\n</b>\n</span>\n</div>\n";
+		expected = "<div\n" + " wicket:id=\"contentLabel\"\n" + " class=\"myClass\"\n" + " >xy\n"
+			+ "<span\n" + " wicket:id=\"name\"\n" + " class=\"other\"\n" + " >Hello \n" + "<b\n"
+			+ ">world\n" + "</b>\n" + "</span>\n" + "</div>\n";
 		/* check if equal */
 		assertEquals(expected, actual);
 	}
@@ -216,7 +226,10 @@ public class SimpleTagTest
 	@Test
 	public void verifyEqualsHashcodeAndToStringContracts()
 	{
-		ContractVerifier.of(SimpleTag.class).verify();
+		EqualsVerifier
+			.simple().forClass(SimpleTag.class).withPrefabValues(SimpleTag.class,
+				SimpleTag.builder().name("foo").build(), SimpleTag.builder().name("bar").build())
+			.verify();
 	}
 
 }

@@ -32,7 +32,7 @@ import java.util.Objects;
 
 import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.crypto.hex.HexExtensions;
+import io.github.astrapi69.crypt.data.hex.HexExtensions;
 import io.github.astrapi69.file.write.WriteFileExtensions;
 import io.github.astrapi69.xstream.ObjectToXmlExtensions;
 import io.github.astrapi69.xstream.factory.XStreamFactory;

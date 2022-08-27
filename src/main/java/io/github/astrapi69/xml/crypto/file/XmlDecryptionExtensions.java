@@ -34,7 +34,7 @@ import org.apache.commons.codec.DecoderException;
 
 import com.thoughtworks.xstream.XStream;
 
-import io.github.astrapi69.crypto.hex.HexExtensions;
+import io.github.astrapi69.crypt.data.hex.HexExtensions;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.xstream.XmlToObjectExtensions;
 import io.github.astrapi69.xstream.factory.XStreamFactory;

@@ -29,6 +29,7 @@ import static org.testng.AssertJUnit.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -79,7 +80,7 @@ public class XmlExtensionsTest
 		person = Person.builder().gender(Gender.FEMALE).name("Anna").nickname(null).married(null)
 			.about(null).build();
 
-		employee = Employee.builder().id("23").person(person).build();
+		employee = Employee.builder().id("23").person(person).subOrdinates(new HashSet<>()).build();
 
 		xmlFile = PathFinder.getRelativePath(PathFinder.getSrcTestResourcesDir(), "newtest.xml");
 		actual = XmlExtensions.loadObject(xmlFile);

@@ -39,7 +39,7 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.checksum.FileChecksumExtensions;
-import io.github.astrapi69.collections.array.ArrayFactory;
+import io.github.astrapi69.collection.array.ArrayFactory;
 import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
@@ -78,8 +78,9 @@ public class XmlToXsdExtensionsTest
 			+ "      <xs:element type=\"xs:string\" name=\"nickname\"/>\n" + "    </xs:sequence>\n"
 			+ "  </xs:complexType>\n" + "  <xs:complexType name=\"EmployeeType\">\n"
 			+ "    <xs:sequence>\n" + "      <xs:element type=\"xs:byte\" name=\"id\"/>\n"
-			+ "      <xs:element type=\"personType\" name=\"person\"/>\n" + "    </xs:sequence>\n"
-			+ "  </xs:complexType>\n" + "</xs:schema>";
+			+ "      <xs:element type=\"personType\" name=\"person\"/>\n"
+			+ "      <xs:element type=\"xs:string\" name=\"subOrdinates\"/>\n"
+			+ "    </xs:sequence>\n" + "  </xs:complexType>\n" + "</xs:schema>";
 		assertEquals(actual, expected);
 		employee = Employee.builder().id("1").person(Person.builder().build()).build();
 

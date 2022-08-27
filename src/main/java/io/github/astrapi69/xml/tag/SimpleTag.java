@@ -32,8 +32,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import io.github.astrapi69.clone.object.CloneObjectExtensions;
-import io.github.astrapi69.collections.list.ListFactory;
-import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.collection.list.ListFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 
 /**
  * The class Tag represents an tag for xml or html.
@@ -152,6 +152,14 @@ public class SimpleTag implements Serializable
 		final Object other$name = other.getName();
 		if (this$name == null ? other$name != null : !this$name.equals(other$name))
 			return false;
+		if (this.getAttributes() == null
+			? other.getAttributes() != null
+			: !this.getAttributes().equals(other.getAttributes()))
+			return false;
+		if (this.getChildren() == null
+			? other.getChildren() != null
+			: !this.getChildren().equals(other.getChildren()))
+			return false;
 		return true;
 	}
 
@@ -209,6 +217,10 @@ public class SimpleTag implements Serializable
 		result = result * PRIME + (this.isEndTag() ? 79 : 97);
 		final Object $name = this.getName();
 		result = result * PRIME + ($name == null ? 43 : $name.hashCode());
+		final Object $attributes = this.getAttributes();
+		result = result * PRIME + ($attributes == null ? 43 : $attributes.hashCode());
+		final Object $children = this.getChildren();
+		result = result * PRIME + ($children == null ? 43 : $children.hashCode());
 		return result;
 	}
 

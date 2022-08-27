@@ -29,12 +29,13 @@ import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.collections.list.ListFactory;
-import io.github.astrapi69.collections.map.MapFactory;
-import io.github.astrapi69.evaluate.object.verifier.ContractVerifier;
+import io.github.astrapi69.collection.list.ListFactory;
+import io.github.astrapi69.collection.map.MapFactory;
 
 /**
  * The unit test class for the class {@link Tag}
@@ -207,7 +208,8 @@ public class TagTest
 	@Test
 	public void verifyEqualsHashcodeAndToStringContracts()
 	{
-		ContractVerifier.of(Tag.class).verify();
+		EqualsVerifier.simple().forClass(Tag.class).withPrefabValues(Tag.class,
+			Tag.builder().name("foo").build(), Tag.builder().name("bar").build()).verify();
 	}
 
 }

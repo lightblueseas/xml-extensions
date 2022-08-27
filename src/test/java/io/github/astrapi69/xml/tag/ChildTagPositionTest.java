@@ -26,6 +26,8 @@ package io.github.astrapi69.xml.tag;
 
 import static org.testng.AssertJUnit.assertNotNull;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import org.meanbean.lang.Factory;
 import org.meanbean.test.BeanTester;
 import org.meanbean.test.Configuration;
@@ -81,4 +83,17 @@ public class ChildTagPositionTest
 		beanTester.testBean(ChildTagPosition.class);
 	}
 
+	/**
+	 * Test method for {@link ChildTagPosition#equals(Object)} , {@link ChildTagPosition#hashCode()}
+	 * and {@link ChildTagPosition#toString()}
+	 */
+	@Test
+	public void verifyEqualsHashcodeAndToStringContracts()
+	{
+		EqualsVerifier.simple().forClass(ChildTagPosition.class)
+			.withPrefabValues(ChildTagPosition.class,
+				ChildTagPosition.builder().position(1).build(),
+				ChildTagPosition.builder().position(2).build())
+			.verify();
+	}
 }
