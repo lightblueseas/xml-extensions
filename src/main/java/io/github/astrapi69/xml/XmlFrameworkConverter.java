@@ -14,7 +14,7 @@ public class XmlFrameworkConverter
 	}
 
 	public static <T> String xstreamToJackson(String xstreamXml, final Class<T> clazz)
-			throws JsonProcessingException
+		throws JsonProcessingException
 	{
 		T object = io.github.astrapi69.xstream.XmlToObjectExtensions.toObject(xstreamXml);
 		return io.github.astrapi69.xml.jackson.ObjectToXmlExtensions.toXml(object);
