@@ -4,6 +4,24 @@
 Version 8.1-SNAPSHOT
 -------------
 
+ADDED:
+
+- new XmlFrameworkConverter class that can convert xml strings from frameworks like jackson, xstream and jaxb to another framework xml string
+- new dependency jaxb-extensions in version 1.1
+- new test dependency org.projectlombok:lombok in version 1.18.24
+- new test dependency jakarta.xml.bind:jakarta.xml.bind-api in version 4.0.0
+- new test dependency org.glassfish.jaxb:jaxb-runtime in version 4.0.1
+
+CHANGED:
+
+- update gradle to new version 7.6-rc-1
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.43.0
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.11.0
+- update of test dependency silly-collection to new major version 20.1
+- update of test dependency test-object to new minor version 7.2
+- update of test dependency checksum-up to new minor version 2.2
+- update of test dependency equalsverifier to new minor version 3.11
+
 Version 8
 -------------
 

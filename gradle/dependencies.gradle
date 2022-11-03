@@ -9,6 +9,7 @@ dependencies {
     implementation("io.github.astrapi69:xml-base:$xmlBaseVersion")
     implementation("io.github.astrapi69:xstream-extensions:$xstreamExtensionsVersion")
     implementation("io.github.astrapi69:xml-jackson-extensions:$xmlJacksonExtensionsVersion")
+    implementation("io.github.astrapi69:jaxb-extensions:$jaxbExtensionsVersion")
     implementation("io.github.astrapi69:silly-collection:$sillyCollectionVersion")
     implementation("io.github.astrapi69:silly-bean:$sillyBeanVersion")
     implementation("io.github.astrapi69:file-worker:$fileWorkerVersion")
@@ -17,6 +18,12 @@ dependencies {
     implementation("io.github.astrapi69:crypt-data:$cryptDataVersion")
     implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
     implementation("io.github.astrapi69:throwable:$throwableVersion")
+
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
+
+    testImplementation("jakarta.xml.bind:jakarta.xml.bind-api:$jakartaXmlBindApiVersion")
+    testImplementation("org.glassfish.jaxb:jaxb-runtime:$jaxbRuntimeVersion")
     testImplementation("io.github.astrapi69:xml-api:$xmlApiVersion")
     testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
     testImplementation("io.github.astrapi69:checksum-up:$checksumUpVersion")
