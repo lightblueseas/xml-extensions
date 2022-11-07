@@ -6,6 +6,7 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:$jacksonVersion")
     implementation("commons-codec:commons-codec:$commonsCodecVersion")
     implementation("commons-io:commons-io:$commonsIoVersion")
+    implementation("io.github.astrapi69:xml-api:$xmlApiVersion")
     implementation("io.github.astrapi69:xml-base:$xmlBaseVersion")
     implementation("io.github.astrapi69:xstream-extensions:$xstreamExtensionsVersion")
     implementation("io.github.astrapi69:xml-jackson-extensions:$xmlJacksonExtensionsVersion")
@@ -18,6 +19,7 @@ dependencies {
     implementation("io.github.astrapi69:crypt-data:$cryptDataVersion")
     implementation("io.github.astrapi69:crypt-api:$cryptApiVersion")
     implementation("io.github.astrapi69:throwable:$throwableVersion")
+    implementation("io.github.astrapi69:strategy:$designPatternsVersion")
 
     testCompileOnly("org.projectlombok:lombok:$lombokVersion")
     testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")

@@ -17,6 +17,7 @@ CHANGED:
 - update gradle to new version 7.6-rc-1
 - update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.43.0
 - update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.11.0
+- update of dependency jackson to new minor version to 2.14.0
 - update of test dependency silly-collection to new major version 20.1
 - update of test dependency test-object to new minor version 7.2
 - update of test dependency checksum-up to new minor version 2.2

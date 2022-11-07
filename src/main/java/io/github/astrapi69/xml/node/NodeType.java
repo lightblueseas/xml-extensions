@@ -27,8 +27,8 @@ package io.github.astrapi69.xml.node;
 import org.w3c.dom.Node;
 
 /**
- * The Enum NodeType is a helper enum class for determine the type of an
- * <code>org.w3c.dom.Node</code> object.
+ * The Enum NodeType is a helper enum class for determine the type of <code>org.w3c.dom.Node</code>
+ * object
  */
 public enum NodeType
 {
