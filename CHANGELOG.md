@@ -1,6 +1,36 @@
 ## Change log
 ----------------------
 
+Version 8.1
+-------------
+
+ADDED:
+
+- new class XmlFrameworkConverter that can convert xml strings from frameworks like jackson, xstream and jaxb to another framework xml string
+- new class ObjectToXmlConverterStrategy for convert objects to xml string with classes that implement the interface ObjectToXml
+- new dependency jaxb-extensions in version 1.2
+- new test dependency org.projectlombok:lombok in version 1.18.24
+- new test dependency jakarta.xml.bind:jakarta.xml.bind-api in version 4.0.0
+- new test dependency org.glassfish.jaxb:jaxb-runtime in version 4.0.1
+- new dependency io.github.astrapi69:strategy in version 6
+
+CHANGED:
+
+- update gradle to new version 7.6-rc-2
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.43.0
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.11.0
+- update of dependency jackson to new minor version to 2.14.0
+- update of dependency xml-api in minor version 1.4
+- update of dependency xml-base in minor version 1.5
+- update of dependency xstream-extensions in minor version 1.1
+- update of dependency xml-jackson-extensions in minor version 1.1
+- update of test dependency silly-collection to new major version 20.1
+- update of test dependency test-object to new minor version 7.2
+- update of test dependency checksum-up to new minor version 2.2
+- update of test dependency equalsverifier to new minor version 3.11
+- remove of dependency io.github.astrapi69:jobj-clone
+- moved tag classes and enum NodeType to module xml-base
+
 Version 8
 -------------
 

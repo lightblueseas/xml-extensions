@@ -38,7 +38,7 @@ import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.lang.ClassExtensions;
 
 /**
- * The class {@link XmlExtensions}.
+ * The class {@link XmlExtensions}
  */
 public final class XmlExtensions
 {

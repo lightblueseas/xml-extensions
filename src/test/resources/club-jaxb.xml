@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:club xmlns:ns2="io.github.astrapi69.jaxb">
+    <personList>
+        <person>
+            <name>Lea</name>
+            <gender>woman</gender>
+            <married>false</married>
+            <nickname>princess</nickname>
+        </person>
+        <person>
+            <name>Luke</name>
+            <gender>man</gender>
+            <married>false</married>
+            <nickname>wannabejedi</nickname>
+        </person>
+    </personList>
+    <name>StarPiece</name>
+    <location>Greece/Katerini</location>
+</ns2:club>

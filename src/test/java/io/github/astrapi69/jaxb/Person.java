@@ -22,46 +22,42 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.xml.tag;
+package io.github.astrapi69.jaxb;
 
-import java.util.Map;
-import java.util.Optional;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlType;
 
-/**
- * The class {@link TagExtensions}.
- */
-public final class TagExtensions
+@Data
+@NoArgsConstructor
+@SuperBuilder
+@XmlRootElement(name = "person")
+@XmlType(propOrder = { "name", "gender", "married", "nickname" })
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Person
 {
-
-	private TagExtensions()
-	{
-	}
+	/**
+	 * The name.
+	 */
+	private String name;
 
 	/**
-	 * Creates an {@link Optional} of {@link String} from the given attributes map
-	 *
-	 * @param attributes
-	 *            the attributes map
-	 * @return the {@link Optional} of {@link String}
+	 * The about.
 	 */
-	public static Optional<String> attributesToString(Map<String, String> attributes)
-	{
-		StringBuilder builder = new StringBuilder();
-		if (attributes != null && !attributes.isEmpty())
-		{
-			builder.append(" ");
-			for (final Map.Entry<String, String> entry : attributes.entrySet())
-			{
-				builder.append(entry.getKey());
-				builder.append("=");
-				builder.append("\"").append(entry.getValue()).append("\"");
-				builder.append(" ");
-			}
-		}
-		else
-		{
-			return Optional.empty();
-		}
-		return Optional.of(builder.toString());
-	}
+	private String gender;
+
+	/**
+	 * The married flag.
+	 */
+	private Boolean married;
+
+	/**
+	 * The nickname.
+	 */
+	private String nickname;
+
 }

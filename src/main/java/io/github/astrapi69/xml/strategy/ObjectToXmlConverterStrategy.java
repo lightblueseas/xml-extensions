@@ -22,50 +22,41 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package io.github.astrapi69.xml.tag;
+package io.github.astrapi69.xml.strategy;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.util.Map;
-import java.util.Optional;
-
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import io.github.astrapi69.collection.map.MapFactory;
+import io.github.astrapi69.design.pattern.strategy.Strategy;
+import io.github.astrapi69.xml.api.ObjectToXml;
 
 /**
- * The class {@link TagExtensionsTest}
+ * The class {@link ObjectToXmlConverterStrategy} provides methods for read an encrypted file and
+ * decrypt xml data.
  */
-public class TagExtensionsTest
+public class ObjectToXmlConverterStrategy implements Strategy<String, Object>
 {
 
 	/**
-	 * Test method for {@link TagExtensions#attributesToString(Map)}
+	 * The object that converts the objects to xml {@link String} objects
 	 */
-	@Test
-	public final void testAttributesToString()
-	{
-		Optional<String> actual;
-		Optional<String> expected;
-		Map<String, String> attributes = MapFactory.newLinkedHashMap();
-
-		attributes.put("wicket:id", "name");
-		attributes.put("class", "other");
-
-		actual = TagExtensions.attributesToString(attributes);
-		expected = Optional.of(" wicket:id=\"name\" class=\"other\" ");
-		assertEquals(expected, actual);
-	}
+	ObjectToXml objectToXml;
 
 	/**
-	 * Test method for {@link TagExtensions}
+	 * Creates a new instance of {@link ObjectToXmlConverterStrategy} object
+	 * 
+	 * @param objectToXml
+	 *            The object that converts the objects to xml {@link String} objects
 	 */
-	@Test
-	public void testWithBeanTester()
+	public ObjectToXmlConverterStrategy(ObjectToXml objectToXml)
 	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(TagExtensions.class);
+		this.objectToXml = objectToXml;
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String execute(Object model)
+	{
+		return objectToXml.toXml(model);
+	}
 }

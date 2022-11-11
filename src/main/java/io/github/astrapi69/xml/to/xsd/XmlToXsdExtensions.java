@@ -282,6 +282,7 @@ public final class XmlToXsdExtensions
 	 *            the inst2 xsd options
 	 * @param xmlOptions
 	 *            the xml options
+	 * @return the generated xsd string
 	 * @throws XmlException
 	 *             occurs when a give xml file is invalid.
 	 * @throws IOException
