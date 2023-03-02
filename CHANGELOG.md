@@ -18,6 +18,7 @@ CHANGED:
 - update of test dependency silly-io to new minor version 2.2
 - update of test dependency testng to new patch version 7.7.1
 - update of test dependency equalsverifier to new minor version 3.14
+- update of test dependency 'com.github.meanbeanlib:meanbean' to new version 3.0.0-M9
 
 Version 8.1
 -------------

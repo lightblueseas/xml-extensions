@@ -32,7 +32,7 @@ dependencies {
     testImplementation("io.github.astrapi69:velocity-extensions:$velocityExtensionsVersion")
     testImplementation("org.apache.velocity:velocity:$velocityVersion")
     testImplementation("com.fasterxml.jackson.datatype:jackson-datatype-guava:$jacksonVersion")
-    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("com.github.meanbeanlib:meanbean:$meanbeanVersion")
     testImplementation("org.testng:testng:$testngVersion")
     testImplementation("org.hamcrest:hamcrest-all:$hamcrestVersion")
     testImplementation("org.bouncycastle:bcprov-jdk15on:$bouncycastleVersion")
