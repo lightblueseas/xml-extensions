@@ -4,7 +4,20 @@
 Version 8.2-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update gradle to new version 8.0.1
+- update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.46.0
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.16.0
+- update of dependency xstream to new patch version 1.4.20
+- update of dependency jackson to new patch version 2.14.2
+- update of dependency file-worker to new minor version 11.6
+- update of test dependency lombok to new patch version 1.18.26
+- update of test dependency jaxb-runtime to new patch version 4.0.2
+- update of test dependency silly-collection to new major version 21
+- update of test dependency silly-io to new minor version 2.2
+- update of test dependency testng to new patch version 7.7.1
+- update of test dependency equalsverifier to new minor version 3.14
 
 Version 8.1
 -------------
@@ -29,7 +42,7 @@ CHANGED:
 - update of dependency xml-base in minor version 1.5
 - update of dependency xstream-extensions in minor version 1.1
 - update of dependency xml-jackson-extensions in minor version 1.1
-- update of test dependency silly-collection to new major version 20.1
+- update of test dependency silly-collection to new minor version 20.1
 - update of test dependency test-object to new minor version 7.2
 - update of test dependency checksum-up to new minor version 2.2
 - update of test dependency equalsverifier to new minor version 3.11
