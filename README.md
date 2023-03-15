@@ -30,13 +30,13 @@ your project `build.gradle` if you want to import the core functionality of xml-
 define version in file gradle.properties
 
 ```
-xmlExtensionsVersion=8
+xmlExtensionsVersion=8.2
 ```
 
 or in build.gradle ext area
 
 ```
-    xmlExtensionsVersion = "8"
+    xmlExtensionsVersion = "8.2"
 ```
 
 then add the dependency to the dependencies area
@@ -57,7 +57,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- XML-EXTENSIONS version -->
-        <xml-extensions.version>8</xml-extensions.version>
+        <xml-extensions.version>8.2</xml-extensions.version>
             ...
     </properties>
             ...
