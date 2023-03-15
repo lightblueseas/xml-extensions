@@ -4,11 +4,16 @@
 Version 8.2-SNAPSHOT
 -------------
 
+ADDED:
+
+- new method prettyPrint for an unformatted xml string with indent in extension class XmlExtensions
+- new method prettyPrint for an unformatted xml string with default indent of 4 in extension class XmlExtensions
+
 CHANGED:
 
-- update gradle to new version 8.0.1
+- update gradle to new version 8.0.2
 - update of gradle plugin dependency com.github.ben-manes.versions.gradle.plugin to new minor version 0.46.0
-- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.16.0
+- update of gradle plugin dependency com.diffplug.spotless:spotless-plugin-gradle to new patch version 6.17.0
 - update of dependency xstream to new patch version 1.4.20
 - update of dependency jackson to new patch version 2.14.2
 - update of dependency file-worker to new minor version 11.6

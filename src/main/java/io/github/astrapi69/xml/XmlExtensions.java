@@ -31,11 +31,17 @@ import java.io.StringReader;
 import java.util.Map;
 import java.util.Objects;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 import org.apache.commons.io.FileUtils;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.lang.ClassExtensions;
+import io.github.astrapi69.xml.parser.DocumentExtensions;
+import io.github.astrapi69.xml.parser.DocumentFactory;
 
 /**
  * The class {@link XmlExtensions}
@@ -96,6 +102,50 @@ public final class XmlExtensions
 		Objects.requireNonNull(clazz);
 		final InputStream is = FileUtils.openInputStream(xmlFile);
 		return loadObject(is, clazz);
+	}
+
+	/**
+	 * Formats the given unformatted xml {@link String} object with default indent of 4
+	 *
+	 * @param xmlString
+	 *            the given unformatted xml {@link String} object
+	 * @return the generated formatted xml {@link String} object
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws TransformerException
+	 *             is thrown if an error occurred with during the transformation process
+	 */
+	public static String prettyPrint(String xmlString)
+		throws ParserConfigurationException, IOException, SAXException, TransformerException
+	{
+		return prettyPrint(xmlString, 4);
+	}
+
+	/**
+	 * Formats the given unformatted xml {@link String} object with the given indent
+	 *
+	 * @param xmlString
+	 *            the given unformatted xml {@link String} object
+	 * @param indent
+	 *            the number for indent the xml {@link String} object
+	 * @return the generated formatted xml {@link String} object
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws TransformerException
+	 *             is thrown if an error occurred with during the transformation process
+	 */
+	public static String prettyPrint(final String xmlString, int indent)
+		throws ParserConfigurationException, IOException, SAXException, TransformerException
+	{
+		return DocumentExtensions.toString(DocumentFactory.newDocument(xmlString), indent);
 	}
 
 	/**

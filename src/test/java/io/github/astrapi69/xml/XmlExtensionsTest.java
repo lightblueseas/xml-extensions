@@ -33,9 +33,13 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
@@ -47,6 +51,70 @@ import io.github.astrapi69.test.object.enumtype.Gender;
  */
 public class XmlExtensionsTest
 {
+
+	/**
+	 * Test method for {@link XmlExtensions#prettyPrint(String, int)}
+	 *
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws TransformerException
+	 *             is thrown if an error occurred with during the transformation process
+	 */
+	@Test
+	public void testPrettyPrintWithIndent()
+		throws ParserConfigurationException, IOException, TransformerException, SAXException
+	{
+		String actual;
+		String expected;
+		String xmlInputString;
+
+		xmlInputString = "<employee><person><name>Anna</name>"
+			+ "<gender>FEMALE</gender></person><id>23</id></employee>";
+		actual = XmlExtensions.prettyPrint(xmlInputString, 4);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<employee>\n"
+			+ "    <person>\n" + "        <name>Anna</name>\n" + "        <gender>FEMALE</gender>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</employee>\n";
+		assertEquals(actual, expected);
+
+		actual = XmlExtensions.prettyPrint(xmlInputString, 2);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<employee>\n"
+			+ "  <person>\n" + "    <name>Anna</name>\n" + "    <gender>FEMALE</gender>\n"
+			+ "  </person>\n" + "  <id>23</id>\n" + "</employee>\n";
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link XmlExtensions#prettyPrint(String)}
+	 *
+	 * @throws ParserConfigurationException
+	 *             the parser configuration exception
+	 * @throws SAXException
+	 *             is thrown if a sax parse error occurs
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred
+	 * @throws TransformerException
+	 *             is thrown if an error occurred with during the transformation process
+	 */
+	@Test
+	public void testPrettyPrint()
+		throws ParserConfigurationException, IOException, TransformerException, SAXException
+	{
+		String actual;
+		String expected;
+		String xmlInputString;
+
+		xmlInputString = "<employee><person><name>Anna</name>"
+			+ "<gender>FEMALE</gender></person><id>23</id></employee>";
+		actual = XmlExtensions.prettyPrint(xmlInputString);
+		expected = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" + "<employee>\n"
+			+ "    <person>\n" + "        <name>Anna</name>\n" + "        <gender>FEMALE</gender>\n"
+			+ "    </person>\n" + "    <id>23</id>\n" + "</employee>\n";
+		assertEquals(actual, expected);
+	}
 
 	/**
 	 * Test method for {@link XmlExtensions#getInputSource(String)}.
