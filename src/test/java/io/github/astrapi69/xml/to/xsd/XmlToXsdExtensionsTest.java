@@ -44,7 +44,7 @@ import io.github.astrapi69.file.delete.DeleteFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
-import io.github.astrapi69.test.object.enumtype.Gender;
+import io.github.astrapi69.test.object.enumeration.Gender;
 
 /**
  * The unit test class for the class {@link XmlToXsdExtensions}

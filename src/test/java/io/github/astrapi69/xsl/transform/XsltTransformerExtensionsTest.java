@@ -44,7 +44,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.AbstractTestCase;
+import io.github.astrapi69.test.base.AbstractTestCase;
 import io.github.astrapi69.collection.array.ArrayFactory;
 import io.github.astrapi69.file.read.ReadFileExtensions;
 import io.github.astrapi69.file.search.PathFinder;
@@ -122,7 +122,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		outputFile = PathFinder.getRelativePathTo(resDestDir, "\\.",
 			"io.github.astrapi69.xsl.transform", "output.xml");
 		XsltTransformerExtensions.transform(xmlFile, xsltFile, new FileOutputStream(outputFile));
-		actual = ReadFileExtensions.readFromFile(outputFile);
+		actual = ReadFileExtensions.fromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		actual = StringUtils.remove(actual, ' ');
@@ -167,7 +167,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		output = StreamExtensions.getOutputStream(outputFile, true);
 
 		XsltTransformerExtensions.transform(xmlFile, xsltFile, output);
-		actual = ReadFileExtensions.readFromFile(outputFile);
+		actual = ReadFileExtensions.fromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		actual = StringUtils.remove(actual, ' ');
@@ -216,7 +216,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 		xmlSource = new StreamSource(xmlIs);
 
 		XsltTransformerExtensions.transform(xmlSource, xsltSource, output);
-		actual = ReadFileExtensions.readFromFile(outputFile);
+		actual = ReadFileExtensions.fromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		actual = StringUtils.remove(actual, ' ');
@@ -249,7 +249,7 @@ public class XsltTransformerExtensionsTest extends AbstractTestCase<String, Stri
 
 		XsltTransformerExtensions.transform(xmlFile.getAbsolutePath(), xsltFile.getAbsolutePath(),
 			output);
-		actual = ReadFileExtensions.readFromFile(outputFile);
+		actual = ReadFileExtensions.fromFile(outputFile);
 		actual = StringUtils.remove(actual, '\r');
 		actual = StringUtils.remove(actual, '\n');
 		actual = StringUtils.remove(actual, ' ');

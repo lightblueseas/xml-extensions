@@ -35,6 +35,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -163,7 +164,7 @@ public final class XmlExtensions
 	private static <T> T loadObject(final InputStream is) throws IOException
 	{
 		return io.github.astrapi69.xstream.XmlToObjectExtensions
-			.toObject(ReadFileExtensions.inputStream2String(is));
+			.toObject(IOUtils.toString(is));
 	}
 
 	/**
@@ -184,7 +185,7 @@ public final class XmlExtensions
 	{
 		Objects.requireNonNull(is);
 		Objects.requireNonNull(clazz);
-		final String xmlString = ReadFileExtensions.inputStream2String(is);
+		final String xmlString = IOUtils.toString(is);
 		return io.github.astrapi69.xml.jackson.XmlToObjectExtensions.toObject(xmlString, clazz);
 	}
 

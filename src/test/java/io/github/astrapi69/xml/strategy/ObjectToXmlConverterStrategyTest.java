@@ -35,7 +35,7 @@ import io.github.astrapi69.design.pattern.strategy.Strategy;
 import io.github.astrapi69.file.create.FileFactory;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Person;
-import io.github.astrapi69.test.object.enumtype.Gender;
+import io.github.astrapi69.test.object.enumeration.Gender;
 import io.github.astrapi69.throwable.RuntimeExceptionDecorator;
 import io.github.astrapi69.xml.api.ObjectToXml;
 

@@ -160,7 +160,7 @@ public class XmlFrameworkConverterTest
 		// new scenario...
 		xmlFile = new File(PathFinder.getSrcTestResourcesDir(), "club-jaxb.xml");
 		expected = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+			.decorate(() -> ReadFileExtensions.fromFile(xmlFile));
 		actual = XmlFrameworkConverter.jaxbToXstream(expected, Club.class);
 
 		expected = "<io.github.astrapi69.jaxb.Club>\n" + "  <personsList>\n"
@@ -188,7 +188,7 @@ public class XmlFrameworkConverterTest
 		// new scenario...
 		xmlFile = new File(PathFinder.getSrcTestResourcesDir(), "club-jaxb.xml");
 		expected = RuntimeExceptionDecorator
-			.decorate(() -> ReadFileExtensions.readFromFile(xmlFile));
+			.decorate(() -> ReadFileExtensions.fromFile(xmlFile));
 		actual = XmlFrameworkConverter.jaxbToJackson(expected, Club.class);
 
 		expected = "<Club>\n" + "  <personsList>\n" + "    <personsList>\n"

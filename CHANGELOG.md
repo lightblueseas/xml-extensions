@@ -5,6 +5,9 @@ Version 8.3-SNAPSHOT
 -------------
 
 
+CHANGED:
+
+- upgrade of jdk to version 17
 
 Version 8.2
 -------------

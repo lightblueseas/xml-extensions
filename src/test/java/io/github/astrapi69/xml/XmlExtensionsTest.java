@@ -44,7 +44,7 @@ import org.xml.sax.SAXException;
 import io.github.astrapi69.file.search.PathFinder;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.Person;
-import io.github.astrapi69.test.object.enumtype.Gender;
+import io.github.astrapi69.test.object.enumeration.Gender;
 
 /**
  * The unit test class for the class {@link XmlExtensions}
@@ -136,7 +136,7 @@ public class XmlExtensionsTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test
+	@Test()
 	public void testLoadObjectFile() throws IOException
 	{
 		Employee actual;

@@ -133,7 +133,7 @@ public final class XmlDecryptionExtensions
 		Objects.requireNonNull(xstream);
 		Objects.requireNonNull(aliases);
 		Objects.requireNonNull(selectedFile);
-		final String hexXmlString = ReadFileExtensions.readFromFile(selectedFile,
+		final String hexXmlString = ReadFileExtensions.fromFile(selectedFile,
 			Charset.forName(charset));
 		String xmlString = HexExtensions.decodeHex(hexXmlString);
 		return XmlToObjectExtensions.toObject(xstream, xmlString, aliases);
