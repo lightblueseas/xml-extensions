@@ -4,7 +4,19 @@
 Version 8.3-SNAPSHOT
 -------------
 
+ADDED:
 
+- releases go to Maven Central through the Central Portal, as in the rest of the family: the
+  `com.gradleup.nmcp` plugin uploads, the maintainer releases each deployment in the Portal, and a
+  `RELEASE-*` tag runs the new `publish.yml`. The OSSRH staging endpoint this project published to
+  is shut down, and its settings are gone; the build no longer needs OSSRH credentials to
+  configure. Signing follows the key: in CI from `GPG_PRIVATE_KEY`, with `GPG_KEY_ID` naming the
+  signing subkey, and a release without a key is refused (#6)
+
+CHANGED:
+
+- the build declares a Java toolchain of the version it is built for (11): Gradle and the nmcp
+  plugin run on 17, the library is compiled and tested on 11 (#6)
 
 Version 8.2
 -------------
