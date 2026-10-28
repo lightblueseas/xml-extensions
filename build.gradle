@@ -13,6 +13,7 @@ buildscript {
         classpath "gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:$licenseGradlePluginVersion"
         classpath "org.ajoberstar.grgit:grgit-gradle:$grgitGradlePluginVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$spotlessGradlePluginVersion"
+        classpath "com.gradleup.nmcp:nmcp:$nmcpGradlePluginVersion"
     }
 }
 
@@ -25,6 +26,13 @@ apply plugin: "com.github.hierynomus.license"
 apply plugin: "jacoco"
 apply plugin: "org.ajoberstar.grgit"
 apply plugin: "com.diffplug.spotless"
+apply plugin: "com.gradleup.nmcp"
+// before the imported files: they configure tasks that read the toolchain, which fixes it
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of("$projectSourceCompatibility")
+    }
+}
 // import gradle files
 apply from: "gradle/dependencies.gradle"
 apply from: "gradle/formatting.gradle"
@@ -34,8 +42,6 @@ apply from: "gradle/packaging.gradle"
 apply from: "gradle/publishing.gradle"
 apply from: "gradle/repositories.gradle"
 apply from: "gradle/testing.gradle"
-
-sourceCompatibility = "$projectSourceCompatibility" as Object
 
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
